@@ -1,0 +1,47 @@
+---
+title: "Preferential global nucleotide excision repair in exons"
+keywords:
+  - nucleotide excision repair
+  - exon
+  - intron
+  - XR-seq
+  - Damage-seq
+lang: en-US
+authors:
+  -
+    name: Author 1
+    orcid: XXXX-XXXX-XXXX-XXXX
+    affiliations:
+      - DBPR
+  -
+    name: Author 2
+    orcid: XXXX-XXXX-XXXX-XXXX
+    affiliations:
+      - DBPR
+  -
+    name: Author 3
+    orcid: XXXX-XXXX-XXXX-XXXX
+    affiliations:
+      - DBPR
+  -
+    name: Author 4
+    orcid: XXXX-XXXX-XXXX-XXXX
+    affiliations:
+      - DBPR
+  -
+    name: Author 5
+    orcid: XXXX-XXXX-XXXX-XXXX
+    affiliations:
+      - DBPR2
+  -
+    name: Author 6
+    orcid: XXXX-XXXX-XXXX-XXXX
+    affiliations:
+      - DBPR2
+  -
+    name: Author 7
+    email: DBPR
+    orcid: XXXX-XXXX-XXXX-XXXX
+    affiliations:
+      - DBPR
+    symbol_str: "*"

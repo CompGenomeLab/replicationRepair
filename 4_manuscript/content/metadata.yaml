@@ -1,0 +1,63 @@
+---
+title: "Preferential global nucleotide excision repair in exons"
+keywords:
+  - nucleotide excision repair
+  - exon
+  - intron
+  - XR-seq
+  - Damage-seq
+lang: en-US
+authors:
+  -
+    name: Cem Azgari
+    initials: CA
+    orcid: XXXX-XXXX-XXXX-XXXX
+    email: cemazgari@sabanciuniv.edu
+    affiliations:
+      - Molecular Biology, Genetics & Bioengineering Program, Faculty of Engineering and Natural Sciences, Sabanci University, Istanbul 34956, Turkey
+  -
+    name: Berk Turhan
+    initials: BT
+    orcid: XXXX-XXXX-XXXX-XXXX
+    email: berkturhan@sabanciuniv.edu
+    affiliations:
+      - Molecular Biology, Genetics & Bioengineering Program, Faculty of Engineering and Natural Sciences, Sabanci University, Istanbul 34956, Turkey
+  -
+    name: Zeynep Kilinc
+    initials: ZK
+    orcid: XXXX-XXXX-XXXX-XXXX
+    email: zeynepkilinc@sabanciuniv.edu
+    affiliations:
+      - Molecular Biology, Genetics & Bioengineering Program, Faculty of Engineering and Natural Sciences, Sabanci University, Istanbul 34956, Turkey
+  -
+    name: Defne Circi
+    initials: DC
+    orcid: XXXX-XXXX-XXXX-XXXX
+    email: defnecirci@sabanciuniv.edu
+    affiliations:
+      - Molecular Biology, Genetics & Bioengineering Program, Faculty of Engineering and Natural Sciences, Sabanci University, Istanbul 34956, Turkey
+  -
+    name: Yanchao Huang
+    initials: YH
+    orcid: XXXX-XXXX-XXXX-XXXX
+    email: yanchaohuang@fudan.edu.cn
+    affiliations:
+      - Fifth People’s Hospital of Shanghai and Institute of Biomedical Sciences, Fudan University, Shanghai 200032, China
+  -
+    name: Jinchuan Hu
+    initials: JH
+    orcid: XXXX-XXXX-XXXX-XXXX
+    email: hujinchuan@fudan.edu.cn
+    affiliations:
+      - Fifth People’s Hospital of Shanghai and Institute of Biomedical Sciences, Fudan University, Shanghai 200032, China
+  -
+    github: adebali
+    name: Ogun Adebali
+    initials: OA
+    orcid: 0000-0001-9213-4070
+    twitter: compGenomics
+    email: ogun.adebali@sabanciuniv.edu
+    affiliations:
+      - Molecular Biology, Genetics & Bioengineering Program, Faculty of Engineering and Natural Sciences, Sabanci University, Istanbul 34956, Turkey
+    funders: EMBO Installation Grant funded by TUBITAK
+    symbol_str: "*"
