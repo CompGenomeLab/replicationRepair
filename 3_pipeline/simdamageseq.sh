@@ -43,7 +43,7 @@ source ${mainPath}/functions_repairRep.sh
 	
 	            (bowtie2 -p 4 -X 1000 -x ${genomePath}/Bowtie2/genome -1 ${simRawPath}/$1_sim${zip} -2 ${simRawPath}/$1_sim${R2zip} -S ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.sam) 2>> ${mainPath}/simulation/Damageseq/$1/control/$1_control.txt
 
-	            samtools view -q 20 -b -o ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.bam ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.sam # samtools: sam to bam
+	            samtools view -b -o ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.bam ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.sam # samtools: sam to bam
 
 	            bedtools bamtobed -i ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.bam > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.bed # bedtools: bam to bed
 
@@ -63,7 +63,7 @@ source ${mainPath}/functions_repairRep.sh
         
                 (bowtie2 -p 4 -x ${genomePath}/Bowtie2/genome -U ${simRawPath}/$1_sim${zip} -S ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.sam) 2>> ${mainPath}/simulation/Damageseq/$1/control/$1_control.txt
 
-	            samtools view -q 20 -b -o ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.bam ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.sam # samtools: sam to bam
+	            samtools view -b -o ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.bam ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.sam # samtools: sam to bam
 
 	            bedtools bamtobed -i ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.bam > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1.bed # bedtools: bam to bed
 
