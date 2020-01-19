@@ -83,7 +83,7 @@ source ${mainPath}/functions_repairRep.sh
 
         if ${Key_sep_plus_minus}; then
 
-	        grep "chr" ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted.bed | grep -v -e "chrY" -e "chrM" > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_chr.bed
+	        grep "^chr" ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted.bed | grep -v -e "chrY" -e "chrM" > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_chr.bed
 
 	        awk '{if($6=="+"){print}}' ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_chr.bed > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_plus.bed # separating plus strand
 
