@@ -7,3 +7,4 @@ gitignore/
 1_code/R/.Rhistory
 1_code/R/.Rproj.user/
 0_data/gitignore
+.Rproj.user
