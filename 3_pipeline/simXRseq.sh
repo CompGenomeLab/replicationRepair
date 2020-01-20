@@ -27,7 +27,7 @@ source ${mainPath}/functions_repairRep.sh
 
         check_raw_data $1_sim $simRawPath 
 
-        TotalFastqReads="$(grep -c '@' ${rawdataPath}/$1${zip})"
+        TotalFastqReads="$(grep -c '@' ${$simRawPath}/$1_sim${zip})"
 	
 	    echo "Total Fastq Reads: ${TotalFastqReads}" > ${mainPath}/simulation/XRseq/$1/control/$1_control.txt # Control: add total fastq reads
 
