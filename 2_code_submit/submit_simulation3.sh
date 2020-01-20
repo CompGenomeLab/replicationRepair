@@ -25,7 +25,7 @@
 #
 # -= Resources =-
 #
-#SBATCH --job-name=part2_sim
+#SBATCH --job-name=part3_sim
 #SBATCH --account=users
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=4
@@ -35,9 +35,9 @@
 #SBATCH --output=%j-slurm.out
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=cemazgari@sabanciuniv.edu
-#SBATCH --array=0-15
+#SBATCH --array=16-31 
 
-######13-16,29-35
+######0-34
 
 
 ################################################################################
@@ -85,17 +85,27 @@ module load samtools-1.9-gcc-8.2.0-r22yn5w
 module load bioconda-adebali
 
 
+
 # sample list
 
-#samples=(NT4H1-CT5H2-HelaD1-5R2h2_combined XT4H1-CT5H2-HelaD3-5R2h2_combined R19029847-HD2TCD4-HelaD1-5R2h1_combined R19029847-HD2TCD4-HelaD3-5R2h1_combined HDA64A1_ATCACG HDA64B19_GTGAAA HDE64A4_TGACCA HDE64B20_GTGGCC HDL64A5_ACAGTG HDL64B22_CGTACG HDACA6_GCCAAT HDACB23_GAGTGG HDECA10_TAGCTT HDECB25_ACTGAT HDLCA12_CTTGTA HDLCB27_ATTCCT)
-
-samples=( HXA64A1_ATCACG HXA64B7_CAGATC HXE64A2_CGATGT HXE64B8_ACTTGA HXL64A3_TTAGGC HXL64B9_GATCAG HXACA4_TGACCA HXACB10_TAGCTT HXECA5_ACAGTG HXECB11_GGCTAC HXLCA6_GCCAAT HXLCB12_CTTGTA R19026421-2019XR1-Hela15X2_combined_R1 R19026421-2019XR1-Hela35X3_combined_R1 R19033030-2019XR3-Hela15X7_combined_R1 R19033030-2019XR3-Hela35X8_combined_R1 )
+samples=(NT4H1-CT5H2-HelaD1-5R2h2_combined XT4H1-CT5H2-HelaD3-5R2h2_combined R19029847-HD2TCD4-HelaD1-5R2h1_combined R19029847-HD2TCD4-HelaD3-5R2h1_combined HDA64A1_ATCACG HDA64B19_GTGAAA HDE64A4_TGACCA HDE64B20_GTGGCC HDL64A5_ACAGTG HDL64B22_CGTACG HDACA6_GCCAAT HDACB23_GAGTGG HDECA10_TAGCTT HDECB25_ACTGAT HDLCA12_CTTGTA HDLCB27_ATTCCT HXA64A1_ATCACG HXA64B7_CAGATC HXE64A2_CGATGT HXE64B8_ACTTGA HXL64A3_TTAGGC HXL64B9_GATCAG HXACA4_TGACCA HXACB10_TAGCTT HXECA5_ACAGTG HXECB11_GGCTAC HXLCA6_GCCAAT HXLCB12_CTTGTA R19026421-2019XR1-Hela15X2_combined_R1 R19026421-2019XR1-Hela35X3_combined_R1 R19033030-2019XR3-Hela15X7_combined_R1 R19033030-2019XR3-Hela35X8_combined_R1)
 
 file=${samples[$SLURM_ARRAY_TASK_ID]}
 
 echo This is task $SLURM_ARRAY_TASK_ID
 
-mainPath="/cta/users/cemazgari/repairReplication/simulation"
+source ~/repairReplication/source_dir.sh
 
-${mainPath}/filter_syn_fasta -in ${mainPath}/inputfasta/${file}_cutadapt_sorted_chr.fa -length 26 -numReads 30000000 -sim ${mainPath}/XR_sim_f2.fq -out ${mainPath}/rawdata/${file}_sim.fastq
+getname="$(echo $file | sed 's/-/_/g')"
+method="$(grep ${getname} ${mainPath}/project_repair_replication_all_samples.csv | sed 's/,/\t/g' | awk '{print $6}')"
 
+if [ "$method" = "Damage_seq" ]; then # ids: 0 - 15
+
+    echo "Sample Name: " $file
+    ${mainPath}/simulation/simdamageseq.sh $file
+
+elif [ "$method" = "XR_seq" ]; then # ids: 16 - 31
+
+    echo "Sample Name: " $file
+    ${mainPath}/simulation/simXRseq.sh $file
+fi

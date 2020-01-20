@@ -25,7 +25,7 @@
 #
 # -= Resources =-
 #
-#SBATCH --job-name=simulation_part1
+#SBATCH --job-name=part1_sim
 #SBATCH --account=users
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=8
@@ -88,4 +88,4 @@ outPath="/cta/users/cemazgari/repairReplication/simulation"
 input="/cta/groups/adebali/data/reference_genomes/human/gencode/19/genome.fa"
 toolPath="/cta/users/cemazgari/repairReplication/simulation/art_bin_GreatSmokyMountains"
 
-${toolPath}/art_illumina -ss HS25 -i ${input} -l 10 -f 10 -o ${outPath}/human_sim_f10 -rs 1002
+${toolPath}/art_illumina -ss HS25 -i ${input} -l 26 -f 2 -o ${outPath}/XR_sim_f2 -rs 1002
