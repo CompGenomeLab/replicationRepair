@@ -2,12 +2,10 @@
 
 library(ggplot2)
 library(stringr)
-library(dplyr)
 
 #### prepare data ####
 
-sourcePath <- paste("~/Documents/My_Projects/Project_Repair_Replication/", 
-                    "Scripts/R/", sep = "") 
+sourcePath <- paste("~/Documents/myprojects/replicationRepair/1_code/R/")
 
 date <- "[2019.10.31]"
 
@@ -17,7 +15,7 @@ source(paste(sourcePath, "2_report_sub_dfs.R", sep = ""))
 
 #### set df, variables and rearrange ####
 
-df <- fr_xr_ds_min_plus
+df <- fr
 
 for (rearrange in 1) {  
   
@@ -52,7 +50,7 @@ for (rearrange in 1) {
 
 #### filter the data ####
 
-d <- filter(df, phase == "early" | phase == "late")
+d <- filter(df, product == "CPD", method == "Damage_seq")
 
 #### add plot format #### 
 
@@ -60,20 +58,18 @@ source(paste(sourcePath, "4_plot_format.R", sep = ""))
 
 #### create the plot ####
 
-p <- ggplot(d, aes(x = windows, y = log2(min_plus))) + 
-  geom_line(aes(color = phase)) + 
-  geom_line(y=0, color="red", linetype="dashed") +
-  facet_grid(~product~time_after_exposure~replicate, 
+p <- ggplot(d, aes(x = windows, y = RPKM)) + 
+  geom_line(aes(linetype = sample_strand, color = sample_strand)) + 
+  facet_grid(~product~time_after_exposure~replicate~phase~method, 
              labeller = labeller(product = product_labs, 
+                                 method = method_labs, 
                                  time_after_exposure = taex_labs, 
-                                 replicate = rep_labs)) + 
-  xlab(windows_lab) + ylab(fr_xr_ds_min_plus_lab) +
+                                 replicate = rep_labs, phase = phase_labs)) + 
+  xlab(windows_lab) + ylab(fr_lab) +
   scale_x_continuous(limits = c(-half_window-5, half_window+5), 
                      breaks = c(-half_window, 0, half_window), 
                      labels = c("-10 kb", "Initiation Zones", "+10 kbp")) + 
-  scale_color_manual(name = "Phase", 
-                     label = c("Early Phase", "Late Phase", "Asyncronized"), 
-                     values = phase_colors) + 
+  scale_color_manual(values = strand_colors) + 
   labs(color = "Strands", linetype = "Strands")
 
 p <- p + p_format
@@ -82,12 +78,11 @@ p # visualize
 
 #### save the plot ####
 
-figurePath <- paste("~/Documents/My_Projects/Project_Repair_Replication/", 
-                    "Results/InZones/", sep = "")
+figurePath <- paste("~/Documents/myprojects/replicationRepair/4_output/", 
+                    "gitignore/InZones/", sep = "")
 
-figureName <- paste(dateout, "Minus_over_Plus_Strand_Value_of_", 
-                    "Repair_over_Damage_Value_of_", fr_name, 
-                    "_for_Every_Sample.pdf", sep = "")
+figureName <- paste(dateout, "RPKM_Value_of_", fr_name, 
+                    "_for_CPD.pdf", sep = "")
 
 ggsave(path = figurePath, filename = figureName, 
        width = 297, height = 210, units = "mm")
@@ -104,4 +99,5 @@ dataInfo <- paste(date, "final_report_", fr_name, "_info.TXT", sep = "")
 figureInfo <- "3_initiation_zones_windows.R"
 
 source(paste(sourcePath, "4_figure_info.R", sep = ""))
+
 

@@ -1,12 +1,9 @@
 
-dataInfoPath <- paste("~/Documents/My_Projects/Project_Repair_Replication/", 
-                      "Results/1_TextforPlotting", sep = "")
-
-figureInfoPath <- paste("~/Documents/My_Projects/Project_Repair_Replication/", 
-                        "Scripts/R", sep = "") 
+figureInfoPath <- sourcePath
 
 # dataInfo, figureInfo, figureName, and figurePath will be delivered by the 
-# main plot scripts (3_*).
+# main plot scripts (3_*). dataInfoPath will be delivered by the 
+# 2_report_sub_dfs.R.
 
 figureFile <- sub(".pdf", ".txt", figureName)
 

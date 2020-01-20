@@ -3,12 +3,12 @@
 
 #### import data ####
 
-dir_fr <- paste("~/Documents/My_Projects/Project_Repair_Replication/",
-                "Results/1_TextforPlotting/", sep = "")
+dir_fr <- paste("~/Documents/myprojects/replicationRepair/4_output/",
+                "gitignore/1_TextforPlotting/", sep = "")
 
 temp <- list.files(path = dir_fr, pattern = ".txt")
 
-temp <- temp[grepl("2019.*12.*23.*final_report.*\\.txt", temp)]
+temp <- temp[grepl("2020.*01.*20.*final_report.*\\.txt", temp)]
 
 setwd(dir_fr)
 
@@ -45,4 +45,4 @@ write.csv(fr, file = paste(new_name, "_ready.csv", sep = ""),
 
 }
 
-rm(fr, dir_fr, length, new_name, report_name, temp)
+rm(fr, length, new_name, report_name, temp)

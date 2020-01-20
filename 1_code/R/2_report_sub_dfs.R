@@ -5,10 +5,10 @@ library(reshape2)
 
 #### variable set ####
 
-dir_fr <- paste("~/Documents/My_Projects/Project_Repair_Replication/",
-                "Results/1_TextforPlotting/", sep = "")
+dataInfoPath <- paste("~/Documents/myprojects/replicationRepair/4_output/",
+                  "gitignore/1_TextforPlotting/", sep = "")
 
-temp <- list.files(path = dir_fr, pattern = ".txt")
+temp <- list.files(path = dataInfoPath, pattern = ".txt")
 
 temp <- temp[grepl("*final_report.*\\.txt", temp)]
 
@@ -17,8 +17,8 @@ temp <- temp[grepl("*final_report.*\\.txt", temp)]
 for (run in 1) {
   #### import data ####
   
-  fr <- read.csv(paste(dir_fr, date, "final_report_", fr_name, "_ready.csv", 
-                       sep = ""))
+  fr <- read.csv(paste(dataInfoPath, date, "final_report_", fr_name, 
+                       "_ready.csv", sep = ""))
   
   #### filter zeros ####
   
