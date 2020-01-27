@@ -59,9 +59,32 @@ source ${mainPath}/functions_repairRep.sh
 	
 	            (bowtie2 -p 4 -X 1000 -x ${genomePath}/Bowtie2/genome -1 ${mainPath}/Damageseq/$1/pre_analysis/$1_R1_cutadapt.fastq.gz -2 ${mainPath}/Damageseq/$1/pre_analysis/$1_R2_cutadapt.fastq.gz -S ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.sam) 2>> ${mainPath}/Damageseq/$1/control/$1_control.txt
 
-	            samtools view -q 20 -b -o ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.sam # samtools: sam to bam
+	            samtools view -q 20 -Sb -o ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.sam # samtools: sam to bam
 
-	            bedtools bamtobed -i ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.bam > ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.bed # bedtools: bam to bed
+                samtools sort -n ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_sorted.bam
+
+                samtools view -bh -f 99 ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_sorted.bam > ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus1.bam 
+                
+                samtools view -bh -f 147 ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_sorted.bam > ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus2.bam
+                
+                samtools view -bh -f 83 ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_sorted.bam > ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus1.bam 
+                
+                samtools view -bh -f 163 ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_sorted.bam > ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus2.bam
+
+                samtools merge ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus_merged.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus1.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus2.bam
+
+                samtools merge ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus_merged.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus1.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus2.bam
+
+                samtools sort ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus_merged.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus_merged_sorted.bam
+                samtools sort ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus_merged.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus_merged_sorted.bam
+
+                samtools sort -n ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus_merged_sorted.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus_merged_sortedbyName.bam 
+                samtools sort -n ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus_merged_sorted.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus_merged_sortedbyName.bam 
+
+	            bedtools bamtobed -i ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus_merged_sortedbyName.bam > ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus.bed # bedtools: bam to bed
+                bedtools bamtobed -i ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus_merged_sortedbyName.bam > ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus.bed # bedtools: bam to bed
+
+                cat ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_plus.bed ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt_minus.bed > ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.bed
 
                 rm ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.sam
                 rm ${mainPath}/Damageseq/$1/pre_analysis/$1_R1_cutadapt.fastq.gz
@@ -93,7 +116,7 @@ source ${mainPath}/functions_repairRep.sh
         
                 (bowtie2 -p 4 -x ${genomePath}/Bowtie2/genome -U ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.fastq.gz -S ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.sam) 2>> ${mainPath}/Damageseq/$1/control/$1_control.txt
 
-	            samtools view -q 20 -b -o ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.sam # samtools: sam to bam
+	            samtools view -q 20 -Sb -o ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.bam ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.sam # samtools: sam to bam
 
 	            bedtools bamtobed -i ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.bam > ${mainPath}/Damageseq/$1/pre_analysis/$1_cutadapt.bed # bedtools: bam to bed
 

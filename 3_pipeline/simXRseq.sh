@@ -35,7 +35,7 @@ source ${mainPath}/functions_repairRep.sh
         
             (bowtie2 -p 4 -x ${genomePath}/Bowtie2/genome -U ${simRawPath}/$1_sim${zip} -S ${mainPath}/simulation/XRseq/$1/pre_analysis/$1.sam) 2>> ${mainPath}/simulation/XRseq/$1/control/$1_control.txt
 
-	        samtools view -q 20 -b -o ${mainPath}/simulation/XRseq/$1/pre_analysis/$1.bam ${mainPath}/simulation/XRseq/$1/pre_analysis/$1.sam # samtools: sam to bam
+	        samtools view -q 20 -Sb -o ${mainPath}/simulation/XRseq/$1/pre_analysis/$1.bam ${mainPath}/simulation/XRseq/$1/pre_analysis/$1.sam # samtools: sam to bam
 
 	        bedtools bamtobed -i ${mainPath}/simulation/XRseq/$1/pre_analysis/$1.bam > ${mainPath}/simulation/XRseq/$1/pre_analysis/$1.bed # bedtools: bam to bed
 

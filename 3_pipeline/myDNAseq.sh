@@ -44,7 +44,7 @@ source ${mainPath}/functions_repairRep.sh
             
 	            (bowtie2 -p 4 -X 1000 -x ${genomePath}/Bowtie2/genome -1 ${rawdataPath}/$1${zip} -2 ${rawdataPath}/$1${zip} -S ${mainPath}/Input/$1/pre_analysis/$1.sam) 2>> ${mainPath}/Input/$1/control/$1_control.txt
 
-	            samtools view -q 20 -b -o ${mainPath}/Input/$1/pre_analysis/$1.bam ${mainPath}/Input/$1/pre_analysis/$1.sam # samtools: sam to bam
+	            samtools view -q 20 -Sb -o ${mainPath}/Input/$1/pre_analysis/$1.bam ${mainPath}/Input/$1/pre_analysis/$1.sam # samtools: sam to bam
 
 	            bedtools bamtobed -i ${mainPath}/Input/$1/pre_analysis/$1.bam > ${mainPath}/Input/$1/pre_analysis/$1.bed # bedtools: bam to bed
 
@@ -64,7 +64,7 @@ source ${mainPath}/functions_repairRep.sh
             
                 (bowtie2 -p 4 -x ${genomePath}/Bowtie2/genome -U ${rawdataPath}/$1${zip} -S ${mainPath}/Input/$1/pre_analysis/$1.sam) 2>> ${mainPath}/Input/$1/control/$1_control.txt
 
-                samtools view -q 20 -b -o ${mainPath}/Input/$1/pre_analysis/$1.bam ${mainPath}/Input/$1/pre_analysis/$1.sam # samtools: sam to bam
+                samtools view -q 20 -Sb -o ${mainPath}/Input/$1/pre_analysis/$1.bam ${mainPath}/Input/$1/pre_analysis/$1.sam # samtools: sam to bam
 
                 bedtools bamtobed -i ${mainPath}/Input/$1/pre_analysis/$1.bam > ${mainPath}/Input/$1/pre_analysis/$1.bed # bedtools: bam to bed
 
