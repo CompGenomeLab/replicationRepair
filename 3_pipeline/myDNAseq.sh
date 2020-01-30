@@ -44,10 +44,16 @@ source ${mainPath}/functions_repairRep.sh
             
 	            (bowtie2 -p 4 -X 1000 -x ${genomePath}/Bowtie2/genome -1 ${rawdataPath}/$1${zip} -2 ${rawdataPath}/$1${zip} -S ${mainPath}/Input/$1/pre_analysis/$1.sam) 2>> ${mainPath}/Input/$1/control/$1_control.txt
 
-	            samtools view -q 20 -Sb -o ${mainPath}/Input/$1/pre_analysis/$1.bam ${mainPath}/Input/$1/pre_analysis/$1.sam # samtools: sam to bam
+	            samtools view -Sb -o ${mainPath}/Input/$1/pre_analysis/$1_cutadapt.bam ${mainPath}/Input/$1/pre_analysis/$1_cutadapt.sam # samtools: sam to bam
 
-	            bedtools bamtobed -i ${mainPath}/Input/$1/pre_analysis/$1.bam > ${mainPath}/Input/$1/pre_analysis/$1.bed # bedtools: bam to bed
+                samtools view -q 20 -bf 0x2 ${mainPath}/Input/$1/pre_analysis/$1_cutadapt.bam | sort -n | bedtools bamtobed -bedpe -mate1 > ${mainPath}/Input/$1/pre_analysis/$1_cutadapt.bedpe
 
+                awk '{if($9=="+"){print $1"\t"$2"\t"$6"\t"$7"\t"$8"\t"$9}}' ${mainPath}/Input/$1/pre_analysis/$1_cutadapt.bedpe > ${mainPath}/Input/$1/pre_analysis/$1_cutadapt_plus.bed
+
+                awk '{if($9=="-"){print $1"\t"$5"\t"$3"\t"$7"\t"$8"\t"$9}}' ${mainPath}/Input/$1/pre_analysis/$1_cutadapt.bedpe > ${mainPath}/Input/$1/pre_analysis/$1_cutadapt_minus.bed
+                
+                cat ${mainPath}/Input/$1/pre_analysis/$1_cutadapt_plus.bed ${mainPath}/Input/$1/pre_analysis/$1_cutadapt_minus.bed > ${mainPath}/Input/$1/pre_analysis/$1_cutadapt.bed
+                
                 rm ${mainPath}/Input/$1/pre_analysis/$1.sam
 
                 echo bowtie2 mapping is done!
@@ -64,9 +70,9 @@ source ${mainPath}/functions_repairRep.sh
             
                 (bowtie2 -p 4 -x ${genomePath}/Bowtie2/genome -U ${rawdataPath}/$1${zip} -S ${mainPath}/Input/$1/pre_analysis/$1.sam) 2>> ${mainPath}/Input/$1/control/$1_control.txt
 
-                samtools view -q 20 -Sb -o ${mainPath}/Input/$1/pre_analysis/$1.bam ${mainPath}/Input/$1/pre_analysis/$1.sam # samtools: sam to bam
+                samtools view -Sb -o ${mainPath}/Input/$1/pre_analysis/$1.bam ${mainPath}/Input/$1/pre_analysis/$1.sam # samtools: sam to bam
 
-                bedtools bamtobed -i ${mainPath}/Input/$1/pre_analysis/$1.bam > ${mainPath}/Input/$1/pre_analysis/$1.bed # bedtools: bam to bed
+                samtools view -q 20 -b ${mainPath}/Input/$1/pre_analysis/$1.bam | bedtools bamtobed  > ${mainPath}/Input/$1/pre_analysis/$1.bed # bedtools: bam to bed
 
                 rm ${mainPath}/Input/$1/pre_analysis/$1.sam
 

@@ -47,9 +47,9 @@ source ${mainPath}/functions_repairRep.sh
         
             (bowtie2 -p 4 -x ${genomePath}/Bowtie2/genome -U ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.fastq.gz -S ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.sam) 2>> ${mainPath}/XRseq/$1/control/$1_control.txt
 
-	        samtools view -q 20 -Sb -o ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.bam ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.sam # samtools: sam to bam
+	        samtools view -Sb -o ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.bam ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.sam # samtools: sam to bam
 
-	        bedtools bamtobed -i ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.bam > ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.bed # bedtools: bam to bed
+	        samtools view -q 20 -b ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.bam | bedtools bamtobed > ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.bed # bedtools: bam to bed
 
             rm ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.sam
             rm ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.fastq.gz
