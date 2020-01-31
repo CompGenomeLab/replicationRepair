@@ -1,27 +1,68 @@
 ---
-title: "Manuscript Title"
+title: "Genome-wide effect of DNA replication on nucleotide excision
+repair of UV-induced damages."
 keywords:
-  - markdown
-  - publishing
-  - manubot
+  - Nucleotide excision repair
+  - UV damage
+  - (6-4)PPs
+  - CPDs
+  - XR-seq
+  - Damage-seq
+  - replication
+  - strand asymmetry
 lang: en-US
 authors:
   -
-    github: johndoe
-    name: John Doe
-    initials: JD
-    orcid: XXXX-XXXX-XXXX-XXXX
-    twitter: johndoe
-    email: john.doe@something.com
+    github: azgarian
+    name: Cem Azgari
+    initials: CA
+    orcid: XXXX-XXXX-XXXX-XXXX ???
+    email: cemazgari@sabanciuniv.edu
     affiliations:
-      - Department of Something, University of Whatever
-    funders: Grant XXXXXXXX
+      - Faculty of Engineering and Natural Sciences, Molecular Biology, Genetics and Bioengineering, Sabancı University Orhanlı, Tuzla, 34956, Istanbul
+    funders: Grant XXXXXXXX ???
   -
-    github: janeroe
-    name: Jane Roe
-    initials: JR
-    orcid: XXXX-XXXX-XXXX-XXXX
-    email: jane.roe@whatever.edu
+    github: ???
+    name: Jinchuan Hu
+    initials: JH
+    orcid: XXXX-XXXX-XXXX-XXXX ???
+    email: ???
     affiliations:
-      - Department of Something, University of Whatever
-      - Department of Whatever, University of Something
+      - Fifth People’s Hospital of Shanghai and Institute of Biomedical Sciences, Fudan University, Shanghai 200032, China
+    funders: Grant XXXXXXXX ???
+  -
+    github: ???
+    name: Yanchao Huang
+    initials: YH
+    orcid: XXXX-XXXX-XXXX-XXXX ???
+    email: ???
+    affiliations:
+      - Fifth People’s Hospital of Shanghai and Institute of Biomedical Sciences, Fudan University, Shanghai 200032, China
+    funders: Grant XXXXXXXX ???
+  -
+    github: ???
+    name: Yi-Ying Chiou
+    initials: YC
+    orcid: XXXX-XXXX-XXXX-XXXX ???
+    email: ???
+    affiliations:
+      - Institute of Biochemistry, National Chung Hsing University, Taiwan
+    funders: Grant XXXXXXXX ???
+  -
+    github: ???
+    name: Aziz Sancar
+    initials: AS
+    orcid: XXXX-XXXX-XXXX-XXXX ???
+    email: ???
+    affiliations:
+      - Department of Biochemistry and Biophysics, University of North Carolina School of Medicine, Chapel Hill, North Carolina
+    funders: Grant XXXXXXXX ???
+  -
+    github: adebali
+    name: Ogün Adebali
+    initials: OA
+    orcid: XXXX-XXXX-XXXX-XXXX ???
+    email: cemazgari@sabanciuniv.edu
+    affiliations:
+      - Faculty of Engineering and Natural Sciences, Molecular Biology, Genetics and Bioengineering, Sabancı University Orhanlı, Tuzla, 34956, Istanbul
+    funders: Grant XXXXXXXX ???
