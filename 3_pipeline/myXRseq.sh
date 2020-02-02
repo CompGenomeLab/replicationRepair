@@ -27,7 +27,7 @@ source ${mainPath}/functions_repairRep.sh
 
         check_raw_data $1 $rawdataPath  
 
-        TotalFastqReads="$(grep -c '@' ${rawdataPath}/$1${zip})"
+        TotalFastqReads="$(zcat ${rawdataPath}/$1${zip} | echo $((`wc -l`/4)))"
 	
 	    echo "Total Fastq Reads: ${TotalFastqReads}" > ${mainPath}/XRseq/$1/control/$1_control.txt # Control: add total fastq reads
 
@@ -35,7 +35,7 @@ source ${mainPath}/functions_repairRep.sh
         
             (cutadapt -a TGGAATTCTCGGGTGCCAAGGAACTCCAGTNNNNNNACGATCTCGTATGCCGTCTTCTGCTTG -o ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.fastq.gz ${rawdataPath}/$1${zip}) >> ${mainPath}/XRseq/$1/control/$1_control.txt 
 
-	        TotalFilteredReads="$(grep -c '@' ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.fastq.gz)"
+	        TotalFilteredReads="$(zcat ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt.fastq.gz | echo $((`wc -l`/4)))"
 
 	        echo "Total Reads after cutadapt filtering: ${TotalFilteredReads}" >> ${mainPath}/XRseq/$1/control/$1_control.txt 
 

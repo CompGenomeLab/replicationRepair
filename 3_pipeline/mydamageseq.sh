@@ -38,9 +38,9 @@ if ${Key_pre_analysis}; then
 
     if [ $layout == "p" ]; then 
 
-        TotalFastqReads_R1="$(grep -c '@' ${rawdataPath}/$1${zip})"
+        TotalFastqReads_R1="$(zcat ${rawdataPath}/$1${zip} | echo $((`wc -l`/4)))"
 
-        TotalFastqReads_R2="$(grep -c '@' ${rawdataPath}/$1${zip})"
+        TotalFastqReads_R2="$(zcat ${rawdataPath}/$1${zip2} | echo $((`wc -l`/4)))"
 
         TotalFastqReads="$(($TotalFastqReads_R1+$TotalFastqReads_R2))"
 
@@ -48,11 +48,11 @@ if ${Key_pre_analysis}; then
 
         if ${Key_cutadapt}; then # cutadapt Paired     
 
-            (cutadapt --discard-trimmed -g GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -G GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -o ${preAnalysis}/$1_R1_cutadapt.fastq.gz -p ${preAnalysis}/$1_R2_cutadapt.fastq.gz ${rawdataPath}/$1${zip} ${rawdataPath}/$1${zip}) >> ${control}/$1_control.txt
+            (cutadapt --discard-trimmed -g GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -G GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -o ${preAnalysis}/$1_R1_cutadapt.fastq.gz -p ${preAnalysis}/$1_R2_cutadapt.fastq.gz ${rawdataPath}/$1${zip} ${rawdataPath}/$1${zip2}) >> ${control}/$1_control.txt
 
-            TotalFilteredReads_R1="$(grep -c '@' ${preAnalysis}/$1_R1_cutadapt.fastq.gz)"
+            TotalFilteredReads_R1="$(zcat ${preAnalysis}/$1_R1_cutadapt.fastq.gz | echo $((`wc -l`/4)))"
 
-            TotalFilteredReads_R2="$(grep -c '@' ${preAnalysis}/$1_R2_cutadapt.fastq.gz)"
+            TotalFilteredReads_R2="$(zcat ${preAnalysis}/$1_R2_cutadapt.fastq.gz | echo $((`wc -l`/4)))"
 
             TotalFilteredReads="$(($TotalFilteredReads_R1+$TotalFilteredReads_R2))"
 
@@ -68,7 +68,9 @@ if ${Key_pre_analysis}; then
 
             samtools view -Sb -o ${preAnalysis}/$1_cutadapt.bam ${preAnalysis}/$1_cutadapt.sam # samtools: sam to bam
 
-            samtools view -q 20 -bf 0x2 ${preAnalysis}/$1_cutadapt.bam | sort -n | bedtools bamtobed -bedpe -mate1 > ${preAnalysis}/$1_cutadapt.bedpe
+            samtools sort -n ${preAnalysis}/$1_cutadapt.bam -o ${preAnalysis}/$1_cutadapt_sorted.bam
+
+            samtools view -q 20 -bf 0x2 ${preAnalysis}/$1_cutadapt_sorted.bam | bedtools bamtobed -bedpe -mate1 > ${preAnalysis}/$1_cutadapt.bedpe
 
             awk '{if($9=="+"){print $1"\t"$2"\t"$6"\t"$7"\t"$8"\t"$9}}' ${preAnalysis}/$1_cutadapt.bedpe > ${preAnalysis}/$1_cutadapt_plus.bed
 
@@ -86,7 +88,7 @@ if ${Key_pre_analysis}; then
 
     elif [ $layout == "s" ]; then
 
-        TotalFastqReads="$(grep -c '@' ${rawdataPath}/$1${zip})"
+        TotalFastqReads="$(zcat ${rawdataPath}/$1${zip} | echo $((`wc -l`/4)))"
 
         echo "Total Fastq Reads: ${TotalFastqReads}" > ${control}/$1_control.txt # Control: add total fastq reads 
 
@@ -94,8 +96,8 @@ if ${Key_pre_analysis}; then
 
             (cutadapt --discard-trimmed -g GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -o ${preAnalysis}/$1_cutadapt.fastq.gz ${rawdataPath}/$1${zip}) >>  ${control}/$1_control.txt 
 
-            TotalFilteredReads="$(grep -c '@' ${preAnalysis}/$1_cutadapt.fastq.gz)"
-
+            TotalFilteredReads="$(zcat ${preAnalysis}/$1_cutadapt.fastq.gz | echo $((`wc -l`/4)))"
+            
             echo "Total Reads after cutadapt filtering: ${TotalFilteredReads}" >> ${control}/$1_control.txt
 
             echo cutadapt is done! 

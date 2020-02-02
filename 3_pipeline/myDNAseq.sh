@@ -32,9 +32,9 @@ source ${mainPath}/functions_repairRep.sh
         
         if [ $layout == "p" ]; then
 
-            TotalFastqReads_R1="$(grep -c '@' ${rawdataPath}/$1${zip})"
+            TotalFastqReads_R1="$(zcat ${rawdataPath}/$1${zip} | echo $((`wc -l`/4)))"
 
-            TotalFastqReads_R2="$(grep -c '@' ${rawdataPath}/$1${zip})"
+            TotalFastqReads_R2="$(zcat ${rawdataPath}/$1${zip2} | echo $((`wc -l`/4)))"
 
             TotalFastqReads="$(($TotalFastqReads_R1+$TotalFastqReads_R2))"
 
@@ -42,11 +42,13 @@ source ${mainPath}/functions_repairRep.sh
 
             if ${Key_bowtie2}; then
             
-	            (bowtie2 -p 4 -X 1000 -x ${genomePath}/Bowtie2/genome -1 ${rawdataPath}/$1${zip} -2 ${rawdataPath}/$1${zip} -S ${mainPath}/Input/$1/pre_analysis/$1.sam) 2>> ${mainPath}/Input/$1/control/$1_control.txt
+	            (bowtie2 -p 4 -X 1000 -x ${genomePath}/Bowtie2/genome -1 ${rawdataPath}/$1${zip} -2 ${rawdataPath}/$1${zip2} -S ${mainPath}/Input/$1/pre_analysis/$1.sam) 2>> ${mainPath}/Input/$1/control/$1_control.txt
 
 	            samtools view -Sb -o ${mainPath}/Input/$1/pre_analysis/$1.bam ${mainPath}/Input/$1/pre_analysis/$1.sam # samtools: sam to bam
 
-                samtools view -q 20 -bf 0x2 ${mainPath}/Input/$1/pre_analysis/$1.bam | sort -n | bedtools bamtobed -bedpe -mate1 > ${mainPath}/Input/$1/pre_analysis/$1.bedpe
+                samtools sort -n ${mainPath}/Input/$1/pre_analysis/$1.bam -o ${mainPath}/Input/$1/pre_analysis/$1_sorted.bam
+
+                samtools view -q 20 -bf 0x2 ${mainPath}/Input/$1/pre_analysis/$1_sorted.bam | bedtools bamtobed -bedpe -mate1 > ${mainPath}/Input/$1/pre_analysis/$1.bedpe
 
                 awk '{if($9=="+"){print $1"\t"$2"\t"$6"\t"$7"\t"$8"\t"$9}}' ${mainPath}/Input/$1/pre_analysis/$1.bedpe > ${mainPath}/Input/$1/pre_analysis/$1_plus.bed
 
@@ -62,7 +64,7 @@ source ${mainPath}/functions_repairRep.sh
         
         elif [ $layout == "s" ]; then
 
-            TotalFastqReads="$(grep -c '@' ${rawdataPath}/$1${zip})"
+            TotalFastqReads="$(zcat ${rawdataPath}/$1${zip} | echo $((`wc -l`/4)))"
         
             echo "Total Fastq Reads: ${TotalFastqReads}" > ${mainPath}/Input/$1/control/$1_control.txt # Control: add total fastq reads
 
