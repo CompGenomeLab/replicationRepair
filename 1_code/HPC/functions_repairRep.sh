@@ -8,6 +8,7 @@ check_raw_data() {
     if [[ $(find "${rawPath}" -name "${sample}_R1.fastq.gz" -o -name "${sample}_1.fastq.gz" ) ]]; then
         rawdataPath=$(find "${rawPath}" -name "${sample}_R1.fastq.gz" -o -name "${sample}_1.fastq.gz" | sed -ne "s/ *\/${sample}.*//p" | head -1)
         zip=$(find "${rawPath}" -name "${sample}_R1.fastq.gz" -o -name "${sample}_1.fastq.gz" | sed -ne "s/ *.*${sample}//p" | head -1)
+        zip2=$(echo ${zip} | tr 1 2)
         layout="p"
         echo raw data is compressed! layout is paired!
     elif [[ $(find "${rawPath}" -name "${sample}.fastq.gz") ]]; then
@@ -18,6 +19,7 @@ check_raw_data() {
     elif [[ $(find "${rawPath}" -name "${sample}_R1.fastq" -o -name "${sample}_1.fastq") ]]; then 
         rawdataPath=$(find "${rawPath}" -name "${sample}_R1.fastq" -o -name "${sample}_1.fastq" | sed -ne "s/ *\/${sample}.*//p" | head -1)
         zip=$(find "${rawPath}" -name "${sample}_R1.fastq" -o -name "${sample}_1.fastq" | sed -ne "s/ *.*${sample}//p" | head -1)
+        zip2=$(echo ${zip} | tr 1 2)
         layout="p"
         echo raw data is not compressed! layout is paired!   
     elif [[ $(find "${rawPath}" -name "${sample}.fastq") ]]; then 
