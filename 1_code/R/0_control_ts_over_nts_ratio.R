@@ -8,15 +8,15 @@ library(gridExtra)
 
 options(scipen=999)
 
-setwd(paste("~/Documents/My_Projects/Project_Repair_Replication/Results/", 
+setwd(paste("~/Documents/myprojects/replicationRepair/4_output/gitignore/", 
             "2_sample_control/TS_NTS_ratio", sep = ""))
 
 all_together = "TSoverNTScount.txt"
 
 temp <- list.files(pattern = all_together)
 
-sample_info <- read.csv(paste("~/Documents/My_Projects/", 
-                              "Project_Repair_Replication/", 
+sample_info <- read.csv(paste("~/Documents/myprojects/replicationRepair/", 
+                              "0_data/gitignore/", 
                               "project_repair_replication_all_samples.csv", 
                               sep = ""))
 
@@ -25,7 +25,7 @@ sample_info <- read.csv(paste("~/Documents/My_Projects/",
 all_ts_nts <- data.frame()
 
 for(counter in 1:length(temp)) {
- 
+  
   d <- read.delim(temp[[counter]], header = FALSE)
   
   file_name_temp <- gsub("_cutadapt_.*", "", temp[[counter]])
@@ -76,5 +76,4 @@ p <- p + theme_light() +
 
 ggsave('TS_NTS_all_log2norm.png', width = 397, height = 210, units = "mm") 
 
-rm(all_ts_nts, d, p, sample_info, trash, all_together, counter, file_name, 
-   file_name_temp, sample_name, temp)
+

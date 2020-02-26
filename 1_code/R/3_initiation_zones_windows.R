@@ -1,106 +1,260 @@
-#### library ####
 
-library(ggplot2)
-library(stringr)
+#### set paths and variables ####
 
-#### prepare data ####
+# name of the data file and its run date  
+#fr_name <- "inZones_windows_201_100"
+#date <- "[2020.02.10]"
 
-sourcePath <- paste("~/Documents/myprojects/replicationRepair/1_code/R/")
+# path of the codes
+sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/R/" 
 
-date <- "[2020.02.01]"
+# save directory of figures
+figurePath <- paste("~/Documents/myprojects/replicationRepair/4_output/", 
+                    "gitignore/InZones/", sep = "") 
 
-fr_name <- "InZones_LRD_windows"
+# file name of data information
+dataInfo <- paste(date, "final_report_", fr_name, "_info.TXT", sep = "") 
 
+# name of the script
+figureInfo <- "3_initiation_zones_windows.R" 
+
+# name of the region
+region <- "Initiation Zones"
+
+# pre-analysis of data file
 source(paste(sourcePath, "2_report_sub_dfs.R", sep = ""))
 
-#### set df, variables and rearrange ####
+# functions
+source(paste(sourcePath, "4_functions.R", sep = ""))
 
-df <- fr_xr_ds_min_plus
-
-for (rearrange in 1) {  
-  
-  #### set variables ####
-  
-  dateout <- Sys.Date()
-  dateout <- format(dateout, format = "[%Y.%m.%d]")
-  
-  window_number <- 201
-  if (window_number %% 2 == 0) {
-    half_window <- window_number / 2
-  } else {
-    half_window <- (window_number - 1) / 2 + 1
-  }
-  
-  #### rearrange ####
-  
-  # window numbers separated from dataset names
-  window <- data.frame(str_split_fixed(df$dataset, "_", -1))
-  
-  df$windows <- as.numeric(levels(
-    window[ , ncol(window)]))[window[ , ncol(window)]] - half_window
-  
-  df$dataset <- "Initiation Zones"
-  
-  rm(window, rearrange)
-  
-  
-}
-
-#### plot ####
-
-#### filter the data ####
-
-d <- filter(df, phase == "early" | phase == "late")
-
-#### add plot format #### 
-
+# add plot format
 source(paste(sourcePath, "4_plot_format.R", sep = ""))
 
-#### create the plot ####
+# date of today
+dateout <- output_date()
 
-p <- ggplot(d, aes(x = windows, y = log2(min_plus))) + 
-  geom_line(aes(color = phase)) + 
-  geom_line(y=0, color="red", linetype="dashed") +
-  facet_grid(~product~time_after_exposure~replicate, 
-             labeller = labeller(product = product_labs, 
-                                 time_after_exposure = taex_labs, 
-                                 replicate = rep_labs)) + 
-  xlab(windows_lab) + ylab(fr_xr_ds_min_plus_lab) +
-  scale_x_continuous(limits = c(-half_window-5, half_window+5), 
-                     breaks = c(-half_window, 0, half_window), 
-                     labels = c("-10 kb", "Initiation Zones with LRDs", 
-                                "+10 kbp")) + 
-  scale_color_manual(name = "Phase", 
-                     label = c("Early Phase", "Late Phase", "Asyncronized"), 
-                     values = phase_colors) + 
-  labs(color = "Strands", linetype = "Strands")
+# all the functions that will be used for rearrangement
+rearrange <- function( ){
+  window_number <- as.numeric(get_sub_str( fr_name, "windows_", "_1" ))
+  window_length <- as.numeric(get_sub_str( fr_name, paste(window_number, 
+                                                          "_", sep = ""), "$" ))
+  half_window <<- middle( window_number ) 
+  rlength <<- region_length( window_number, window_length )
+  df <- window_numbering( df, 4, half_window )
+  df$dataset <- region
+  return(df)
+}
 
+
+#### RPKM ####
+
+# rearrange
+df <- fr
+df <- rearrange()
+
+# filter the data
+d <- filter(df, method != "DNA_seq")
+
+# create the plot 
+p <- p_RPKM( d )
 p <- p + p_format
+# p # visualize
 
-p # visualize
+# save figure
+figureName <- paste(dateout, "RPKM_Value_of_", fr_name, 
+                    "_for_Every_Sample.pdf", sep = "")
+fig_save( figurePath, figureName )
 
-#### save the plot ####
+# save figure info
+source(paste(sourcePath, "4_figure_info.R", sep = ""))
 
-figurePath <- paste("~/Documents/myprojects/replicationRepair/4_output/", 
-                    "gitignore/InZones/", sep = "")
+#### Repair Rate ####
 
+# rearrange
+df <- fr_xr_ds
+df <- rearrange()
+
+# filter the data
+d <- filter(df, phase != "async")
+
+# create the plot 
+p <- p_rr( d )
+p <- p + p_format
+# p # visualize
+
+# save figure
+figureName <- paste(dateout, "Repair_over_Damage_Value_of_", fr_name, 
+                    "_for_Every_Sample.pdf", sep = "")
+fig_save( figurePath, figureName )
+
+# save figure info
+source(paste(sourcePath, "4_figure_info.R", sep = ""))
+
+
+#### Early over Late of Repair Rate ####
+
+# rearrange
+df <- fr_xr_ds_ear_la
+df <- rearrange()
+
+# filter the data
+#d <- filter(df, )
+
+# create the plot 
+p <- p_rr_el( df )
+p <- p + p_format
+# p # visualize
+
+# save figure
+figureName <- paste(dateout, "Early_over_Late_Phase_Value_of_", 
+                    "Repair_over_Damage_Value_of_", fr_name, 
+                    "_for_Every_Sample.pdf", sep = "")
+fig_save( figurePath, figureName )
+
+# save figure info
+source(paste(sourcePath, "4_figure_info.R", sep = ""))
+
+
+
+#### Minus over Plus of Repair Rate ####
+
+# rearrange
+df <- fr_xr_ds_min_plus
+df <- rearrange()
+
+# filter the data
+d <- filter(df, phase == "early" | phase == "late")
+
+# create the plot 
+p <- p_rr_mp( d )
+p <- p + p_format
+# p # visualize
+
+# save figure
 figureName <- paste(dateout, "Minus_over_Plus_Strand_Value_of_", 
                     "Repair_over_Damage_Value_of_", fr_name, 
                     "_for_Every_Sample.pdf", sep = "")
+fig_save( figurePath, figureName )
 
-ggsave(path = figurePath, filename = figureName, 
-       width = 297, height = 210, units = "mm")
-
-figurePNG <- sub(".pdf", ".png", figureName)
-
-ggsave(path = figurePath, filename = figurePNG, 
-       width = 297, height = 210, units = "mm")
-
-#### save the figure info ####
-
-dataInfo <- paste(date, "final_report_", fr_name, "_info.TXT", sep = "")
-
-figureInfo <- "3_initiation_zones_windows.R"
-
+# save figure info
 source(paste(sourcePath, "4_figure_info.R", sep = ""))
+
+
+#### Early over Late ####
+
+# rearrange
+df <- fr_ear_la
+df <- rearrange()
+
+# filter the data
+d <- filter(df, method != "DNA_seq" )
+
+# create the plot 
+p <- p_el( d )
+p <- p + p_format
+# p # visualize
+
+# save figure
+figureName <- paste(dateout, "Early_over_Late_Phase_Value_of_", 
+                    fr_name, "_for_Every_Sample.pdf", sep = "")
+fig_save( figurePath, figureName )
+
+# save figure info
+source(paste(sourcePath, "4_figure_info.R", sep = ""))
+
+
+
+#### Minus over Plus of Early over Late ####
+
+# rearrange
+df <- fr_ear_la_min_plus
+df <- rearrange()
+
+# filter the data
+d <- filter(df, method != "DNA_seq" )
+
+# create the plot 
+p <- p_el_mp( d )
+p <- p + p_format
+# p # visualize
+
+# save figure
+figureName <- paste(dateout, "Minus_over_Plus_Strand_Value_of_", 
+                    "Early_over_Late_Phase_Value_of_", fr_name, 
+                    "_for_Every_Sample.pdf", sep = "")
+fig_save( figurePath, figureName )
+
+# save figure info
+source(paste(sourcePath, "4_figure_info.R", sep = ""))
+
+
+
+#### Minus over Plus ####
+
+# rearrange
+df <- fr_min_plus
+df <- rearrange()
+
+# filter the data
+d <- filter(df, phase != "async", method != "DNA_seq")
+
+# create the plot 
+p <- p_mp( d )
+p <- p + p_format
+# p # visualize
+
+# save figure
+figureName <- paste(dateout, "Minus_over_Plus_Value_of_", fr_name, 
+                    "_for_Every_Sample.pdf", sep = "")
+fig_save( figurePath, figureName )
+
+# save figure info
+source(paste(sourcePath, "4_figure_info.R", sep = ""))
+
+
+#### XR over DNA ####
+
+# rearrange
+df <- fr_xr_dna
+df <- rearrange()
+
+# filter the data
+d <- filter(df, phase != "async")
+
+# create the plot 
+p <- p_xd( d )
+p <- p + p_format
+# p # visualize
+
+# save figure
+figureName <- paste(dateout, "XR_over_DNA_Value_of_", fr_name, 
+                    "_for_Every_Sample.pdf", sep = "")
+fig_save( figurePath, figureName )
+
+# save figure info
+source(paste(sourcePath, "4_figure_info.R", sep = ""))
+
+
+#### DS over DNA ####
+
+# rearrange
+df <- fr_ds_dna
+df <- rearrange()
+
+# filter the data
+d <- filter(df, phase != "async")
+
+# create the plot 
+p <- p_dd( d )
+p <- p + p_format
+# p # visualize
+
+# save figure
+figureName <- paste(dateout, "DS_over_DNA_Value_of_", fr_name, 
+                    "_for_Every_Sample.pdf", sep = "")
+fig_save( figurePath, figureName )
+
+# save figure info
+source(paste(sourcePath, "4_figure_info.R", sep = ""))
+
 

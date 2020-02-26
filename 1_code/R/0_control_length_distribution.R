@@ -8,7 +8,7 @@ library(gridExtra)
 
 options(scipen=999)
 
-setwd(paste("~/Documents/My_Projects/Project_Repair_Replication/Results/", 
+setwd(paste("~/Documents/myprojects/replicationRepair/4_output/gitignore/", 
             "2_sample_control/length_distribution", sep = ""))
 
 only_xr = "_cutadapt_length_distribution.txt"
@@ -16,8 +16,8 @@ all_together = "length_distribution.txt"
 
 temp <- list.files(pattern = all_together)
 
-sample_info <- read.csv(paste("~/Documents/My_Projects/", 
-                              "Project_Repair_Replication/", 
+sample_info <- read.csv(paste("~/Documents/myprojects/replicationRepair/", 
+                              "0_data/gitignore/", 
                               "project_repair_replication_all_samples.csv", 
                               sep = ""))
 
@@ -48,23 +48,23 @@ for(counter in 1:length(temp)) {
          subtitle="Bar Chart",
          caption = sample_name)
   
-
+  
   #### theme ####
   
   p[[counter]] <- p[[counter]] + theme_light() +
-                  theme(axis.title.x = element_text(size = 16, face = "bold"),
-                        axis.title.y = element_text(size = 16, face = "bold"),
-                        axis.text.x = element_text(size = 14, vjust = 0.6),
-                        axis.text.y = element_text(size = 14, vjust = 0.1),
-                        strip.text.x = element_text(size = 14),
-                        strip.text.y = element_text(size = 14, angle = 360),
-                        legend.title = element_text(size = 14, face = "bold"),
-                        legend.text = element_text(size = 14),
-                        plot.caption = element_text(size = 14, 
-                                                    face = "italic"),
-                        plot.title = element_text(size = 16, face = "bold"),
-                        plot.subtitle = element_text(size = 16, face = "bold"))
-    
+    theme(axis.title.x = element_text(size = 16, face = "bold"),
+          axis.title.y = element_text(size = 16, face = "bold"),
+          axis.text.x = element_text(size = 14, vjust = 0.6),
+          axis.text.y = element_text(size = 14, vjust = 0.1),
+          strip.text.x = element_text(size = 14),
+          strip.text.y = element_text(size = 14, angle = 360),
+          legend.title = element_text(size = 14, face = "bold"),
+          legend.text = element_text(size = 14),
+          plot.caption = element_text(size = 14, 
+                                      face = "italic"),
+          plot.title = element_text(size = 16, face = "bold"),
+          plot.subtitle = element_text(size = 16, face = "bold"))
+  
   
   #### plot save 1 by 1 ####
   

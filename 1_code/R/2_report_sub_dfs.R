@@ -28,6 +28,8 @@ for (run in 1) {
     fr = fr[!(fr$chromosomes %in% trash$chromosomes & 
             fr$start_position %in% trash$start_position &
             fr$end_position %in% trash$end_position), ]
+    
+    rm(trash)
   }
   
   #### xr / ds ####
@@ -162,7 +164,44 @@ for (run in 1) {
   
   fr_xr_dna = select(fr_xr_dna, -c("DNA_seq", "XR_seq"))
   
-  rm(dna_a, fr_xr, fr_list, xr, temp, trash)
+  rm(dna_a, fr_xr, fr_list, xr, temp)
+  
+  
+  #### ds / input ####
+  
+  dna_a <- filter(fr, method == "DNA_seq" & phase != "async")
+  
+  fr_ds = filter(fr, method == "Damage_seq" & phase != "async")
+  
+  fr_list <- split(fr_ds, list(fr_ds$product, fr_ds$time_after_exposure, 
+                               fr_ds$replicate), drop = TRUE)
+  fr_ds_dna <- fr_list[[1]][0,]
+  
+  for (ds in 1:length(fr_list)) {
+    
+    temp <- fr_list[[ds]]
+    
+    temp <- rbind(temp, dna_a)
+    
+    temp <- dcast(temp, chromosomes + start_position + 
+                    end_position + dataset + score + dataset_strand + 
+                    phase +  sample_strand ~ method, 
+                  value.var = "RPKM")
+    
+    temp <- cbind(temp, fr_list[[ds]]["replicate"])
+    
+    temp <- cbind(temp, fr_list[[ds]]["product"])
+    
+    temp <- cbind(temp, fr_list[[ds]]["time_after_exposure"])
+    
+    fr_ds_dna <- rbind(fr_ds_dna, temp)
+  }
+  
+  fr_ds_dna$ds_dna <- fr_ds_dna$Damage_seq / fr_ds_dna$DNA_seq
+  
+  fr_ds_dna = select(fr_ds_dna, -c("DNA_seq", "Damage_seq"))
+  
+  rm(dna_a, fr_ds, fr_list, ds, temp)
   
   
   #### (- / +) ####

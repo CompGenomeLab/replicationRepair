@@ -1,3 +1,6 @@
+#### libraries ####
+
+library(ggplot2)
 
 #### label names ####
 
@@ -15,6 +18,9 @@ names(phase_labs) <- c("async", "early", "late")
 
 rep_labs <- c("Rep. A", "Rep. B")
 names(rep_labs) <- c("A", "B")
+
+dataset_strand_labs <- c("Leftward Direction", "Rightward Direction")
+names(dataset_strand_labs) <- c("-", "+")
 
 #### label colors and shapes ####
 
@@ -53,11 +59,19 @@ fr_lab <- "RPKM"
 
 fr_xr_ds_lab <- "Repair Rate (log2)"
 
+fr_xr_dna_lab <- "XR/DNA (log2)"
+
+fr_ds_dna_lab <- "DS/DNA (log2)"
+
+fr_ear_la_lab <- "Early/Late Phase Ratio (log2)"
+
 fr_min_plus_lab <- "Minus/Plus Strand Ratio (log2)"
 
 fr_xr_ds_min_plus_lab <- "Repair Rate Minus/Plus Strand Ratio (log2)"
 
 fr_xr_ds_ear_la_lab <- "Repair Rate Early/Late Phase Ratio (log2)"
+
+fr_ear_la_min_plus_lab <- "Early/Late Phase, Minus/Plus Strand Ratio (log2)"
 
 #### plot organization ####
 
@@ -72,3 +86,188 @@ p_format <- theme_light() +
                   legend.text = element_text(size = 16),
                   legend.position = "bottom")
 
+#### plots ####
+
+# RPKM
+p_RPKM <- function( df ){
+  p <- ggplot(df, aes(x = windows, y = RPKM)) + 
+    geom_line(aes(color = sample_strand)) + 
+    facet_grid(~product~time_after_exposure~replicate~phase~method, 
+               labeller = labeller(product = product_labs, 
+                                   method = method_labs, 
+                                   time_after_exposure = taex_labs, 
+                                   replicate = rep_labs, phase = phase_labs)) + 
+    xlab(windows_lab) + ylab(fr_lab) +
+    scale_x_continuous(limits = c(-half_window-5, half_window+5), 
+                       breaks = c(-half_window, 0, half_window), 
+                       labels = c(paste("-", rlength, " kb", sep = ""), 
+                                  region, 
+                                  paste("+", rlength, " kb", sep = ""))) + 
+    scale_color_manual(values = strand_colors) + 
+    labs(color = "Strands")
+  return(p)
+}
+
+# Repair Rate (XR/DS)
+p_rr <- function( df ){
+  phase_labs <- c("Async.", "Early Phase", "Late Phase")
+  names(phase_labs) <- c("async", "early", "late")
+  p <- ggplot(df, aes(x = windows, y = log2(xr_ds))) + 
+    geom_line(aes(color = sample_strand)) + 
+    facet_grid(~product~time_after_exposure~replicate~phase, 
+               labeller = labeller(product = product_labs, 
+                                   time_after_exposure = taex_labs, 
+                                   replicate = rep_labs, phase = phase_labs)) + 
+    xlab(windows_lab) + ylab(fr_xr_ds_lab) +
+    scale_x_continuous(limits = c(-half_window-5, half_window+5), 
+                       breaks = c(-half_window, 0, half_window), 
+                       labels = c(paste("-", rlength, " kb", sep = ""), 
+                                  region, 
+                                  paste("+", rlength, " kb", sep = ""))) + 
+    scale_color_manual(values = strand_colors) + 
+    labs(color = "Strands")
+  return(p)
+}
+
+# Repair Rate Early/Late Phase
+p_rr_el <- function( df ){  
+  p <- ggplot(df, aes(x=windows, y=log2(ear_la))) +
+    geom_line(aes(color = sample_strand)) +
+    facet_grid(~product~time_after_exposure~replicate,
+               labeller = labeller(product = product_labs, 
+                                   time_after_exposure = taex_labs, 
+                                   replicate = rep_labs)) + 
+    xlab(windows_lab) + ylab(fr_xr_ds_ear_la_lab) +
+    scale_x_continuous(limits = c(-half_window-5, half_window+5), 
+                       breaks = c(-half_window, 0, half_window), 
+                       labels = c(paste("-", rlength, " kb", sep = ""), 
+                                  region, 
+                                  paste("+", rlength, " kb", sep = ""))) + 
+    scale_color_manual(values = strand_colors) + 
+    labs(color = "Strands")
+  return(p)
+}
+
+# Repair Rate Minus/Plus Strand
+p_rr_mp <- function( df ){  
+  p <- ggplot(d, aes(x = windows, y = log2(min_plus))) + 
+    geom_line(aes(color = phase)) + 
+    geom_line(y=0, color="red", linetype="dashed") +
+    facet_grid(~product~time_after_exposure~replicate, 
+               labeller = labeller(product = product_labs, 
+                                   time_after_exposure = taex_labs, 
+                                   replicate = rep_labs)) + 
+    xlab(windows_lab) + ylab(fr_xr_ds_min_plus_lab) +
+    scale_x_continuous(limits = c(-half_window-5, half_window+5), 
+                       breaks = c(-half_window, 0, half_window), 
+                       labels = c(paste("-", rlength, " kb", sep = ""), 
+                                  region, 
+                                  paste("+", rlength, " kb", sep = ""))) + 
+    scale_color_manual(name = "Phase", 
+                       label = c("Early Phase", "Late Phase", "Asyncronized"), 
+                       values = phase_colors) + 
+    labs(color = "Strands")
+  return(p)
+}
+
+# Early/Late Phase
+p_el <- function( df ){  
+  p <- ggplot(df, aes(x=windows, y=log2(ear_la))) +
+    geom_line(aes(color = sample_strand)) +
+    facet_grid(~product~time_after_exposure~replicate~method,
+               labeller = labeller(product = product_labs, 
+                                   time_after_exposure = taex_labs, 
+                                   replicate = rep_labs,
+                                   method = method_labs)) + 
+    xlab(windows_lab) + ylab(fr_ear_la_lab) +
+    scale_x_continuous(limits = c(-half_window-5, half_window+5), 
+                       breaks = c(-half_window, 0, half_window), 
+                       labels = c(paste("-", rlength, " kb", sep = ""), 
+                                  region, 
+                                  paste("+", rlength, " kb", sep = ""))) + 
+    scale_color_manual(values = strand_colors) + 
+    labs(color = "Strands")
+  return(p)
+}
+
+# Minus/Plus Strand of Early/Late Phase 
+p_el_mp <- function( df ){  
+  p <- ggplot(df, aes(x = windows, y = log2(min_plus))) + 
+    geom_line() + 
+    geom_line(y=0, color="red", linetype="dashed") +
+    facet_grid(~product~time_after_exposure~replicate, 
+               labeller = labeller(product = product_labs, 
+                                   time_after_exposure = taex_labs, 
+                                   replicate = rep_labs)) + 
+    xlab(windows_lab) + ylab(fr_ear_la_min_plus_lab) +
+    scale_x_continuous(limits = c(-half_window-5, half_window+5), 
+                       breaks = c(-half_window, 0, half_window), 
+                       labels = c(paste("-", rlength, " kb", sep = ""), 
+                                  region, 
+                                  paste("+", rlength, " kb", sep = ""))) 
+  return(p)
+}
+
+# Minus/Plus Strand 
+p_mp <- function( df ){  
+  p <- ggplot(d, aes(x = windows, y = log2(min_plus))) + 
+    geom_line(aes(color = phase)) + 
+    geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+    facet_grid(~product~time_after_exposure~replicate~method, 
+               labeller = labeller(product = product_labs, 
+                                   method = method_labs, 
+                                   time_after_exposure = taex_labs, 
+                                   replicate = rep_labs)) + 
+    xlab(windows_lab) + ylab(fr_min_plus_lab) +
+    scale_x_continuous(limits = c(-half_window-5, half_window+5), 
+                       breaks = c(-half_window, 0, half_window), 
+                       labels = c(paste("-", rlength, " kb", sep = ""), 
+                                  region, 
+                                  paste("+", rlength, " kb", sep = ""))) + 
+    scale_color_manual(name = "Phase", 
+                       label = c("Early Phase", "Late Phase", "Asyncronized"), 
+                       values = phase_colors) 
+  return(p)
+}
+
+# XR/DNA
+p_xd <- function( df ){
+  phase_labs <- c("Async.", "Early Phase", "Late Phase")
+  names(phase_labs) <- c("async", "early", "late")
+  p <- ggplot(df, aes(x = windows, y = log2(xr_dna))) + 
+    geom_line(aes(color = sample_strand)) + 
+    facet_grid(~product~time_after_exposure~replicate~phase, 
+               labeller = labeller(product = product_labs, 
+                                   time_after_exposure = taex_labs, 
+                                   replicate = rep_labs, phase = phase_labs)) + 
+    xlab(windows_lab) + ylab(fr_xr_dna_lab) +
+    scale_x_continuous(limits = c(-half_window-5, half_window+5), 
+                       breaks = c(-half_window, 0, half_window), 
+                       labels = c(paste("-", rlength, " kb", sep = ""), 
+                                  region, 
+                                  paste("+", rlength, " kb", sep = ""))) + 
+    scale_color_manual(values = strand_colors) + 
+    labs(color = "Strands")
+  return(p)
+}
+
+# DS/DNA
+p_dd <- function( df ){
+  phase_labs <- c("Async.", "Early Phase", "Late Phase")
+  names(phase_labs) <- c("async", "early", "late")
+  p <- ggplot(df, aes(x = windows, y = log2(ds_dna))) + 
+    geom_line(aes(color = sample_strand)) + 
+    facet_grid(~product~time_after_exposure~replicate~phase, 
+               labeller = labeller(product = product_labs, 
+                                   time_after_exposure = taex_labs, 
+                                   replicate = rep_labs, phase = phase_labs)) + 
+    xlab(windows_lab) + ylab(fr_ds_dna_lab) +
+    scale_x_continuous(limits = c(-half_window-5, half_window+5), 
+                       breaks = c(-half_window, 0, half_window), 
+                       labels = c(paste("-", rlength, " kb", sep = ""), 
+                                  region, 
+                                  paste("+", rlength, " kb", sep = ""))) + 
+    scale_color_manual(values = strand_colors) + 
+    labs(color = "Strands")
+  return(p)
+}

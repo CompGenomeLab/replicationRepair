@@ -7,11 +7,22 @@ figureInfoPath <- sourcePath
 
 figureFile <- sub(".pdf", ".txt", figureName)
 
-file.copy(from = file.path(dataInfoPath, dataInfo), 
-          to = file.path(figurePath, figureFile), 
-          overwrite = TRUE)
+if (file.exists(paste(dataInfoPath, dataInfo, sep = ""))){
+  
+  print(paste(dataInfo, "exist!"))
+  
+  file.copy(from = file.path(dataInfoPath, dataInfo), 
+            to = file.path(figurePath, figureFile), 
+            overwrite = TRUE)
+  
+  file.append(file.path(figurePath, figureFile), 
+              file.path(figureInfoPath, figureInfo))
 
-file.append(file.path(figurePath, figureFile), 
-            file.path(figureInfoPath, figureInfo))
-
-
+} else {
+  
+  print(paste(dataInfo, "don't exist"))
+  
+  file.copy(from = file.path(figureInfoPath, figureInfo),
+            to = file.path(figurePath, figureFile), 
+            overwrite = TRUE)
+}
