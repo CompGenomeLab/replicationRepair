@@ -66,7 +66,7 @@ source ${mainPath}/functions_repairRep.sh
 
 	        awk '{ if ($3-$2 == 26) { print } }' ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted.bed > ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_26.bed # get 26 nucleotides long reads
 
-	        bedtools getfasta -fi ${genomePath}/genome.fa -bed ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_26.bed -fo ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_26.fa # bedtools: to FASTA format
+	        bedtools getfasta -fi ${genomePath}/genome.fa -bed ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_26.bed -fo ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_26.fa -s # bedtools: to FASTA format
 
 	        ${NGStoolkitPath}/fa2kmerAbundanceTable.py -i ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_26.fa -k 2 -o ${mainPath}/XRseq/$1/control/$1_cutadapt_sorted_26_dinucleotideTable.txt # dinucleotide content of sequences at length 26
 
