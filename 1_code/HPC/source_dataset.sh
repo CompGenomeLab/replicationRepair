@@ -1,17 +1,19 @@
 #!/bin/bash
 
-####Data Info####
-
-#dataset=(repdomain EDTZ_EUTZ ERD_LRD_windows HiRFD_windows InZones_windows rep1_SNSseq rep2_SNSseq rep1_SNSseq_windows rep2_SNSseq_windows S1toS2 S1toS2_windows ChrStates_comb_windows ChrStates_segway_windows ChrStates_chromhmm_windows)
-
-#data_name=(GSE53984_GSM923449_Helas3_Rep1_segments_updated.bed GSE53984_GSM923449_Helas3_Rep1_segments_EDTZ_EUTZ_sort.bed GSE53984_GSM923449_Helas3_Rep1_segments_ERD_LRD_windows.bed 20160224_Segment_HMM_Flat_15kb_Hela_Combined_V6_Raw_LT0_1_Selected_HighRFD_windowed_full.bed InitiationZones_Hela_updated_windows.bed Besnard_HeLa_rep1_peaks_updated.bed Besnard_HeLa_rep2_peaks_updated.bed Besnard_HeLa_rep1_just_peaks_updated_windows.bed Besnard_HeLa_rep2_just_peaks_updated_windows.bed S1toS2_peak_100kb.bed S1toS2_exact_match_100kb_windowed.bed wgEncodeAwgSegmentationCombinedHelas3_repdomains.bed wgEncodeAwgSegmentationSegwayHelas3_repdomains.bed wgEncodeAwgSegmentationChromhmmHelas3_repdomains.bed)
-
 ####Choose the data####
 
-dataset=(S1toS2 S1toS2_windows)
+#data_name=( chromhmm.repdomains.hela_windows.bed chromhmm.repdomains.hela_windows.bed genome.hg19_windows_100kb.bed genome.hg19_windows_1Mb.bed genome.hg19_windows_20kb.bed hi.rfd.hela_windows_201_100.bed hi.rfd.hela_windows_201_1000.bed hi.rfd.hela_windows_201_10000.bed initiation.zones.hela_windows_201_100.bed initiation.zones.hela_windows_201_1000.bed initiation.zones.hela_windows_201_10000.bed repdomains.hela.bed repdomains.hela_windows_201_100.bed repdomains.hela_windows_201_1000.bed repdomains.hela_windows_201_10000.bed s1.to.s2.20kb.hela_windows_201_100.bed s1.to.s2.20kb.hela_windows_201_1000.bed sns.seq.hela.rep.1.2_windows_201_100.bed sns.seq.hela.rep.1.2_windows_201_1000.bed initiation.zones.repdomains.hela_windows_201_100.bed hi.rfd.repdomains.hela_windows_201_100.bed s1.to.s2.20kb.repdomains.hela_windows_201_100.bed sns.seq.repdomains.hela.rep.1.2_windows_201_100.bed )
 
-data_name=(S1toS2_exact_match_55_20kb.bed S1toS2_exact_match_100kb_windowed.bed)
+#dataset=( chromhmm_windows chromhmm_windows_chr genome_100kb genome_1Mb genome_20kb hiRFD_windows_201_100 hiRFD_windows_201_1000 hiRFD_windows_201_10000 inZones_windows_201_100 inZones_windows_201_1000 inZones_windows_201_10000 repdomains repdomains_windows_201_100 repdomains_windows_201_1000 repdomains_windows_201_10000 S1toS2_windows_201_100 S1toS2_windows_201_1000 sns_seq_windows_201_100 sns_seq_windows_201_1000 inZones_repdomains_windows_201_100 hiRFD_repdomains_windows_201_100 S1toS2_repdomains_windows_201_100 sns_seq_repdomains_windows_201_100 )
 
-combine_options=("-score T -strand T" "-strand T")
+#combine_options=( "-strand T" "-strand T -chr T" "" "" "" "-strand T" "-strand T" "-strand T" "" "" "" "" "" "" "" "-strand T" "-strand T" "" "" "" "-strand T" "-strand T" "" ) # -score T -strand T -chr T 
+
+#### alternatives ####
+
+data_name=( )
+
+dataset=( )
+
+combine_options=( )
 
 ##### 
