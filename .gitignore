@@ -6,5 +6,6 @@ gitignore/
 1_code/R/.RData
 1_code/R/.Rhistory
 1_code/R/.Rproj.user/
+1_code/R/.RDataTmp
 0_data/gitignore
 .Rproj.user
