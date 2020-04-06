@@ -129,17 +129,17 @@ source(paste(sourcePath, "4_figure_info.R", sep = ""))
 
 
 
-#### Minus over Plus of Repair Rate ####
+#### Plus over Minus of Repair Rate ####
 
 # rearrange
-df <- fr_xr_ds_min_plus
+df <- fr_xr_ds_plus_min
 df <- rearrange()
 
 # filter the data
 d <- filter(df, phase == "early" | phase == "late")
 
 # create the plot 
-p <- p_rr_mp( d )
+p <- p_rr_pm( d )
 p <- p + p_format +
   facet_grid(~product~time_after_exposure~replicate~dataset, 
              labeller = labeller(product = product_labs, 
@@ -148,7 +148,7 @@ p <- p + p_format +
 # p # visualize
 
 # save figure
-figureName <- paste(dateout, "Minus_over_Plus_Strand_Value_of_", 
+figureName <- paste(dateout, "Plus_over_Minus_Strand_Value_of_", 
                     "Repair_over_Damage_Value_of_", fr_name, 
                     "_for_Every_Sample.pdf", sep = "")
 fig_save( figurePath, figureName )
@@ -185,17 +185,17 @@ fig_save( figurePath, figureName )
 source(paste(sourcePath, "4_figure_info.R", sep = ""))
 
 
-#### Minus over Plus of Early over Late ####
+#### Plus over Minus of Early over Late ####
 
 # rearrange
-df <- fr_ear_la_min_plus
+df <- fr_ear_la_plus_min
 df <- rearrange()
 
 # filter the data
 d <- filter(df, method != "DNA_seq" )
 
 # create the plot 
-p <- p_el_mp( d )
+p <- p_el_pm( d )
 p <- p + p_format + 
   facet_grid(~product~time_after_exposure~replicate~dataset, 
              labeller = labeller(product = product_labs, 
@@ -204,7 +204,7 @@ p <- p + p_format +
 # p # visualize
 
 # save figure
-figureName <- paste(dateout, "Minus_over_Plus_Strand_Value_of_", 
+figureName <- paste(dateout, "Plus_over_Minus_Strand_Value_of_", 
                     "Early_over_Late_Phase_Value_of_", fr_name, 
                     "_for_Every_Sample.pdf", sep = "")
 fig_save( figurePath, figureName )
@@ -214,17 +214,17 @@ source(paste(sourcePath, "4_figure_info.R", sep = ""))
 
 
 
-#### Minus over Plus ####
+#### Plus over Minus ####
 
 # rearrange
-df <- fr_min_plus
+df <- fr_plus_min
 df <- rearrange()
 
 # filter the data
 d <- filter(df, phase != "async", method != "DNA_seq")
 
 # create the plot 
-p <- p_mp( d )
+p <- p_pm( d )
 p <- p + p_format +
   facet_grid(~product~time_after_exposure~replicate~method~dataset, 
              labeller = labeller(product = product_labs, 
@@ -234,7 +234,7 @@ p <- p + p_format +
 # p # visualize
 
 # save figure
-figureName <- paste(dateout, "Minus_over_Plus_Value_of_", fr_name, 
+figureName <- paste(dateout, "Plus_over_Minus_Value_of_", fr_name, 
                     "_for_Every_Sample.pdf", sep = "")
 fig_save( figurePath, figureName )
 

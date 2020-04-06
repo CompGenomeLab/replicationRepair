@@ -79,30 +79,30 @@ for (run in 1) {
   fr_xr_ds_ear_la = select(fr_xr_ds_ear_la, -c(early, late))
   
   
-  #### (- / +) after xr / ds ####
+  #### (+ / -) after xr / ds ####
   
-  fr_xr_ds_min_plus <- dcast(fr_xr_ds, chromosomes + start_position + 
+  fr_xr_ds_plus_min <- dcast(fr_xr_ds, chromosomes + start_position + 
                              end_position + dataset + score + dataset_strand + 
                              product + phase + time_after_exposure + replicate ~ 
                              sample_strand, value.var = "xr_ds")
   
-  fr_xr_ds_min_plus$min_plus <- fr_xr_ds_min_plus$`-` / fr_xr_ds_min_plus$`+`
+  fr_xr_ds_plus_min$plus_min <- fr_xr_ds_plus_min$`+` / fr_xr_ds_plus_min$`-`
   
-  fr_xr_ds_min_plus = select(fr_xr_ds_min_plus, -c(`-`, `+`))
+  fr_xr_ds_plus_min = select(fr_xr_ds_plus_min, -c(`-`, `+`))
   
   
-  #### (- / +) after early / late after xr / ds ####
+  #### (+ / -) after early / late after xr / ds ####
   
-  fr_xr_ds_ear_la_min_plus <- dcast(fr_xr_ds_ear_la, chromosomes + 
+  fr_xr_ds_ear_la_plus_min <- dcast(fr_xr_ds_ear_la, chromosomes + 
                                       start_position + end_position + dataset + 
                                       score + dataset_strand + product + 
                                       time_after_exposure + replicate ~ 
                                       sample_strand, value.var = "ear_la")
   
-  fr_xr_ds_ear_la_min_plus$min_plus <- fr_xr_ds_ear_la_min_plus$`-` / 
-    fr_xr_ds_ear_la_min_plus$`+`
+  fr_xr_ds_ear_la_plus_min$plus_min <- fr_xr_ds_ear_la_plus_min$`+` / 
+    fr_xr_ds_ear_la_plus_min$`-`
   
-  fr_xr_ds_ear_la_min_plus = select(fr_xr_ds_ear_la_min_plus, -c(`-`, `+`))
+  fr_xr_ds_ear_la_plus_min = select(fr_xr_ds_ear_la_plus_min, -c(`-`, `+`))
 
     
   #### early / late ####
@@ -118,16 +118,16 @@ for (run in 1) {
   
   fr_ear_la = select(fr_ear_la, -c(early, late))
   
-  #### (- / +) after early / late ####
+  #### (+ / -) after early / late ####
   
-  fr_ear_la_min_plus <- dcast(fr_ear_la, chromosomes + start_position + 
+  fr_ear_la_plus_min <- dcast(fr_ear_la, chromosomes + start_position + 
                        end_position + dataset + score + dataset_strand + 
                        method + product + time_after_exposure + replicate ~ 
                        sample_strand, value.var = "ear_la")
   
-  fr_ear_la_min_plus$min_plus <- fr_ear_la_min_plus$`-` / fr_ear_la_min_plus$`+`
+  fr_ear_la_plus_min$plus_min <- fr_ear_la_plus_min$`+` / fr_ear_la_plus_min$`-`
   
-  fr_ear_la_min_plus = select(fr_ear_la_min_plus, -c(`-`, `+`))
+  fr_ear_la_plus_min = select(fr_ear_la_plus_min, -c(`+`, `-`))
   
   
   #### xr / input ####
@@ -204,16 +204,16 @@ for (run in 1) {
   rm(dna_a, fr_ds, fr_list, ds, temp)
   
   
-  #### (- / +) ####
+  #### (+ / -) ####
   
-  fr_min_plus <- dcast(fr, chromosomes + start_position + end_position + 
+  fr_plus_min <- dcast(fr, chromosomes + start_position + end_position + 
                          dataset + score + dataset_strand + method + phase + 
                          product + time_after_exposure + replicate ~ 
                          sample_strand, value.var = "RPKM")
   
-  fr_min_plus$min_plus <- fr_min_plus$`-` / fr_min_plus$`+`
+  fr_plus_min$plus_min <- fr_plus_min$`+` / fr_plus_min$`-`
   
-  fr_min_plus = select(fr_min_plus, -c(`-`, `+`))
+  fr_plus_min = select(fr_plus_min, -c(`-`, `+`))
 
   rm(run)  
 }

@@ -65,13 +65,13 @@ fr_ds_dna_lab <- "DS/DNA (log2)"
 
 fr_ear_la_lab <- "Early/Late Phase Ratio (log2)"
 
-fr_min_plus_lab <- "Minus/Plus Strand Ratio (log2)"
+fr_plus_min_lab <- "Plus/Minus Strand Ratio (log2)"
 
-fr_xr_ds_min_plus_lab <- "Repair Rate Minus/Plus Strand Ratio (log2)"
+fr_xr_ds_plus_min_lab <- "Repair Rate Plus/Minus Strand Ratio (log2)"
 
 fr_xr_ds_ear_la_lab <- "Repair Rate Early/Late Phase Ratio (log2)"
 
-fr_ear_la_min_plus_lab <- "Early/Late Phase, Minus/Plus Strand Ratio (log2)"
+fr_ear_la_plus_min_lab <- "Early/Late Phase, Plus/Minus Strand Ratio (log2)"
 
 #### plot organization ####
 
@@ -148,16 +148,16 @@ p_rr_el <- function( df ){
   return(p)
 }
 
-# Repair Rate Minus/Plus Strand
-p_rr_mp <- function( df ){  
-  p <- ggplot(d, aes(x = windows, y = log2(min_plus))) + 
+# Repair Rate Plus/Minus Strand
+p_rr_pm <- function( df ){  
+  p <- ggplot(d, aes(x = windows, y = log2(plus_min))) + 
     geom_line(aes(color = phase)) + 
     geom_line(y=0, color="red", linetype="dashed") +
     facet_grid(~product~time_after_exposure~replicate, 
                labeller = labeller(product = product_labs, 
                                    time_after_exposure = taex_labs, 
                                    replicate = rep_labs)) + 
-    xlab(windows_lab) + ylab(fr_xr_ds_min_plus_lab) +
+    xlab(windows_lab) + ylab(fr_xr_ds_plus_min_lab) +
     scale_x_continuous(limits = c(-half_window-5, half_window+5), 
                        breaks = c(-half_window, 0, half_window), 
                        labels = c(paste("-", rlength, " kb", sep = ""), 
@@ -190,16 +190,16 @@ p_el <- function( df ){
   return(p)
 }
 
-# Minus/Plus Strand of Early/Late Phase 
-p_el_mp <- function( df ){  
-  p <- ggplot(df, aes(x = windows, y = log2(min_plus))) + 
+# Plus/Minus Strand of Early/Late Phase 
+p_el_pm <- function( df ){  
+  p <- ggplot(df, aes(x = windows, y = log2(plus_min))) + 
     geom_line() + 
     geom_line(y=0, color="red", linetype="dashed") +
     facet_grid(~product~time_after_exposure~replicate, 
                labeller = labeller(product = product_labs, 
                                    time_after_exposure = taex_labs, 
                                    replicate = rep_labs)) + 
-    xlab(windows_lab) + ylab(fr_ear_la_min_plus_lab) +
+    xlab(windows_lab) + ylab(fr_ear_la_plus_min_lab) +
     scale_x_continuous(limits = c(-half_window-5, half_window+5), 
                        breaks = c(-half_window, 0, half_window), 
                        labels = c(paste("-", rlength, " kb", sep = ""), 
@@ -208,9 +208,9 @@ p_el_mp <- function( df ){
   return(p)
 }
 
-# Minus/Plus Strand 
-p_mp <- function( df ){  
-  p <- ggplot(d, aes(x = windows, y = log2(min_plus))) + 
+# Plus/Minus Strand 
+p_pm <- function( df ){  
+  p <- ggplot(d, aes(x = windows, y = log2(plus_minus))) + 
     geom_line(aes(color = phase)) + 
     geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
     facet_grid(~product~time_after_exposure~replicate~method, 
@@ -218,7 +218,7 @@ p_mp <- function( df ){
                                    method = method_labs, 
                                    time_after_exposure = taex_labs, 
                                    replicate = rep_labs)) + 
-    xlab(windows_lab) + ylab(fr_min_plus_lab) +
+    xlab(windows_lab) + ylab(fr_plus_min_lab) +
     scale_x_continuous(limits = c(-half_window-5, half_window+5), 
                        breaks = c(-half_window, 0, half_window), 
                        labels = c(paste("-", rlength, " kb", sep = ""), 
