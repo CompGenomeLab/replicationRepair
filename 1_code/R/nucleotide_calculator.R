@@ -22,8 +22,8 @@ df_end <- dataframe[3]
 finaltable <- data.frame(id = unique(dataframe$id), patC = 0, patG = 0, 
                          length = 0, strand = "+")
 
-pattern1<-DNAStringSet("C")
-pattern2<-DNAStringSet("G")
+pattern1<-DNAStringSet("TC")
+pattern2<-DNAStringSet("GA")
 
 row <- 1
 

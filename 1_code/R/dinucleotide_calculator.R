@@ -63,9 +63,8 @@ for  (row in 1:(length(dataframe$chr))){
   finaltable$CT[modrow] <- finaltable$CT[modrow] + vcountPDict(pattern3,Dnastring)
   finaltable$CC[modrow] <- finaltable$CC[modrow] + vcountPDict(pattern4,Dnastring)
   
-  if (row %% 201 == 0){ 
+  if (row %% 1000000 == 0){ 
     print(row/201)
-    print(row) 
     }
 }
 

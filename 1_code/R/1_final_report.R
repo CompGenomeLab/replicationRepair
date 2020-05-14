@@ -8,7 +8,7 @@ dir_fr <- paste("~/Documents/myprojects/replicationRepair/4_output/",
 
 temp <- list.files(path = dir_fr, pattern = ".txt")
 
-temp <- temp[grepl("2020.*02.*25.*final_report.*\\.txt", temp)]
+temp <- temp[grepl("2020.*05.*06.*final_report.*\\.txt", temp)]
 
 setwd(dir_fr)
 

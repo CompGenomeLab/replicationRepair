@@ -43,6 +43,7 @@ rearrange <- function( ){
   rlength <<- region_length( window_number, window_length )
   df <- window_numbering( df, 4, half_window )
   df$dataset <- region
+  df <- unique(df)
   return(df)
 }
 
@@ -61,7 +62,7 @@ d <- filter(df, replicate == "A",
 
 # create the plot 
 p <- p_rr( d )
-p.A.1 <- p + p_format + ylim(-1.5, 1.5) +
+p.A.1 <- p + p_format + ylim(-0.1, 0.7) +
   facet_grid(~replicate) + theme(strip.background.x = element_blank(),
                                  axis.title.x=element_blank())
 
@@ -75,7 +76,7 @@ d <- filter(df, phase != "async", replicate == "A",
 
 # create the plot 
 p <- p_rr( d )
-p.B.1 <- p + p_format + ylim(-1.5, 1.5) +
+p.B.1 <- p + p_format + ylim(-0.1, 0.7) +
   facet_grid(~replicate) + theme(strip.background.x = element_blank(),
                                  axis.title.x=element_blank())
 
@@ -89,7 +90,7 @@ d <- filter(df, phase != "async", replicate == "A",
 
 # create the plot 
 p <- p_rr( d )
-p.C.1 <- p + p_format + ylim(-1.5, 1.5) +
+p.C.1 <- p + p_format + ylim(-0.1, 0.7) +
   facet_grid(~replicate) + theme(strip.background.x = element_blank(),
                                  axis.title.x=element_blank())
 
@@ -103,7 +104,7 @@ d <- filter(df, phase != "async", replicate == "A",
 
 # create the plot 
 p <- p_rr( d )
-p.D.1 <- p + p_format + ylim(-1.5, 1.5) +
+p.D.1 <- p + p_format + ylim(-0.1, 0.7) +
   facet_grid(~replicate) + theme(strip.background.x = element_blank(),
                                  axis.title.x=element_blank())
 
@@ -117,7 +118,7 @@ d <- filter(df, phase != "async", replicate == "A",
 
 # create the plot 
 p <- p_rr( d )
-p.E.1 <- p + p_format + ylim(-1.5, 1.5) +
+p.E.1 <- p + p_format + ylim(-0.1, 0.7) +
   facet_grid(~replicate) + theme(strip.background.x = element_blank(),
                                  axis.title.x=element_blank())
 
@@ -131,7 +132,7 @@ d <- filter(df, phase != "async", replicate == "A",
 
 # create the plot 
 p <- p_rr( d )
-p.F.1 <- p + p_format + ylim(-1.5, 1.5) +
+p.F.1 <- p + p_format + ylim(-0.1, 0.7) +
   facet_grid(~replicate) + theme(strip.background.x = element_blank())
 
 p.F.1 # visualize
@@ -161,7 +162,7 @@ df <- rearrange()
 d <- filter(df, phase == "early" | phase == "late")
 
 # create the plot 
-p <- p_rr_mp( d )
+p <- p_rr_pm( d )
 p <- p + p_format
 # p # visualize
 
@@ -211,6 +212,7 @@ rearrange <- function( ){
   df <- window_numbering( df, 4, half_window )
   df <- domain_name( df, 1 )
   df$dataset <- region
+  df <- unique(df)
   return(df)
 }
 
@@ -269,16 +271,15 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 
 p.A.3 <- ggplot() + 
   geom_bar(data = mut_agg, aes(x = Group.2, y = x, 
-                               fill = Group.2, color = Group.3), 
+                               fill = Group.3), 
            stat = "identity", size = 1.5, 
            position=position_dodge2(padding = 0.05)) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
   ylab("Repair Rate") +
-  scale_fill_manual(values = repdomain_colors, guide = FALSE) + 
-  scale_color_manual(values = c("+" = "#0571b0", 
-                                "-" = "#ca0020"), 
-                     guide = FALSE) +
+  scale_fill_manual(values = c("+" = "#0571b0", 
+                               "-" = "#ca0020"), 
+                    guide = FALSE) +
   labs(color = "Strands", fill = "") 
 
 p.A.3 <- p.A.3 + p_format + 
@@ -307,11 +308,11 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 #### create the plot
 
 p.A.4 <- ggplot() + 
-  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x), fill = Group.2), 
+  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x)), 
            stat = "identity", position=position_dodge()) +
   facet_wrap(~direction) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-  xlab("") + ylab("Minus/Plus \n(Log2)") +
+  xlab("") + ylab("Plus/Minus \n(Log2)") +
   scale_fill_manual(values = repdomain_colors, guide = FALSE) 
 
 # add plot format
@@ -366,16 +367,15 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 
 p.B.3 <- ggplot() + 
   geom_bar(data = mut_agg, aes(x = Group.2, y = x, 
-                               fill = Group.2, color = Group.3), 
+                               fill = Group.3), 
            stat = "identity", size = 1.5, 
            position=position_dodge2(padding = 0.05)) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
   ylab("Repair Rate") +
-  scale_fill_manual(values = repdomain_colors, guide = FALSE) + 
-  scale_color_manual(values = c("+" = "#0571b0", 
-                                "-" = "#ca0020"), 
-                     guide = FALSE) +
+  scale_fill_manual(values = c("+" = "#0571b0", 
+                               "-" = "#ca0020"), 
+                    guide = FALSE) +
   labs(color = "Strands", fill = "") 
 
 p.B.3 <- p.B.3 + p_format + 
@@ -402,11 +402,11 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 #### create the plot
 
 p.B.4 <- ggplot() + 
-  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x), fill = Group.2), 
+  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x)), 
            stat = "identity", position=position_dodge()) +
   facet_wrap(~direction) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-  xlab("") + ylab("Minus/Plus \n(Log2)") +
+  xlab("") + ylab("Plus/Minus \n(Log2)") +
   scale_fill_manual(values = repdomain_colors, guide = FALSE) 
 
 # add plot format
@@ -461,16 +461,15 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 
 p.C.3 <- ggplot() + 
   geom_bar(data = mut_agg, aes(x = Group.2, y = x, 
-                               fill = Group.2, color = Group.3), 
+                               fill = Group.3), 
            stat = "identity", size = 1.5, 
            position=position_dodge2(padding = 0.05)) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
   ylab("Repair Rate") +
-  scale_fill_manual(values = repdomain_colors, guide = FALSE) + 
-  scale_color_manual(values = c("+" = "#0571b0", 
-                                "-" = "#ca0020"), 
-                     guide = FALSE) +
+  scale_fill_manual(values = c("+" = "#0571b0", 
+                               "-" = "#ca0020"), 
+                    guide = FALSE) +
   labs(color = "Strands", fill = "") 
 
 p.C.3 <- p.C.3 + p_format + 
@@ -497,12 +496,11 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 #### create the plot
 
 p.C.4 <- ggplot() + 
-  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x), fill = Group.2), 
+  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x)), 
            stat = "identity", position=position_dodge()) +
   facet_wrap(~direction) +
-  ylim(-0.25, 0.25) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-  xlab("") + ylab("Minus/Plus \n(Log2)") +
+  xlab("") + ylab("Plus/Minus \n(Log2)") +
   scale_fill_manual(values = repdomain_colors, guide = FALSE) 
 
 # add plot format
@@ -557,16 +555,15 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 
 p.D.3 <- ggplot() + 
   geom_bar(data = mut_agg, aes(x = Group.2, y = x, 
-                               fill = Group.2, color = Group.3), 
+                               fill = Group.3), 
            stat = "identity", size = 1.5, 
            position=position_dodge2(padding = 0.05)) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
   ylab("Repair Rate") +
-  scale_fill_manual(values = repdomain_colors, guide = FALSE) + 
-  scale_color_manual(values = c("+" = "#0571b0", 
-                                "-" = "#ca0020"), 
-                     guide = FALSE) +
+  scale_fill_manual(values = c("+" = "#0571b0", 
+                               "-" = "#ca0020"), 
+                    guide = FALSE) +
   labs(color = "Strands", fill = "") 
 
 p.D.3 <- p.D.3 + p_format + 
@@ -593,11 +590,11 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 #### create the plot
 
 p.D.4 <- ggplot() + 
-  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x), fill = Group.2), 
+  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x)), 
            stat = "identity", position=position_dodge()) +
   facet_wrap(~direction) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-  xlab("") + ylab("Minus/Plus \n(Log2)") +
+  xlab("") + ylab("Plus/Minus \n(Log2)") +
   scale_fill_manual(values = repdomain_colors, guide = FALSE) 
 
 # add plot format
@@ -652,16 +649,15 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 
 p.E.3 <- ggplot() + 
   geom_bar(data = mut_agg, aes(x = Group.2, y = x, 
-                               fill = Group.2, color = Group.3), 
+                               fill = Group.3), 
            stat = "identity", size = 1.5, 
            position=position_dodge2(padding = 0.05)) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
   ylab("Repair Rate") +
-  scale_fill_manual(values = repdomain_colors, guide = FALSE) + 
-  scale_color_manual(values = c("+" = "#0571b0", 
-                                "-" = "#ca0020"), 
-                     guide = FALSE) +
+  scale_fill_manual(values = c("+" = "#0571b0", 
+                               "-" = "#ca0020"), 
+                    guide = FALSE) +
   labs(color = "Strands", fill = "") 
 
 p.E.3 <- p.E.3 + p_format + 
@@ -688,11 +684,11 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 #### create the plot
 
 p.E.4 <- ggplot() + 
-  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x), fill = Group.2), 
+  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x)), 
            stat = "identity", position=position_dodge()) +
   facet_wrap(~direction) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-  xlab("") + ylab("Minus/Plus \n(Log2)") +
+  xlab("") + ylab("Plus/Minus \n(Log2)") +
   scale_fill_manual(values = repdomain_colors, guide = FALSE) 
 
 # add plot format
@@ -745,16 +741,15 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 
 p.F.3 <- ggplot() + 
   geom_bar(data = mut_agg, aes(x = Group.2, y = x, 
-                               fill = Group.2, color = Group.3), 
+                               fill = Group.3), 
            stat = "identity", size = 1.5, 
            position=position_dodge2(padding = 0.05)) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
   ylab("Repair Rate") +
-  scale_fill_manual(values = repdomain_colors, guide = FALSE) + 
-  scale_color_manual(values = c("+" = "#0571b0", 
-                                "-" = "#ca0020"), 
-                     guide = FALSE) +
+  scale_fill_manual(values = c("+" = "#0571b0", 
+                               "-" = "#ca0020"), 
+                    guide = FALSE) +
   labs(color = "Strands", fill = "") 
 
 p.F.3 <- p.F.3 + p_format + 
@@ -781,11 +776,11 @@ mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
 #### create the plot
 
 p.F.4 <- ggplot() + 
-  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x), fill = Group.2), 
+  geom_bar(data = mut_agg, aes(x = Group.2, y = log2(x)), 
            stat = "identity", position=position_dodge()) +
   facet_wrap(~direction) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-  xlab("Replication Domains") + ylab("Minus/Plus \n(Log2)") +
+  xlab("Replication Domains") + ylab("Plus/Minus \n(Log2)") +
   scale_fill_manual(values = repdomain_colors, guide = FALSE) 
 
 # add plot format
@@ -803,6 +798,7 @@ p.F.4 # visualize
 (p.A.1 + p.A.2 + (p.A.3 / p.A.4)) / (p.B.1 + p.B.2 + (p.B.3 / p.B.4)) / 
   (p.C.1 + p.C.2 + (p.C.3 / p.C.4)) / (p.D.1 + p.D.2 + (p.D.3 / p.D.4)) / 
   (p.E.1 + p.E.2 + (p.E.3 / p.E.4)) / (p.F.1 + p.F.2 + (p.F.3 / p.F.4)) + 
-  plot_layout(guides = "collect")
+  plot_layout(guides = "collect") & 
+  theme(legend.position = 'bottom') 
 
-ggsave("~/Desktop/fig4.png", width = 497, height = 410, units = "mm")
+ggsave("~/Desktop/fig4_deneme.png", width = 397, height = 310, units = "mm")

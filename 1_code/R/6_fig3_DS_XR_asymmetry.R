@@ -66,8 +66,11 @@ p.A.1.1 <- p.A.1.1 + p_format +
                                  method = method_labs, 
                                  time_after_exposure = taex_labs,
                                  phase = phase_labs)) + 
-  ylim(0.10, 0.25) + 
-  theme(strip.text.y = element_blank())
+  theme(strip.text.y = element_blank()) +
+  coord_cartesian(xlim = c(-100, 100), 
+                  ylim = c(0.10, 0.25), clip = "off") +
+  geom_text(data = ann_text,label = "Damage-seq", size = 6) +
+  geom_line(data = ann_line, color = "red") 
 
 p.A.1.1 # visualize
 
@@ -83,28 +86,14 @@ p.A.1.1 # visualize
                                   method = method_labs, 
                                   time_after_exposure = taex_labs,
                                   phase = phase_labs)) + 
-   ylim(0.10, 0.35) + 
-   theme(strip.text.y = element_blank())
+   theme(strip.text.y = element_blank()) +
+   coord_cartesian(xlim = c(-100, 100), 
+                   ylim = c(0.10, 0.25), clip = "off") +
+   geom_text(data = ann_text,label = "XR-seq", size = 6) +
+   geom_line(data = ann_line, color = "red") 
 
   p.A.2.1 # visualize
 
-
-#### Plus over Minus ####
-
-# rearrange
-df <- fr_plus_min
-df <- rearrange()
-
-# filter the data
-d <- filter(df, phase != "async", method != "DNA_seq", replicate == "A")
-
-# create the plot 
-p <- p_mp( d )
-p.C <- p + p_format + 
-  facet_grid(~product~time_after_exposure~method, 
-              labeller = labeller(product = product_labs, 
-                                  method = method_labs, 
-                                  time_after_exposure = taex_labs))
 
 
 #### p.A.2.2 xr sim ####
@@ -186,10 +175,19 @@ p.A.2.2 <- ggplot(d, aes(x = windows, y = RPKM)) +
   scale_color_manual(values = strand_colors) + 
   labs(color = "Strands")
 
-p.A.2.2 <- p.A.2.2 + p_format + ylim(0.10, 0.35) +
+p.A.2.2 <- p.A.2.2 + p_format + 
   theme(axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank())
+        #axis.text.y=element_blank(),
+        #axis.ticks.y=element_blank(),
+        strip.text.y = element_blank(),
+        strip.text.x = element_blank(),
+        strip.background = element_blank(),
+        panel.border = element_rect(colour = "black"),
+        plot.margin = margin(1, .5, 0, 0, "cm")) +
+  coord_cartesian(xlim = c(-100, 100), 
+                  ylim = c(0.10, 0.25), clip = "off") +
+  geom_text(data = ann_text,label = "Simulated XR-seq", size = 6) +
+  geom_line(data = ann_line, color = "red") 
 
 p.A.2.2 # visualize
 
@@ -258,13 +256,23 @@ names(method_labs) <- c("Damage_seq")
 
 #### create the plot 
 
+ann_text <- data.frame(windows = 0, RPKM = 0.27, lab = "Text",
+                       product = factor("64_PP",levels = c("64_PP","CPD")),
+                       phase = factor("early",levels = c("early","late")),
+                       time_after_exposure = factor("12"))
+
+ann_line <- data.frame(windows = c(-50,50), RPKM = c(0.26,0.26), lab = "Line",
+                       product = factor("64_PP",levels = c("64_PP","CPD")),
+                       phase = factor("early",levels = c("early","late")),
+                       time_after_exposure = factor("12"))
+
 p.A.1.2 <- ggplot(d, aes(x = windows, y = RPKM)) + 
   geom_line(aes(color = sample_strand)) + 
-  facet_grid(~product~time_after_exposure~phase~method, 
-             labeller = labeller(product = product_labs, 
-                                 method = method_labs, 
-                                 time_after_exposure = taex_labs, 
-                                 phase = phase_labs)) + 
+  facet_grid(~product~time_after_exposure~phase~method,
+             labeller = labeller(product = product_labs,
+                                 method = method_labs,
+                                 time_after_exposure = taex_labs,
+                                 phase = phase_labs)) +
   xlab(windows_lab) + ylab(fr_lab) +
   scale_x_continuous(limits = c(-half_window, half_window), 
                      breaks = c(-half_window, 0, half_window), 
@@ -272,139 +280,36 @@ p.A.1.2 <- ggplot(d, aes(x = windows, y = RPKM)) +
   scale_color_manual(values = strand_colors) + 
   labs(color = "Strands")
 
-p.A.1.2 <- p.A.1.2 + p_format + ylim(0.10, 0.25) +
+p.A.1.2 <- p.A.1.2 + p_format + 
   theme(axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank(),
-        strip.text.y = element_blank())
+        #axis.text.y=element_blank(),
+        #axis.ticks.y=element_blank(),
+        strip.text.y = element_blank(),
+        strip.text.x = element_blank(),
+        strip.background = element_blank(),
+        panel.border = element_rect(colour = "black"),
+        plot.margin = margin(1, .5, 0, 0, "cm")) +
+  coord_cartesian(xlim = c(-100, 100), 
+                  ylim = c(0.10, 0.25), clip = "off") +
+  geom_text(data = ann_text,label = "Simulated Damage-seq", size = 6) +
+  geom_line(data = ann_line, color = "red") 
+  
 
 p.A.1.2 # visualize
 
-#### #####
 
-Ccontent <- read.table(
-  paste(mut_dir, 
-        "[2020.03.04]inZones_nuc_content_norepdomain_201_100.txt", 
-        sep = ""), header = TRUE)
-
-Ccontent <- Ccontent[,c(1,6,7)]
-
-names(Ccontent) <- c("name","+", "-")
-
-Ccontent_plus <- Ccontent[,c(1,2)]
-Ccontent_minus <- Ccontent[,c(1,3)]
-
-Ccontent_plus <- melt(Ccontent_plus, measure.vars = "+")
-Ccontent_minus <- melt(Ccontent_minus, measure.vars = "-")
-
-Ccontent <- rbind(Ccontent_plus, Ccontent_minus)
-
-names(Ccontent) <- c("name","strands", "C_content")
-
-for (rearrange in 1) {  
-  
-  window_number <- 201
-  if (window_number %% 2 == 0) {
-    half_window <- window_number / 2
-  } else {
-    half_window <- (window_number - 1) / 2 + 1
-  }
-  
-  #### rearrange
-  
-  # window numbers separated from dataset names
-  window <- data.frame(str_split_fixed(Ccontent$name, "_", -1))
-  
-  Ccontent$windows <- as.numeric(levels(
-    window[ , ncol(window)]))[window[ , ncol(window)]] - half_window
-  
-  Ccontent$name <- "Initiation Zones"
-  
-  rm(window, rearrange)
-  
-  
-}
-
-p.B.1.3 <- ggplot(Ccontent, aes(x = windows, y = as.numeric(C_content))) + 
-  geom_line(aes( color = strands )) + p_format +
-  xlab(windows_lab) + ylab("C Content Frequency (%) \nat Initiation Zones") +
-  scale_x_continuous(limits = c(-100, 100), 
-                     breaks = c(-100, 0, 100), 
-                     labels = c(paste("-10 kb", sep = ""), 
-                                "0", 
-                                paste("+10 kb", sep = ""))) + 
-  scale_color_manual(values = strand_colors, guide = FALSE) 
-p.B.1.3
-
-Ccontent_plus <- filter(Ccontent, windows > 0)
-Ccontent_plus_agg <- aggregate(x = Ccontent_plus$C_content, by = 
-                            list(Ccontent_plus$name, Ccontent_plus$strands), 
-                            FUN = "mean")
-Ccontent_plus_agg$direction <- "Right Replicating"
-Ccontent_minus <- filter(Ccontent, windows < 0)
-Ccontent_minus_agg <- aggregate(x = Ccontent_minus$C_content, by = 
-                             list(Ccontent_minus$name, Ccontent_minus$strands), 
-                             FUN = "mean")
-Ccontent_minus_agg$direction <- "Left Replicating"
-Ccontent_agg <- rbind(Ccontent_plus_agg, Ccontent_minus_agg)
-
-
-p.B.1.1 <- ggplot() + 
-  geom_bar(data = Ccontent_agg, aes(x = Group.2, y = x, 
-                               fill = Group.2), 
-           stat = "identity", size = 1.5, 
-           position=position_dodge2(padding = 0.05)) +
-  facet_wrap(~direction) +
-  xlab("Replication Domains") + 
-  ylab("Cytosine Count per Region") +
-  scale_fill_manual(values = c("+" = "#0571b0", 
-                                "-" = "#ca0020"), 
-                     guide = FALSE) +
-  labs(color = "Strands", fill = "") 
-
-mut_casted <- dcast(Ccontent, name + windows ~ strands, 
-                    value.var = "C_content")
-mut_casted$plus_min <- mut_casted$"+" / mut_casted$"-" 
-mut_plus <- filter(mut_casted, windows > 0)
-mut_plus_agg <- aggregate(x = mut_plus$plus_min, by = 
-                            list(mut_plus$name), 
-                          FUN = "mean")
-mut_plus_agg$direction <- "Right Replicating"
-mut_minus <- filter(mut_casted, windows < 0)
-mut_minus_agg <- aggregate(x = mut_minus$plus_min, by = 
-                             list(mut_minus$name), 
-                           FUN = "mean")
-mut_minus_agg$direction <- "Left Replicating"
-mut_agg <- rbind(mut_plus_agg, mut_minus_agg)
-
-#### create the plot
-
-p.B.1.2 <- ggplot() + 
-  geom_bar(data = mut_agg, aes(x = direction, y = log2(x), fill = direction), 
-           stat = "identity", position=position_dodge()) +
-  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-  xlab("Replication Direction") + ylab("Plus/Minus \n(Log2)") +
-  scale_fill_manual(values = c("gray", "gray"), guide = FALSE) 
-
-# add plot format
-p.B.1.2 <- p.B.1.2 + p_format + 
-  theme(strip.background = element_blank(),
-        strip.text.x = element_blank())  
-
-p.B.1.2 # visualize
 
 #### final plot ####
 
 layout <- "
 AABBCCDD
-AABBCCDD
-FFFFGGGG
-#EE#GGGG
 "
 
-(p.A.1.1 + p.A.1.2 + p.A.2.1) + p.A.2.2 + p.B.1.2 + p.B.1.3 + p.C +
-  plot_layout(design = layout) 
-  #plot_annotation(tag_levels = c('A'), tag_suffix = ':')
+p.A.1.1 + p.A.1.2 + p.A.2.1 + p.A.2.2 +
+  plot_layout(design = layout) +
+  plot_annotation(tag_levels = c('A'), tag_suffix = ':') +
+  plot_layout(guides = "collect", tag_level = 'new') & 
+  theme(legend.position = 'bottom') 
 
 ggsave("~/Desktop/fig3.png", width = 497, height = 410, units = "mm")
 

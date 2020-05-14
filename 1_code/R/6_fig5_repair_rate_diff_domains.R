@@ -2,6 +2,7 @@
 
 library(ggplot2)
 library(dplyr)
+library(patchwork)
 
 #### prepare data
 
@@ -220,28 +221,35 @@ names(phase_labs) <- c("async", "early", "late")
 
 #### create the plot 
 
-p.A.1.3 <- ggplot(d, aes(x = dataset, y = log2(xr_ds))) + 
-  geom_boxplot(aes(fill = dataset), outlier.shape = NA) +
+p.A.1.3 <- ggplot(d, aes(x = phase, y = log2(xr_ds))) + 
+  geom_boxplot(aes(fill = phase), outlier.shape = NA) +
   geom_hline(yintercept = 0, linetype="dashed", color="red") +
-  facet_grid(product~time_after_exposure~phase, 
+  facet_grid(product~time_after_exposure~dataset, 
              labeller = labeller(product = product_labs, 
                                  time_after_exposure = taex_labs, 
-                                 phase = phase_labs, replicate = rep_labs)) + 
-  xlab(repdo_lab) + ylab(fr_xr_ds_lab) +
+                                 replicate = rep_labs)) + 
+  xlab(phase_lab) + ylab("") +
+  scale_x_discrete(labels = c("Early", "Late")) +
   scale_fill_manual(name="", 
-                    values = repdomain_colors) +
+                    values = phase_colors) +
   guides(fill = FALSE) +
-  ylim(-2,2) 
+  ylim(-2,2.2) 
 
-
-p.A.1.3 <- p.A.1.3 +  p_format +  stat_compare_means(method = "t.test", 
-                                         label.x = 1.3, label.y = 1.8) +
+p.A.1.3 <- p.A.1.3 +  p_format +  stat_compare_means(
+  aes(label = paste0("p-value: ", ..p.format..)),
+  method = "t.test", 
+  label.y = 1.8,
+  label.x.npc = c("left")) +
+  #stat_compare_means(method = "t.test", label.y = 1.8, label.x = 0.6) +
   theme(axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank())
 
 p.A.1.3 # visualize
 
+((p.A.1.1 + p.A.1.2 + p.A.1.3) + plot_layout(guides = "collect")) 
+
+ggsave("~/Desktop/fig5_sub.png", width = 520, height = 210, units = "mm")
 #### chr states ####
 
 library(ggplot2)
@@ -253,9 +261,9 @@ library(dplyr)
 sourcePath <- paste("~/Documents/myprojects/replicationRepair/1_code/R/", 
                     sep = "") 
 
-date <- "[2019.11.07]"
+date <- "[2020.04.07]"
 
-fr_name <- "ChrStates_chromhmm_windows"
+fr_name <- "chromhmm_windows_chr"
 
 source(paste(sourcePath, "2_report_sub_dfs.R", sep = ""))
 
@@ -336,7 +344,7 @@ d = filter(df, dataset_strand != "DTZ" & dataset_strand != "UTZ" &
            time_after_exposure == "12")
 
 d = aggregate(x = d$ear_la, by = 
-                list(d$dataset, d$dataset_strand, d$states), FUN = "mean")
+                list(d$dataset, d$dataset_strand, d$states, d$chromosomes), FUN = "mean")
 
 #### add plot format  
 
@@ -349,18 +357,18 @@ p.B.1.2 <- ggplot(d, aes(x = Group.1, y = log2(x))) +
              size = 2) +
   geom_hline(yintercept = -0.2, linetype = "dashed", color = "#2c7fb8",
              size = 2) +
-  geom_point(shape = 21, size = 4, aes(fill = factor(Group.3))) +
+  geom_boxplot(aes(fill = factor(Group.3)), outlier.shape = NA) +
+  geom_jitter(aes(fill = factor(Group.3))) +
   facet_wrap(~Group.2) +
   xlab(chrState_lab) + ylab(fr_xr_ds_ear_la_lab) +
   scale_fill_manual(name = "Chromatin States", values = state_colors) +
   guides(size = FALSE) 
 
 p.B.1.2 <- p.B.1.2 + p_format + theme(legend.position = "right", 
-                          axis.text.x = element_text(size = 12, vjust = 0.6, 
-                                                     angle = 60))
+                                      axis.text.x = element_text(size = 12, vjust = 0.6, 
+                                                                 angle = 60))
 
 p.B.1.2 # visualize
-
 
 #### final plot ####
 
@@ -369,7 +377,3 @@ p.B.1.2 # visualize
   plot_annotation(tag_levels = c('A'), tag_suffix = ':')
 
 ggsave("~/Desktop/fig5.png", width = 497, height = 410, units = "mm")
-
-
-
-

@@ -28,7 +28,7 @@
 #SBATCH --job-name=repairReplication
 #SBATCH --account=users
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
+#SBATCH --ntasks-per-node=1
 #SBATCH --qos=long
 #SBATCH --partition=long
 #SBATCH --time=7-00

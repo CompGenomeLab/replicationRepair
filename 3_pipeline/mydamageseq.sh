@@ -167,6 +167,13 @@ if ${Key_pre_analysis}; then
         ${NGStoolkitPath}/fa2bedByChoosingReadMotifs.py -i ${preAnalysis}/$1_cutadapt_sorted_plus_10.fa -o ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -r ".{4}(c|t|C|T){2}.{4}" # taking only dipyrimidines
 
         ${NGStoolkitPath}/fa2bedByChoosingReadMotifs.py -i ${preAnalysis}/$1_cutadapt_sorted_minus_10.fa -o ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -r ".{4}(c|t|C|T){2}.{4}" # taking only dipyrimidines
+
+        cat ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed > ${preAnalysis}/$1_cutadapt_sorted_10.bed
+
+        bedtools getfasta -fi ${genomePath}/genome.fa -bed ${preAnalysis}/$1_cutadapt_sorted_10.bed -fo ${preAnalysis}/$1_cutadapt_sorted_10.fa -s # bedtools: to FASTA format        
+
+        ${NGStoolkitPath}/fa2kmerAbundanceTable.py -i ${preAnalysis}/$1_cutadapt_sorted_10.fa -k 2 -o ${control}/$1_cutadapt_sorted_10_dinucleotideTable.txt # dinucleotide content
+
     
         minus_line="$(grep -c '^' ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed)"
         plus_line="$(grep -c '^' ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed)"

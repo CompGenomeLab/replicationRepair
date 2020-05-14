@@ -2,8 +2,8 @@
 #### set paths and variables ####
 
 # name of the data file and its run date  
-#fr_name <- "repdomains_windows_201_100"
-#date <- "[2020.02.10]"
+fr_name <- "repdomains_windows_201_100"
+date <- "[2020.02.10]"
 
 # path of the codes
 sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/R/" 
@@ -42,6 +42,7 @@ rearrange <- function( ){
   rlength <<- region_length( window_number, window_length )
   df <- window_numbering( df, 4, half_window )
   df$dataset <- gsub("_.*", "", df$dataset)
+  df <- unique(df)
   return(df)
 }
 
