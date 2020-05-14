@@ -5,19 +5,16 @@ library(dplyr)
 library("tidyr")
 library(grid)
 library(gridExtra)
+library(patchwork)
 
 #### set variables ####
 
 options(scipen=999)
 
-setwd(paste("~/Documents/myprojects/replicationRepair/4_output/gitignore/", 
-            "2_sample_control/dinucleotide_composition", sep = ""))
+setwd("/home/azgarian/Desktop/dinuc")
 
-only_xr <- "26_dinucleotideTable.txt"
-only_ds <- "10_dinucleotideTable.txt"
-all_together <- "dinucleotideTable.txt"
+temp <- list.files(pattern = "_dinucleotideTable.txt")
 
-temp <- list.files(pattern = all_together)
 
 sample_info <- read.csv(paste("~/Documents/myprojects/replicationRepair/", 
                               "0_data/gitignore/", 
@@ -26,9 +23,6 @@ sample_info <- read.csv(paste("~/Documents/myprojects/replicationRepair/",
 
 #### rearrange and plot ####
 
-pdf("all_together.pdf", width = 50, height = 30)
-
-p <- list()
 
 for(counter in 1:length(temp)) {
   
@@ -70,7 +64,7 @@ for(counter in 1:length(temp)) {
                                   levels = x_order)
   
   # plot
-  p[[counter]] <- ggplot(dt_organized, aes(x = positions, y = freq, 
+  p <- ggplot(dt_organized, aes(x = positions, y = freq, 
                                            fill = dinucleotides)) + 
     geom_bar(stat = "identity") +
     ylim(0,101) +
@@ -79,11 +73,11 @@ for(counter in 1:length(temp)) {
     ylab("Frequency (%)") + xlab("Position in oligomers") +
     labs(title = "Dinucleotide Content of Oligomers", 
          subtitle = "Categorywise Bar Chart", 
-         caption = sample_name)
+         caption = temp[[counter]])
   
   #### theme ####
   
-  p[[counter]] <- p[[counter]] + theme_light() +
+  p <- p + theme_light() +
     theme(axis.title.x = element_text(size = 16, face = "bold"),
           axis.title.y = element_text(size = 16, face = "bold"),
           axis.text.x = element_text(size = 14, vjust = 0.6, angle = 65),
@@ -99,20 +93,19 @@ for(counter in 1:length(temp)) {
   
   #### plot save 1 by 1 ####
   
-  ggsave(gsub(".txt",".pdf", temp[[counter]]), width = 10, height = 8)
+  ggsave(gsub(".txt",".pdf", temp[[counter]]), width = 10, 
+         height = 8)
   
+  if (counter %% 2 == 1) {
+    p_total <- p + plot_layout(guides = "collect", tag_level = 'new', ncol = 2) +  
+      plot_annotation(tag_levels = c('A'), tag_suffix = ':')
+  } else {
+    p_total <- p_total + p 
+    ggsave(paste("compare_real_to_sim_", 
+                 gsub(".txt",".png", temp[[counter]]), sep = ""), 
+           width = 497, height = 210, units = "mm")
+  }
 }
-
-#### plot save all together ####
-
-do.call(grid.arrange, p)
-dev.off()
-
-rm(dinucleotide_table, dt_organized, p, sample_info, all_together, counter, 
-   file_name, file_name_temp, i, only_ds, only_xr, sample_name, temp, x_order)
-
-
-
 
 
 

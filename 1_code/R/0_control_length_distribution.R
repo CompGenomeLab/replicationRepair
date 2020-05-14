@@ -14,7 +14,7 @@ setwd(paste("~/Documents/myprojects/replicationRepair/4_output/gitignore/",
 only_xr = "_cutadapt_length_distribution.txt"
 all_together = "length_distribution.txt"
 
-temp <- list.files(pattern = all_together)
+temp <- list.files(pattern = only_xr)
 
 sample_info <- read.csv(paste("~/Documents/myprojects/replicationRepair/", 
                               "0_data/gitignore/", 
@@ -23,7 +23,7 @@ sample_info <- read.csv(paste("~/Documents/myprojects/replicationRepair/",
 
 #### plot ####
 
-pdf("all_together_length_distributions.pdf", width = 50, height = 30)
+pdf("xr_seq_length_distributions.png", width = 50, height = 30)
 
 p <- list()
 
@@ -42,7 +42,7 @@ for(counter in 1:length(temp)) {
   p[[counter]] <- ggplot(d, aes(x = oligomer_length, y = counts, 
                                 fill = counts)) + 
     geom_bar(stat = "identity") +
-    xlim(0, 50) +
+    xlim(15, 35) +
     xlab("Oligomer Length") + ylab("Counts") +
     labs(title="Length Distribution of the Reads", 
          subtitle="Bar Chart",
