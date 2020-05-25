@@ -1,0 +1,41 @@
+#!/bin/env python
+
+
+#### configuration file ####
+configfile: "config.yml"
+
+
+#### preparing reference genome ####
+rule download_genome:
+    input:
+        expand("{genomeLink}", genomeLink=config["genomeLink"])
+    output:
+        expand("{genome}.gz", genome=config["genome"])
+    shell:
+        "wget {input} -P {output}"
+
+rule unzip_genome:
+    input:
+        expand("{genome}.gz", genome=config["genome"])
+    output:
+        expand("{genome}", genome=config["genome"])
+
+rule bowtie2_build_index:
+    input:
+        expand("{genome}", genome=config["genome"])
+    output:
+        expand("{bowtie2_index}", bowtie2_index=config["bowtie2_index"])
+    shell:
+        "bowtie2-build {input} {output}"
+
+rule index:
+    input:
+        expand("{genome}", genome=config["genome"])
+    output:
+        expand("{genome}.fai", genome=config["genome"])
+    shell:
+        "samtools faidx {input}"
+
+
+#### sample pre-analysis ####
+
