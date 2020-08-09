@@ -2,23 +2,33 @@
 
 
 #### configuration file ####
-configfile: "config.yml"
+configfile: "config_test.yml"
 
+########################
+
+#### desired outputs ####
+rule all:
+    input:
+        "/home/azgarian/Desktop/genome.fa.fai"
+
+########################
 
 #### preparing reference genome ####
 rule download_genome:
-    input:
-        expand("{genomeLink}", genomeLink=config["genomeLink"])
     output:
         expand("{genome}.gz", genome=config["genome"])
+    params:
+        expand("{genomeLink}", genomeLink=config["genomeLink"])[0]    
     shell:
-        "wget {input} -P {output}"
+        "wget -O {output} {params}"
 
 rule unzip_genome:
     input:
         expand("{genome}.gz", genome=config["genome"])
     output:
         expand("{genome}", genome=config["genome"])
+    shell:
+        "gunzip {input}"
 
 rule bowtie2_build_index:
     input:
@@ -36,6 +46,9 @@ rule index:
     shell:
         "samtools faidx {input}"
 
+########################
 
 #### sample pre-analysis ####
 
+
+#### prepare data sets to intersect ####
