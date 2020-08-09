@@ -5,7 +5,7 @@ library(reshape2)
 
 #### variable set ####
 
-dataInfoPath <- paste("~/Documents/myprojects/replicationRepair/4_output/",
+dataInfoPath <- paste("~/Documents/myprojects/replicationRepair/3_output/",
                   "gitignore/1_TextforPlotting/", sep = "")
 
 temp <- list.files(path = dataInfoPath, pattern = ".txt")

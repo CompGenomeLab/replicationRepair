@@ -3,12 +3,12 @@
 
 #### import data ####
 
-dir_fr <- paste("~/Documents/myprojects/replicationRepair/4_output/",
+dir_fr <- paste("~/Documents/myprojects/replicationRepair/3_output/",
                 "gitignore/1_TextforPlotting/", sep = "")
 
 temp <- list.files(path = dir_fr, pattern = ".txt")
 
-temp <- temp[grepl("2020.*05.*06.*final_report.*\\.txt", temp)]
+temp <- temp[grepl("2020.*06.*14.*final_report.*\\.txt", temp)]
 
 setwd(dir_fr)
 

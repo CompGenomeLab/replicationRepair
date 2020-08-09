@@ -1,16 +1,16 @@
 #### set paths and variables ####
 
-repchoice = "B"
+repchoice = "A"
 
 # name of the data file and its run date  
-fr_name <- "hiRFD_windows_201_10000"
-date <- "[2020.02.10]"
+fr_name <- "hi.rfd.sns.seq.rep1_org_windows_201_100"
+date <- "[2020.06.10]"
 
 # path of the codes
-sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/R/" 
+sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/" 
 
 # save directory of figures
-figurePath <- paste("~/Documents/myprojects/replicationRepair/4_output/", 
+figurePath <- paste("~/Documents/myprojects/replicationRepair/3_output/", 
                     "gitignore/HiRFD/", sep = "") 
 
 # file name of data information

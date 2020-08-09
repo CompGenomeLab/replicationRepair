@@ -9,18 +9,18 @@ library(patchwork)
 
 # plot layout
 layout <- "
-AACCDDGG
-BBEEFFHH
+AABBEEGG
+CCDDFFHH
 "
 
 # directories
 ts_nts_path <- paste("/home/azgarian/Documents/myprojects/",
-                     "replicationRepair/4_output/gitignore/",
+                     "replicationRepair/3_output/gitignore/",
                      "2_sample_control/TS_NTS_ratio/", sep = "")
-dinuc_path <- paste("~/Documents/myprojects/replicationRepair/4_output/",
+dinuc_path <- paste("~/Documents/myprojects/replicationRepair/3_output/",
                     "gitignore/2_sample_control/dinucleotide_composition/", 
                     sep = "")
-corr_path <- paste("~/Documents/myprojects/replicationRepair/4_output/",
+corr_path <- paste("~/Documents/myprojects/replicationRepair/3_output/",
                    "gitignore/2_sample_control/correlation/", 
                    sep = "")
 
@@ -54,7 +54,7 @@ for(counter in 1:nrow(sample_info_agg)) {
                           add = "reg.line", conf.int = TRUE, 
                           cor.coef = TRUE, cor.method = "spearman",
                           xlab = "Replicate B", 
-                          ylab = "XR-seq \n\nReplicate A") +
+                          ylab = "Replicate A") +
     theme(axis.title.x = element_text(size = 16, face = "bold"),
           axis.title.y = element_text(size = 16, face = "bold"))
   
@@ -67,7 +67,7 @@ for(counter in 1:nrow(sample_info_agg)) {
                           add = "reg.line", conf.int = TRUE, 
                           cor.coef = TRUE, cor.method = "spearman",
                           xlab = "Replicate B", 
-                          ylab = "Damage-seq \n\nReplicate A") +
+                          ylab = "Replicate A") +
     theme(axis.title.x = element_text(size = 16, face = "bold"),
           axis.title.y = element_text(size = 16, face = "bold"))
   
@@ -124,8 +124,15 @@ for(counter in 1:nrow(sample_info_agg)) {
     
     dinucleotide_table <- dinuc_samp[[di]]
     
-    if (di == 1 | di == 3){ myrep <- "A" }
-    if (di == 2 | di == 4){ myrep <- "B" }
+    if (di == 1){ 
+      myrep <- "A"
+      mymethod <- "XR-seq \n\n"
+    } else if (di == 3){ 
+      myrep <- "A"
+      mymethod <- "Damage-seq \n\n"
+    } else if (di == 2 | di == 4){ 
+      myrep <- "B"
+      mymethod <- ""}
     
     # rename columns and get their order
     x_order <- c()
@@ -163,11 +170,12 @@ for(counter in 1:nrow(sample_info_agg)) {
       ylim(0,101) +
       scale_fill_manual(values = c("forestgreen", "royalblue3",
                                    "gold1", "mediumvioletred")) +
-      ylab("Frequency (%)") + xlab(paste("Replicate", myrep)) + 
+      ylab(paste(mymethod, "Frequency (%)", sep = "")) + 
+      xlab(paste("Replicate", myrep)) + 
       theme_pubr() +
       theme(axis.title.x = element_text(size = 16, face = "bold"),
             axis.title.y = element_text(size = 16, face = "bold"),
-            axis.text.x = element_text(size = 14, vjust = 0.6, angle = 65),
+            axis.text.x = element_text(size = 14, vjust = 0.6, angle = 90),
             axis.text.y = element_text(size = 14, vjust = 0.1),
             strip.text.x = element_text(size = 14),
             strip.text.y = element_text(size = 14, angle = 360),
@@ -286,8 +294,8 @@ for(counter in 1:nrow(sample_info_agg)) {
   
   # combine and save plots
   
-  xrcorrplot + dscorrplot + dinuc_plot1 + dinuc_plot2 + dinuc_plot3 + 
-    dinuc_plot4 + ts_nts_plot1 + ts_nts_plot2 +
+  dinuc_plot1 + dinuc_plot2 + dinuc_plot3 + 
+    dinuc_plot4 + ts_nts_plot1 + ts_nts_plot2 + xrcorrplot + dscorrplot +
     plot_layout(design = layout, guides = "collect", tag_level = 'new') & 
     theme(legend.position = 'bottom') 
   

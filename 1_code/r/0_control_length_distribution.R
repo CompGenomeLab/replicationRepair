@@ -8,13 +8,13 @@ library(gridExtra)
 
 options(scipen=999)
 
-setwd(paste("~/Documents/myprojects/replicationRepair/4_output/gitignore/", 
+setwd(paste("~/Documents/myprojects/replicationRepair/3_output/gitignore/", 
             "2_sample_control/length_distribution", sep = ""))
 
 only_xr = "_cutadapt_length_distribution.txt"
 all_together = "length_distribution.txt"
 
-temp <- list.files(pattern = only_xr)
+temp <- list.files(pattern = all_together)
 
 sample_info <- read.csv(paste("~/Documents/myprojects/replicationRepair/", 
                               "0_data/gitignore/", 
