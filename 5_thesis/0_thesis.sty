@@ -1,0 +1,101 @@
+%% Mert Moral, 2019 %%
+%% Sabancı University, MA Thesis Style File (APA 6) %%
+
+%------------------------------------------------
+
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[hyperfootnotes=false]{hyperref} 
+\hypersetup{
+ colorlinks=,
+ citecolor=black, 
+ linkcolor=black, 
+ urlcolor=black} 
+\urlstyle{same}
+
+%------------------------------------------------
+
+\usepackage{graphics} 
+\usepackage{setspace} 
+\onehalfspacing 
+\usepackage{graphicx} 
+\usepackage{makeidx} 
+\usepackage{pdflscape} 
+\usepackage{amsmath,amssymb,amsfonts} 
+\usepackage{mathptmx} 
+\usepackage[final]{pdfpages} 
+\usepackage{calc} 
+\usepackage{fancyhdr} 
+\usepackage{multicol} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} 
+\usepackage[english]{babel}
+\usepackage{sectsty} 
+\usepackage{titlesec} 
+\usepackage{threeparttable, supertabular} 
+\usepackage{endnotes} 
+\usepackage{rotating, rotfloat} 
+\usepackage{fullpage} 
+\usepackage[usenames,dvipsnames]{color} 
+\usepackage{colortbl} 
+\usepackage[bottom, flushmargin]{footmisc} 
+\usepackage{booktabs} 
+\usepackage[format=plain, textfont=normal, justification=justified, singlelinecheck=false, font=normal]{caption}
+\DeclareCaptionLabelSeparator{none}{ }
+\captionsetup{labelsep=none}
+
+%------------------------------------------------
+
+\usepackage[natbibapa]{apacite} 
+\bibliographystyle{Apa6} 
+
+%------------------------------------------------
+
+\newtheorem{Theorem}{Theorem}[chapter] 
+\newtheorem{Hypothesis}{Hypothesis}[chapter] 
+\newtheorem{Proposition}{Proposition}[chapter] 
+\newtheorem{Corollary}{Corollary}[chapter] 
+\newtheorem{Lemma}{Lemma}[chapter] 
+\newtheorem{Remark}{Remark}[chapter] 
+\newtheorem{Definition}{Definition}[chapter] 
+
+%------------------------------------------------
+
+\usepackage[rmargin=2.5cm, lmargin=3.5cm, tmargin=2.5cm, bmargin=2.5cm]{geometry} 
+
+%------------------------------------------------
+
+\makeindex 
+
+%------------------------------------------------
+
+\titleformat{\chapter}{\vspace{4\baselineskip}\bf\normalsize\centering}{\thechapter}{1ex}{\bf \uppercase \vspace{3\baselineskip}}
+\titleformat{\section}{\vspace{2\baselineskip}\bf\normalsize\centering}{\thesection}{1ex}{\bf \vspace{2\baselineskip}}
+\titleformat{\subsection}{\vspace{2\baselineskip}\bf\normalsize}{\thesubsection}{1ex}{\bf \vspace{\baselineskip}} 
+\titleformat{\subsubsection}{\vspace{2\baselineskip}\bf\normalsize}{\thesubsubsection}{1ex}{\bf \vspace{\baselineskip}}
+ 
+%------------------------------------------------
+
+\newcommand{\ChapterMM}{%
+\titleformat{\chapter}{\centering}{\vspace{4\baselineskip} \bf\centering \thechapter.}{\baselineskip}{\vspace{\baselineskip} \MakeUppercase \bf} 
+}
+
+\newcommand{\AppendixMM}{%
+\titleformat{\chapter}[display]{\centering}{\vspace{0\baselineskip} \bf\centering \thechapter}{0em}{\vspace{-4.25\baselineskip}} 
+}
+
+%------------------------------------------------
+
+\titleformat{\part}[display]{\LARGE \centering}{\bf Part \thepart}{0em}{\hline \vspace{0.5cm} \bf}
+\titlespacing{\part}{0pt}{0.5in}{2.0cm} 
+
+%------------------------------------------------
+
+\setlength{\footnotesep}{\baselineskip} 
+\setlength{\footskip}{1.5em} 
+\renewcommand\footnotelayout{\fontsize{9}{9}\selectfont}
+\setlength{\footnotemargin}{0em}
+
+%------------------------------------------------
+
+\usepackage{epigraph} 
+\setlength{\epigraphwidth}{0.75\textwidth}
