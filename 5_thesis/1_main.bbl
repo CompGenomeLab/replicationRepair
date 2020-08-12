@@ -1,5 +1,22 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\citeauthoryear{Adar, Hu, Lieb \& Sancar}{Adar
+  et~al.}{2016}]{adar2016genome}
+Adar, S., Hu, J., Lieb, J.~D., \& Sancar, A. (2016).
+\newblock Genome-wide kinetics of dna excision repair in relation to chromatin
+  state and mutagenesis.
+\newblock {\em Proceedings of the National Academy of Sciences}, {\em
+  113\/}(15), E2124--E2133.
+
+\bibitem[\protect\citeauthoryear{Besnard, Babled, Lapasset, Milhavet,
+  Parrinello, Dantec, Marin \& Lemaitre}{Besnard
+  et~al.}{2012}]{besnard2012unraveling}
+Besnard, E., Babled, A., Lapasset, L., Milhavet, O., Parrinello, H., Dantec,
+  C., Marin, J.-M., \& Lemaitre, J.-M. (2012).
+\newblock Unraveling cell type--specific and reprogrammable human replication
+  origin signatures associated with g-quadruplex consensus motifs.
+\newblock {\em Nature structural \& molecular biology}, {\em 19\/}(8), 837.
+
 \bibitem[\protect\citeauthoryear{Boyce \& Howard-Flanders}{Boyce \&
   Howard-Flanders}{1964}]{boyce1964release}
 Boyce, R.~P. \& Howard-Flanders, P. (1964).
@@ -66,6 +83,12 @@ Drapkin, R., Reardon, J.~T., Ansari, A., Huang, J.-C., Zawel, L., Ahn, K.,
   polymerase ii.
 \newblock {\em Nature}, {\em 368\/}(6473), 769--772.
 
+\bibitem[\protect\citeauthoryear{Ernst \& Kellis}{Ernst \&
+  Kellis}{2017}]{ernst2017chromatin}
+Ernst, J. \& Kellis, M. (2017).
+\newblock Chromatin-state discovery and genome annotation with chromhmm.
+\newblock {\em Nature protocols}, {\em 12\/}(12), 2478.
+
 \bibitem[\protect\citeauthoryear{Farkash-Amar, Lipson, Polten, Goren,
   Helmstetter, Yakhini \& Simon}{Farkash-Amar et~al.}{2008}]{farkash2008global}
 Farkash-Amar, S., Lipson, D., Polten, A., Goren, A., Helmstetter, C., Yakhini,
@@ -96,6 +119,13 @@ Giglia-Mari, G., Miquel, C., Theil, A.~F., Mari, P.-O., Hoogstraten, D., Ng,
   excision repair in living cells.
 \newblock {\em PLoS Biol}, {\em 4\/}(6), e156.
 
+\bibitem[\protect\citeauthoryear{Giresi, Kim, McDaniell, Iyer \& Lieb}{Giresi
+  et~al.}{2007}]{giresi2007faire}
+Giresi, P.~G., Kim, J., McDaniell, R.~M., Iyer, V.~R., \& Lieb, J.~D. (2007).
+\newblock Faire (formaldehyde-assisted isolation of regulatory elements)
+  isolates active regulatory elements from human chromatin.
+\newblock {\em Genome research}, {\em 17\/}(6), 877--885.
+
 \bibitem[\protect\citeauthoryear{Hansen, Thomas, Sandstrom, Canfield, Thurman,
   Weaver, Dorschner, Gartler \& Stamatoyannopoulos}{Hansen
   et~al.}{2010}]{hansen2010sequencing}
@@ -124,6 +154,12 @@ Hedglin, M. \& Benkovic, S.~J. (2017).
   strands: Unique detours around the same obstacle.
 \newblock {\em Chemical reviews}, {\em 117\/}(12), 7857--7877.
 
+\bibitem[\protect\citeauthoryear{Helleday, Eshtad \& Nik-Zainal}{Helleday
+  et~al.}{2014}]{helleday2014mechanisms}
+Helleday, T., Eshtad, S., \& Nik-Zainal, S. (2014).
+\newblock Mechanisms underlying mutational signatures in human cancers.
+\newblock {\em Nature Reviews Genetics}, {\em 15\/}(9), 585--598.
+
 \bibitem[\protect\citeauthoryear{Hiratani, Ryba, Itoh, Yokochi, Schwaiger,
   Chang, Lyou, Townes, Sch{\"u}beler \& Gilbert}{Hiratani
   et~al.}{2008}]{hiratani2008global}
@@ -138,6 +174,13 @@ Hiratani, I., Ryba, T., Itoh, M., Yokochi, T., Schwaiger, M., Chang, C.-W.,
 Hu, J. \& Adar, S. (2017).
 \newblock The cartography of uv-induced dna damage formation and dna repair.
 \newblock {\em Photochemistry and photobiology}, {\em 93\/}(1), 199--206.
+
+\bibitem[\protect\citeauthoryear{Hu, Adebali, Adar \& Sancar}{Hu
+  et~al.}{2017}]{hu2017dynamic}
+Hu, J., Adebali, O., Adar, S., \& Sancar, A. (2017).
+\newblock Dynamic maps of uv damage formation and repair for the human genome.
+\newblock {\em Proceedings of the National Academy of Sciences}, {\em
+  114\/}(26), 6758--6763.
 
 \bibitem[\protect\citeauthoryear{Hu, Li, Adebali, Yang, Oztas, Selby \&
   Sancar}{Hu et~al.}{2019}]{hu2019genome}
@@ -154,6 +197,28 @@ Hu, J., Lieb, J.~D., Sancar, A., \& Adar, S. (2016).
 \newblock {\em Proceedings of the National Academy of Sciences}, {\em
   113\/}(41), 11507--11512.
 
+\bibitem[\protect\citeauthoryear{Huang, Svoboda, Reardon \& Sancar}{Huang
+  et~al.}{1992}]{huang1992human}
+Huang, J.-C., Svoboda, D.~L., Reardon, J.~T., \& Sancar, A. (1992).
+\newblock Human nucleotide excision nuclease removes thymine dimers from dna by
+  incising the 22nd phosphodiester bond 5'and the 6th phosphodiester bond 3'to
+  the photodimer.
+\newblock {\em Proceedings of the National Academy of Sciences}, {\em 89\/}(8),
+  3664--3668.
+
+\bibitem[\protect\citeauthoryear{Huang, Li, Myers \& Marth}{Huang
+  et~al.}{2012}]{huang2012art}
+Huang, W., Li, L., Myers, J.~R., \& Marth, G.~T. (2012).
+\newblock Art: a next-generation sequencing read simulator.
+\newblock {\em Bioinformatics}, {\em 28\/}(4), 593--594.
+
+\bibitem[\protect\citeauthoryear{Ihaka \& Gentleman}{Ihaka \&
+  Gentleman}{1996}]{ihaka1996r}
+Ihaka, R. \& Gentleman, R. (1996).
+\newblock R: a language for data analysis and graphics.
+\newblock {\em Journal of computational and graphical statistics}, {\em
+  5\/}(3), 299--314.
+
 \bibitem[\protect\citeauthoryear{Jackson \& Pombo}{Jackson \&
   Pombo}{1998}]{jackson1998replicon}
 Jackson, D.~A. \& Pombo, A. (1998).
@@ -161,6 +226,13 @@ Jackson, D.~A. \& Pombo, A. (1998).
   that nuclear organization contributes to the efficient activation and
   propagation of s phase in human cells.
 \newblock {\em The Journal of cell biology}, {\em 140\/}(6), 1285--1295.
+
+\bibitem[\protect\citeauthoryear{Kent, Zweig, Barber, Hinrichs \&
+  Karolchik}{Kent et~al.}{2010}]{kent2010bigwig}
+Kent, W.~J., Zweig, A.~S., Barber, G., Hinrichs, A.~S., \& Karolchik, D.
+  (2010).
+\newblock Bigwig and bigbed: enabling browsing of large distributed datasets.
+\newblock {\em Bioinformatics}, {\em 26\/}(17), 2204--2207.
 
 \bibitem[\protect\citeauthoryear{Khattak \& Wang}{Khattak \&
   Wang}{1972}]{khattak1972photochemical}
@@ -196,6 +268,19 @@ Koren, A., Handsaker, R.~E., Kamitaki, N., Karli{\'c}, R., Ghosh, S., Polak,
 \newblock Genetic variation in human dna replication timing.
 \newblock {\em Cell}, {\em 159\/}(5), 1015--1026.
 
+\bibitem[\protect\citeauthoryear{Langley, Gr{\"a}f, Smith \& Krude}{Langley
+  et~al.}{2016}]{langley2016genome}
+Langley, A.~R., Gr{\"a}f, S., Smith, J.~C., \& Krude, T. (2016).
+\newblock Genome-wide identification and characterisation of human dna
+  replication origins by initiation site sequencing (ini-seq).
+\newblock {\em Nucleic acids research}, {\em 44\/}(21), 10230--10247.
+
+\bibitem[\protect\citeauthoryear{Langmead \& Salzberg}{Langmead \&
+  Salzberg}{2012}]{langmead2012fast}
+Langmead, B. \& Salzberg, S.~L. (2012).
+\newblock Fast gapped-read alignment with bowtie 2.
+\newblock {\em Nature methods}, {\em 9\/}(4), 357.
+
 \bibitem[\protect\citeauthoryear{Langston, Indiani \& O'Donnell}{Langston
   et~al.}{2009}]{langston2009whither}
 Langston, L.~D., Indiani, C., \& O'Donnell, M. (2009).
@@ -219,6 +304,13 @@ Lehmann, A.~R. (2003).
   syndrome and trichothiodystrophy.
 \newblock {\em Biochimie}, {\em 85\/}(11), 1101--1111.
 
+\bibitem[\protect\citeauthoryear{Li, Handsaker, Wysoker, Fennell, Ruan, Homer,
+  Marth, Abecasis \& Durbin}{Li et~al.}{2009}]{li2009sequence}
+Li, H., Handsaker, B., Wysoker, A., Fennell, T., Ruan, J., Homer, N., Marth,
+  G., Abecasis, G., \& Durbin, R. (2009).
+\newblock The sequence alignment/map format and samtools.
+\newblock {\em Bioinformatics}, {\em 25\/}(16), 2078--2079.
+
 \bibitem[\protect\citeauthoryear{Li, Wehrenberg, Waldman \& Waldman}{Li
   et~al.}{2018}]{li2018mismatch}
 Li, S., Wehrenberg, B., Waldman, B.~C., \& Waldman, A.~S. (2018).
@@ -226,12 +318,45 @@ Li, S., Wehrenberg, B., Waldman, B.~C., \& Waldman, A.~S. (2018).
   cells.
 \newblock {\em DNA repair}, {\em 70}, 25--36.
 
+\bibitem[\protect\citeauthoryear{Li, Hu, Adebali, Adar, Yang, Chiou \&
+  Sancar}{Li et~al.}{2017}]{li2017human}
+Li, W., Hu, J., Adebali, O., Adar, S., Yang, Y., Chiou, Y.-Y., \& Sancar, A.
+  (2017).
+\newblock Human genome-wide repair map of dna damage caused by the cigarette
+  smoke carcinogen benzo [a] pyrene.
+\newblock {\em Proceedings of the National Academy of Sciences}, {\em
+  114\/}(26), 6752--6757.
+
 \bibitem[\protect\citeauthoryear{Li \& Sancar}{Li \&
   Sancar}{2020}]{li2020methodologies}
 Li, W. \& Sancar, A. (2020).
 \newblock Methodologies for detecting environmentally induced dna damage and
   repair.
 \newblock {\em Environmental and Molecular Mutagenesis}, {\em 61}.
+
+\bibitem[\protect\citeauthoryear{Lieberman-Aiden, Van~Berkum, Williams,
+  Imakaev, Ragoczy, Telling, Amit, Lajoie, Sabo, Dorschner \&
+  others}{Lieberman-Aiden et~al.}{2009}]{lieberman2009comprehensive}
+Lieberman-Aiden, E., Van~Berkum, N.~L., Williams, L., Imakaev, M., Ragoczy, T.,
+  Telling, A., Amit, I., Lajoie, B.~R., Sabo, P.~J., Dorschner, M.~O., et~al.
+  (2009).
+\newblock Comprehensive mapping of long-range interactions reveals folding
+  principles of the human genome.
+\newblock {\em science}, {\em 326\/}(5950), 289--293.
+
+\bibitem[\protect\citeauthoryear{Lindahl \& Barnes}{Lindahl \&
+  Barnes}{2000}]{lindahl2000repair}
+Lindahl, T. \& Barnes, D. (2000).
+\newblock Repair of endogenous dna damage.
+\newblock In {\em Cold Spring Harbor symposia on quantitative biology},
+  volume~65, (pp.\ 127--134). Cold Spring Harbor Laboratory Press.
+
+\bibitem[\protect\citeauthoryear{Liu, Ren, Li, Zhou, Bo \& Shu}{Liu
+  et~al.}{2016}]{liu2016novo}
+Liu, F., Ren, C., Li, H., Zhou, P., Bo, X., \& Shu, W. (2016).
+\newblock De novo identification of replication-timing domains in the human
+  genome by deep learning.
+\newblock {\em Bioinformatics}, {\em 32\/}(5), 641--649.
 
 \bibitem[\protect\citeauthoryear{Lujan, Williams, Pursell, Abdulovic-Cui,
   Clark, McElhinny \& Kunkel}{Lujan et~al.}{2012}]{lujan2012mismatch}
@@ -247,6 +372,12 @@ Marteijn, J.~A., Lans, H., Vermeulen, W., \& Hoeijmakers, J.~H. (2014).
 \newblock Understanding nucleotide excision repair and its roles in cancer and
   ageing.
 \newblock {\em Nature reviews Molecular cell biology}, {\em 15\/}(7), 465--481.
+
+\bibitem[\protect\citeauthoryear{Martin}{Martin}{2011}]{martin2011cutadapt}
+Martin, M. (2011).
+\newblock Cutadapt removes adapter sequences from high-throughput sequencing
+  reads.
+\newblock {\em EMBnet. journal}, {\em 17\/}(1), 10--12.
 
 \bibitem[\protect\citeauthoryear{Mizukoshi, Kodama, Fujiwara, Furuno, Nakanishi
   \& Iwai}{Mizukoshi et~al.}{2001}]{mizukoshi2001structural}
@@ -318,6 +449,34 @@ Patrick, M.~H. (1977).
   biological role of pyrimidine adducts in dna.
 \newblock {\em Photochemistry and photobiology}, {\em 25\/}(4), 357--372.
 
+\bibitem[\protect\citeauthoryear{Petryk, Kahli, d'Aubenton Carafa, Jaszczyszyn,
+  Shen, Silvain, Thermes, Chen \& Hyrien}{Petryk
+  et~al.}{2016}]{petryk2016replication}
+Petryk, N., Kahli, M., d'Aubenton Carafa, Y., Jaszczyszyn, Y., Shen, Y.,
+  Silvain, M., Thermes, C., Chen, C.-L., \& Hyrien, O. (2016).
+\newblock Replication landscape of the human genome.
+\newblock {\em Nature communications}, {\em 7\/}(1), 1--13.
+
+\bibitem[\protect\citeauthoryear{Pope, Ryba, Dileep, Yue, Wu, Denas, Vera,
+  Wang, Hansen, Canfield \& others}{Pope et~al.}{2014}]{pope2014topologically}
+Pope, B.~D., Ryba, T., Dileep, V., Yue, F., Wu, W., Denas, O., Vera, D.~L.,
+  Wang, Y., Hansen, R.~S., Canfield, T.~K., et~al. (2014).
+\newblock Topologically associating domains are stable units of
+  replication-timing regulation.
+\newblock {\em Nature}, {\em 515\/}(7527), 402--405.
+
+\bibitem[\protect\citeauthoryear{Quinlan \& Hall}{Quinlan \&
+  Hall}{2010}]{quinlan2010bedtools}
+Quinlan, A.~R. \& Hall, I.~M. (2010).
+\newblock Bedtools: a flexible suite of utilities for comparing genomic
+  features.
+\newblock {\em Bioinformatics}, {\em 26\/}(6), 841--842.
+
+\bibitem[\protect\citeauthoryear{Ramey}{Ramey}{1998}]{ramey1998bash}
+Ramey, C. (1998).
+\newblock Bash reference manual.
+\newblock {\em Network Theory Limited}, {\em 15}.
+
 \bibitem[\protect\citeauthoryear{Reardon \& Sancar}{Reardon \&
   Sancar}{2005}]{reardon2005nucleotide}
 Reardon, J.~T. \& Sancar, A. (2005).
@@ -333,12 +492,26 @@ Reijns, M.~A., Kemp, H., Ding, J., de~Proc{\'e}, S.~M., Jackson, A.~P., \&
   genome.
 \newblock {\em Nature}, {\em 518\/}(7540), 502--506.
 
+\bibitem[\protect\citeauthoryear{Rossum}{Rossum}{1995}]{rossum1995python}
+Rossum, G. (1995).
+\newblock Python reference manual.
+\newblock Technical report, NLD.
+
 \bibitem[\protect\citeauthoryear{Rupert, Goodgal \& Herriott}{Rupert
   et~al.}{1958}]{rupert1958photoreactivation}
 Rupert, C.~S., Goodgal, S.~H., \& Herriott, R.~M. (1958).
 \newblock Photoreactivation in vitro of ultraviolet inactivated hemophilus
   influenzae transforming factor.
 \newblock {\em The Journal of general physiology}, {\em 41\/}(3), 451.
+
+\bibitem[\protect\citeauthoryear{Ryba, Hiratani, Lu, Itoh, Kulik, Zhang,
+  Schulz, Robins, Dalton \& Gilbert}{Ryba
+  et~al.}{2010}]{ryba2010evolutionarily}
+Ryba, T., Hiratani, I., Lu, J., Itoh, M., Kulik, M., Zhang, J., Schulz, T.~C.,
+  Robins, A.~J., Dalton, S., \& Gilbert, D.~M. (2010).
+\newblock Evolutionarily conserved replication timing profiles predict
+  long-range chromatin interactions and distinguish closely related cell types.
+\newblock {\em Genome research}, {\em 20\/}(6), 761--770.
 
 \bibitem[\protect\citeauthoryear{Sancar}{Sancar}{2016}]{sancar2016mechanisms}
 Sancar, A. (2016).
@@ -433,6 +606,13 @@ Sugasawa, K., Ng, J.~M., Masutani, C., Iwai, S., van~der Spek, P.~J., Eker,
   global genome nucleotide excision repair.
 \newblock {\em Molecular cell}, {\em 2\/}(2), 223--232.
 
+\bibitem[\protect\citeauthoryear{Supek \& Lehner}{Supek \&
+  Lehner}{2015}]{supek2015differential}
+Supek, F. \& Lehner, B. (2015).
+\newblock Differential dna mismatch repair underlies mutation rate variation
+  across the human genome.
+\newblock {\em Nature}, {\em 521\/}(7550), 81--84.
+
 \bibitem[\protect\citeauthoryear{Svejstrup}{Svejstrup}{2002}]{svejstrup2002mechanisms}
 Svejstrup, J.~Q. (2002).
 \newblock Mechanisms of transcription-coupled dna repair.
@@ -443,6 +623,14 @@ Svejstrup, J.~Q. (2002).
 Takebayashi, S.-i., Ogata, M., \& Okumura, K. (2017).
 \newblock Anatomy of mammalian replication domains.
 \newblock {\em Genes}, {\em 8\/}(4), 110.
+
+\bibitem[\protect\citeauthoryear{Takebayashi, Sugimura, Saito, Sato, Fukushima,
+  Taguchi \& Okumura}{Takebayashi et~al.}{2005}]{takebayashi2005regulation}
+Takebayashi, S.-i., Sugimura, K., Saito, T., Sato, C., Fukushima, Y., Taguchi,
+  H., \& Okumura, K. (2005).
+\newblock Regulation of replication at the r/g chromosomal band boundary and
+  pericentromeric heterochromatin of mammalian cells.
+\newblock {\em Experimental cell research}, {\em 304\/}(1), 162--174.
 
 \bibitem[\protect\citeauthoryear{Taylor \& Brockie}{Taylor \&
   Brockie}{1988}]{taylor1988synthesis}
@@ -458,6 +646,13 @@ Taylor, J.~S. \& Cohrs, M.~P. (1987).
   significance to tpt3.
 \newblock {\em Journal of the American Chemical Society}, {\em 109\/}(9),
   2834--2835.
+
+\bibitem[\protect\citeauthoryear{Tomasetti \& Vogelstein}{Tomasetti \&
+  Vogelstein}{2015}]{tomasetti2015variation}
+Tomasetti, C. \& Vogelstein, B. (2015).
+\newblock Variation in cancer risk among tissues can be explained by the number
+  of stem cell divisions.
+\newblock {\em Science}, {\em 347\/}(6217), 78--81.
 
 \bibitem[\protect\citeauthoryear{Tomkova, Tomek, Kriaucionis \&
   Schuster-B{\"o}ckler}{Tomkova et~al.}{2018}]{tomkova2018mutational}
@@ -512,5 +707,14 @@ Yimit, A., Adebali, O., Sancar, A., \& Jiang, Y. (2019).
 \newblock Differential damage and repair of dna-adducts induced by anti-cancer
   drug cisplatin across mouse organs.
 \newblock {\em Nature communications}, {\em 10\/}(1), 1--11.
+
+\bibitem[\protect\citeauthoryear{Zheng, Wang, Chung, Moslehi, Sanborn, Hur,
+  Collisson, Vemula, Naujokas, Chiotti \& others}{Zheng
+  et~al.}{2014}]{zheng2014transcription}
+Zheng, C.~L., Wang, N.~J., Chung, J., Moslehi, H., Sanborn, J.~Z., Hur, J.~S.,
+  Collisson, E.~A., Vemula, S.~S., Naujokas, A., Chiotti, K.~E., et~al. (2014).
+\newblock Transcription restores dna repair to heterochromatin, determining
+  regional mutation rates in cancer genomes.
+\newblock {\em Cell reports}, {\em 9\/}(4), 1228--1234.
 
 \end{thebibliography}

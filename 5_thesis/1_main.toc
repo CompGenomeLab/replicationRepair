@@ -44,5 +44,5 @@
 \contentsline {section}{\numberline {5.1}DNA replication elevates local nucleotide excision repair by mediating chromatin opening}{33}{section.5.1}%
 \contentsline {section}{\numberline {5.2}UV-induced DNA damage, repair and mutagenesis display replicational strand asymmetry}{35}{section.5.2}%
 \contentsline {chapter}{BIBLIOGRAPHY}{36}{section.5.2}%
-\contentsline {chapter}{\numberline {6}\bf APPENDIX}{41}{chapter.6}%
+\contentsline {chapter}{\numberline {6}\bf APPENDIX}{43}{chapter.6}%
 \contentsfinish 
