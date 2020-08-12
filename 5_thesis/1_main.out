@@ -28,8 +28,8 @@
 \BOOKMARK [2][-]{subsection.3.2.5}{XR-seq sequence pre-analysis}{section.3.2}% 28
 \BOOKMARK [2][-]{subsection.3.2.6}{Dna-seq sequence pre-analysis}{section.3.2}% 29
 \BOOKMARK [2][-]{subsection.3.2.7}{XR-seq and Damage-seq simulation}{section.3.2}% 30
-\BOOKMARK [2][-]{subsection.3.2.8}{Melanoma Dataset}{section.3.2}% 31
-\BOOKMARK [2][-]{subsection.3.2.9}{Further Analysis}{section.3.2}% 32
+\BOOKMARK [2][-]{subsection.3.2.8}{Quantification of melanoma mutations}{section.3.2}% 31
+\BOOKMARK [2][-]{subsection.3.2.9}{Further analysis}{section.3.2}% 32
 \BOOKMARK [0][-]{chapter.4}{RESULTS}{}% 33
 \BOOKMARK [1][-]{section.4.1}{Genome-wide mapping of UV-induced damages and their repair synchronized at two stages of the cell cycle: early S phase, and late S phase}{chapter.4}% 34
 \BOOKMARK [1][-]{section.4.2}{Early replication domains are repaired more efficiently than late replication domains, however, the repair rate of late replication domains elevates while replication proceeds.}{chapter.4}% 35
@@ -38,5 +38,6 @@
 \BOOKMARK [1][-]{section.4.5}{Asymmetric damage around initiation zones causes asymmetric repair profiles.}{chapter.4}% 38
 \BOOKMARK [1][-]{section.4.6}{Strand asymmetry of excision repair rate}{chapter.4}% 39
 \BOOKMARK [0][-]{chapter.5}{DISCUSSION}{}% 40
-\BOOKMARK [1][-]{section.5.1}{}{chapter.5}% 41
-\BOOKMARK [0][-]{section.5.1}{BIBLIOGRAPHY}{}% 42
+\BOOKMARK [1][-]{section.5.1}{DNA replication elevates local nucleotide excision repair by mediating chromatin opening}{chapter.5}% 41
+\BOOKMARK [1][-]{section.5.2}{UV-induced DNA damage, repair and mutagenesis display replicational strand asymmetry}{chapter.5}% 42
+\BOOKMARK [0][-]{section.5.2}{BIBLIOGRAPHY}{}% 43

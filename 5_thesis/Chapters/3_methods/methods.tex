@@ -103,10 +103,10 @@ Art simulator was used to produce synthetic reads with the parameters
 The filtering was done by filter\_syn\_fasta.go script, which is available at the repository: https://github.com/compGenomeLab/lemurRepair. 
 Filtered files were preceded by pre-analysis again for further analysis.
 
-\subsection{Melanoma Dataset}
+\subsection{Quantification of melanoma mutations}
 Melanoma somatic mutations of 183 tumor samples were obtained from the data portal of International Cancer Genome Consortium (ICGC) as compressed .tsv files which is publicly available at https://dcc.icgc.org/releases/release\_28/Projects/MELA-AU. Single base substitution mutations were extracted, and only the mutations of common chromosomes were used. To obtain the mutations that could be caused by UV-induced photoproducts, C -> T mutations that have a pyrimidine at the upstream nucleotide was further extracted. Later on, mutations were quantified on 20 kb long initiation zones that were separated into their corresponding replication domains using bedtools intersect command with the -wa -c -F 0.5 options.
 
-\subsection{Further Analysis}
+\subsection{Further analysis}
 In order to separate a region data (replication domains, initiation zones, or replication origins) into chosen number of (201) bins, the start and end positions of all the regions set to a desired range with the unix command: %awk -v a="$intervalLen" -v b="$windowNum" -v c="$name" '{print $1"\t"int(($2+$3)/2-a/2-a*(b-1)/2)"\t"int(($2+$3)/2+a/2+a*(b-1)/2)"\t"$4"\t"".""\t"$6}' 
 Then, any intersecting regions or regions crossing the borders of its chromosomes were filtered to eliminate the possibility of signal's canceling out effect. After that, bedtools makewindows command was used with the -n 201 -i srcwinnum options to create a .bed file containing the bins.
 To quantify the XR-seq and Damage-seq profiles on the prepared .bed file, bedtools intersect command was used to intersect as it was performed for mutation data. Then all bins were aggregated given their bin numbers, and the mean of the total value of each bin were calculated. Lastly RPKM normalization was performed and the plots were produced using ggplot2 in R programming language.

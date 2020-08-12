@@ -31,8 +31,8 @@
 \contentsline {subsection}{\numberline {3.2.5}XR-seq sequence pre-analysis}{18}{subsection.3.2.5}%
 \contentsline {subsection}{\numberline {3.2.6}Dna-seq sequence pre-analysis}{18}{subsection.3.2.6}%
 \contentsline {subsection}{\numberline {3.2.7}XR-seq and Damage-seq simulation}{18}{subsection.3.2.7}%
-\contentsline {subsection}{\numberline {3.2.8}Melanoma Dataset}{19}{subsection.3.2.8}%
-\contentsline {subsection}{\numberline {3.2.9}Further Analysis}{19}{subsection.3.2.9}%
+\contentsline {subsection}{\numberline {3.2.8}Quantification of melanoma mutations}{19}{subsection.3.2.8}%
+\contentsline {subsection}{\numberline {3.2.9}Further analysis}{19}{subsection.3.2.9}%
 \contentsline {chapter}{\numberline {4}\bf RESULTS}{20}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Genome-wide mapping of UV-induced damages and their repair synchronized at two stages of the cell cycle: early S phase, and late S phase}{20}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Early replication domains are repaired more efficiently than late replication domains, however, the repair rate of late replication domains elevates while replication proceeds.}{21}{section.4.2}%
@@ -41,6 +41,7 @@
 \contentsline {section}{\numberline {4.5}Asymmetric damage around initiation zones causes asymmetric repair profiles.}{24}{section.4.5}%
 \contentsline {section}{\numberline {4.6}Strand asymmetry of excision repair rate}{25}{section.4.6}%
 \contentsline {chapter}{\numberline {5}\bf DISCUSSION}{27}{chapter.5}%
-\contentsline {section}{\numberline {5.1}}{27}{section.5.1}%
-\contentsline {chapter}{BIBLIOGRAPHY}{28}{section.5.1}%
+\contentsline {section}{\numberline {5.1}DNA replication elevates local nucleotide excision repair by mediating chromatin opening}{28}{section.5.1}%
+\contentsline {section}{\numberline {5.2}UV-induced DNA damage, repair and mutagenesis display replicational strand asymmetry}{28}{section.5.2}%
+\contentsline {chapter}{BIBLIOGRAPHY}{30}{section.5.2}%
 \contentsfinish 
