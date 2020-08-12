@@ -13,7 +13,7 @@
 \usepackage[dotinlabels]{titletoc}
 %\usepackage{showframe}
 % Added packages by Cem
-\usepackage{datetime}
+\usepackage{datetime, csvsimple, booktabs}
 
 \newdateformat{Cemdateformat}{%
   \monthname[\THEMONTH] \THEYEAR}
@@ -163,15 +163,19 @@ All Rights Reserved \\
 
 %------------------------------------------------
 
-%\import{"Chapters/2_methods/"}{methods}
+\import{"Chapters/2_aim/"}{aim}
 
 %------------------------------------------------
 
-\import{"Chapters/3_results/"}{results}
+\import{"Chapters/3_methods/"}{methods}
 
 %------------------------------------------------
 
-\import{"Chapters/4_discussion/"}{discussion}
+\import{"Chapters/4_results/"}{results}
+
+%------------------------------------------------
+
+\import{"Chapters/5_discussion/"}{discussion}
 
 %------------------------------------------------
 \renewcommand{\headrulewidth}{0.0pt}
@@ -186,7 +190,7 @@ All Rights Reserved \\
 \clearpage \pagebreak\singlespace
  \normalsize
  \addcontentsline{toc}{chapter}{BIBLIOGRAPHY}
- \bibliography{Chapters/5_bibliography}
+ \bibliography{Chapters/6_bibliography}
 \clearpage \pagebreak
 
 %------------------------------------------------
