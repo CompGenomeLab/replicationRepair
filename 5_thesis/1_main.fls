@@ -424,10 +424,6 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/datetime/datetime-defaults.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/datetime/datetime-defaults.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/datetime/dt-turkish.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/datetime/dt-turkish.def
-INPUT /usr/share/texlive/texmf-dist/tex/latex/csvsimple/csvsimple.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/csvsimple/csvsimple.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.aux
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.aux
 OUTPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.aux
@@ -521,8 +517,6 @@ OUTPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.lot
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.lof
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.lof
 OUTPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.lof
-INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/5_abbreviations.tex
-INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/5_abbreviations.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/1_introduction/introduction.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/1_introduction/introduction.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/2_aim/aim.tex
@@ -798,8 +792,8 @@ INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.aux
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.out
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.out
-INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb

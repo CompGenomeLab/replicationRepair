@@ -13,7 +13,7 @@
 \usepackage[dotinlabels]{titletoc}
 %\usepackage{showframe}
 % Added packages by Cem
-\usepackage{datetime, csvsimple, booktabs}
+\usepackage{datetime, booktabs}
 
 \newdateformat{Cemdateformat}{%
   \monthname[\THEMONTH] \THEYEAR}
@@ -71,9 +71,68 @@
 \g@addto@macro\appendix{\let\chapter\appendix@chapter}
 \makeatother
 
-\newglossaryentry{chr}{name=CHR, description={Commission on Human Rights}}
-\newglossaryentry{daw}{name=DAW, description={Division for the Advancement of Women}}
-\newglossaryentry{desa}{name=DESA, description={Department of Economic and Social Affairs}}
+\newglossaryentry{uv}{name=UV, description={Ultraviolet}}
+\newglossaryentry{dna}{name=DNA, description={Deoxyribonucleic acid}}
+\newglossaryentry{rna}{name=RNA, description={Ribonucleic acid}}
+\newglossaryentry{CPD}{name=CPD, description={Cyclobutene pyrimidine dimer}}
+\newglossaryentry{64}{name=(6-4)PP, description={Pyrimidine (6-4) pyrimidone photoproduct}}
+\newglossaryentry{A}{name=A, description={Adenine}}
+\newglossaryentry{T}{name=T, description={Thymine}} 
+\newglossaryentry{G}{name=G, description={Guanine}}
+\newglossaryentry{C}{name=C, description={Cytosine}}
+\newglossaryentry{gr}{name=GR, description={Globar repair}}
+\newglossaryentry{tcr}{name=TCR, description={Transcription-coupled repair}}
+\newglossaryentry{ecoli}{name=E. coli, description={Escherichia coli}}
+\newglossaryentry{uvra}{name=UvrA, description={UvrABC system protein A}}
+\newglossaryentry{uvrb}{name=UvrB, description={UvrABC system protein B}}
+\newglossaryentry{uvrc}{name=UvrC, description={UvrABC system protein C}}
+\newglossaryentry{rpol2}{name=RNAPII, description={RNA polymerase II}}
+\newglossaryentry{ssdna}{name=ssDNA, description={Small single-stranded DNA}}
+\newglossaryentry{rad23b}{name=RAD23B, description={RAD23 Homolog B}}
+\newglossaryentry{cetn2}{name=CETN2, description={Centrin 2}}
+\newglossaryentry{ddb1}{name=DDB1, description={DNA damage-binding protein 1}}
+\newglossaryentry{ddb2}{name=DDB2, description={DNA damage-binding protein 2}}
+\newglossaryentry{uvddb}{name=UV-DDB, description={Ultraviolet radiation-DNA damage-binding protein}}
+\newglossaryentry{uvssa}{name=UVSSA, description={UV-stimulated scaffold protein A}}
+\newglossaryentry{usp7}{name=USP7, description={Ubiquitin-specific-processing protease 7}}
+\newglossaryentry{csb}{name=CSB, description={Cockayne syndrome protein, complementation group B}}
+\newglossaryentry{csa}{name=CSA, description={Cockayne syndrome protein, complementation group A}}
+\newglossaryentry{pcna}{name=PCNA, description={Proliferating cell nuclear antigen}}
+\newglossaryentry{rfc}{name=RFC, description={Replication factor C}}
+\newglossaryentry{delta}{name=$\delta$, description={Delta}}
+\newglossaryentry{epsilon}{name=$\epsilon$, description={Epsilon}}
+\newglossaryentry{kappa}{name=$\kappa$, description={Kappa}}
+\newglossaryentry{xab2}{name=XAB2, description={XPA-binding protein 2}}
+\newglossaryentry{hmgn1}{name=HMGN1, description={High mobility group nucleosome-binding domain-containing protein 1}}
+\newglossaryentry{tf2h}{name=TFIIH, description={Transcription initiation factor IIH}}
+\newglossaryentry{xpb}{name=XPB, description={Xeroderma pigmentosum, complementation group B}}
+\newglossaryentry{xpd}{name=XPD, description={Xeroderma pigmentosum, complementation group D}}
+\newglossaryentry{xpf}{name=XPF, description={Xeroderma pigmentosum, complementation group F}}
+\newglossaryentry{xpa}{name=XPA, description={Xeroderma pigmentosum, complementation group A}}
+\newglossaryentry{xpc}{name=XPC, description={Xeroderma pigmentosum, complementation group C}}
+\newglossaryentry{xpe}{name=XPE, description={Xeroderma pigmentosum, complementation group E}}
+\newglossaryentry{xpg}{name=XPG, description={Xeroderma pigmentosum, complementation group G}}
+\newglossaryentry{cak}{name=CAK, description={CDK-activating kinase}}
+\newglossaryentry{ercc1}{name=ERCC1, description={Excision repair cross-complementation group 1}}
+\newglossaryentry{rpa}{name=RPA, description={Replication protein A}}
+\newglossaryentry{xp}{name=XP, description={Xeroderma pigmentosum}}
+\newglossaryentry{cs}{name=CS, description={Cockayne syndrome}}
+\newglossaryentry{ttd}{name=TTD, description={Trichothiodystrophy}}
+\newglossaryentry{xrseq}{name=XR-seq, description={Excision-seq}}
+\newglossaryentry{pcr}{name=PCR, description={Polymerase chain reaction}}
+\newglossaryentry{hela}{name=HeLa, description={Henrietta Lacks}}
+\newglossaryentry{pbs}{name=PBS, description={Phosphate-buffered saline}}
+\newglossaryentry{erd}{name=ERD, description={Early replication domain}}
+\newglossaryentry{lrd}{name=LRD, description={Late replication domain}}
+\newglossaryentry{utz}{name=UTZ, description={Up transition zone}}
+\newglossaryentry{dtz}{name=DTZ, description={Down transition zone}}
+\newglossaryentry{ucsc}{name=UCSC, description={University of California, Santa Cruz}}
+\newglossaryentry{okseq}{name=OK-seq, description={Okazaki fragment sequencing}}
+\newglossaryentry{snsseq}{name=SNS-seq, description={Short nascent strand sequencing}}
+\newglossaryentry{icgc}{name=ICGC, description={International Cancer Genome Consortium}}
+\newglossaryentry{rpkm}{name=RPKM, description={Reads per kilobase per million}}
+\newglossaryentry{rfd}{name=RFD, description={Replication fork directionality}}
+%\newglossaryentry{}{name=, description={}}
 \makenoidxglossaries
 \renewcommand*\glspostdescription{\dotfill}
   
@@ -136,8 +195,6 @@ All Rights Reserved \\
 
 \clearpage\pagebreak
 \printnoidxglossary[title=\textbf{LIST OF ABBREVIATONS}]
-
-\import{"Chapters/0_front_matter/"}{5_abbreviations}
 
 %------------------------------------------------
 
