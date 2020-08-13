@@ -25,6 +25,14 @@ Boyce, R.~P. \& Howard-Flanders, P. (1964).
 \newblock {\em Proceedings of the National Academy of Sciences of the United
   States of America}, {\em 51\/}(2), 293.
 
+\bibitem[\protect\citeauthoryear{Church, Schneider, Graves, Auger, Cunningham,
+  Bouk, Chen, Agarwala, McLaren, Ritchie \& others}{Church
+  et~al.}{2011}]{church2011modernizing}
+Church, D.~M., Schneider, V.~A., Graves, T., Auger, K., Cunningham, F., Bouk,
+  N., Chen, H.-C., Agarwala, R., McLaren, W.~M., Ritchie, G.~R., et~al. (2011).
+\newblock Modernizing reference genome assemblies.
+\newblock {\em PLoS Biol}, {\em 9\/}(7), e1001091.
+
 \bibitem[\protect\citeauthoryear{Citterio, Rademakers, van~der Horst, van Gool,
   Hoeijmakers \& Vermeulen}{Citterio et~al.}{1998}]{citterio1998biochemical}
 Citterio, E., Rademakers, S., van~der Horst, G.~T., van Gool, A.~J.,
@@ -146,6 +154,15 @@ Haradhvala, N.~J., Polak, P., Stojanov, P., Covington, K.~R., Shinbrot, E.,
 \newblock Mutational strand asymmetries in cancer genomes reveal mechanisms of
   dna damage and repair.
 \newblock {\em Cell}, {\em 164\/}(3), 538--549.
+
+\bibitem[\protect\citeauthoryear{Hayward, Wilmott, Waddell, Johansson, Field,
+  Nones, Patch, Kakavand, Alexandrov, Burke \& others}{Hayward
+  et~al.}{2017}]{hayward2017whole}
+Hayward, N.~K., Wilmott, J.~S., Waddell, N., Johansson, P.~A., Field, M.~A.,
+  Nones, K., Patch, A.-M., Kakavand, H., Alexandrov, L.~B., Burke, H., et~al.
+  (2017).
+\newblock Whole-genome landscapes of major melanoma subtypes.
+\newblock {\em Nature}, {\em 545\/}(7653), 175--180.
 
 \bibitem[\protect\citeauthoryear{Hedglin \& Benkovic}{Hedglin \&
   Benkovic}{2017}]{hedglin2017eukaryotic}

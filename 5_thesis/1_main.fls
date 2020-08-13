@@ -523,6 +523,9 @@ INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/2_
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/2_aim/aim.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/3_methods/methods.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/3_methods/methods.tex
+INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
+INPUT /usr/share/texmf/tex/latex/lm/t1lmtt.fd
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmtt12.tfm
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/results.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/results.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig1.png
@@ -801,3 +804,4 @@ INPUT /usr/share/texmf/fonts/type1/public/lm/lmr12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmr9.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmri12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb
+INPUT /usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb
