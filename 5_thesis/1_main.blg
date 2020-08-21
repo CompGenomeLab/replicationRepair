@@ -4,45 +4,45 @@ The top-level auxiliary file: 1_main.aux
 The style file: Apa6.bst
 Database file #1: Chapters/6_bibliography.bib
 Warning--empty institution in rossum1995python
-You've used 99 entries,
+You've used 101 entries,
             2708 wiz_defined-function locations,
-            1178 strings with 26564 characters,
-and the built_in function-call counts, 56894 in all, are:
-= -- 5006
-> -- 3552
-< -- 42
-+ -- 1408
-- -- 1395
-* -- 6149
-:= -- 11230
-add.period$ -- 299
-call.type$ -- 99
-change.case$ -- 1051
-chr.to.int$ -- 98
-cite$ -- 100
-duplicate$ -- 1597
-empty$ -- 3056
-format.name$ -- 1548
-if$ -- 9921
+            1188 strings with 26983 characters,
+and the built_in function-call counts, 57978 in all, are:
+= -- 5106
+> -- 3607
+< -- 43
++ -- 1429
+- -- 1416
+* -- 6265
+:= -- 11435
+add.period$ -- 305
+call.type$ -- 101
+change.case$ -- 1070
+chr.to.int$ -- 100
+cite$ -- 102
+duplicate$ -- 1629
+empty$ -- 3122
+format.name$ -- 1573
+if$ -- 10114
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 99
-newline$ -- 498
-num.names$ -- 396
-pop$ -- 728
+missing$ -- 101
+newline$ -- 508
+num.names$ -- 404
+pop$ -- 740
 preamble$ -- 1
-purify$ -- 1150
+purify$ -- 1171
 quote$ -- 0
-skip$ -- 1064
+skip$ -- 1085
 stack$ -- 0
-substring$ -- 3639
-swap$ -- 404
+substring$ -- 3727
+swap$ -- 412
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 592
+type$ -- 604
 warning$ -- 1
-while$ -- 475
+while$ -- 485
 width$ -- 0
-write$ -- 1291
+write$ -- 1317
 (There was 1 warning)

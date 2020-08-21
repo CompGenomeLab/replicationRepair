@@ -25,6 +25,13 @@ Boyce, R.~P. \& Howard-Flanders, P. (1964).
 \newblock {\em Proceedings of the National Academy of Sciences of the United
   States of America}, {\em 51\/}(2), 293.
 
+\bibitem[\protect\citeauthoryear{Byun, Pacek, Yee, Walter \& Cimprich}{Byun
+  et~al.}{2005}]{byun2005functional}
+Byun, T.~S., Pacek, M., Yee, M.-c., Walter, J.~C., \& Cimprich, K.~A. (2005).
+\newblock Functional uncoupling of mcm helicase and dna polymerase activities
+  activates the atr-dependent checkpoint.
+\newblock {\em Genes \& development}, {\em 19\/}(9), 1040--1052.
+
 \bibitem[\protect\citeauthoryear{Church, Schneider, Graves, Auger, Cunningham,
   Bouk, Chen, Agarwala, McLaren, Ritchie \& others}{Church
   et~al.}{2011}]{church2011modernizing}
@@ -395,6 +402,13 @@ Martin, M. (2011).
 \newblock Cutadapt removes adapter sequences from high-throughput sequencing
   reads.
 \newblock {\em EMBnet. journal}, {\em 17\/}(1), 10--12.
+
+\bibitem[\protect\citeauthoryear{Minca \& Kowalski}{Minca \&
+  Kowalski}{2011}]{minca2011replication}
+Minca, E.~C. \& Kowalski, D. (2011).
+\newblock Replication fork stalling by bulky dna damage: localization at active
+  origins and checkpoint modulation.
+\newblock {\em Nucleic acids research}, {\em 39\/}(7), 2610--2623.
 
 \bibitem[\protect\citeauthoryear{Mizukoshi, Kodama, Fujiwara, Furuno, Nakanishi
   \& Iwai}{Mizukoshi et~al.}{2001}]{mizukoshi2001structural}

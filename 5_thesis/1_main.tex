@@ -13,7 +13,7 @@
 \usepackage[dotinlabels]{titletoc}
 %\usepackage{showframe}
 % Added packages by Cem
-\usepackage{datetime, booktabs}
+\usepackage{datetime, booktabs, titlesec, setspace}
 
 \newdateformat{Cemdateformat}{%
   \monthname[\THEMONTH] \THEYEAR}
@@ -21,6 +21,11 @@
 \definecolor{codegray}{gray}{0.9}
 \newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
 
+\glsdisablehyper
+
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{1em}{\setstretch{1.2}}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{\setstretch{1.2}}
+\titleformat{\subsubsection}{\normalfont\large\bfseries}{\thesubsubsection}{1em}{\setstretch{1.2}}
 %
 
 \addto\captionsenglish{\renewcommand{\contentsname}{\MakeUppercase{\bf Table of Contents}}}
@@ -76,6 +81,8 @@
 \makeatother
 
 \newglossaryentry{uv}{name=UV, description={Ultraviolet}}
+\newglossaryentry{mb}{name=Mb, description={Megabase}}
+\newglossaryentry{kb}{name=kb, description={Kilobase}}
 \newglossaryentry{dna}{name=DNA, description={Deoxyribonucleic acid}}
 \newglossaryentry{rna}{name=RNA, description={Ribonucleic acid}}
 \newglossaryentry{CPD}{name=CPD, description={Cyclobutene pyrimidine dimer}}
@@ -122,7 +129,8 @@
 \newglossaryentry{xp}{name=XP, description={Xeroderma pigmentosum}}
 \newglossaryentry{cs}{name=CS, description={Cockayne syndrome}}
 \newglossaryentry{ttd}{name=TTD, description={Trichothiodystrophy}}
-\newglossaryentry{xrseq}{name=XR-seq, description={Excision-seq}}
+\newglossaryentry{xrseq}{name=XR-seq, description={Excision repair sequencing}}
+\newglossaryentry{dsseq}{name=Damage-seq, description={Damage sequencing}}
 \newglossaryentry{pcr}{name=PCR, description={Polymerase chain reaction}}
 \newglossaryentry{hela}{name=HeLa, description={Henrietta Lacks}}
 \newglossaryentry{pbs}{name=PBS, description={Phosphate-buffered saline}}
@@ -136,7 +144,8 @@
 \newglossaryentry{icgc}{name=ICGC, description={International Cancer Genome Consortium}}
 \newglossaryentry{rpkm}{name=RPKM, description={Reads per kilobase per million}}
 \newglossaryentry{rfd}{name=RFD, description={Replication fork directionality}}
-%\newglossaryentry{}{name=, description={}}
+\newglossaryentry{atr}{name=ATR, description={Ataxia-telangiectasia mutated and Rad3-related}}
+
 \makenoidxglossaries
 \renewcommand*\glspostdescription{\dotfill}
   
@@ -156,9 +165,10 @@ DNA LESIONS.} \\[7\baselineskip]
 by \\
 \MakeUppercase{Cem Azgari} \\[7\baselineskip]
 
-Submitted to the Graduate School of Social Sciences \\
+Submitted to the Graduate School of Engineering and Natural Sciences \\
 in partial fulfilment of \\
-the requirements for the degree of Master of Arts \\[7\baselineskip]
+the requirements for the degree of \\
+Master of Science \\[7\baselineskip]
 
 Sabancı University \\
 \Cemdateformat\today
@@ -183,7 +193,7 @@ All Rights Reserved \\
 
 \import{"Chapters/0_front_matter/"}{1_abstract}
 \import{"Chapters/0_front_matter/"}{2_ozet}
-\import{"Chapters/0_front_matter/"}{3_acknowledgments}
+\import{"Chapters/0_front_matter/"}{3_acknowledgements}
 \import{"Chapters/0_front_matter/"}{4_dedication}
 
 \clearpage

@@ -503,8 +503,8 @@ INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/1_abstract.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/2_ozet.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/2_ozet.tex
-INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/3_acknowledgments.tex
-INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/3_acknowledgments.tex
+INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/3_acknowledgements.tex
+INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/3_acknowledgements.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/4_dedication.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/0_front_matter/4_dedication.tex
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmri12.tfm
@@ -519,6 +519,11 @@ INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.lof
 OUTPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.lof
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/1_introduction/introduction.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/1_introduction/introduction.tex
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr12.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
+INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/1_introduction/figures/dsxrseq.png
+INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/1_introduction/figures/dsxrseq.png
+INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/1_introduction/figures/dsxrseq.png
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/2_aim/aim.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/2_aim/aim.tex
 INPUT /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/3_methods/methods.tex
