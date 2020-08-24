@@ -58,9 +58,26 @@ There are three human diseases that are known to be directly associated with nuc
 
 \section{Replication and its contribution to mutagenesis}
 
-Owing to many potential replication origins, a mammalian cell replicates in approximately 10 hours \citep{takebayashi2017anatomy}. During the cell division, only a portion of these replication origins fires, and they fire in an asynchronized manner except the replication origins that are in proximity to each other. By firing simultaneously, these closely packed replication origins coordinates the replication of regions longer than mega bases, termed as “replication domains” \citep{jackson1998replicon}. Replication domains are divided into 4: early replication domains, late replication domains and the zones between these domains are up transition zones and down transition zones \citep{farkash2008global,hansen2010sequencing,hiratani2008global,koren2014genetic,nakayasu1989mapping,o1992dynamic}. Generally, the interior regions of the nucleus are replicated earlier than nuclear periphery regions, thus located at early replication domains \citep{dimitrova2002spatio}. Multiple studies indicated that these domains are differ from each other in the mutation frequencies. Suggested by genome-wide analysis of mutation rates, early replication domains have reduced levels of mutation comparing to late replication domains \citep{lawrence2013mutational,stamatoyannopoulos2009human}. Also, in most cancers, base substitution mutation elevates in late replication domains \citep{schuster2012chromatin}.
+Owing to many potential replication origins, a mammalian cell replicates in approximately 10 hours \citep{takebayashi2017anatomy}. During the cell division, only a portion of these replication origins fires, and they fire in an asynchronized manner except the replication origins that are in proximity to each other. By firing simultaneously, these closely packed replication origins coordinates the replication of regions longer than mega bases, termed as “replication domains” \citep{jackson1998replicon} (Figure \ref{fig:introrepdomains}). Replication domains are divided into 4: early replication domains (\gls{erd}s), late replication domains (\gls{lrd}s) and the zones between these domains are up transition zones (\gls{utz}s) and down transition zones (\gls{dtz}s) \citep{farkash2008global,hansen2010sequencing,hiratani2008global,koren2014genetic,nakayasu1989mapping,o1992dynamic}. Generally, the interior regions of the nucleus are replicated earlier than nuclear periphery regions, thus located at early replication domains \citep{dimitrova2002spatio}. Multiple studies indicated that these domains are differ from each other in the mutation frequencies. Suggested by genome-wide analysis of mutation rates, early replication domains have reduced levels of mutation comparing to late replication domains \citep{lawrence2013mutational,stamatoyannopoulos2009human}. Also, in most cancers, base substitution mutation elevates in late replication domains \citep{schuster2012chromatin}.
+
+\shorthandoff{=}
+\begin{figure}[H]
+    \begin{center}
+    \includegraphics[width=\textwidth]{Chapters/1_introduction/figures/repdomains}
+    \caption{Model of replication domains and its chromatin organization \citep{liu2016novo}.}
+    \label{fig:introrepdomains}
+    \end{center}
+    \end{figure}
 
 Replication is driven by replication fork which is formed when a predefined replication origin fires \citep{langston2009whither}. Replication fork usually proceeds bidirectionally, with the coordinated work of polymerases \gls{epsilon} and \gls{delta}. During the movement of the fork, polymerase \gls{epsilon} continuously synthesizes the leading strand, whereas polymerase \gls{delta} discontinuously synthesizes the lagging strand. Moreover, bidirectionality creates an asymmetric progress, so that two polymerases work on opposite strands towards different directions. In other words, in the left replicating fork, polymerase \gls{epsilon} proceeds on the plus strand, while in the right replicating fork, it progresses on the minus strand. Studies suggest that this asymmetric progress of polymerases around the associated replication origins are reflected to the mutation profiles, where lagging strands reported to harbor more mutations than leading strands \citep{haradhvala2016mutational,lujan2012mismatch,reijns2015lagging,shinbrot2014exonuclease}. Observed asymmetry on mutation profiles is explained by the error-prone bypass mechanism on the lagging strands that makes it vulnerable to mutations \citep{seplyarskiy2019error}. Other studies argued that the attachment of helicase to leading strands increases the damage response, thus leading to effective repair of the strand \citep{hedglin2017eukaryotic,yeeles2013rescuing}. Furthermore, many mutational signatures are reported to have a significant replication strand asymmetry \citep{tomkova2018mutational}.
+
+\begin{figure}[H]
+    \begin{center}
+    \includegraphics[width=\textwidth]{Chapters/1_introduction/figures/repfork}
+    \caption{A demonstration of asymmetric synthesis of strands around replication origins \citep{tomkova2018mutational}.}
+    \label{fig:introrepfork}
+    \end{center}
+    \end{figure}
 
 \section{Mapping damage formation and nucleotide excision repair Events using damage sequencing (Damage-seq) and excision repair sequencing (XR-seq) methods, respectively}
 
@@ -70,7 +87,6 @@ Mapping of \gls{uv}-induced damages and their repair is essential to understand 
 
 \gls{dsseq} mechanism can sensitively detect a variety of \gls{dna} lesions such as \gls{CPD}s, \gls{64}s, and cisplatin-DNA adducts, mainly using the \gls{rpol2} stalling to its advantage \citep{hu2016cisplatin}. In fact, the method can be adapted to any \gls{dna} damage that stalls \gls{rpol2}, where the damage-specific antibody is present \citep{sancar2016mechanisms}. After the induction of the damage, the genomic \gls{dna} is sonicated, ligated to first primers, and denaturated. Then, damage sites are immunoprecipitated by damage-specific antibodies and enriched. Following the enrichment, a biotinylated primer is annealed and extended by a polymerase called Q5 \gls{dna} polymerase, which extends the primer until it reachs the damage without synthesizing the site of the damage. Next, a second adopter is ligated to the extended primer for amplification by \gls{pcr}. Lastly, the amplified oligomers can be sequenced and analyzed (Figure \ref{fig:dsxrseq}a).      
 
-\shorthandoff{=}
 \begin{figure}[H]
     \begin{center}
     \includegraphics[width=\textwidth]{Chapters/1_introduction/figures/dsxrseq}
