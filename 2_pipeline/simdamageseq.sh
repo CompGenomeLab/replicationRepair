@@ -115,9 +115,9 @@ source ${mainPath}/functions_repairRep.sh
 
             cat ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_minus.bed ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_plus.bed | sort -k1,1 -k2,2n -k3,3n > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_dipyrimidines.bed
 
-            bedtools intersect -sorted -a ${genomePath}/ensembl_genes.bed -b ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_dipyrimidines.bed -wa -c -S -F 0.5 > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_TScount.txt
+            bedtools intersect -sorted -a ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -b ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_dipyrimidines.bed -wa -c -S -F 0.5 > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_TScount.txt
 
-            bedtools intersect -sorted -a ${genomePath}/ensembl_genes.bed -b ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_dipyrimidines.bed -wa -c -s -F 0.5 > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_NTScount.txt
+            bedtools intersect -sorted -a ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -b ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_dipyrimidines.bed -wa -c -s -F 0.5 > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_NTScount.txt
 
             paste ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_TScount.txt ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_NTScount.txt | awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$6"\t"$7"\t"$14}' > ${mainPath}/simulation/Damageseq/$1/pre_analysis/$1_sorted_TSoverNTScount.txt         
 

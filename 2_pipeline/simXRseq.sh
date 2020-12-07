@@ -88,9 +88,9 @@ source ${mainPath}/functions_repairRep.sh
 
         if ${Key_TS_NTS}; then
 
-            bedtools intersect -sorted -a ${genomePath}/ensembl_genes.bed -b ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_chr.bed -wa -c -S -F 0.5 > ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_TScount.txt
+            bedtools intersect -sorted -a ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -b ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_chr.bed -wa -c -S -F 0.5 > ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_TScount.txt
 
-            bedtools intersect -sorted -a ${genomePath}/ensembl_genes.bed -b ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_chr.bed -wa -c -s -F 0.5 > ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_NTScount.txt
+            bedtools intersect -sorted -a ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -b ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_chr.bed -wa -c -s -F 0.5 > ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_NTScount.txt
 
             paste ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_TScount.txt ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_NTScount.txt | awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$6"\t"$7"\t"$14}' > ${mainPath}/simulation/XRseq/$1/pre_analysis/$1_sorted_TSoverNTScount.txt
 

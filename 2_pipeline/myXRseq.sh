@@ -104,9 +104,9 @@ source ${mainPath}/functions_repairRep.sh
 
         if ${Key_TS_NTS}; then
 
-            bedtools intersect -sorted -a ${genomePath}/ensembl_genes.bed -b ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_chr.bed -wa -c -S -F 0.5 > ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_TScount.txt
+            bedtools intersect -sorted -a ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -b ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_chr.bed -wa -c -S -F 0.5 > ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_TScount.txt
 
-            bedtools intersect -sorted -a ${genomePath}/ensembl_genes.bed -b ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_chr.bed -wa -c -s -F 0.5 > ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_NTScount.txt
+            bedtools intersect -sorted -a ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -b ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_chr.bed -wa -c -s -F 0.5 > ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_NTScount.txt
 
             paste ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_TScount.txt ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_NTScount.txt | awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$6"\t"$7"\t"$14}' > ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_TSoverNTScount.txt
 
@@ -127,10 +127,25 @@ source ${mainPath}/functions_repairRep.sh
 
             if ${Key_alignment}; then
 
+                bedtools intersect -a ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_plus.bed -b ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -v -f 0.5 >  ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_plus_filtered.bed
 
-                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_plus.bed -wa -c -F 0.5 >  ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_plus_${dataset[i]}.txt
+                bedtools intersect -a ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_minus.bed -b ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -v -f 0.5 >  ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_minus_filtered.bed
 
-                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_minus.bed -wa -c -F 0.5 >  ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_minus_${dataset[i]}.txt
+                plus_line="$(grep -c '^' ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_plus_filtered.bed)"
+                minus_line="$(grep -c '^' ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_minus_filtered.bed)"
+                mappedReads=`echo "$minus_line + $plus_line" | bc`
+
+                shuf -n $plus_line ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_plus.bed > ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_plus_shuf.bed   
+
+                shuf -n $minus_line ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_minus.bed > ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_minus_shuf.bed    
+
+                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_plus_shuf.bed -wa -c -F 0.5 >  ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_plus_${dataset[i]}.txt
+
+                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_minus_shuf.bed -wa -c -F 0.5 >  ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_minus_${dataset[i]}.txt
+
+                #bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_plus.bed -wa -c -F 0.5 >  ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_plus_${dataset[i]}.txt
+
+                #bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${mainPath}/XRseq/$1/pre_analysis/$1_cutadapt_sorted_minus.bed -wa -c -F 0.5 >  ${mainPath}/XRseq/$1/intersect_combine/$1_cutadapt_sorted_minus_${dataset[i]}.txt
 
                 echo ${dataset[i]} alignment done!
         

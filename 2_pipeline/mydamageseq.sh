@@ -152,28 +152,19 @@ if ${Key_pre_analysis}; then
 
         awk '{ if ($3-$2 == 10) { print } }' ${preAnalysis}/$1_cutadapt_slopped_minus.bed > ${preAnalysis}/$1_cutadapt_sorted_minus_10.bed # get only 10 nucleotide long
 
-        bedtools getfasta -fi ${genomePath}/genome.fa -bed ${preAnalysis}/$1_cutadapt_sorted_plus_10.bed -fo ${preAnalysis}/$1_cutadapt_sorted_plus_10.fa -s # bedtools: to FASTA format
-
-        bedtools getfasta -fi ${genomePath}/genome.fa -bed ${preAnalysis}/$1_cutadapt_sorted_minus_10.bed -fo ${preAnalysis}/$1_cutadapt_sorted_minus_10.fa -s # bedtools: to FASTA format
-
-        ${NGStoolkitPath}/fa2kmerAbundanceTable.py -i ${preAnalysis}/$1_cutadapt_sorted_plus_10.fa -k 2 -o ${control}/$1_cutadapt_sorted_plus_10_dinucleotideTable.txt # dinucleotide content
-
-        ${NGStoolkitPath}/fa2kmerAbundanceTable.py -i ${preAnalysis}/$1_cutadapt_sorted_minus_10.fa -k 2 -o ${control}/$1_cutadapt_sorted_minus_10_dinucleotideTable.txt # dinucleotide content
-
-        awk '{print $1"\t"$6}' ${control}/$1_cutadapt_sorted_plus_10_dinucleotideTable.txt > ${control}/$1_cutadapt_sorted_plus_10_dinucleotideTable_pos5-6.txt # damage positions
-
-        awk '{print $1"\t"$6}' ${control}/$1_cutadapt_sorted_minus_10_dinucleotideTable.txt > ${control}/$1_cutadapt_sorted_minus_10_dinucleotideTable_pos5-6.txt # damage positions
-
-        ${NGStoolkitPath}/fa2bedByChoosingReadMotifs.py -i ${preAnalysis}/$1_cutadapt_sorted_plus_10.fa -o ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -r ".{4}(c|t|C|T){2}.{4}" # taking only dipyrimidines
-
-        ${NGStoolkitPath}/fa2bedByChoosingReadMotifs.py -i ${preAnalysis}/$1_cutadapt_sorted_minus_10.fa -o ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -r ".{4}(c|t|C|T){2}.{4}" # taking only dipyrimidines
-
-        cat ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed > ${preAnalysis}/$1_cutadapt_sorted_10.bed
+        cat ${preAnalysis}/$1_cutadapt_sorted_plus_10.bed ${preAnalysis}/$1_cutadapt_sorted_minus_10.bed > ${preAnalysis}/$1_cutadapt_sorted_10.bed
 
         bedtools getfasta -fi ${genomePath}/genome.fa -bed ${preAnalysis}/$1_cutadapt_sorted_10.bed -fo ${preAnalysis}/$1_cutadapt_sorted_10.fa -s # bedtools: to FASTA format        
 
         ${NGStoolkitPath}/fa2kmerAbundanceTable.py -i ${preAnalysis}/$1_cutadapt_sorted_10.fa -k 2 -o ${control}/$1_cutadapt_sorted_10_dinucleotideTable.txt # dinucleotide content
 
+        bedtools getfasta -fi ${genomePath}/genome.fa -bed ${preAnalysis}/$1_cutadapt_sorted_plus_10.bed -fo ${preAnalysis}/$1_cutadapt_sorted_plus_10.fa -s # bedtools: to FASTA format
+
+        bedtools getfasta -fi ${genomePath}/genome.fa -bed ${preAnalysis}/$1_cutadapt_sorted_minus_10.bed -fo ${preAnalysis}/$1_cutadapt_sorted_minus_10.fa -s # bedtools: to FASTA format
+
+        ${NGStoolkitPath}/fa2bedByChoosingReadMotifs.py -i ${preAnalysis}/$1_cutadapt_sorted_plus_10.fa -o ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -r ".{4}(c|t|C|T){2}.{4}" # taking only dipyrimidines
+
+        ${NGStoolkitPath}/fa2bedByChoosingReadMotifs.py -i ${preAnalysis}/$1_cutadapt_sorted_minus_10.fa -o ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -r ".{4}(c|t|C|T){2}.{4}" # taking only dipyrimidines
     
         minus_line="$(grep -c '^' ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed)"
         plus_line="$(grep -c '^' ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed)"
@@ -203,9 +194,9 @@ if ${Key_pre_analysis}; then
 
         cat ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed | sort -k1,1 -k2,2n -k3,3n > ${preAnalysis}/$1_cutadapt_sorted_dipyrimidines.bed
 
-        bedtools intersect -sorted -a ${genomePath}/ensembl_genes.bed -b ${preAnalysis}/$1_cutadapt_sorted_dipyrimidines.bed -wa -c -S -F 0.5 > ${preAnalysis}/$1_cutadapt_sorted_TScount.txt
+        bedtools intersect -sorted -a ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -b ${preAnalysis}/$1_cutadapt_sorted_dipyrimidines.bed -wa -c -S -F 0.5 > ${preAnalysis}/$1_cutadapt_sorted_TScount.txt
 
-        bedtools intersect -sorted -a ${genomePath}/ensembl_genes.bed -b ${preAnalysis}/$1_cutadapt_sorted_dipyrimidines.bed -wa -c -s -F 0.5 > ${preAnalysis}/$1_cutadapt_sorted_NTScount.txt
+        bedtools intersect -sorted -a ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -b ${preAnalysis}/$1_cutadapt_sorted_dipyrimidines.bed -wa -c -s -F 0.5 > ${preAnalysis}/$1_cutadapt_sorted_NTScount.txt
 
         paste ${preAnalysis}/$1_cutadapt_sorted_TScount.txt ${preAnalysis}/$1_cutadapt_sorted_NTScount.txt | awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$6"\t"$7"\t"$14}' > ${preAnalysis}/$1_cutadapt_sorted_TSoverNTScount.txt         
 
@@ -224,10 +215,26 @@ if ${Key_downstream_analysis}; then
 
         if ${Key_alignment}; then
 
+            bedtools intersect -a ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -b ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -v -f 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_filtered.bed
 
-            bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
+            bedtools intersect -a ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -b ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -v -f 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_filtered.bed
 
-            bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
+            plus_line="$(grep -c '^' ${intersectCombine}/$1_cutadapt_sorted_plus_filtered.bed)"
+            minus_line="$(grep -c '^' ${intersectCombine}/$1_cutadapt_sorted_minus_filtered.bed)"
+            mappedReads=`echo "$minus_line + $plus_line" | bc`
+
+            shuf -n $plus_line ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed > ${intersectCombine}/$1_cutadapt_sorted_plus_shuf.bed   
+
+            shuf -n $minus_line ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed > ${intersectCombine}/$1_cutadapt_sorted_minus_shuf.bed    
+
+            bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${intersectCombine}/$1_cutadapt_sorted_plus_shuf.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
+
+            bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${intersectCombine}/$1_cutadapt_sorted_minus_shuf.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
+
+            #bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
+
+            #bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
+
 
             echo ${dataset[i]} alignment done!
     

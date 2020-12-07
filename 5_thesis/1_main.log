@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.11.28)  21 AUG 2020 19:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.11.28)  14 SEP 2020 09:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1370,22 +1370,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has b
                    \relax 
 l.21 
       [2] [3] [4] [5] [6]
-<Chapters/1_introduction/figures/repdomains.png, id=1058, 204.765pt x 150.8034pt>
+<Chapters/1_introduction/figures/repdomains.png, id=1039, 204.765pt x 150.8034pt>
 File: Chapters/1_introduction/figures/repdomains.png Graphic file (type png)
 <use Chapters/1_introduction/figures/repdomains.png>
-Package pdftex.def Info: Chapters/1_introduction/figures/repdomains.png  used on input line 66.
+Package pdftex.def Info: Chapters/1_introduction/figures/repdomains.png  used on input line 64.
 (pdftex.def)             Requested size: 426.79135pt x 314.34016pt.
  [7] [8 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/1_introduction/figures/repdomains.png>]
-<Chapters/1_introduction/figures/repfork.png, id=1122, 368.1253pt x 178.41656pt>
+<Chapters/1_introduction/figures/repfork.png, id=1101, 368.1253pt x 178.41656pt>
 File: Chapters/1_introduction/figures/repfork.png Graphic file (type png)
 <use Chapters/1_introduction/figures/repfork.png>
-Package pdftex.def Info: Chapters/1_introduction/figures/repfork.png  used on input line 76.
+Package pdftex.def Info: Chapters/1_introduction/figures/repfork.png  used on input line 74.
 (pdftex.def)             Requested size: 426.79135pt x 206.86533pt.
  [9 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/1_introduction/figures/repfork.PNG>]
-<Chapters/1_introduction/figures/dsxrseq.png, id=1148, 513.41812pt x 381.67593pt>
+<Chapters/1_introduction/figures/dsxrseq.png, id=1126, 513.41812pt x 381.67593pt>
 File: Chapters/1_introduction/figures/dsxrseq.png Graphic file (type png)
 <use Chapters/1_introduction/figures/dsxrseq.png>
-Package pdftex.def Info: Chapters/1_introduction/figures/dsxrseq.png  used on input line 92.
+Package pdftex.def Info: Chapters/1_introduction/figures/dsxrseq.png  used on input line 90.
 (pdftex.def)             Requested size: 426.79135pt x 317.28015pt.
 ) [10 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/1_introduction/figures/dsxrseq.png>] (/home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/2_aim/aim.tex [11]
 Chapter 2.
@@ -1416,12 +1416,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 135--136
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 135--136
-\T1/lmr/m/n/12 from the data por-tal of In-ter-na-tional Can-cer Genome Con-sor-
+\T1/lmr/m/n/12 from the data por-tal of In-ter-na-tional Can-cer Genome Con-sor-tium
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 135--136
-\T1/lmr/m/n/12 tium (ICGC) as com-pressed tsv files which is pub-licly avail-able at
+\T1/lmr/m/n/12 (ICGC) as com-pressed tsv files which are pub-licly avail-able at
  []
 
 [18])
@@ -1444,554 +1444,554 @@ Chapter 4.
 [20
 
 ]
-<Chapters/4_results/figures/fig1.png, id=1298, 438.876pt x 452.673pt>
+<Chapters/4_results/figures/fig1.png, id=1276, 438.876pt x 452.673pt>
 File: Chapters/4_results/figures/fig1.png Graphic file (type png)
 <use Chapters/4_results/figures/fig1.png>
 Package pdftex.def Info: Chapters/4_results/figures/fig1.png  used on input line 13.
 (pdftex.def)             Requested size: 426.79135pt x 440.23889pt.
  [21 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig1.png>] [22]
-<Chapters/4_results/figures/fig2.png, id=1337, 1376.14125pt x 760.8425pt>
+<Chapters/4_results/figures/fig2.png, id=1314, 1376.14125pt x 760.8425pt>
 File: Chapters/4_results/figures/fig2.png Graphic file (type png)
 <use Chapters/4_results/figures/fig2.png>
 Package pdftex.def Info: Chapters/4_results/figures/fig2.png  used on input line 28.
 (pdftex.def)             Requested size: 426.79135pt x 235.96321pt.
  [23 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig2.png>]
-<Chapters/4_results/figures/fig3.png, id=1365, 469.098pt x 285.138pt>
+<Chapters/4_results/figures/fig3.png, id=1342, 469.098pt x 285.138pt>
 File: Chapters/4_results/figures/fig3.png Graphic file (type png)
 <use Chapters/4_results/figures/fig3.png>
 Package pdftex.def Info: Chapters/4_results/figures/fig3.png  used on input line 40.
 (pdftex.def)             Requested size: 426.79135pt x 259.42377pt.
- [24] [25 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig3.png>] [26]
-<Chapters/4_results/figures/fig4.png, id=1410, 418.8375pt x 380.7315pt>
+ [24] [25 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig3.png>]
+<Chapters/4_results/figures/fig4.png, id=1381, 418.8375pt x 380.7315pt>
 File: Chapters/4_results/figures/fig4.png Graphic file (type png)
 <use Chapters/4_results/figures/fig4.png>
 Package pdftex.def Info: Chapters/4_results/figures/fig4.png  used on input line 56.
 (pdftex.def)             Requested size: 426.79135pt x 387.98079pt.
- [27 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig4.png>]
-<Chapters/4_results/figures/fig5.png, id=1420, 1265.72874pt x 895.345pt>
+ [26] [27 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig4.png>]
+<Chapters/4_results/figures/fig5.png, id=1397, 1265.72874pt x 895.345pt>
 File: Chapters/4_results/figures/fig5.png Graphic file (type png)
 <use Chapters/4_results/figures/fig5.png>
 Package pdftex.def Info: Chapters/4_results/figures/fig5.png  used on input line 68.
 (pdftex.def)             Requested size: 426.79135pt x 301.89949pt.
- [28] [29 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig5.png>]
-<Chapters/4_results/figures/fig6.png, id=1450, 898.85812pt x 839.38594pt>
+ [28 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig5.png>]
+<Chapters/4_results/figures/fig6.png, id=1422, 898.85812pt x 839.38594pt>
 File: Chapters/4_results/figures/fig6.png Graphic file (type png)
 <use Chapters/4_results/figures/fig6.png>
 Package pdftex.def Info: Chapters/4_results/figures/fig6.png  used on input line 82.
 (pdftex.def)             Requested size: 426.79135pt x 398.54596pt.
- [30]) (/home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/5_discussion/discussion.tex [31 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig6.png>]
+ [29]) (/home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/5_discussion/discussion.tex [30 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/4_results/figures/fig6.png>]
 Chapter 5.
-[32
+[31
 
-] [33]
-<Chapters/5_discussion/figures/model.png, id=1502, 1320.935pt x 1407.2575pt>
+] [32]
+<Chapters/5_discussion/figures/model.png, id=1474, 1320.935pt x 1407.2575pt>
 File: Chapters/5_discussion/figures/model.png Graphic file (type png)
 <use Chapters/5_discussion/figures/model.png>
 Package pdftex.def Info: Chapters/5_discussion/figures/model.png  used on input line 18.
 (pdftex.def)             Requested size: 341.43437pt x 363.7525pt.
- [34 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/5_discussion/figures/model.png>] [35]) [36] (/home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.bbl [37
+ [33 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/5_discussion/figures/model.png>] [34]) [35] (/home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.bbl [36
 
-] [38] [39]
+] [37] [38]
 Underfull \hbox (badness 1178) in paragraph at lines 428--433
 []\T1/lmr/m/n/12 Mouret, S., Philippe, C., Gracia-Chantegrel, J., Banyasz, A., Karpati, S.,
  []
 
-[40] [41] [42]) [43] (/home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/appendix.tex
+[39] [40] [41]) [42] (/home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/appendix.tex
 Chapter 6.
-<Chapters/7_appendix/figures/supfig1.png, id=1571, 1435.3625pt x 861.2175pt>
+<Chapters/7_appendix/figures/supfig1.png, id=1542, 1435.3625pt x 861.2175pt>
 File: Chapters/7_appendix/figures/supfig1.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig1.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig1.png  used on input line 8.
 (pdftex.def)             Requested size: 426.79135pt x 256.06755pt.
-<Chapters/7_appendix/figures/supfig2.png, id=1572, 469.755pt x 243.747pt>
+<Chapters/7_appendix/figures/supfig2.png, id=1543, 469.755pt x 243.747pt>
 File: Chapters/7_appendix/figures/supfig2.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig2.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig2.png  used on input line 17.
 (pdftex.def)             Requested size: 426.79135pt x 221.45305pt.
-[44
+[43
 
 
  </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig1.png>]
-<Chapters/7_appendix/figures/supfig3.png, id=1578, 469.755pt x 243.747pt>
+<Chapters/7_appendix/figures/supfig3.png, id=1550, 469.755pt x 243.747pt>
 File: Chapters/7_appendix/figures/supfig3.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig3.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig3.png  used on input line 26.
 (pdftex.def)             Requested size: 426.79135pt x 221.45305pt.
-<Chapters/7_appendix/figures/supfig4.png, id=1579, 469.755pt x 243.747pt>
+<Chapters/7_appendix/figures/supfig4.png, id=1551, 469.755pt x 243.747pt>
 File: Chapters/7_appendix/figures/supfig4.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig4.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig4.png  used on input line 35.
 (pdftex.def)             Requested size: 426.79135pt x 221.45305pt.
- [45 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig2.png> </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig3.png>]
-<Chapters/7_appendix/figures/supfig5.png, id=1584, 469.755pt x 243.747pt>
+ [44 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig2.png> </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig3.png>]
+<Chapters/7_appendix/figures/supfig5.png, id=1556, 469.755pt x 243.747pt>
 File: Chapters/7_appendix/figures/supfig5.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig5.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig5.png  used on input line 44.
 (pdftex.def)             Requested size: 426.79135pt x 221.45305pt.
-<Chapters/7_appendix/figures/supfig6.png, id=1585, 469.755pt x 243.747pt>
+<Chapters/7_appendix/figures/supfig6.png, id=1557, 469.755pt x 243.747pt>
 File: Chapters/7_appendix/figures/supfig6.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig6.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig6.png  used on input line 53.
 (pdftex.def)             Requested size: 426.79135pt x 221.45305pt.
- [46 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig4.png> </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig5.png>]
-<Chapters/7_appendix/figures/supfig7.png, id=1590, 469.755pt x 243.747pt>
+ [45 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig4.png> </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig5.png>]
+<Chapters/7_appendix/figures/supfig7.png, id=1562, 469.755pt x 243.747pt>
 File: Chapters/7_appendix/figures/supfig7.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig7.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig7.png  used on input line 62.
 (pdftex.def)             Requested size: 426.79135pt x 221.45305pt.
-<Chapters/7_appendix/figures/supfig8.png, id=1591, 469.755pt x 243.747pt>
+<Chapters/7_appendix/figures/supfig8.png, id=1563, 469.755pt x 243.747pt>
 File: Chapters/7_appendix/figures/supfig8.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig8.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig8.png  used on input line 70.
 (pdftex.def)             Requested size: 426.79135pt x 221.45305pt.
- [47 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig6.png> </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig7.png>]
-<Chapters/7_appendix/figures/supfig9.png, id=1596, 469.755pt x 243.747pt>
+ [46 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig6.png> </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig7.png>]
+<Chapters/7_appendix/figures/supfig9.png, id=1568, 469.755pt x 243.747pt>
 File: Chapters/7_appendix/figures/supfig9.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig9.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig9.png  used on input line 78.
 (pdftex.def)             Requested size: 426.79135pt x 221.45305pt.
-<Chapters/7_appendix/figures/supfig10.png, id=1597, 1436.36626pt x 793.96625pt>
+<Chapters/7_appendix/figures/supfig10.png, id=1569, 1436.36626pt x 793.96625pt>
 File: Chapters/7_appendix/figures/supfig10.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig10.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig10.png  used on input line 86.
 (pdftex.def)             Requested size: 426.79135pt x 235.91411pt.
- [48 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig8.png> </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig9.png>]
-<Chapters/7_appendix/figures/supfig11.png, id=1602, 1434.35875pt x 1013.7875pt>
+ [47 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig8.png> </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig9.png>]
+<Chapters/7_appendix/figures/supfig11.png, id=1574, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig11.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig11.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig11.png  used on input line 94.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [49 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig10.png>]
-<Chapters/7_appendix/figures/supfig12.png, id=1609, 1434.35875pt x 1243.64626pt>
+ [48 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig10.png>]
+<Chapters/7_appendix/figures/supfig12.png, id=1580, 1434.35875pt x 1243.64626pt>
 File: Chapters/7_appendix/figures/supfig12.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig12.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig12.png  used on input line 102.
 (pdftex.def)             Requested size: 426.79135pt x 370.04153pt.
- [50 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig11.png>]
-<Chapters/7_appendix/figures/supfig13.png, id=1615, 413.91pt x 251.631pt>
+ [49 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig11.png>]
+<Chapters/7_appendix/figures/supfig13.png, id=1587, 413.91pt x 251.631pt>
 File: Chapters/7_appendix/figures/supfig13.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig13.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig13.png  used on input line 110.
 (pdftex.def)             Requested size: 426.79135pt x 259.46309pt.
- [51 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig12.png>]
-<Chapters/7_appendix/figures/supfig14.png, id=1621, 413.91pt x 251.631pt>
+ [50 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig12.png>]
+<Chapters/7_appendix/figures/supfig14.png, id=1593, 413.91pt x 251.631pt>
 File: Chapters/7_appendix/figures/supfig14.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig14.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig14.png  used on input line 118.
 (pdftex.def)             Requested size: 426.79135pt x 259.46309pt.
- [52 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig13.png>]
-<Chapters/7_appendix/figures/supfig15.png, id=1627, 413.91pt x 251.631pt>
+ [51 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig13.png>]
+<Chapters/7_appendix/figures/supfig15.png, id=1599, 413.91pt x 251.631pt>
 File: Chapters/7_appendix/figures/supfig15.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig15.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig15.png  used on input line 126.
 (pdftex.def)             Requested size: 426.79135pt x 259.46309pt.
- [53 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig14.png>]
-<Chapters/7_appendix/figures/supfig16.png, id=1633, 413.91pt x 251.631pt>
+ [52 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig14.png>]
+<Chapters/7_appendix/figures/supfig16.png, id=1605, 413.91pt x 251.631pt>
 File: Chapters/7_appendix/figures/supfig16.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig16.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig16.png  used on input line 134.
 (pdftex.def)             Requested size: 426.79135pt x 259.46309pt.
- [54 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig15.png>]
-<Chapters/7_appendix/figures/supfig17.png, id=1639, 413.91pt x 251.631pt>
+ [53 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig15.png>]
+<Chapters/7_appendix/figures/supfig17.png, id=1611, 413.91pt x 251.631pt>
 File: Chapters/7_appendix/figures/supfig17.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig17.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig17.png  used on input line 142.
 (pdftex.def)             Requested size: 426.79135pt x 259.46309pt.
- [55 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig16.png>]
-<Chapters/7_appendix/figures/supfig18.png, id=1646, 469.4265pt x 331.785pt>
+ [54 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig16.png>]
+<Chapters/7_appendix/figures/supfig18.png, id=1617, 469.4265pt x 331.785pt>
 File: Chapters/7_appendix/figures/supfig18.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig18.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig18.png  used on input line 150.
 (pdftex.def)             Requested size: 426.79135pt x 301.66156pt.
- [56 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig17.png>]
-<Chapters/7_appendix/figures/supfig19.png, id=1652, 469.4265pt x 331.785pt>
+ [55 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig17.png>]
+<Chapters/7_appendix/figures/supfig19.png, id=1624, 469.4265pt x 331.785pt>
 File: Chapters/7_appendix/figures/supfig19.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig19.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig19.png  used on input line 158.
 (pdftex.def)             Requested size: 426.79135pt x 301.66156pt.
- [57 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig18.png>]
-<Chapters/7_appendix/figures/supfig20.png, id=1657, 469.4265pt x 331.785pt>
+ [56 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig18.png>]
+<Chapters/7_appendix/figures/supfig20.png, id=1629, 469.4265pt x 331.785pt>
 File: Chapters/7_appendix/figures/supfig20.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig20.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig20.png  used on input line 166.
 (pdftex.def)             Requested size: 426.79135pt x 301.66156pt.
- [58 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig19.png>]
-<Chapters/7_appendix/figures/supfig21.png, id=1662, 469.4265pt x 331.785pt>
+ [57 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig19.png>]
+<Chapters/7_appendix/figures/supfig21.png, id=1634, 469.4265pt x 331.785pt>
 File: Chapters/7_appendix/figures/supfig21.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig21.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig21.png  used on input line 174.
 (pdftex.def)             Requested size: 426.79135pt x 301.66156pt.
- [59 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig20.png>]
-<Chapters/7_appendix/figures/supfig22.png, id=1668, 469.4265pt x 331.785pt>
+ [58 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig20.png>]
+<Chapters/7_appendix/figures/supfig22.png, id=1639, 469.4265pt x 331.785pt>
 File: Chapters/7_appendix/figures/supfig22.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig22.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig22.png  used on input line 182.
 (pdftex.def)             Requested size: 426.79135pt x 301.66156pt.
- [60 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig21.png>]
-<Chapters/7_appendix/figures/supfig23.png, id=1673, 469.4265pt x 331.785pt>
+ [59 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig21.png>]
+<Chapters/7_appendix/figures/supfig23.png, id=1644, 469.4265pt x 331.785pt>
 File: Chapters/7_appendix/figures/supfig23.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig23.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig23.png  used on input line 190.
 (pdftex.def)             Requested size: 426.79135pt x 301.66156pt.
- [61 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig22.png>]
-<Chapters/7_appendix/figures/supfig24.png, id=1679, 1434.35875pt x 1013.7875pt>
+ [60 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig22.png>]
+<Chapters/7_appendix/figures/supfig24.png, id=1649, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig24.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig24.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig24.png  used on input line 198.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [62 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig23.png>]
-<Chapters/7_appendix/figures/supfig25.png, id=1684, 1434.35875pt x 1013.7875pt>
+ [61 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig23.png>]
+<Chapters/7_appendix/figures/supfig25.png, id=1655, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig25.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig25.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig25.png  used on input line 206.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [63 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig24.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig26.png, id=1689, 1434.35875pt x 1013.7875pt>
+ [62 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig24.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig26.png, id=1660, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig26.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig26.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig26.png  used on input line 214.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [64 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig25.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig27.png, id=1694, 1434.35875pt x 1013.7875pt>
+ [63 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig25.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig27.png, id=1665, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig27.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig27.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig27.png  used on input line 222.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [65 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig26.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig28.png, id=1699, 1434.35875pt x 1013.7875pt>
+ [64 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig26.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig28.png, id=1670, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig28.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig28.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig28.png  used on input line 230.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [66 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig27.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig29.png, id=1704, 1434.35875pt x 1013.7875pt>
+ [65 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig27.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig29.png, id=1676, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig29.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig29.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig29.png  used on input line 238.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [67 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig28.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig30.png, id=1710, 1434.35875pt x 1013.7875pt>
+ [66 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig28.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig30.png, id=1681, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig30.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig30.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig30.png  used on input line 246.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [68 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig29.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig31.png, id=1715, 1434.35875pt x 1013.7875pt>
+ [67 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig29.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig31.png, id=1687, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig31.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig31.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig31.png  used on input line 254.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [69 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig30.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig32.png, id=1720, 1434.35875pt x 1013.7875pt>
+ [68 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig30.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig32.png, id=1692, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig32.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig32.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig32.png  used on input line 262.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [70 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig31.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig33.png, id=1725, 1434.35875pt x 1013.7875pt>
+ [69 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig31.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig33.png, id=1697, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig33.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig33.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig33.png  used on input line 270.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [71 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig32.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig34.png, id=1730, 1434.35875pt x 1013.7875pt>
+ [70 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig32.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig34.png, id=1702, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig34.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig34.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig34.png  used on input line 278.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [72 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig33.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig35.png, id=1735, 1434.35875pt x 1013.7875pt>
+ [71 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig33.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig35.png, id=1707, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig35.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig35.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig35.png  used on input line 286.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [73 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig34.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig36.png, id=1741, 1434.35875pt x 1013.7875pt>
+ [72 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig34.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig36.png, id=1712, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig36.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig36.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig36.png  used on input line 294.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [74 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig35.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig37.png, id=1746, 1434.35875pt x 1013.7875pt>
+ [73 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig35.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig37.png, id=1718, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig37.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig37.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig37.png  used on input line 302.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [75 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig36.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig38.png, id=1751, 1434.35875pt x 1013.7875pt>
+ [74 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig36.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig38.png, id=1723, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig38.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig38.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig38.png  used on input line 310.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [76 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig37.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig39.png, id=1756, 1434.35875pt x 1013.7875pt>
+ [75 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig37.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig39.png, id=1728, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig39.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig39.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig39.png  used on input line 318.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [77 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig38.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig40.png, id=1761, 1434.35875pt x 1013.7875pt>
+ [76 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig38.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig40.png, id=1733, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig40.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig40.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig40.png  used on input line 326.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [78 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig39.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig41.png, id=1766, 1434.35875pt x 1013.7875pt>
+ [77 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig39.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig41.png, id=1738, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig41.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig41.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig41.png  used on input line 334.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [79 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig40.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig42.png, id=1772, 1434.35875pt x 1013.7875pt>
+ [78 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig40.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig42.png, id=1743, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig42.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig42.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig42.png  used on input line 342.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [80 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig41.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig43.png, id=1777, 1434.35875pt x 1013.7875pt>
+ [79 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig41.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig43.png, id=1749, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig43.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig43.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig43.png  used on input line 350.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [81 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig42.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig44.png, id=1782, 1434.35875pt x 1013.7875pt>
+ [80 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig42.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig44.png, id=1754, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig44.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig44.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig44.png  used on input line 358.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [82 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig43.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig45.png, id=1787, 1434.35875pt x 1013.7875pt>
+ [81 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig43.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig45.png, id=1759, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig45.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig45.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig45.png  used on input line 366.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [83 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig44.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig46.png, id=1792, 2345.76375pt x 1659.19875pt>
+ [82 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig44.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig46.png, id=1764, 2345.76375pt x 1659.19875pt>
 File: Chapters/7_appendix/figures/supfig46.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig46.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig46.png  used on input line 374.
 (pdftex.def)             Requested size: 426.79135pt x 301.85818pt.
- [84 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig45.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig47.png, id=1798, 1434.35875pt x 1013.7875pt>
+ [83 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig45.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig47.png, id=1769, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig47.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig47.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig47.png  used on input line 382.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [85 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig46.png>]
-<Chapters/7_appendix/figures/supfig48.png, id=1805, 1434.35875pt x 1013.7875pt>
+ [84 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig46.png>]
+<Chapters/7_appendix/figures/supfig48.png, id=1775, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig48.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig48.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig48.png  used on input line 390.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [86 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig47.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig49.png, id=1810, 1434.35875pt x 1013.7875pt>
+ [85 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig47.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig49.png, id=1781, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig49.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig49.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig49.png  used on input line 398.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [87 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig48.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig50.png, id=1815, 1434.35875pt x 1013.7875pt>
+ [86 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig48.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig50.png, id=1786, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig50.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig50.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig50.png  used on input line 406.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [88 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig49.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig51.png, id=1820, 2345.76375pt x 1659.19875pt>
+ [87 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig49.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig51.png, id=1791, 2345.76375pt x 1659.19875pt>
 File: Chapters/7_appendix/figures/supfig51.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig51.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig51.png  used on input line 414.
 (pdftex.def)             Requested size: 426.79135pt x 301.85818pt.
- [89 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig50.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig52.png, id=1825, 1434.35875pt x 1013.7875pt>
+ [88 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig50.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig52.png, id=1796, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig52.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig52.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig52.png  used on input line 422.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [90 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig51.png>]
-<Chapters/7_appendix/figures/supfig53.png, id=1831, 1434.35875pt x 1013.7875pt>
+ [89 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig51.png>]
+<Chapters/7_appendix/figures/supfig53.png, id=1802, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig53.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig53.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig53.png  used on input line 430.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [91 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig52.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig54.png, id=1837, 1434.35875pt x 1013.7875pt>
+ [90 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig52.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig54.png, id=1808, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig54.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig54.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig54.png  used on input line 438.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [92 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig53.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig55.png, id=1842, 1434.35875pt x 1013.7875pt>
+ [91 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig53.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig55.png, id=1814, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig55.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig55.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig55.png  used on input line 446.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [93 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig54.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig56.png, id=1847, 1434.35875pt x 1013.7875pt>
+ [92 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig54.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig56.png, id=1819, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig56.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig56.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig56.png  used on input line 454.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [94 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig55.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig57.png, id=1852, 1434.35875pt x 1013.7875pt>
+ [93 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig55.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig57.png, id=1824, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig57.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig57.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig57.png  used on input line 462.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [95 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig56.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig58.png, id=1857, 1434.35875pt x 1013.7875pt>
+ [94 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig56.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig58.png, id=1829, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig58.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig58.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig58.png  used on input line 470.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [96 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig57.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig59.png, id=1862, 1434.35875pt x 1013.7875pt>
+ [95 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig57.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig59.png, id=1834, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig59.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig59.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig59.png  used on input line 478.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [97 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig58.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig60.png, id=1868, 1434.35875pt x 1013.7875pt>
+ [96 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig58.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig60.png, id=1839, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig60.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig60.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig60.png  used on input line 486.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [98 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig59.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig61.png, id=1873, 1434.35875pt x 1013.7875pt>
+ [97 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig59.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig61.png, id=1845, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig61.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig61.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig61.png  used on input line 494.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [99 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig60.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig62.png, id=1878, 1434.35875pt x 1013.7875pt>
+ [98 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig60.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig62.png, id=1850, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig62.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig62.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig62.png  used on input line 502.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [100 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig61.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig63.png, id=1883, 1434.35875pt x 1013.7875pt>
+ [99 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig61.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig63.png, id=1855, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig63.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig63.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig63.png  used on input line 510.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [101 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig62.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig64.png, id=1888, 1434.35875pt x 1013.7875pt>
+ [100 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig62.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig64.png, id=1860, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig64.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig64.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig64.png  used on input line 518.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [102 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig63.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig65.png, id=1893, 1434.35875pt x 1013.7875pt>
+ [101 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig63.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig65.png, id=1865, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig65.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig65.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig65.png  used on input line 526.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [103 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig64.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig66.png, id=1899, 1434.35875pt x 1013.7875pt>
+ [102 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig64.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig66.png, id=1870, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig66.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig66.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig66.png  used on input line 534.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [104 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig65.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig67.png, id=1904, 1434.35875pt x 1013.7875pt>
+ [103 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig65.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig67.png, id=1876, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig67.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig67.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig67.png  used on input line 542.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [105 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig66.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig68.png, id=1909, 1434.35875pt x 1013.7875pt>
+ [104 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig66.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig68.png, id=1881, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig68.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig68.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig68.png  used on input line 550.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [106 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig67.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig69.png, id=1914, 1434.35875pt x 1013.7875pt>
+ [105 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig67.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig69.png, id=1886, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig69.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig69.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig69.png  used on input line 558.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [107 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig68.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig70.png, id=1919, 1434.35875pt x 1013.7875pt>
+ [106 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig68.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig70.png, id=1891, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig70.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig70.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig70.png  used on input line 566.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [108 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig69.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig71.png, id=1924, 1434.35875pt x 1013.7875pt>
+ [107 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig69.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig71.png, id=1896, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig71.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig71.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig71.png  used on input line 574.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [109 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig70.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig72.png, id=1931, 1434.35875pt x 1013.7875pt>
+ [108 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig70.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig72.png, id=1901, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig72.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig72.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig72.png  used on input line 582.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [110 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig71.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig73.png, id=1936, 1434.35875pt x 1013.7875pt>
+ [109 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig71.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig73.png, id=1907, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig73.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig73.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig73.png  used on input line 590.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [111 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig72.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig74.png, id=1941, 1434.35875pt x 1013.7875pt>
+ [110 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig72.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig74.png, id=1912, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig74.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig74.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig74.png  used on input line 598.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [112 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig73.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig75.png, id=1946, 1434.35875pt x 1013.7875pt>
+ [111 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig73.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig75.png, id=1917, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig75.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig75.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig75.png  used on input line 606.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [113 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig74.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig76.png, id=1951, 1434.35875pt x 1013.7875pt>
+ [112 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig74.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig76.png, id=1922, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig76.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig76.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig76.png  used on input line 614.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [114 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig75.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig77.png, id=1956, 1434.35875pt x 1013.7875pt>
+ [113 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig75.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig77.png, id=1927, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig77.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig77.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig77.png  used on input line 622.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [115 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig76.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig78.png, id=1962, 1434.35875pt x 1013.7875pt>
+ [114 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig76.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig78.png, id=1932, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig78.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig78.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig78.png  used on input line 630.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
- [116 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig77.png (PNG copy)>]
-<Chapters/7_appendix/figures/supfig79.png, id=1967, 1434.35875pt x 1013.7875pt>
+ [115 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig77.png (PNG copy)>]
+<Chapters/7_appendix/figures/supfig79.png, id=1939, 1434.35875pt x 1013.7875pt>
 File: Chapters/7_appendix/figures/supfig79.png Graphic file (type png)
 <use Chapters/7_appendix/figures/supfig79.png>
 Package pdftex.def Info: Chapters/7_appendix/figures/supfig79.png  used on input line 638.
 (pdftex.def)             Requested size: 426.79135pt x 301.64807pt.
-) [117 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig78.png (PNG copy)>] [118 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig79.png (PNG copy)>]
+) [116 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig78.png (PNG copy)>] [117 </home/azgarian/Documents/myprojects/replicationRepair/5_thesis/Chapters/7_appendix/figures/supfig79.png (PNG copy)>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 276.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 276.
  (/home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 276.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 276.
 Package rerunfilecheck Info: File `1_main.out' has not changed.
-(rerunfilecheck)             Checksum: 9BCF840BBE5A955AAF9A05E219630F02;3892.
+(rerunfilecheck)             Checksum: DFD7FE18F10534D998CA3398E50B457A;3881.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 276.
  ) 
 Here is how much of TeX's memory you used:
- 34869 strings out of 492164
- 633278 string characters out of 6127731
- 813525 words of memory out of 5000000
- 37968 multiletter control sequences out of 15000+600000
+ 34861 strings out of 492164
+ 633085 string characters out of 6127731
+ 812439 words of memory out of 5000000
+ 37962 multiletter control sequences out of 15000+600000
  43578 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,17n,54p,2575b,664s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,17n,54p,2575b,666s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.pdf (136 pages, 21135083 bytes).
+Output written on /home/azgarian/Documents/myprojects/replicationRepair/5_thesis/1_main.pdf (135 pages, 21131855 bytes).
 PDF statistics:
- 2088 PDF objects out of 2487 (max. 8388607)
- 1815 compressed objects within 19 object streams
- 374 named destinations out of 1000 (max. 500000)
+ 2058 PDF objects out of 2073 (max. 8388607)
+ 1787 compressed objects within 18 object streams
+ 372 named destinations out of 1000 (max. 500000)
  794 words of extra memory for PDF output out of 10000 (max. 10000000)
 
