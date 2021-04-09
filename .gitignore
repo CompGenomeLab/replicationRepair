@@ -11,4 +11,5 @@ gitignore/
 .Rproj.user
 1_code/r/.RData
 1_code/r/.Rhistory
+1_code/r/save.RData
 2_pipeline/.snakemake/
