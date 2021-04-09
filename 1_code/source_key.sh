@@ -2,7 +2,7 @@
 
 # Switch on/off
 
-Key_pre_analysis=false # from "directory for files" to "bedGraph to BigWig"
+Key_pre_analysis=true # from "directory for files" to "bedGraph to BigWig"
 if ${Key_pre_analysis}; then
     Key_cutadapt=true
     Key_bowtie2=true
@@ -15,7 +15,8 @@ fi
 
 Key_downstream_analysis=true # from "aligning to datasets" to "combining both strands in a file"
 if ${Key_downstream_analysis}; then
-    Key_alignment=false
+    Key_alignment=true
+    Key_intergenic=false
     Key_combineWindows=true
     Key_moreInfo=true
     Key_rpkm=true

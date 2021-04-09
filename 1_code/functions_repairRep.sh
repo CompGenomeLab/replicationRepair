@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# This function checks the path, layout and compression (gz zipped or not) of the file.
 check_raw_data() {
 
     local sample=$1

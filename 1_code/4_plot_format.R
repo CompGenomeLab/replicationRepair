@@ -50,8 +50,8 @@ names(product_labs) <- c("CPD", "64_PP")
 method_labs <- c("XR-seq", "Damage-seq", "DNA-seq")
 names(method_labs) <- c("XR_seq", "Damage_seq", "DNA_seq")
 
-taex_labs <- c("12 min.", "120 min.")
-names(taex_labs) <- c("12", "120")
+taex_labs <- c("12 min.", "120 min.", "60 min.")
+names(taex_labs) <- c("12", "120", "60")
 
 phase_labs <- c("Async.", "Early S\nPhase", "Late S\nPhase")
 names(phase_labs) <- c("async", "early", "late")
