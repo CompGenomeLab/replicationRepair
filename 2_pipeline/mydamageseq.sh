@@ -1,26 +1,26 @@
 #!/bin/bash
 
-source ~/repairReplication/source_dir.sh
-source ${mainPath}/source_key.sh
-source ${mainPath}/source_dataset.sh
-source ${mainPath}/functions_repairRep.sh
+source ../1_code/source_dir.sh
+source ${codePath}/source_key.sh
+source ${codePath}/source_dataset.sh
+source ${codePath}/functions_repairRep.sh
 
 # Primary variables 
 
-control="${mainPath}/Damageseq/$1/control"
+control="${mainPath}/3_output/Damageseq/$1/control"
 mkdir -p ${control} # directory for control files
 
-preAnalysis="${mainPath}/Damageseq/$1/pre_analysis"
+preAnalysis="${mainPath}/3_output/Damageseq/$1/pre_analysis"
 mkdir -p ${preAnalysis} # directory for pre_analysis files
 
-intersectCombine="${mainPath}/Damageseq/$1/intersect_combine"
+intersectCombine="${mainPath}/3_output/Damageseq/$1/intersect_combine"
 mkdir -p ${intersectCombine} # directory for intersected and combined files
 
-final="${mainPath}/Damageseq/$1/final"
+final="${mainPath}/3_output/Damageseq/$1/final"
 mkdir -p ${final} # directory for final files
 
 getname="$(echo $1 | sed 's/-/_/g')"
-moreinfo="$(grep ${getname} ${mainPath}/project_repair_replication_all_samples.csv | sed 's/,/\t/g')"
+moreinfo="$(grep ${getname} ${mainPath}/0_data/samples.csv | sed 's/,/\t/g')"
 if [ -f ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed ]; then
     minus_line="$(grep -c '^' ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed)"
     plus_line="$(grep -c '^' ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed)"
@@ -38,17 +38,9 @@ if ${Key_pre_analysis}; then
 
     if [ $layout == "p" ]; then 
 
-        TotalFastqReads_R1="$(zcat ${rawdataPath}/$1${zip} | echo $((`wc -l`/4)))"
-
-        TotalFastqReads_R2="$(zcat ${rawdataPath}/$1${zip2} | echo $((`wc -l`/4)))"
-
-        TotalFastqReads="$(($TotalFastqReads_R1+$TotalFastqReads_R2))"
-
-        echo "Total Fastq Reads: ${TotalFastqReads}" > ${control}/$1_control.txt # Control: add total fastq reads     
-
         if ${Key_cutadapt}; then # cutadapt Paired     
 
-            (cutadapt --discard-trimmed -g GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -G GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -o ${preAnalysis}/$1_R1_cutadapt.fastq.gz -p ${preAnalysis}/$1_R2_cutadapt.fastq.gz ${rawdataPath}/$1${zip} ${rawdataPath}/$1${zip2}) >> ${control}/$1_control.txt
+            (cutadapt --discard-trimmed -g GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -G GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -o ${preAnalysis}/$1_R1_cutadapt.fastq.gz -p ${preAnalysis}/$1_R2_cutadapt.fastq.gz ${rawdataPath}/$1${zip} ${rawdataPath}/$1${zip2}) > ${control}/$1_control.txt
 
             TotalFilteredReads_R1="$(zcat ${preAnalysis}/$1_R1_cutadapt.fastq.gz | echo $((`wc -l`/4)))"
 
@@ -88,13 +80,9 @@ if ${Key_pre_analysis}; then
 
     elif [ $layout == "s" ]; then
 
-        TotalFastqReads="$(zcat ${rawdataPath}/$1${zip} | echo $((`wc -l`/4)))"
-
-        echo "Total Fastq Reads: ${TotalFastqReads}" > ${control}/$1_control.txt # Control: add total fastq reads 
-
         if ${Key_cutadapt}; then # cutadapt Single
 
-            (cutadapt --discard-trimmed -g GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -o ${preAnalysis}/$1_cutadapt.fastq.gz ${rawdataPath}/$1${zip}) >>  ${control}/$1_control.txt 
+            (cutadapt --discard-trimmed -g GACTGGTTCCAATTGAAAGTGCTCTTCCGATCT -o ${preAnalysis}/$1_cutadapt.fastq.gz ${rawdataPath}/$1${zip}) >  ${control}/$1_control.txt 
 
             TotalFilteredReads="$(zcat ${preAnalysis}/$1_cutadapt.fastq.gz | echo $((`wc -l`/4)))"
             
@@ -124,7 +112,6 @@ if ${Key_pre_analysis}; then
     if ${Key_sort_count}; then
 
         sort -u -k1,1 -k2,2n -k3,3n ${preAnalysis}/$1_cutadapt.bed > ${preAnalysis}/$1_cutadapt_sorted.bed # sort
-
 
     fi
 
@@ -156,15 +143,15 @@ if ${Key_pre_analysis}; then
 
         bedtools getfasta -fi ${genomePath}/genome.fa -bed ${preAnalysis}/$1_cutadapt_sorted_10.bed -fo ${preAnalysis}/$1_cutadapt_sorted_10.fa -s # bedtools: to FASTA format        
 
-        ${NGStoolkitPath}/fa2kmerAbundanceTable.py -i ${preAnalysis}/$1_cutadapt_sorted_10.fa -k 2 -o ${control}/$1_cutadapt_sorted_10_dinucleotideTable.txt # dinucleotide content
+        ${codePath}/fa2kmerAbundanceTable.py -i ${preAnalysis}/$1_cutadapt_sorted_10.fa -k 2 -o ${control}/$1_cutadapt_sorted_10_dinucleotideTable.txt # dinucleotide content
 
         bedtools getfasta -fi ${genomePath}/genome.fa -bed ${preAnalysis}/$1_cutadapt_sorted_plus_10.bed -fo ${preAnalysis}/$1_cutadapt_sorted_plus_10.fa -s # bedtools: to FASTA format
 
         bedtools getfasta -fi ${genomePath}/genome.fa -bed ${preAnalysis}/$1_cutadapt_sorted_minus_10.bed -fo ${preAnalysis}/$1_cutadapt_sorted_minus_10.fa -s # bedtools: to FASTA format
 
-        ${NGStoolkitPath}/fa2bedByChoosingReadMotifs.py -i ${preAnalysis}/$1_cutadapt_sorted_plus_10.fa -o ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -r ".{4}(c|t|C|T){2}.{4}" # taking only dipyrimidines
+        ${codePath}/fa2bedByChoosingReadMotifs.py -i ${preAnalysis}/$1_cutadapt_sorted_plus_10.fa -o ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -r ".{4}(c|t|C|T){2}.{4}" # taking only dipyrimidines
 
-        ${NGStoolkitPath}/fa2bedByChoosingReadMotifs.py -i ${preAnalysis}/$1_cutadapt_sorted_minus_10.fa -o ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -r ".{4}(c|t|C|T){2}.{4}" # taking only dipyrimidines
+        ${codePath}/fa2bedByChoosingReadMotifs.py -i ${preAnalysis}/$1_cutadapt_sorted_minus_10.fa -o ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -r ".{4}(c|t|C|T){2}.{4}" # taking only dipyrimidines
     
         minus_line="$(grep -c '^' ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed)"
         plus_line="$(grep -c '^' ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed)"
@@ -215,26 +202,27 @@ if ${Key_downstream_analysis}; then
 
         if ${Key_alignment}; then
 
-            bedtools intersect -a ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -b ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -v -f 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_filtered.bed
+            if ${Key_intergenic}; then
 
-            bedtools intersect -a ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -b ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -v -f 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_filtered.bed
+                bedtools intersect -a ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -b ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -v -f 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_filtered.bed
 
-            plus_line="$(grep -c '^' ${intersectCombine}/$1_cutadapt_sorted_plus_filtered.bed)"
-            minus_line="$(grep -c '^' ${intersectCombine}/$1_cutadapt_sorted_minus_filtered.bed)"
-            mappedReads=`echo "$minus_line + $plus_line" | bc`
+                bedtools intersect -a ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -b ${genomePath}/hg19_ucsc_genes_knownCanonical_stranded.bed -v -f 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_filtered.bed
 
-            shuf -n $plus_line ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed > ${intersectCombine}/$1_cutadapt_sorted_plus_shuf.bed   
+                plus_line="$(grep -c '^' ${intersectCombine}/$1_cutadapt_sorted_plus_filtered.bed)"
+                minus_line="$(grep -c '^' ${intersectCombine}/$1_cutadapt_sorted_minus_filtered.bed)"
+                mappedReads=`echo "$minus_line + $plus_line" | bc`
+            
+                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${intersectCombine}/$1_cutadapt_sorted_plus_filtered.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
 
-            shuf -n $minus_line ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed > ${intersectCombine}/$1_cutadapt_sorted_minus_shuf.bed    
+                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${intersectCombine}/$1_cutadapt_sorted_minus_filtered.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
 
-            bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${intersectCombine}/$1_cutadapt_sorted_plus_shuf.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
+            else
 
-            bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${intersectCombine}/$1_cutadapt_sorted_minus_shuf.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
+                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
 
-            #bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
+                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
 
-            #bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
-
+            fi
 
             echo ${dataset[i]} alignment done!
     
@@ -254,9 +242,9 @@ if ${Key_downstream_analysis}; then
         
             if ${Key_moreInfo}; then
 
-                ${NGStoolkitPath}/addColumns.py -i ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}_combined.txt -o ${final}/$1_cutadapt_sorted_plus_${dataset[i]}_full.txt -c "${moreinfo}" + "${mappedReads}"
+                ${codePath}/addColumns.py -i ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}_combined.txt -o ${final}/$1_cutadapt_sorted_plus_${dataset[i]}_full.txt -c "${moreinfo}" + "${mappedReads}"
 
-                ${NGStoolkitPath}/addColumns.py -i ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}_combined.txt -o ${final}/$1_cutadapt_sorted_minus_${dataset[i]}_full.txt -c "${moreinfo}" - "${mappedReads}"
+                ${codePath}/addColumns.py -i ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}_combined.txt -o ${final}/$1_cutadapt_sorted_minus_${dataset[i]}_full.txt -c "${moreinfo}" - "${mappedReads}"
 
                 echo ${dataset[i]} info added!
 
@@ -266,9 +254,9 @@ if ${Key_downstream_analysis}; then
 
             if ${Key_moreInfo}; then
 
-                ${NGStoolkitPath}/addColumns.py -i ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt -o ${final}/$1_cutadapt_sorted_plus_${dataset[i]}_full.txt -c "${moreinfo}" + "${mappedReads}"
+                ${codePath}/addColumns.py -i ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt -o ${final}/$1_cutadapt_sorted_plus_${dataset[i]}_full.txt -c "${moreinfo}" + "${mappedReads}"
 
-                ${NGStoolkitPath}/addColumns.py -i ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt -o ${final}/$1_cutadapt_sorted_minus_${dataset[i]}_full.txt -c "${moreinfo}" - "${mappedReads}"
+                ${codePath}/addColumns.py -i ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt -o ${final}/$1_cutadapt_sorted_minus_${dataset[i]}_full.txt -c "${moreinfo}" - "${mappedReads}"
 
                 echo ${dataset[i]} info added!
 
