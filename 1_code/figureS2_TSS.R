@@ -8,7 +8,6 @@ library(ggpubr)
 library(patchwork)
 library(grid)
 library(gridExtra)
-#library(RColorBrewer)
 library("viridis")
 library(scales)
 
@@ -45,12 +44,12 @@ sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/"
 
 #### Default Plot Format ####
 
-source(paste(sourcePath, "4_plot_format.R", sep = ""))
+source("4_plot_format.R")
 
 
 #### Fuctions ####
 
-source(paste(sourcePath, "4_functions.R", sep = ""))
+source("4_functions.R")
 
 dinuc <- function( dinucleotide_table, method ){
   # rename columns and get their order
@@ -256,8 +255,7 @@ p.C.D <- p.C.1 + p.C.2 + p.D +
 
 p.A + p.B + p.C.D +
   plot_layout(design = layout) & 
-  plot_annotation(tag_levels = 'supp2',
-                  caption = 
+  plot_annotation(caption = 
                     'Position Relative to the first base of reads',
                   theme = theme(plot.caption = element_text(size = 12,
                                                             hjust = .15, 

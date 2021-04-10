@@ -19,18 +19,15 @@ sample_csv <- paste("~/Documents/myprojects/replicationRepair/3_output/",
                     "windows_201_100_ready.csv", 
                     sep = "")
 
-# path of the default plot format and functions
-sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/"
-
 
 #### Default Plot Format ####
 
-source(paste(sourcePath, "4_plot_format.R", sep = ""))
+source("4_plot_format.R")
 
 
 #### Fuctions ####
 
-source(paste(sourcePath, "4_functions.R", sep = ""))
+source("4_functions.R")
 
 
 #### Main ####
@@ -216,7 +213,6 @@ p.A.1 + p.A.2.3 + grid::textGrob(('(6-4)PP\n12 min.\nEarly S Phase'),
                                    rot = -90, gp=gpar(fontsize=12), 
                                    y = unit(.62, "npc")) + 
   plot_layout(design = layout, guides = "collect") & 
-  plot_annotation(tag_levels = 'supp_rr') &
   theme(plot.tag = element_text(size = 12, face="bold"),
         legend.position = 'bottom', 
         plot.title = element_text(hjust = -0.2, vjust = 5, 

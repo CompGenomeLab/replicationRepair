@@ -24,18 +24,15 @@ sample_csv <- paste("~/Documents/myprojects/replicationRepair/3_output/",
                     "chromhmm_windows_chr_ready.csv", 
                     sep = "")
 
-# path of the default plot format and functions
-sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/"
-
 
 #### Default Plot Format ####
 
-source(paste(sourcePath, "4_plot_format.R", sep = ""))
+source("4_plot_format.R")
 
 
 #### Fuctions ####
 
-source(paste(sourcePath, "4_functions.R", sep = ""))
+source("4_functions.R")
 
 
 #### Main ####

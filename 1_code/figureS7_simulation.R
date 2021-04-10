@@ -34,18 +34,15 @@ sim_csv_pB2 <- paste("~/Documents/myprojects/replicationRepair/3_output/",
                       "[2020.02.25]final_report_inZones_windows_201_100_",
                       "sim_ready.csv", sep = "")
 
-# path of the default plot format and functions
-sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/"
-
 
 #### Default Plot Format ####
 
-source(paste(sourcePath, "4_plot_format.R", sep = ""))
+source("4_plot_format.R")
 
 
 #### Fuctions ####
 
-source(paste(sourcePath, "4_functions.R", sep = ""))
+source("4_functions.R")
 
 
 #### Main ####

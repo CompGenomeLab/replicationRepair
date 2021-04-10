@@ -8,7 +8,6 @@ library(ggpubr)
 library(patchwork)
 library(grid)
 library(gridExtra)
-#library(RColorBrewer)
 library("viridis")
 library(scales)
 
@@ -53,13 +52,11 @@ sample_csv_pD <- paste("~/Documents/myprojects/replicationRepair/3_output/",
                         "[2020.11.25]final_report_tss_ready.csv", 
                         sep = "")
 
-# path of the default plot format and functions
-sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/"
 
 
 #### Default Plot Format ####
 
-source(paste(sourcePath, "4_plot_format.R", sep = ""))
+source("4_plot_format.R")
 
 #phase_labs <- c("Async.", "Early S Phase", "Late S Phase")
 #names(phase_labs) <- c("async", "early", "late")
@@ -67,7 +64,7 @@ source(paste(sourcePath, "4_plot_format.R", sep = ""))
 
 #### Fuctions ####
 
-source(paste(sourcePath, "4_functions.R", sep = ""))
+source("4_functions.R")
 
 dinuc <- function( dinucleotide_table, method ){
   # rename columns and get their order
@@ -359,8 +356,7 @@ p.C <- p.C.1.2 / p.C.3.4
 
 p.A.B + p.C + p.D +
   plot_layout(design = layout) +
-  plot_annotation(tag_levels = 'fig1',
-                  caption = 
+  plot_annotation(caption = 
                     'Position Relative to the first base of reads',
                   theme = theme(plot.caption = element_text(size = 12,
                                                             hjust = .1, 

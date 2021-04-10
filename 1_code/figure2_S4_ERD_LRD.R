@@ -11,7 +11,7 @@ library(ggthemes)
 
 #### Variables ####
 
-rep <- "B" 
+rep <- "A" 
 if (rep == "A"){ 
   fig_name = "~/Desktop/fig2.svg" 
   ann_text_ERD <- data.frame(phase = 0.7, xr_ds = 4.8,
@@ -50,18 +50,15 @@ sample_csv_pB <- paste("~/Documents/myprojects/replicationRepair/3_output/",
                        "[2019.10.31]final_report_repdomain_ready.csv", 
                        sep = "")
 
-# path of the default plot format and functions
-sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/"
-
 
 #### Default Plot Format ####
 
-source(paste(sourcePath, "4_plot_format.R", sep = ""))
+source("4_plot_format.R")
 
 
 #### Fuctions ####
 
-source(paste(sourcePath, "4_functions.R", sep = ""))
+source("4_functions.R")
 
 
 #### Main ####
@@ -176,7 +173,6 @@ p.B <- p.B + p_format +
 #### Combining Plots with Patchwork ####
 p.A.1 + p.A.2 + p.B +
   plot_layout(guides = "collect") &
-  plot_annotation(tag_levels = 'fig2') &
   theme(plot.tag = element_text(size = 12, face="bold"),
         legend.position = 'bottom', 
         plot.title = element_text(hjust = -0.2, vjust = 5, 

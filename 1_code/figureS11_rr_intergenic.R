@@ -43,12 +43,12 @@ sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/"
 
 #### Default Plot Format ####
 
-source(paste(sourcePath, "4_plot_format.R", sep = ""))
+source("4_plot_format.R")
 
 
 #### Fuctions ####
 
-source(paste(sourcePath, "4_functions.R", sep = ""))
+source("4_functions.R")
 
 
 #### Main ####
@@ -273,7 +273,6 @@ p.A_new + p.B.1.2.3 +
                                    rot = -90, gp=gpar(fontsize=12), 
                                    y = unit(.62, "npc")) + 
   plot_layout(design = layout) & 
-  plot_annotation(tag_levels = 'supfig11') &
   theme(plot.tag = element_text(size = 12, face="bold"), 
         plot.title = element_text(hjust = -0.2, vjust = 5, 
                                   size = 12, face="bold"))

@@ -11,18 +11,10 @@ library(ggthemes)
 
 #### Variables ####
 
-# name of the mutation bed file 
-mut_bed <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                 "gitignore/1_TextforPlotting/", 
-                 "[2020.10.05.14:33]inzones_repdomains_201_100_",
-                 "melanoma_mutations_combined.bed",
-                 sep = "")
+hela2gmimr_bed <- "/home/azgarian/Documents/myprojects/replicationRepair/3_output/gitignore/1_TextforPlotting/[2021.03.30.12:44]iz_hela_to_gm_imr_repdomains_201_100_melanoma_mutations_combined_intergenic.bed"
 
-# name of the TC dipyrimidine content file 
-TCcontent_txt <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                       "gitignore/1_TextforPlotting/", 
-                       "[2020.10.19]InZones_nuc_content.txt",
-                       sep = "")
+hela2gmimr_nuc <- "/home/azgarian/Desktop/repairRep_revision/inZones/IZ.hela_to_gm_imr_repdomains_windows_201_100_counts.txt"
+
 
 # path of the default plot format and functions
 sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/"
@@ -41,7 +33,11 @@ source(paste(sourcePath, "4_functions.R", sep = ""))
 #### Main ####
 
 # TC content df arrangement
-TCcontent <- read.table( TCcontent_txt, header = TRUE)
+TCcontent <- read.table( hela2gmimr_nuc, header = TRUE)
+
+TCcontent$`+` <- TCcontent$tc + TCcontent$cc
+TCcontent$`-` <- TCcontent$ga + TCcontent$gg
+
 TCcontent <- TCcontent[,c(1,6,7)]
 names(TCcontent) <- c("name","+", "-")
 TCcontent_plus <- TCcontent[,c(1,2)]
@@ -52,7 +48,7 @@ TCcontent <- rbind(TCcontent_plus, TCcontent_minus)
 names(TCcontent) <- c("name","strands", "TC_content")
 
 # mutations
-mut_df <- read.table( mut_bed )
+mut_df <- read.table( hela2gmimr_bed )
 names(mut_df) <- c("chr", "start_pos", "end_pos", "name", "score", "strands", 
                    "count")
 mut <- merge(mut_df, TCcontent, by.x=c("name", "strands"), 
@@ -60,7 +56,7 @@ mut <- merge(mut_df, TCcontent, by.x=c("name", "strands"),
 Windows = data.frame(str_split_fixed(mut$name, "_", -1))
 mut$window_number = as.numeric(levels(Windows[ , ncol(Windows)]
 ))[Windows[ , ncol(Windows)]] -101
-mut$repdomains <- Windows[,3]
+mut$repdomains <- Windows[,2]
 mut$name <- "Initiation_Zones"
 mut$norm <- mut$count / mut$TC_content
 
@@ -105,7 +101,7 @@ p.A.1 <- ggplot(mut) +
   geom_line(aes(x = window_number, y = norm, 
                 color = strands)) + 
   facet_grid(~repdomains) +
-  xlab("Position Relative to Initiation Zones (kb)") + 
+  xlab("Position Relative to Initiation Zones (kb)\nIntergenic") + 
   ylab("Normalized Mutation\nCount") +
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
   scale_x_continuous(limits = c(-100, 100), 
@@ -132,7 +128,7 @@ p.A.2 <- ggplot(data = pA2_data, aes(x = Group.2, y = x,
            position=position_dodge2(padding = 0.05)) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
-  ylab("Mutation Count\n(MC)") +
+  ylab("Mutation\nCount (MC)") +
   scale_fill_manual(values = c("+" = "#0571b0", 
                                "-" = "#ca0020"), 
                     guide = FALSE) +
@@ -156,7 +152,7 @@ p.A.3 <- ggplot(data = pA3_data, aes(x = Group.2, y = x)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   xlab("Replication Domains") + ylab(expression(MC[p] - MC[m])) +
   scale_y_continuous(breaks = c(-.003, 0, .003),
-                     limits = c(-.005, .005)) 
+                     limits = c(-.004, .004)) 
 
 # adding and overriding the default plot format
 p.A.3 <- p.A.3 + p_format + 
@@ -167,8 +163,8 @@ p.A.3 <- p.A.3 + p_format +
 #### Combining Plots with Patchwork ####
 
 layout <- "
-AAABB
-AAACC
+AABB
+AACC
 "
 
 (p.A.1 + p.A.2 + p.A.3) +
@@ -177,5 +173,5 @@ AAACC
 
 
 ############### size is problem 
-ggsave("~/Desktop/fig6.svg", width = 22, height = 9, units = "cm") 
+ggsave("~/Desktop/fig6_hela_intersect_gm_imr90.png", width = 22, height = 10, units = "cm") 
 

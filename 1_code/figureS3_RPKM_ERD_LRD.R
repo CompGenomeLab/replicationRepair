@@ -17,18 +17,15 @@ sample_csv_pA <- paste("~/Documents/myprojects/replicationRepair/3_output/",
                        "[2019.10.31]final_report_ERD_LRD_windows_ready.csv", 
                        sep = "")
 
-# path of the default plot format and functions
-sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/"
-
 
 #### Default Plot Format ####
 
-source(paste(sourcePath, "4_plot_format.R", sep = ""))
+source("4_plot_format.R")
 
 
 #### Fuctions ####
 
-source(paste(sourcePath, "4_functions.R", sep = ""))
+source("4_functions.R")
 
 
 #### Main ####
@@ -41,7 +38,7 @@ pA_df_org$dataset <- gsub("_.*", "", pA_df_org$dataset)
 # filtering samples 
 pA1_data <- filter(pA_df_org, phase != "async", 
                    dataset == "ERD" | dataset == "LRD",
-                   replicate == rep, time_after_exposure == "12",
+                   replicate == "A", time_after_exposure == "12",
                    product == "CPD")
 
 
