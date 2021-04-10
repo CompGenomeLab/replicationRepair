@@ -19,8 +19,8 @@ hela_df <- read.table(hela)
 hela_no_overlap <- filter(hela_df, V7 == -1)
 hela_no_overlap$name <- "HeLa" 
 hela_no_overlap <- hela_no_overlap[,c(1,2,3,11,4)]
-write.table(hela_no_overlap, file = "~/Desktop/hela_no_overlap.bed", sep = "\t",
-            quote = FALSE, row.names = FALSE, col.names = FALSE)
+#write.table(hela_no_overlap, file = "~/Desktop/hela_no_overlap.bed", sep = "\t",
+#            quote = FALSE, row.names = FALSE, col.names = FALSE)
 
 hela_df$V10 <- paste("HeLa",hela_df$V1,hela_df$V2,hela_df$V3,hela_df$V4,sep=",")
 hela_df$V11 <- paste(hela_df$V5,hela_df$V6,hela_df$V7,hela_df$V8,hela_df$V9,sep=",")
@@ -80,8 +80,8 @@ hela_combined <- hela_combined %>% separate(combined, c("name","chr","start","en
                                                         ".6",".7",".8",".9",".10"), sep=",")
 
 hela_only <- hela_combined[,c(2,3,4,1,5)]
-write.table(hela_only, file = "~/Desktop/hela_intersect2_gm_imr.bed", sep = "\t",
-            quote = FALSE, row.names = FALSE, col.names = FALSE)
+#write.table(hela_only, file = "~/Desktop/hela_intersect2_gm_imr.bed", sep = "\t",
+#            quote = FALSE, row.names = FALSE, col.names = FALSE)
 
 temp <- venn.diagram(
   x = list(hela_all, gm_all, imr90_all),
@@ -117,6 +117,6 @@ temp <- venn.diagram(
   filename = NULL
 )
 grid.draw(temp)
-pdf(file='~/Desktop/intersections_venn_diagramm.pdf')
+pdf(file='~/Desktop/fig6A.pdf')
   grid.draw(temp)
 dev.off()

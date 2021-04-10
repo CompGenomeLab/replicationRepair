@@ -278,5 +278,5 @@ p.A_new + p.B.1.2.3 +
                                   size = 12, face="bold"))
 
 
-ggsave("~/Desktop/supfig11.svg", width = 22, height = 18, units = "cm")
+ggsave("~/Desktop/supfig11.png", width = 22, height = 18, units = "cm")
 

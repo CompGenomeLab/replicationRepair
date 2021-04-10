@@ -13,7 +13,7 @@ library(ggthemes)
 
 rep <- "A" 
 if (rep == "A"){ 
-  fig_name = "~/Desktop/fig2.svg" 
+  fig_name = "~/Desktop/fig2.png" 
   ann_text_ERD <- data.frame(phase = 0.7, xr_ds = 4.8,
                              dataset = factor("ERD",levels = c("ERD","LRD")),
                              product = factor("64_PP", 
@@ -25,7 +25,7 @@ if (rep == "A"){
                                               levels = c("64_PP", "CPD")))
   lab_lrd <- "p ="
 } else if (rep == "B"){ 
-  fig_name = "~/Desktop/supfig4.svg" 
+  fig_name = "~/Desktop/supfig4.png" 
   ann_text_ERD <- data.frame(phase = 0.7, xr_ds = 4.8,
                              dataset = factor("ERD",levels = c("ERD","LRD")),
                              product = factor("64_PP", 

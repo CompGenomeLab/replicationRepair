@@ -67,6 +67,6 @@ p.A.1 <- p.A.1 + p_format
 #### Combining Plots with Patchwork ####
 
 
-ggsave("~/Desktop/supfig3.svg", 
+ggsave("~/Desktop/supfig3.png", 
        width = 22, height = 18, units = "cm")
 

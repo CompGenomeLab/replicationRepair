@@ -212,6 +212,24 @@ if ${Key_downstream_analysis}; then
 
         fi
 
+        if ${Key_tss}; then
+
+            bedtools intersect -sorted -a ${regions}/hg19_ucsc_genes_knownCanonical_tss_windows_201_100.bed -b ${preAnalysis}/$1_cutadapt_sorted_chr.bed -wa -c -S -F 0.5 | awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t""TS""\t"$7}' > ${preAnalysis}/$1_cutadapt_sorted_TScount.txt
+
+            bedtools intersect -sorted -a ${regions}/hg19_ucsc_genes_knownCanonical_tss_windows_201_100.bed -b ${preAnalysis}/$1_cutadapt_sorted_chr.bed -wa -c -s -F 0.5 | awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t""NTS""\t"$7}' > ${preAnalysis}/$1_cutadapt_sorted_NTScount.txt
+
+            cat ${preAnalysis}/$1_cutadapt_sorted_TScount.txt ${preAnalysis}/$1_cutadapt_sorted_NTScount.txt > ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount.txt
+
+            ${codePath}/combinewindows.py -i ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount.txt -strand T -o ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined.txt
+
+            ${codePath}/addColumns.py -i ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined.txt -o ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined_full.txt -c "${moreinfo}" "." "${mappedReads}"
+
+            python ${codePath}/RPKM.py -i ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined_full.txt -chse 2 3 -c 7 -mr 0 -o ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined_rpkm.txt
+
+            cat ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined_rpkm.txt >> ${mainPath}/final_report_tss.txt
+
+        fi
+
     done
     
 fi

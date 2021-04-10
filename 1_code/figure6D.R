@@ -16,18 +16,14 @@ hela2gmimr_bed <- "/home/azgarian/Documents/myprojects/replicationRepair/3_outpu
 hela2gmimr_nuc <- "/home/azgarian/Desktop/repairRep_revision/inZones/IZ.hela_to_gm_imr_repdomains_windows_201_100_counts.txt"
 
 
-# path of the default plot format and functions
-sourcePath <- "~/Documents/myprojects/replicationRepair/1_code/r/"
-
-
 #### Default Plot Format ####
 
-source(paste(sourcePath, "4_plot_format.R", sep = ""))
+source("4_plot_format.R")
 
 
 #### Fuctions ####
 
-source(paste(sourcePath, "4_functions.R", sep = ""))
+source("4_functions.R")
 
 
 #### Main ####
@@ -173,5 +169,5 @@ AACC
 
 
 ############### size is problem 
-ggsave("~/Desktop/fig6_hela_intersect_gm_imr90.png", width = 22, height = 10, units = "cm") 
+ggsave("~/Desktop/fig6D.png", width = 22, height = 10, units = "cm") 
 

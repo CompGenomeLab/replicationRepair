@@ -13,6 +13,8 @@ mkdir -p ${control} # directory for control files
 preAnalysis="${mainPath}/3_output/Damageseq/$1/pre_analysis"
 mkdir -p ${preAnalysis} # directory for pre_analysis files
 
+regions="${regions}" # directory of regions data
+
 intersectCombine="${mainPath}/3_output/Damageseq/$1/intersect_combine"
 mkdir -p ${intersectCombine} # directory for intersected and combined files
 
@@ -212,15 +214,15 @@ if ${Key_downstream_analysis}; then
                 minus_line="$(grep -c '^' ${intersectCombine}/$1_cutadapt_sorted_minus_filtered.bed)"
                 mappedReads=`echo "$minus_line + $plus_line" | bc`
             
-                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${intersectCombine}/$1_cutadapt_sorted_plus_filtered.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
+                bedtools intersect -a ${regions}/${data_name[i]} -b ${intersectCombine}/$1_cutadapt_sorted_plus_filtered.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
 
-                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${intersectCombine}/$1_cutadapt_sorted_minus_filtered.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
+                bedtools intersect -a ${regions}/${data_name[i]} -b ${intersectCombine}/$1_cutadapt_sorted_minus_filtered.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
 
             else
 
-                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
+                bedtools intersect -a ${regions}/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_plus_${dataset[i]}.txt
 
-                bedtools intersect -a ${mainPath}/data/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
+                bedtools intersect -a ${regions}/${data_name[i]} -b ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed -wa -c -F 0.5 >  ${intersectCombine}/$1_cutadapt_sorted_minus_${dataset[i]}.txt
 
             fi
 
@@ -281,6 +283,26 @@ if ${Key_downstream_analysis}; then
             cat ${final}/$1_cutadapt_sorted_minus_${dataset[i]}_rpkm.txt >> ${mainPath}/${now}final_report_${dataset[i]}.txt 
 
             echo ${dataset[i]} final report created!
+
+        fi
+
+        if ${Key_tss}; then
+
+            cat ${preAnalysis}/$1_cutadapt_sorted_minus_dipyrimidines.bed ${preAnalysis}/$1_cutadapt_sorted_plus_dipyrimidines.bed | sort -k1,1 -k2,2n -k3,3n > ${preAnalysis}/$1_cutadapt_sorted_dipyrimidines.bed
+
+            bedtools intersect -sorted -a ${regions}/hg19_ucsc_genes_knownCanonical_tss_windows_201_100.bed -b ${preAnalysis}/$1_cutadapt_sorted_dipyrimidines.bed -wa -c -S -F 0.5 | awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t""TS""\t"$7}' > ${preAnalysis}/$1_cutadapt_sorted_TScount.txt
+
+            bedtools intersect -sorted -a ${regions}/hg19_ucsc_genes_knownCanonical_tss_windows_201_100.bed -b ${preAnalysis}/$1_cutadapt_sorted_dipyrimidines.bed -wa -c -s -F 0.5 | awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t""NTS""\t"$7}' > ${preAnalysis}/$1_cutadapt_sorted_NTScount.txt
+
+            cat ${preAnalysis}/$1_cutadapt_sorted_TScount.txt ${preAnalysis}/$1_cutadapt_sorted_NTScount.txt > ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount.txt
+
+            ${codePath}/combinewindows.py -i ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount.txt -strand T -o ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined.txt
+
+            ${codePath}/addColumns.py -i ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined.txt -o ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined_full.txt -c "${moreinfo}" "." "${mappedReads}"
+
+            python ${mainPath}/RPKM.py -i ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined_full.txt -chse 2 3 -c 7 -mr 0 -o ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined_rpkm.txt
+
+            cat ${preAnalysis}/$1_cutadapt_sorted_TS_NTScount_combined_rpkm.txt >> ${mainPath}/final_report_tss.txt
 
         fi
 

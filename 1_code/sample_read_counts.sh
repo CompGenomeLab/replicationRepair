@@ -9,18 +9,18 @@ echo "sample_name,read" > ${mainPath}/read_counts.csv
 for ((i=0;i<${#samples[@]};i++)); do
 
     getname="$(echo ${samples[i]} | sed 's/-/_/g')"
-    moreinfo="$(grep ${getname} ${mainPath}/project_repair_replication_all_samples.csv | sed 's/,/\t/g' | awk '{print $1}')"
+    moreinfo="$(grep ${getname} ${mainPath}/0_data/samples.csv | sed 's/,/\t/g' | awk '{print $1}')"
 
-    if [ -f ${mainPath}/Input/${samples[i]}/pre_analysis/${samples[i]}_chr.bed ]; then
-	    mappedReads="$(grep -c '^' ${mainPath}/Input/${samples[i]}/pre_analysis/${samples[i]}_chr.bed)"
+    if [ -f ${mainPath}/3_output/Input/${samples[i]}/pre_analysis/${samples[i]}_chr.bed ]; then
+	    mappedReads="$(grep -c '^' ${mainPath}/3_output/Input/${samples[i]}/pre_analysis/${samples[i]}_chr.bed)"
 
-    elif [ -f ${mainPath}/Damageseq/${samples[i]}/pre_analysis/${samples[i]}_cutadapt_sorted_minus_dipyrimidines.bed ]; then
-        minus_line="$(grep -c '^' ${mainPath}/Damageseq/${samples[i]}/pre_analysis/${samples[i]}_cutadapt_sorted_minus_dipyrimidines.bed)"
-        plus_line="$(grep -c '^' ${mainPath}/Damageseq/${samples[i]}/pre_analysis/${samples[i]}_cutadapt_sorted_plus_dipyrimidines.bed)"
+    elif [ -f ${mainPath}/3_output/Damageseq/${samples[i]}/pre_analysis/${samples[i]}_cutadapt_sorted_minus_dipyrimidines.bed ]; then
+        minus_line="$(grep -c '^' ${mainPath}/3_output/Damageseq/${samples[i]}/pre_analysis/${samples[i]}_cutadapt_sorted_minus_dipyrimidines.bed)"
+        plus_line="$(grep -c '^' ${mainPath}/3_output/Damageseq/${samples[i]}/pre_analysis/${samples[i]}_cutadapt_sorted_plus_dipyrimidines.bed)"
         mappedReads=`echo "$minus_line + $plus_line" | bc`
 
-    elif [ -f ${mainPath}/XRseq/${samples[i]}/pre_analysis/${samples[i]}_cutadapt_sorted_chr.bed ]; then
-	    mappedReads="$(grep -c '^' ${mainPath}/XRseq/${samples[i]}/pre_analysis/${samples[i]}_cutadapt_sorted_chr.bed)" 
+    elif [ -f ${mainPath}/3_output/XRseq/${samples[i]}/pre_analysis/${samples[i]}_cutadapt_sorted_chr.bed ]; then
+	    mappedReads="$(grep -c '^' ${mainPath}/3_output/XRseq/${samples[i]}/pre_analysis/${samples[i]}_cutadapt_sorted_chr.bed)" 
 
     fi
 

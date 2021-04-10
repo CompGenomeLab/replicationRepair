@@ -220,5 +220,5 @@ p.B.2 <- p.B.2 + plot_layout(tag_level = 'new')
                                   size = 12, face="bold"))
 
 
-ggsave("~/Desktop/supfig7.svg", width = 22, height = 18, units = "cm")
+ggsave("~/Desktop/supfig7.png", width = 22, height = 18, units = "cm")
 

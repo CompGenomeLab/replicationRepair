@@ -95,4 +95,4 @@ p.A <- p.A + p_format +
 p.A
 
 
-ggsave("~/Desktop/IZ_quartiles_hela2gm_imr_muts.pdf", width = 12, height = 4.5, units = "cm")
+ggsave("~/Desktop/fig6C.png", width = 12, height = 4.5, units = "cm")

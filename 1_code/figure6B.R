@@ -41,4 +41,4 @@ ggboxplot(df, x = "V6", y = "logV5", outlier.shape = NA) +
   ylim(7.5, 13.5) +
   ylab("Initiation Zone\nScores (log2)") 
 
-ggsave("~/Desktop/hela_intersect_gm_imr90_boxplot.png", width = 8, height = 4.5, units = "cm")
+ggsave("~/Desktop/fig6B.png", width = 8, height = 4.5, units = "cm")

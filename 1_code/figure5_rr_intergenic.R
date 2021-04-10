@@ -221,5 +221,5 @@ p.A.1 + p.A.2.3 + grid::textGrob('CPD\n12 min.\nLate S Phase',
 
 
 
-ggsave("~/Desktop/fig5.svg", width = 22, height = 18, units = "cm")
+ggsave("~/Desktop/fig5.png", width = 22, height = 18, units = "cm")
 

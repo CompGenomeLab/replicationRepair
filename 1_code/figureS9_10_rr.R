@@ -12,13 +12,13 @@ library(grid)
 
 #### Variables ####
 
-rep <- "B" # replicate
-phs <- "late" # phase
+rep <- "A" # replicate
+phs <- "early" # phase
 if (rep == "B" && phs == "late"){ 
-  fig_name = "~/Desktop/supfig9.svg"
+  fig_name = "~/Desktop/supfig9.png"
   p_name = 'Late S Phase'
 } else if (rep == "A" && phs == "early"){ 
-  fig_name = "~/Desktop/supfig10.svg"
+  fig_name = "~/Desktop/supfig10.png"
   p_name = 'Early S Phase'
 } 
 

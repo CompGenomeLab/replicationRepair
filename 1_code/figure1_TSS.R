@@ -363,5 +363,5 @@ p.A.B + p.C + p.D +
                                                             vjust = 9.5))) &
   theme(plot.tag = element_text(size = 12, face="bold"))
 
-ggsave("~/Desktop/fig1.pdf", width = 22, height = 18, units = "cm")
+ggsave("~/Desktop/fig1.png", width = 22, height = 18, units = "cm")
 

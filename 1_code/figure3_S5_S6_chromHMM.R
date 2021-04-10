@@ -13,9 +13,9 @@ library(patchwork)
 
 rep <- "A" # replicate
 dprod <- "CPD" # damage product
-if (rep == "A" && dprod == "CPD"){ fig_name = "~/Desktop/fig3.svg" 
-} else if (rep == "B" && dprod == "CPD"){ fig_name = "~/Desktop/supfig5.svg"
-} else if (rep == "A" && dprod == "64_PP"){ fig_name = "~/Desktop/supfig6.svg" 
+if (rep == "A" && dprod == "CPD"){ fig_name = "~/Desktop/fig3.png" 
+} else if (rep == "B" && dprod == "CPD"){ fig_name = "~/Desktop/supfig5.png"
+} else if (rep == "A" && dprod == "64_PP"){ fig_name = "~/Desktop/supfig6.png" 
 } 
 
 # name of the sample csv file

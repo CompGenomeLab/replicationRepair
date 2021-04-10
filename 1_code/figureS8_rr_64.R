@@ -221,4 +221,4 @@ p.A.1 + p.A.2.3 + grid::textGrob(('(6-4)PP\n12 min.\nEarly S Phase'),
 
 
 
-ggsave("~/Desktop/supfig8.svg", width = 22, height = 18, units = "cm")
+ggsave("~/Desktop/supfig8.png", width = 22, height = 18, units = "cm")
