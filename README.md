@@ -12,11 +12,11 @@ UV-induced damage can cause mutations during DNA replication. The crosstalk betw
 
 ### Required Programs
 
-- cutadapt
-- bowtie2
-- bedtools
-- bamtools
-- samtools
+- cutadapt ==3.1
+- bowtie2 ==2.3.4.1
+- bedtools ==2.27.1
+- bamtools ==2.5.1
+- samtools ==1.9
 - [ART](https://pubmed.ncbi.nlm.nih.gov/22199392/): a next-generation sequencing read simulator
 
 ### Usage
@@ -54,6 +54,14 @@ cd replicationRepair
 | --- |
 
 * All the details about the XR-seq and Damage-seq pipelines can be found at `2_pipelines/` directory.
+
+* To process melanoma mutations data, `mutation_analysis.sh` pipeline must run.
+
+```
+./2_pipeline/mutation_analysis.sh
+```
+
+* Note: Before running the pipeline, the name of the mutation file and the data file, which mutations will be mapped on, must be provided (with full path).  
 
 * After the pipelines are processed they should be reorganized with `1_final_report.R` script and each script for figures, which are tagged with the corresponding figure number, can be found in `1_code/` directory.
 
