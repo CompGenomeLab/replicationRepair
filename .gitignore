@@ -9,3 +9,4 @@ gitignore/
 .snakemake/
 resources/ref_genomes/hg19/*
 test/
+resources/samples/*/*
