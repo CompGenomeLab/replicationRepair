@@ -1,0 +1,8 @@
+#!/bin/env python
+
+include: "../rules/fastqc.smk"
+include: "../rules/adaptor_handling.smk"
+include: "../rules/align.smk"
+include: "../rules/bam2bed.smk"
+
+

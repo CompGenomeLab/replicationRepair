@@ -1,0 +1,26 @@
+
+sample_xr:
+  - ""
+
+sample_ds:
+  - "HDA64A1_ATCACG_sub10k"
+
+sample_input: 
+  - "R19040024-HelainputD-Hl15R2hID_combined"
+
+sample_okseq:
+  - "cem"
+
+sample_mutation:
+  - "melanoma"
+
+build: "hg19"
+
+regions:
+  - "hg19_ucsc_genes_knownCanonical_tss_windows_201_100.bed"
+
+region_name:
+  - ""
+
+region_comb_opt:
+  - ""

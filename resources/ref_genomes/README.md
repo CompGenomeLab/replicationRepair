@@ -1,0 +1,1 @@
+* This directory contains reference genomes and related files.

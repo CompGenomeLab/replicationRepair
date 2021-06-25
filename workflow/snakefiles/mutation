@@ -1,0 +1,7 @@
+#!/bin/env python
+
+include: "../rules/get_sbs_muts.smk"
+include: "../rules/organize.smk"
+include: "../rules/filter_target_muts.smk"
+include: "../rules/sep_strands.smk"
+
