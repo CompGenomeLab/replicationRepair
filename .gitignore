@@ -11,3 +11,7 @@ resources/ref_genomes/hg19/*
 test/
 resources/samples/*/*
 results/*
+logs/*
+!logs/README.md
+reports/*
+!reports/README.md
