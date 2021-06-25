@@ -6,3 +6,6 @@ gitignore/
 1_code/.Rhistory
 1_code/save.RData
 0_data/regions
+.snakemake/
+resources/ref_genomes/hg19/*
+test/
