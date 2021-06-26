@@ -9,23 +9,8 @@ rule combine_files:
         "logs/{build}_combine_files_{regions}.benchmark.txt",
     shell:
         """
-        (echo "`date -R`: Calculating RPKM values (plus strand)..." &&
-        python3 workflow/scripts/RPKM.py \
-        -i {input.plus} \
-        -chse 2 3 \
-        -c 7 \
-        -mr 0 \
-        -o {output.plus} &&
-        echo "`date -R`: Success! RPKMs are calculated." || 
+        (echo "`date -R`: Combining files..." &&
+        cat {input} > {output} &&
+        echo "`date -R`: Success! Files are combined." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
-
-        (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
-        python3 workflow/scripts/RPKM.py \
-        -i {input.minus} \
-        -chse 2 3 \
-        -c 7 \
-        -mr 0 \
-        -o {output.minus} &&
-        echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
         """
