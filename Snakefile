@@ -12,9 +12,10 @@ rule all:
     input:
         #lambda w: allInput(config["build"], config["sample_input"], "input"),
         #lambda w: allInput(config["build"], config["sample_okseq"], "okseq"),
-        lambda w: allInput(config["build"], config["sample_mutation"], "mutation"),
+        #lambda w: allInput(config["build"], config["sample_mutation"], "mutation"),
         lambda w: allInput(config["build"], config["sample_ds"], "ds", config["regions"]),
         lambda w: allInput(config["build"], config["sample_xr"], "xr", config["regions"]),
+        lambda w: allInput(build=config["build"], method="report", regions=config["regions"]),
 
 # prepare genome
 include: "workflow/rules/genome_build.smk"
@@ -44,7 +45,7 @@ include: "workflow/rules/intersect.smk"
 include: "workflow/rules/combine_windows.smk"
 include: "workflow/rules/more_info.smk"
 include: "workflow/rules/rpkm.smk"
-#include: "workflow/rules/combine_files.smk"
+include: "workflow/rules/combine_files.smk"
 
 
 # Plots
