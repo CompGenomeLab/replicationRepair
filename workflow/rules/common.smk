@@ -49,14 +49,16 @@ def info(wildcards):
 
     with open("resources/samples/samples.csv") as f:
 
+        targetLine = ""
         for line in f:
 
             if line.split(",")[1] == sample_name:
 
-                return line.replace(",","\t")
+                targetLine = line.replace(",","\t")
+                return targetLine
             
-            else:
-                raise(ValueError(sample_name + " not found in samples.csv file..."))
+        if targetLine = "":
+            raise(ValueError(sample_name + " not found in samples.csv file..."))
 
 def getCombine(region, combineList, regionList):
 
