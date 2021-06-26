@@ -11,6 +11,8 @@ rule organize:
         "logs/{samples}/{samples}_organize.log",
     benchmark:
         "logs/{samples}/{samples}_organize.benchmark.txt",
+    conda:
+        "../envs/bed2fasta.yaml"
     shell:
         """
         (echo "`date -R`: Organize and remove chrY, chrMT..." &&
