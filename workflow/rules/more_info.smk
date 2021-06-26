@@ -2,12 +2,14 @@ rule more_info_xr:
     input:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}_combined.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}_combined.txt",
+        reads_p="resources/samples/XR/{samples}_{build}_sorted_plus.bed",
+        reads_m="resources/samples/XR/{samples}_{build}_sorted_minus.bed",
     output:
         plus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}_combined_info.txt"),
         minus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}_combined_info.txt"),
     params:
         info=lambda w: info(w),
-        mappedReads=lambda w, input: mappedReads(input[0], input[1]),
+        mappedReads=lambda w, input: mappedReads(input[2], input[3]),
     log:
         "logs/{samples}/{samples}_{build}_more_info_{regions}_xr.log",
     benchmark:
@@ -35,12 +37,14 @@ rule more_info_ds:
     input:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}_combined.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}_combined.txt",
+        reads_p="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_plus.bed",
+        reads_m="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_minus.bed",
     output:
         plus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}_combined_info.txt"),
         minus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}_combined_info.txt"),
     params:
         info=lambda w: info(w),
-        mappedReads=lambda w, input: mappedReads(input[0], input[1]),
+        mappedReads=lambda w, input: mappedReads(input[2], input[3]),
     log:
         "logs/{samples}/{samples}_{build}_more_info_{regions}_ds.log",
     benchmark:
