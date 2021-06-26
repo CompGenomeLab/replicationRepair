@@ -5,6 +5,9 @@ configfile: "config/config.yaml"
 
 include: "workflow/rules/common.smk"
 
+wildcard_constraints:
+    regions='|'.join([r for r in regions])
+
 rule all:
     input:
         #lambda w: allInput(config["build"], config["sample_input"], "input"),
