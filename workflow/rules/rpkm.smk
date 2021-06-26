@@ -45,19 +45,23 @@ rule rpkm_ds:
         "logs/{samples}/{samples}_{build}_rpkm_{regions}_ds.benchmark.txt",
     shell:
         """
-        (echo "`date -R`: Add info (plus strand)..." &&
-        python3 workflow/scripts/addColumns.py \
+        (echo "`date -R`: Calculating RPKM values (plus strand)..." &&
+        python3 workflow/scripts/RPKM.py \
         -i {input.plus} \
-        -o {output.plus} \
-        -c {params.info} "." {params.mappedReads} &&
-        echo "`date -R`: Success! Info is added." || 
+        -chse 2 3 \
+        -c 7 \
+        -mr 0 \
+        -o {output.plus} &&
+        echo "`date -R`: Success! RPKMs are calculated." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
-        (echo "`date -R`: Add info (minus strand)..." &&
-        python3 workflow/scripts/addColumns.py \
+        (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
+        python3 workflow/scripts/RPKM.py \
         -i {input.minus} \
-        -o {output.minus} \
-        -c {params.info} "." {params.mappedReads} &&
-        echo "`date -R`: Success! Info is added." || 
+        -chse 2 3 \
+        -c 7 \
+        -mr 0 \
+        -o {output.minus} &&
+        echo "`date -R`: Success! RPKMs are calculated." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
