@@ -82,7 +82,7 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[]):
 
     inputList = []
     for sample in sampleList_xr:
-        sampledir = "results/input/" + sample + "/" 
+        sampledir = "results/XR/" + sample + "/" 
 
         inputList.append(sampledir + sample + "_" + build + 
         "_sorted_xr_plus_" + regions + "_combined_rpkm.txt")

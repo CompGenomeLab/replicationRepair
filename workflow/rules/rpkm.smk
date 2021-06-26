@@ -3,8 +3,8 @@ rule rpkm_xr:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}_combined_info.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}_combined_info.txt",
     output:
-        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}_combined_rpkm.txt",
-        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}_combined_rpkm.txt",
+        plus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}_combined_rpkm.txt"),
+        minus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}_combined_rpkm.txt"),
     log:
         "logs/{samples}/{samples}_{build}_rpkm_{regions}_xr.log",
     benchmark:
@@ -37,8 +37,8 @@ rule rpkm_ds:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}_combined.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}_combined.txt",
     output:
-        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}_combined_rpkm.txt",
-        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}_combined_rpkm.txt",
+        plus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}_combined_rpkm.txt"),
+        minus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}_combined_rpkm.txt"),
     log:
         "logs/{samples}/{samples}_{build}_rpkm_{regions}_ds.log",
     benchmark:
