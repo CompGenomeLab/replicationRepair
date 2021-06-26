@@ -57,7 +57,7 @@ def info(wildcards):
                 targetLine = line.replace(",","\t")
                 return targetLine
             
-        if targetLine = "":
+        if targetLine == "":
             raise(ValueError(sample_name + " not found in samples.csv file..."))
 
 def getCombine(region, combineList, regionList):
