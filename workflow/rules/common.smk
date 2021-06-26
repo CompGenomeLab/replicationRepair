@@ -52,9 +52,9 @@ def info(wildcards):
         targetLine = ""
         for line in f:
 
-            if line.split(",")[1] == sample_name:
+            if line.strip().split(",")[1] == sample_name:
 
-                targetLine = line.replace(",","\t")
+                targetLine = line.strip().replace(",","\t")
                 return targetLine
             
         if targetLine == "":
