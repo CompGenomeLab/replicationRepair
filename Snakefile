@@ -7,10 +7,11 @@ include: "workflow/rules/common.smk"
 
 rule all:
     input:
-        lambda w: allInput(config["build"], config["sample_input"], "input"),
-        lambda w: allInput(config["build"], config["sample_okseq"], "okseq"),
+        #lambda w: allInput(config["build"], config["sample_input"], "input"),
+        #lambda w: allInput(config["build"], config["sample_okseq"], "okseq"),
         lambda w: allInput(config["build"], config["sample_mutation"], "mutation"),
         lambda w: allInput(config["build"], config["sample_ds"], "ds", config["regions"]),
+        lambda w: allInput(config["build"], config["sample_xr"], "xr", config["regions"]),
 
 # prepare genome
 include: "workflow/rules/genome_build.smk"
