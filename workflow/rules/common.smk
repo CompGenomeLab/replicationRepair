@@ -141,9 +141,9 @@ def allInput(build, sampleList, method, regions=[]):
 
             for region in regions:
                 inputList.append(sampledir + sample + "_" + build + 
-                "_sorted_ds_plus_" + region + "_combined_rpkm.txt")
+                "_sorted_ds_dipyrimidines_plus_" + region + "_combined_rpkm.txt")
                 inputList.append(sampledir + sample + "_" + build + 
-                "_sorted_ds_minus_" + region + "_combined_rpkm.txt")
+                "_sorted_ds_dipyrimidines_minus_" + region + "_combined_rpkm.txt")
 
     if method == "xr":
 
