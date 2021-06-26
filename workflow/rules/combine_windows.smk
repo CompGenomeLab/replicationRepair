@@ -6,7 +6,7 @@ rule combine_windows_xr:
         plus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}_combined.txt"),
         minus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}_combined.txt"),
     params:
-        "",
+        lambda w: info(w.samples, config["region_comb_opt"], config["regions"]), 
     log:
         "logs/{samples}/{samples}_{build}_combine_windows_{regions}_xr.log",
     benchmark:
@@ -38,7 +38,7 @@ rule combine_windows_ds:
         plus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}_combined.txt"),
         minus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}_combined.txt"),
     params:
-        "",
+        lambda w: info(w.samples, config["region_comb_opt"], config["regions"]), 
     log:
         "logs/{samples}/{samples}_{build}_combine_windows_{regions}_ds.log",
     benchmark:

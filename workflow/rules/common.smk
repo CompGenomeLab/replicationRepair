@@ -18,35 +18,6 @@ def isSingle(sample, sampleList, method):
     else:
         raise(ValueError("Sample not found..."))
 
-def input4filter(wildcards, sampleList, method):
-
-    if isSingle(wildcards.samples, sampleList, method):
-        return "results/" + method + "/{samples}/{samples}_{build}_se.bed"
-    else:    
-        return "results/" + method + "/{samples}/{samples}_{build}_pe.bed"
-
-def input4nucTable(method):
-
-    if method == "XR":
-        return "results/{samples}/{samples}_{build}_lengthMode.fa"
-    elif method == "DS":    
-        return "results/{samples}/{samples}_{build}_sorted_10.fa"
-
-def getMotif(wildcards):
-    
-    if "oxaliplatin" in wildcards.samples or "cisplatin" in wildcards.samples: 
-        return "'.{4}(g|G){2}.{4}'"
-    
-    elif "64" in wildcards.samples or "CPD" in wildcards.samples:
-        return "'.{4}(c|t|C|T){2}.{4}'"
-
-def getDinuc(wildcards):
-    
-    if "Oxaliplatin" in wildcards.samples or "Cisplatin" in wildcards.samples: 
-        return "'GG'"
-    
-    elif "64" in wildcards.samples or "CPD" in wildcards.samples or "R190" in wildcards.samples:
-        return "'CC','CT','TC','TT'"
 
 def lineNum(file):
     
@@ -86,6 +57,24 @@ def info(wildcards):
             
             else:
                 raise(ValueError(sample_name + " not found in samples.csv file..."))
+
+def getCombine(region, combineList, regionList):
+
+    try:
+        idx = regionList.index(region)
+    except:
+       raise(ValueError("Designated wildcard cannot be found in region list."))
+        
+    return combineList[idx]
+
+def getRegion(region, rawRegionList, regionList):
+
+    try:
+        idx = regionList.index(region)
+    except:
+       raise(ValueError("Designated wildcard cannot be found in region list."))
+        
+    return rawRegionList[idx]
 
 def allInput(build, sampleList, method, regions=[]):
 
