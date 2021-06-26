@@ -6,7 +6,7 @@ rule intersect_xr:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}.txt",
     params:
-        region=lambda w: info(w.regions, config["region_file"], config["regions"]),
+        region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
         "logs/{samples}/{samples}_{build}_intersect_{regions}_xr.log",
     benchmark:
@@ -40,7 +40,7 @@ rule intersect_ds:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}.txt",
     params:
-        region=lambda w: info(w.regions, config["region_file"], config["regions"]),    
+        region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),    
     log:
         "logs/{samples}/{samples}_{build}_intersect_{regions}_ds.log",
     benchmark:
