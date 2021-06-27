@@ -77,9 +77,9 @@ rule intersect_xr_sim:
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
-        "logs/{samples}/{samples}_{build}_intersect_sim_xr_{regions}.log",
+        "logs/{samples}/sim/{samples}_{build}_intersect_sim_xr_{regions}.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_intersect_sim_xr_{regions}.benchmark.txt",
+        "logs/{samples}/sim/{samples}_{build}_intersect_sim_xr_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -122,9 +122,9 @@ rule intersect_ds_sim:
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),    
     log:
-        "logs/{samples}/{samples}_{build}_intersect_{regions}_ds_sim.log",
+        "logs/{samples}/sim/{samples}_{build}_intersect_{regions}_ds_sim.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_intersect_{regions}_ds_sim.benchmark.txt",
+        "logs/{samples}/sim/{samples}_{build}_intersect_{regions}_ds_sim.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
