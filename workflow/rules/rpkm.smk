@@ -106,7 +106,7 @@ rule rpkm_ds_sim:
         minus="results/DS/{samples}/{samples}_{build}_ds_sim_minus_{regions}_combined_info.txt",
     output:
         plus="results/DS/{samples}/{samples}_{build}_ds_sim_plus_{regions}_combined_rpkm.txt",
-        minus="results/DS/{samples}/{samples}_{build}_ds_sim_plus_{regions}_combined_rpkm.txt",
+        minus="results/DS/{samples}/{samples}_{build}_ds_sim_minus_{regions}_combined_rpkm.txt",
     log:
         "logs/{samples}/{samples}_{build}_rpkm_{regions}_ds_sim.log",
     benchmark:
