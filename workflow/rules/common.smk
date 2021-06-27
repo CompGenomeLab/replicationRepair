@@ -100,7 +100,7 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
 
     elif outformat == "sim":
         for sample in sampleList_xr:
-            sampledir = "results/XR/" + sample + "/" 
+            sampledir = "results/sim/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
             "_xr_sim_plus_" + regions + "_combined_rpkm.txt")
@@ -108,7 +108,7 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
             "_xr_sim_minus_" + regions + "_combined_rpkm.txt")
 
         for sample in sampleList_ds:
-            sampledir = "results/DS/" + sample + "/" 
+            sampledir = "results/sim/" + sample + "/" 
             
             inputList.append(sampledir + sample + "_" + build + 
             "_ds_sim_plus_" + regions + "_combined_rpkm.txt")
