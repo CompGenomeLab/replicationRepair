@@ -188,8 +188,6 @@ def allInput(build="", sampleList=[], method="", regions=[]):
             inputList.append("results/final_reports_" + build + 
             "_" + region + ".txt")
 
-            "results/final_reports_{build}_{regions}.txt",
-
     #print(inputList)
     return inputList
 
