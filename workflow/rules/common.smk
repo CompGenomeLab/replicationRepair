@@ -78,26 +78,45 @@ def getRegion(region, rawRegionList, regionList):
         
     return rawRegionList[idx]
 
-def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[]):
+def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="real"):
 
     inputList = []
-    for sample in sampleList_xr:
-        sampledir = "results/XR/" + sample + "/" 
+    if outformat == "real":
+        for sample in sampleList_xr:
+            sampledir = "results/XR/" + sample + "/" 
 
-        inputList.append(sampledir + sample + "_" + build + 
-        "_sorted_xr_plus_" + regions + "_combined_rpkm.txt")
-        inputList.append(sampledir + sample + "_" + build + 
-        "_sorted_xr_minus_" + regions + "_combined_rpkm.txt")
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_xr_plus_" + regions + "_combined_rpkm.txt")
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_xr_minus_" + regions + "_combined_rpkm.txt")
 
-    for sample in sampleList_ds:
-        sampledir = "results/DS/" + sample + "/" 
-        
-        inputList.append(sampledir + sample + "_" + build + 
-        "_sorted_ds_dipyrimidines_plus_" + regions + "_combined_rpkm.txt")
-        inputList.append(sampledir + sample + "_" + build + 
-        "_sorted_ds_dipyrimidines_minus_" + regions + "_combined_rpkm.txt")
+        for sample in sampleList_ds:
+            sampledir = "results/DS/" + sample + "/" 
+            
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_ds_dipyrimidines_plus_" + regions + "_combined_rpkm.txt")
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_ds_dipyrimidines_minus_" + regions + "_combined_rpkm.txt")
+
+    elif outformat == "sim":
+        for sample in sampleList_xr:
+            sampledir = "results/XR/" + sample + "/" 
+
+            inputList.append(sampledir + sample + "_" + build + 
+            "_xr_sim_plus_" + regions + "_combined_rpkm.txt")
+            inputList.append(sampledir + sample + "_" + build + 
+            "_xr_sim_minus_" + regions + "_combined_rpkm.txt")
+
+        for sample in sampleList_ds:
+            sampledir = "results/DS/" + sample + "/" 
+            
+            inputList.append(sampledir + sample + "_" + build + 
+            "_ds_sim_plus_" + regions + "_combined_rpkm.txt")
+            inputList.append(sampledir + sample + "_" + build + 
+            "_ds_sim_minus_" + regions + "_combined_rpkm.txt")    
 
     return inputList
+
 
 def allInput(build="", sampleList=[], method="", regions=[]):
 
@@ -187,6 +206,8 @@ def allInput(build="", sampleList=[], method="", regions=[]):
         for region in regions:
             inputList.append("results/final_reports_" + build + 
             "_" + region + ".txt")
+            inputList.append("results/final_reports_" + build + 
+            "_" + region + "_sim.txt")
 
     #print(inputList)
     return inputList
