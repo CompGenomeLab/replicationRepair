@@ -68,10 +68,10 @@ rule intersect_ds:
 
 rule intersect_xr_sim:
     input:
-        "resources/samples/XR/{samples}_{build}_xr_sim.bed",
+        "resources/samples/XR/sim/{samples}_{build}_xr_sim.bed",
     output:
-        plus_sim=temp("results/XR/{samples}/{samples}_{build}_sim_xr_plus.bed"),
-        minus_sim=temp("results/XR/{samples}/{samples}_{build}_sim_xr_minus.bed"),
+        plus_sim=temp("results/XR/{samples}/{samples}_{build}_xr_sim_plus.bed"),
+        minus_sim=temp("results/XR/{samples}/{samples}_{build}_xr_sim_minus.bed"),
         plus="results/XR/{samples}/{samples}_{build}_xr_sim_plus_{regions}.txt",
         minus="results/XR/{samples}/{samples}_{build}_xr_sim_minus_{regions}.txt",
     params:
