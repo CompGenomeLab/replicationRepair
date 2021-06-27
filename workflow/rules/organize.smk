@@ -4,8 +4,8 @@ rule organize:
         muts="results/mutation/{samples}/{samples}_subs.tsv",
         genome="resources/ref_genomes/hg19/genome_hg19.fa",
     output:
-        org=temp("results/mutation/{samples}/{samples}_subs_org.tsv"),
-        fa=temp("results/mutation/{samples}/{samples}_subs_org.fa"),
+        org="results/mutation/{samples}/{samples}_subs_org.tsv",
+        fa="results/mutation/{samples}/{samples}_subs_org.fa",
         bed="results/mutation/{samples}/{samples}.bed",     
     log:
         "logs/{samples}/{samples}_organize.log",
