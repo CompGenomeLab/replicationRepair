@@ -6,12 +6,10 @@ rule intergenic_xr:
     output:
         plus_intergenic=temp("results/XR/{samples}/{samples}_{build}_intergenic_sorted_plus.bed"),
         minus_intergenic=temp("results/XR/{samples}/{samples}_{build}_intergenic_sorted_minus.bed"),
-    params:
-        region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
-        "logs/{samples}/{samples}_{build}_intergenic_{regions}_xr.log",
+        "logs/{samples}/{samples}_{build}_intergenic_xr.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_intergenic_{regions}_xr.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_intergenic_xr.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -42,9 +40,9 @@ rule intergenic_ds:
         plus_intergenic=temp("results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_plus.bed"),
         minus_intergenic=temp("results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_minus.bed"), 
     log:
-        "logs/{samples}/{samples}_{build}_intergenic_{regions}_ds.log",
+        "logs/{samples}/{samples}_{build}_intergenic_ds.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_intergenic_{regions}_ds.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_intergenic_ds.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -75,9 +73,9 @@ rule intergenic_sim:
         plus_intergenic=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_intergenic.bed"),
         minus_intergenic=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_intergenic.bed"),
     log:
-        "logs/{samples}/{samples}_{build}_intergenic_{regions}_{method}_sim.log",
+        "logs/{samples}/{samples}_{build}_intergenic_{method}_sim.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_intergenic_{regions}_{method}_sim.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_intergenic_{method}_sim.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
