@@ -8,7 +8,7 @@ include: "workflow/rules/common.smk"
 wildcard_constraints:
     regions='|'.join([r for r in config["regions"]]),
     build=config["build"],
-    samples='|'.join([r for r in (config["sample_ds"] + config["sample_xr"])]),
+    samples='|'.join([s for s in (config["sample_ds"] + config["sample_xr"])]),
 
 rule all:
     input:
@@ -41,8 +41,10 @@ include: "workflow/snakefiles/mutation"
 #include: "workflow/rules/????.smk"
 
 # Further Analyses
+include: "workflow/rules/sep_strands.smk"
 include: "workflow/rules/ts_nts.smk"
 include: "workflow/rules/tss.smk"
+include: "workflow/rules/intergenic.smk"
 include: "workflow/rules/intersect.smk"
 include: "workflow/rules/combine_windows.smk"
 include: "workflow/rules/more_info.smk"
