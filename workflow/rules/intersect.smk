@@ -76,39 +76,35 @@ rule intersect_sim:
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}.txt",
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
-    log:
-        "logs/{samples}/{samples}_{build}_intersect_sim_{method}_{regions}.log",
-    benchmark:
-        "logs/{samples}/{samples}_{build}_intersect_sim_{method}_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
         """
-        (echo "`date -R`: Separating plus stranded reads..." &&
+        echo "`date -R`: Separating plus stranded reads..." &&
         awk '{{if($6=="+"){{print}}}}' {input} > {output.plus_sim} &&
         echo "`date -R`: Success! Reads are separated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        echo "`date -R`: Process failed..."
 
-        (echo "`date -R`: Separating minus stranded reads..." &&
+        echo "`date -R`: Separating minus stranded reads..." &&
         awk '{{if($6=="-"){{print}}}}' {input} > {output.minus_sim} &&
         echo "`date -R`: Success! Reads are separated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        echo "`date -R`: Process failed..."
 
-        (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
+        echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
         -a results/regions/{params.region} \
         -b {output.plus_sim} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        echo "`date -R`: Process failed..."
 
-        (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
+        echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
         -a results/regions/{params.region} \
         -b {output.minus_sim} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        echo "`date -R`: Process failed..."
         """
 
 rule intersect_xr_intergenic:
