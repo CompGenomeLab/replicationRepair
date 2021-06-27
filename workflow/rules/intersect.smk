@@ -102,8 +102,8 @@ rule intersect_sim:
 
 rule intersect_xr_intergenic:
     input:
-        plus="results/XR/{samples}/{samples}_{build}_sorted_plus_intergenic.bed",
-        minus="results/XR/{samples}/{samples}_{build}_sorted_minus_intergenic.bed",
+        plus="results/XR/{samples}/{samples}_{build}_intergenic_sorted_plus.bed",
+        minus="results/XR/{samples}/{samples}_{build}_intergenic_sorted_minus.bed",
     output:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}_intergenic.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}_intergenic.txt",
@@ -136,8 +136,8 @@ rule intersect_xr_intergenic:
 
 rule intersect_ds_intergenic:
     input:
-        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_intergenic.bed",
-        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_intergenic.bed",
+        plus="results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_plus.bed",
+        minus="results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_minus.bed",
     output:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}_intergenic.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}_intergenic.txt",

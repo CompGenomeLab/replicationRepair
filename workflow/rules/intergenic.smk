@@ -4,8 +4,8 @@ rule intergenic_xr:
         minus="resources/samples/XR/{samples}_{build}_sorted_minus.bed",
         genes="results/regions/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        plus_intergenic=temp("results/XR/{samples}/{samples}_{build}_sorted_plus_intergenic.bed"),
-        minus_intergenic=temp("results/XR/{samples}/{samples}_{build}_sorted_minus_intergenic.bed"),
+        plus_intergenic=temp("results/XR/{samples}/{samples}_{build}_intergenic_sorted_plus.bed"),
+        minus_intergenic=temp("results/XR/{samples}/{samples}_{build}_intergenic_sorted_minus.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
@@ -39,8 +39,8 @@ rule intergenic_ds:
         minus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_minus.bed",
         genes="results/regions/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        plus_intergenic=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_intergenic.bed"),
-        minus_intergenic=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_intergenic.bed"), 
+        plus_intergenic=temp("results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_plus.bed"),
+        minus_intergenic=temp("results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_minus.bed"), 
     log:
         "logs/{samples}/{samples}_{build}_intergenic_{regions}_ds.log",
     benchmark:
