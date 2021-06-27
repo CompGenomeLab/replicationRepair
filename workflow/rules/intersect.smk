@@ -66,6 +66,7 @@ rule intersect_ds:
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
 
+"""
 rule intersect_xr_sim:
     input:
         "resources/samples/XR/{samples}_{build}_xr_sim.bed",
@@ -83,6 +84,7 @@ rule intersect_xr_sim:
     conda:
         "../envs/bed2fasta.yaml"
     shell:
+        """
         """
         (echo "`date -R`: Separating plus stranded reads..." &&
         awk '{{if($6=="+"){{print}}}}' {input} > {output.plus_sim} &&
@@ -110,6 +112,7 @@ rule intersect_xr_sim:
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
+
 
 rule intersect_ds_sim:
     input:
