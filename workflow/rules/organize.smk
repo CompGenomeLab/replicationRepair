@@ -17,7 +17,7 @@ rule organize:
         """
         (echo "`date -R`: Organize and remove chrY, chrMT..." &&
         grep -v -e "chrY" -e "chrMT" {input.muts} | \
-        awk '{{print $2"\\t"($3-2)"\\t"($4+1)"\\t"$6"_"$7"\\t""0""\\t""+"}}' > \
+        awk '{{print $2"\\t"($3-2)"\\t"($4+1)"\\t"$6"_"$7"_"$2"_"($3-2)"_"($4+1)"\\t""0""\\t""+"}}' > \
         {output.org} &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") > {log} 2>&1
@@ -27,7 +27,7 @@ rule organize:
         -fi {input.genome} \
         -bed {output.org} \
         -fo {output.fa} \
-        -fullHeader &&
+        -name &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") >> {log} 2>&1    
 
