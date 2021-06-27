@@ -70,10 +70,10 @@ rule intersect_sim:
     input:
         "resources/samples/sim/{samples}_{build}_{method}_sim.bed",
     output:
-        plus_sim=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus.bed"),
-        minus_sim=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus.bed"),
-        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}.txt",
-        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}.txt",
+        plus_sim=temp("results/sim/{samples}/{samples}_{build}_sorted_{method}_sim_plus.bed"),
+        minus_sim=temp("results/sim/{samples}/{samples}_{build}_sorted_{method}_sim_minus.bed"),
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sorted_sim_plus_{regions}.txt",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sorted_sim_minus_{regions}.txt",
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     conda:
