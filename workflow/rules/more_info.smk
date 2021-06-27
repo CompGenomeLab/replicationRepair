@@ -68,57 +68,22 @@ rule more_info_ds:
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
 
-rule more_info_xr_sim:
+rule more_info_sim:
     input:
-        plus="results/XR/{samples}/{samples}_{build}_xr_sim_plus_{regions}_combined.txt",
-        minus="results/XR/{samples}/{samples}_{build}_xr_sim_minus_{regions}_combined.txt",
-        reads_p="results/XR/{samples}/{samples}_{build}_xr_sim_plus.bed",
-        reads_m="results/XR/{samples}/{samples}_{build}_xr_sim_minus.bed",
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}_combined.txt",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}_combined.txt",
+        reads_p="results/sim/{samples}/{samples}_{build}_{method}_sim_plus.bed",
+        reads_m="results/sim/{samples}/{samples}_{build}_{method}_sim_minus.bed",
     output:
-        plus=temp("results/XR/{samples}/{samples}_{build}_xr_sim_plus_{regions}_combined_info.txt"),
-        minus=temp("results/XR/{samples}/{samples}_{build}_xr_sim_minus_{regions}_combined_info.txt"),
+        plus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}_combined_info.txt"),
+        minus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}_combined_info.txt"),
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
     log:
-        "logs/{samples}/{samples}_{build}_more_info_xr_sim_{regions}.log",
+        "logs/{samples}/{samples}_{build}_more_info_{method}_sim_{regions}.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_more_info_xr_sim_{regions}.benchmark.txt",
-    shell:
-        """
-        (echo "`date -R`: Add info (plus strand)..." &&
-        python3 workflow/scripts/addColumns.py \
-        -i {input.plus} \
-        -o {output.plus} \
-        -c {params.info} "." {params.mappedReads} &&
-        echo "`date -R`: Success! Info is added." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
-
-        (echo "`date -R`: Add info (minus strand)..." &&
-        python3 workflow/scripts/addColumns.py \
-        -i {input.minus} \
-        -o {output.minus} \
-        -c {params.info} "." {params.mappedReads} &&
-        echo "`date -R`: Success! Info is added." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
-        """
-
-rule more_info_ds_sim:
-    input:
-        plus="results/DS/{samples}/{samples}_{build}_ds_sim_plus_{regions}_combined.txt",
-        minus="results/DS/{samples}/{samples}_{build}_ds_sim_minus_{regions}_combined.txt",
-        reads_p="results/DS/{samples}/{samples}_{build}_ds_sim_plus.bed",
-        reads_m="results/DS/{samples}/{samples}_{build}_ds_sim_minus.bed",
-    output:
-        plus=temp("results/DS/{samples}/{samples}_{build}_ds_sim_plus_{regions}_combined_info.txt"),
-        minus=temp("results/DS/{samples}/{samples}_{build}_ds_sim_minus_{regions}_combined_info.txt"),
-    params:
-        info=lambda w: info(w),
-        mappedReads=lambda w, input: mappedReads(input[2], input[3]),
-    log:
-        "logs/{samples}/{samples}_{build}_more_info_{regions}_ds_sim.log",
-    benchmark:
-        "logs/{samples}/{samples}_{build}_more_info_{regions}_ds_sim.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_more_info_{method}_sim_{regions}.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Add info (plus strand)..." &&

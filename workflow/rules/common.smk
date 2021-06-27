@@ -173,6 +173,7 @@ def allInput(build="", sampleList=[], method="", regions=[]):
 
         for sample in sampleList:
             sampledir = "results/DS/" + sample + "/" 
+            simdir = "results/sim/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
             "_sorted_dipyrimidines_tss_combined_rpkm.bed") 
@@ -184,15 +185,16 @@ def allInput(build="", sampleList=[], method="", regions=[]):
                 "_sorted_ds_dipyrimidines_plus_" + region + "_combined_rpkm.txt")
                 inputList.append(sampledir + sample + "_" + build + 
                 "_sorted_ds_dipyrimidines_minus_" + region + "_combined_rpkm.txt")
-                inputList.append(sampledir + sample + "_" + build + 
+                inputList.append(simdir + sample + "_" + build + 
                 "_ds_sim_plus_" + region + "_combined_rpkm.txt")
-                inputList.append(sampledir + sample + "_" + build + 
+                inputList.append(simdir + sample + "_" + build + 
                 "_ds_sim_minus_" + region + "_combined_rpkm.txt")
 
     if method == "xr":
 
         for sample in sampleList:
             sampledir = "results/XR/" + sample + "/" 
+            simdir = "results/sim/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
             "_sorted_tss_combined_rpkm.bed") 
@@ -204,9 +206,9 @@ def allInput(build="", sampleList=[], method="", regions=[]):
                 "_sorted_xr_plus_" + region + "_combined_rpkm.txt")
                 inputList.append(sampledir + sample + "_" + build + 
                 "_sorted_xr_minus_" + region + "_combined_rpkm.txt")
-                inputList.append(sampledir + sample + "_" + build + 
+                inputList.append(simdir + sample + "_" + build + 
                 "_xr_sim_plus_" + region + "_combined_rpkm.txt")
-                inputList.append(sampledir + sample + "_" + build + 
+                inputList.append(simdir + sample + "_" + build + 
                 "_xr_sim_minus_" + region + "_combined_rpkm.txt")
 
     if method == "report":
