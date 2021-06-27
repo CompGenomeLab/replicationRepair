@@ -7,6 +7,7 @@ include: "workflow/rules/common.smk"
 
 wildcard_constraints:
     regions='|'.join([r for r in config["regions"]]),
+    build=config["build"],
 
 rule all:
     input:
