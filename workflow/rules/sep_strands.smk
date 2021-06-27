@@ -51,8 +51,8 @@ rule sep_strands_sim:
     input:
         "resources/samples/sim/{samples}_{build}_{method}_sim.bed",
     output:
-        plus_sim=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus.bed"),
-        minus_sim=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus.bed"),
+        plus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus.bed"),
+        minus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus.bed"),
     log:
         "logs/{samples}/{samples}_{build}_{method}_sim_sep_strands.log",
     benchmark:
