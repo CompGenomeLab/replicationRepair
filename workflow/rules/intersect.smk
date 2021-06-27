@@ -70,10 +70,10 @@ rule intersect_xr_sim:
     input:
         "resources/samples/XR/{samples}_{build}_xr_sim.bed",
     output:
-        plus_sim=temp("results/XR/{samples}/{samples}_{build}_sim_xr_plus.bed"),
-        minus_sim=temp("results/XR/{samples}/{samples}_{build}_sim_xr_minus.bed"),
-        plus="results/XR/{samples}/{samples}_{build}_xr_sim_plus_{regions}.txt",
-        minus="results/XR/{samples}/{samples}_{build}_xr_sim_minus_{regions}.txt",
+        plus_sim=temp("results/XR/sim/{samples}/{samples}_{build}_sim_xr_plus.bed"),
+        minus_sim=temp("results/XR/sim/{samples}/{samples}_{build}_sim_xr_minus.bed"),
+        plus="results/XR/sim/{samples}/{samples}_{build}_xr_sim_plus_{regions}.txt",
+        minus="results/XR/sim/{samples}/{samples}_{build}_xr_sim_minus_{regions}.txt",
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
@@ -115,10 +115,10 @@ rule intersect_ds_sim:
     input:
         "resources/samples/DS/{samples}_{build}_ds_sim.bed",
     output:
-        plus_sim=temp("results/DS/{samples}/{samples}_{build}_ds_sim_plus.bed"),
-        minus_sim=temp("results/DS/{samples}/{samples}_{build}_ds_sim_minus.bed"),
-        plus="results/DS/{samples}/{samples}_{build}_ds_sim_plus_{regions}.txt",
-        minus="results/DS/{samples}/{samples}_{build}_ds_sim_minus_{regions}.txt",
+        plus_sim=temp("results/DS/sim/{samples}/{samples}_{build}_ds_sim_plus.bed"),
+        minus_sim=temp("results/DS/sim/{samples}/{samples}_{build}_ds_sim_minus.bed"),
+        plus="results/DS/sim/{samples}/{samples}_{build}_ds_sim_plus_{regions}.txt",
+        minus="results/DS/sim/{samples}/{samples}_{build}_ds_sim_minus_{regions}.txt",
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),    
     log:
