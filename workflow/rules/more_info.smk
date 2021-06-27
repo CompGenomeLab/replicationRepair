@@ -81,9 +81,9 @@ rule more_info_xr_sim:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
     log:
-        "logs/{samples}/{samples}_{build}_more_info_{regions}_xr_sim.log",
+        "logs/{samples}/{samples}_{build}_more_info_xr_sim_{regions}.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_more_info_{regions}_xr_sim.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_more_info_xr_sim_{regions}.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Add info (plus strand)..." &&

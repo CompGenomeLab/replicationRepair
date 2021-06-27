@@ -74,9 +74,9 @@ rule rpkm_xr_sim:
         plus="results/XR/{samples}/{samples}_{build}_xr_sim_plus_{regions}_combined_rpkm.txt",
         minus="results/XR/{samples}/{samples}_{build}_xr_sim_minus_{regions}_combined_rpkm.txt",
     log:
-        "logs/{samples}/{samples}_{build}_rpkm_{regions}_xr_sim.log",
+        "logs/{samples}/{samples}_{build}_rpkm_xr_sim_{regions}.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_rpkm_{regions}_xr_sim.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_rpkm_xr_sim_{regions}.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Calculating RPKM values (plus strand)..." &&

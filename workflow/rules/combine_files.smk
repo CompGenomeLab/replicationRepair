@@ -21,9 +21,9 @@ rule combine_files_sim:
     output:
         "results/final_reports_{build}_{regions}_sim.txt",
     log:
-        "logs/{build}_combine_files_{regions}_sim.log",
+        "logs/{build}_combine_files_sim_{regions}.log",
     benchmark:
-        "logs/{build}_combine_files_{regions}_sim.benchmark.txt",
+        "logs/{build}_combine_files_sim_{regions}.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Combining files..." &&

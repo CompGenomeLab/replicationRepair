@@ -72,9 +72,9 @@ rule combine_windows_xr_sim:
     params:
         lambda w: getCombine(w.regions, config["region_comb_opt"], config["regions"]), 
     log:
-        "logs/{samples}/{samples}_{build}_combine_windows_{regions}_xr_sim.log",
+        "logs/{samples}/{samples}_{build}_combine_windows_xr_sim_{regions}.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_combine_windows_{regions}_xr_sim.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_combine_windows_xr_sim_{regions}.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Combine windows (plus strand)..." &&
