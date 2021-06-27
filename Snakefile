@@ -8,6 +8,7 @@ include: "workflow/rules/common.smk"
 wildcard_constraints:
     regions='|'.join([r for r in config["regions"]]),
     build=config["build"],
+    samples='|'.join([r for r in (config["sample_ds"] + config["sample_xr"])]),
 
 rule all:
     input:
