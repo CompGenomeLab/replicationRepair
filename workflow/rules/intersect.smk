@@ -66,7 +66,50 @@ rule intersect_ds:
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
 
+rule intersect_xr_sim:
+    input:
+        "resources/samples/XR/{samples}_{build}_xr_sim.bed",
+    output:
+        plus_sim=temp("results/XR/{samples}/{samples}_{build}_sim_xr_plus.bed"),
+        minus_sim=temp("results/XR/{samples}/{samples}_{build}_sim_xr_minus.bed"),
+        plus="results/XR/{samples}/{samples}_{build}_xr_sim_plus_{regions}.txt",
+        minus="results/XR/{samples}/{samples}_{build}_xr_sim_minus_{regions}.txt",
+    params:
+        region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
+    log:
+        "logs/{samples}/{samples}_{build}_intersect_sim_xr_{regions}.log",
+    benchmark:
+        "logs/{samples}/{samples}_{build}_intersect_sim_xr_{regions}.benchmark.txt",
+    conda:
+        "../envs/bed2fasta.yaml"
+    shell:
+        """
+        (echo "`date -R`: Separating plus stranded reads..." &&
+        awk '{{if($6=="+"){{print}}}}' {input} > {output.plus_sim} &&
+        echo "`date -R`: Success! Reads are separated." || 
+        echo "`date -R`: Process failed...") > {log} 2>&1
 
+        (echo "`date -R`: Separating minus stranded reads..." &&
+        awk '{{if($6=="-"){{print}}}}' {input} > {output.minus_sim} &&
+        echo "`date -R`: Success! Reads are separated." || 
+        echo "`date -R`: Process failed...") >> {log} 2>&1
+
+        (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
+        bedtools intersect \
+        -a results/regions/{params.region} \
+        -b {output.plus_sim} \
+        -wa -c -F 0.5 > {output.plus} &&
+        echo "`date -R`: Success!" || 
+        echo "`date -R`: Process failed...") >> {log} 2>&1
+
+        (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
+        bedtools intersect \
+        -a results/regions/{params.region} \
+        -b {output.minus_sim} \
+        -wa -c -F 0.5 > {output.minus} &&
+        echo "`date -R`: Success!" || 
+        echo "`date -R`: Process failed...") >> {log} 2>&1
+        """
 
 rule intersect_ds_sim:
     input:
