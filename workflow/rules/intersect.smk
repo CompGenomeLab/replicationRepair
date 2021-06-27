@@ -70,16 +70,16 @@ rule intersect_xr_sim:
     input:
         "resources/samples/XR/{samples}_{build}_xr_sim.bed",
     output:
-        plus_sim=temp("results/XR/sim/{samples}/{samples}_{build}_sim_xr_plus.bed"),
-        minus_sim=temp("results/XR/sim/{samples}/{samples}_{build}_sim_xr_minus.bed"),
-        plus="results/XR/sim/{samples}/{samples}_{build}_xr_sim_plus_{regions}.txt",
-        minus="results/XR/sim/{samples}/{samples}_{build}_xr_sim_minus_{regions}.txt",
+        plus_sim=temp("results/XR/{samples}/{samples}_{build}_sim_xr_plus.bed"),
+        minus_sim=temp("results/XR/{samples}/{samples}_{build}_sim_xr_minus.bed"),
+        plus="results/XR/{samples}/{samples}_{build}_xr_sim_plus_{regions}.txt",
+        minus="results/XR/{samples}/{samples}_{build}_xr_sim_minus_{regions}.txt",
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
-        "logs/{samples}/sim/{samples}_{build}_intersect_sim_xr_{regions}.log",
+        "logs/{samples}/{samples}_{build}_intersect_sim_xr_{regions}.log",
     benchmark:
-        "logs/{samples}/sim/{samples}_{build}_intersect_sim_xr_{regions}.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_intersect_sim_xr_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -115,16 +115,16 @@ rule intersect_ds_sim:
     input:
         "resources/samples/DS/{samples}_{build}_ds_sim.bed",
     output:
-        plus_sim=temp("results/DS/sim/{samples}/{samples}_{build}_ds_sim_plus.bed"),
-        minus_sim=temp("results/DS/sim/{samples}/{samples}_{build}_ds_sim_minus.bed"),
-        plus="results/DS/sim/{samples}/{samples}_{build}_ds_sim_plus_{regions}.txt",
-        minus="results/DS/sim/{samples}/{samples}_{build}_ds_sim_minus_{regions}.txt",
+        plus_sim=temp("results/DS/{samples}/{samples}_{build}_ds_sim_plus.bed"),
+        minus_sim=temp("results/DS/{samples}/{samples}_{build}_ds_sim_minus.bed"),
+        plus="results/DS/{samples}/{samples}_{build}_ds_sim_plus_{regions}.txt",
+        minus="results/DS/{samples}/{samples}_{build}_ds_sim_minus_{regions}.txt",
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),    
     log:
-        "logs/{samples}/sim/{samples}_{build}_intersect_{regions}_ds_sim.log",
+        "logs/{samples}/{samples}_{build}_intersect_{regions}_ds_sim.log",
     benchmark:
-        "logs/{samples}/sim/{samples}_{build}_intersect_{regions}_ds_sim.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_intersect_{regions}_ds_sim.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

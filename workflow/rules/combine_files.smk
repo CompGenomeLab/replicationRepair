@@ -19,7 +19,7 @@ rule combine_files_sim:
     input:
         lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.regions, outformat="sim"),
     output:
-        "results/final_reports_{build}_{regions}_sim.txt",
+        "results/final_reports_sim_{build}_{regions}.txt",
     log:
         "logs/{build}_combine_files_sim_{regions}.log",
     benchmark:

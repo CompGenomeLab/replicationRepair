@@ -214,8 +214,8 @@ def allInput(build="", sampleList=[], method="", regions=[]):
         for region in regions:
             inputList.append("results/final_reports_" + build + 
             "_" + region + ".txt")
-            inputList.append("results/final_reports_" + build + 
-            "_" + region + "_sim.txt")
+            inputList.append("results/final_reports_sim" + build + 
+            "_" + region + ".txt")
 
     #print(inputList)
     return inputList
