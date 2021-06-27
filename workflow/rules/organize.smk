@@ -27,7 +27,7 @@ rule organize:
         -fi {input.genome} \
         -bed {output.org} \
         -fo {output.fa} \
-        -name &&
+        -fullHeader &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") >> {log} 2>&1    
 
