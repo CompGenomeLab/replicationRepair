@@ -90,13 +90,13 @@ rule sort_sim:
 
 rule sort_regions:
     input:
-        "results/regions/{regions}",
+        "results/regions/{region}",
     output:
-        "results/regions/{regions}_sorted.bed",
+        "results/regions/{region}_sorted.bed",
     log:
-        "logs/sort_{regions}.log",
+        "logs/sort_{region}.log",
     benchmark:
-        "logs/sort_{regions}.benchmark.txt",
+        "logs/sort_{region}.benchmark.txt",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",
     shell:
