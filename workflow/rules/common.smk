@@ -76,7 +76,7 @@ def getRegion(region, rawRegionList, regionList):
     except:
        raise(ValueError("Designated wildcard cannot be found in region list."))
         
-    return rawRegionList[idx]
+    return "results/regions/" + rawRegionList[idx] + "_sorted.bed"
 
 def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="real"):
 
