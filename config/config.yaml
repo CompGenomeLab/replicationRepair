@@ -57,6 +57,10 @@ regions:
   - "chromhmm_repdomains_hela_windows_chr"
   - "repdomains_hela_windows_201_10000"
   - "repdomains_hela"
+  - "early_peaks_windows_11_100"
+  - "late_peaks_windows_11_100"
+  - "early_peaks_uv_windows_11_100"
+  - "late_peaks_uv_windows_11_100"
 
 region_file:
   - "initiation.zones.hela_windows_201_100.bed"
@@ -66,6 +70,10 @@ region_file:
   - "chromhmm.repdomains.hela_windows.bed"
   - "repdomains.hela_windows_201_10000.bed"
   - "repdomains.hela.bed"
+  - "R21061297-EdUrep-2hrls_combined_peaks_windows_11_100.bed"
+  - "R21061297-EdUrep-4hrls_combined_peaks_windows_11_100.bed"
+  - "R21061297-EdUrep-UV1-5hrls_combined_peaks_windows_11_100.bed"
+  - "R21061297-EdUrep-UV3-5hrls_combined_peaks_windows_11_100.bed"
 
 region_comb_opt:
   - ""
@@ -73,5 +81,9 @@ region_comb_opt:
   - ""
   - "-strand T" 
   - "-strand T -chr T"
+  - ""
+  - ""
+  - ""
+  - ""
   - ""
   - ""

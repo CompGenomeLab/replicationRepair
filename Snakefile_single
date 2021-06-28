@@ -1,0 +1,5 @@
+#!/bin/env python
+
+include: "workflow/rules/make_windows.smk"
+
+# snakemake --snakefile Snakefile_single -R make_windows --cores 8
