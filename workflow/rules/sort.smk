@@ -60,8 +60,8 @@ rule sort_ds:
 
 rule sort_sim:
     input:
-        plus_sim="results/sim/{samples}/{samples}_{build}_{method}_sim_plus.bed",
-        minus_sim="results/sim/{samples}/{samples}_{build}_{method}_sim_minus.bed",
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus.bed",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus.bed",
     output:
         plus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_sorted.txt"),
         minus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_sorted.txt"),
