@@ -187,7 +187,7 @@ rule intersect_sim_intergenic:
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
         -a {params.region} \
-        -b {output.plus_sim} \
+        -b {output.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
@@ -195,7 +195,7 @@ rule intersect_sim_intergenic:
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
         -a {params.region} \
-        -b {output.minus_sim} \
+        -b {output.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
