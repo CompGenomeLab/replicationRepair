@@ -87,3 +87,23 @@ rule sort_sim:
         echo "`date -R`: Success! Bed file is filtered." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
+
+rule sort_regions:
+    input:
+        "results/regions/{regions}",
+    output:
+        "results/regions/{regions}_sorted.bed",
+    log:
+        "logs/sort_{regions}.log",
+    benchmark:
+        "logs/sort_{regions}.benchmark.txt",
+    params:
+        filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",
+    shell:
+        """
+        (echo "`date -R`: Sorting and filtering bed file by chromosomes..." &&
+        sort -u -k1,1 -k2,2n -k3,3n {input} |&
+        egrep {params.filt} > {output} &&
+        echo "`date -R`: Success! Bed file is filtered." || 
+        echo "`date -R`: Process failed...") > {log} 2>&1
+        """
