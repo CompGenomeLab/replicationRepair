@@ -2,7 +2,7 @@ rule intergenic_xr:
     input:
         plus="results/XR/{samples}/{samples}_{build}_xr_plus_sorted.txt",
         minus="results/XR/{samples}/{samples}_{build}_xr_minus_sorted.txt",
-        genes="results/regions/hg19_ucsc_genes_knownCanonical_stranded.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
         plus_intergenic=temp("results/XR/{samples}/{samples}_{build}_intergenic_sorted_plus.bed"),
         minus_intergenic=temp("results/XR/{samples}/{samples}_{build}_intergenic_sorted_minus.bed"),
@@ -35,7 +35,7 @@ rule intergenic_ds:
     input:
         plus="results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_plus_sorted.txt",
         minus="results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_minus_sorted.txt", 
-        genes="results/regions/hg19_ucsc_genes_knownCanonical_stranded.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
         plus_intergenic=temp("results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_plus.bed"),
         minus_intergenic=temp("results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_minus.bed"), 
@@ -68,7 +68,7 @@ rule intergenic_sim:
     input:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_sorted.txt",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_sorted.txt",
-        genes="results/regions/hg19_ucsc_genes_knownCanonical_stranded.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
         plus_intergenic=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_intergenic.bed"),
         minus_intergenic=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_intergenic.bed"),
