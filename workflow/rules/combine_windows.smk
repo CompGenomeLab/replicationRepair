@@ -160,8 +160,8 @@ rule combine_windows_ds_intergenic:
 
 rule combine_windows_sim_intergenic:
     input:
-        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_intergenic.bed",
-        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_intergenic.bed",
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}_intergenic.txt",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}_intergenic.txt",
     output:
         plus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}_intergenic_combined.txt"),
         minus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}_intergenic_combined.txt"),
