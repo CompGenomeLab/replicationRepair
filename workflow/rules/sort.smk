@@ -90,7 +90,7 @@ rule sort_sim:
 
 rule sort_regions:
     input:
-        expand("results/regions/{regions}", regions=config["region_file"]),
+        "results/regions/{regions}",
     output:
         "results/regions/{regions}_sorted.bed",
     log:
