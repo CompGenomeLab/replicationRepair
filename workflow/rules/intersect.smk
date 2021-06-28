@@ -1,7 +1,7 @@
 rule intersect_xr:
     input:
-        plus="resources/samples/XR/{samples}_{build}_sorted_plus.bed",
-        minus="resources/samples/XR/{samples}_{build}_sorted_minus.bed",
+        plus="results/XR/{samples}/{samples}_{build}_xr_plus_sorted.txt",
+        minus="results/XR/{samples}/{samples}_{build}_xr_minus_sorted.txt",
     output:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}.txt",
@@ -34,8 +34,8 @@ rule intersect_xr:
 
 rule intersect_ds:
     input:
-        plus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_plus.bed",
-        minus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_minus.bed",
+        plus="results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_plus_sorted.txt",
+        minus="results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_minus_sorted.txt", 
     output:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}.txt",
@@ -68,8 +68,8 @@ rule intersect_ds:
 
 rule intersect_sim:
     input:
-        plus_sim="results/sim/{samples}/{samples}_{build}_{method}_sim_plus.bed",
-        minus_sim="results/sim/{samples}/{samples}_{build}_{method}_sim_minus.bed",
+        plus_sim="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_sorted.txt",
+        minus_sim="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_sorted.txt",
     output:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}.txt",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}.txt",
