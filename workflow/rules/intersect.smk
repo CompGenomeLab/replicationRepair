@@ -138,6 +138,7 @@ rule intersect_ds_intergenic:
     input:
         plus="results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_plus.bed",
         minus="results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_minus.bed",
+        region="{params.region}_sorted.bed",
     output:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}_intergenic.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}_intergenic.txt",
@@ -153,7 +154,7 @@ rule intersect_ds_intergenic:
         """
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a results/regions/{params.region}_sorted.bed \
+        -sorted -a results/regions/{input.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -161,7 +162,7 @@ rule intersect_ds_intergenic:
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a results/regions/{params.region}_sorted.bed \
+        -sorted -a results/regions/{input.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
