@@ -3,8 +3,8 @@ rule sort_xr:
         plus="resources/samples/XR/{samples}_{build}_sorted_plus.bed",
         minus="resources/samples/XR/{samples}_{build}_sorted_minus.bed",
     output:
-        plus=temp("results/XR/{samples}/{samples}_{build}_xr_plus_sorted.txt"),
-        minus=temp("results/XR/{samples}/{samples}_{build}_xr_minus_sorted.txt"),
+        plus="results/XR/{samples}/{samples}_{build}_xr_plus_sorted.txt",
+        minus="results/XR/{samples}/{samples}_{build}_xr_minus_sorted.txt",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",
     log:
@@ -33,8 +33,8 @@ rule sort_ds:
         plus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_plus.bed",
         minus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_minus.bed",
     output:
-        plus=temp("results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_plus_sorted.txt"),
-        minus=temp("results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_minus_sorted.txt"),   
+        plus="results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_plus_sorted.txt",
+        minus="results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_minus_sorted.txt",   
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",
     log:
@@ -63,8 +63,8 @@ rule sort_sim:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus.bed",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus.bed",
     output:
-        plus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_sorted.txt"),
-        minus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_sorted.txt"),
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_sorted.txt",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_sorted.txt",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",
     log:

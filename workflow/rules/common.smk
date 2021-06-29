@@ -209,10 +209,10 @@ def allInput(build="", sampleList=[], method="", regions=[]):
             sampledir = "results/DS/" + sample + "/" 
             simdir = "results/sim/" + sample + "/" 
 
-            inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_dipyrimidines_tss_combined_rpkm.bed") 
-            inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_dipyrimidines_TSNTS.bed")
+            #inputList.append(sampledir + sample + "_" + build + 
+            #"_sorted_dipyrimidines_tss_combined_rpkm.bed") 
+            #inputList.append(sampledir + sample + "_" + build + 
+            #"_sorted_dipyrimidines_TSNTS.bed")
 
             for region in regions:
                 inputList.append(sampledir + sample + "_" + build + 
@@ -230,10 +230,10 @@ def allInput(build="", sampleList=[], method="", regions=[]):
             sampledir = "results/XR/" + sample + "/" 
             simdir = "results/sim/" + sample + "/" 
 
-            inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_tss_combined_rpkm.bed") 
-            inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_TSNTS.bed")
+            #inputList.append(sampledir + sample + "_" + build + 
+            #"_sorted_tss_combined_rpkm.bed") 
+            #inputList.append(sampledir + sample + "_" + build + 
+            #"_sorted_TSNTS.bed")
 
             for region in regions:
                 inputList.append(sampledir + sample + "_" + build + 
@@ -254,8 +254,8 @@ def allInput(build="", sampleList=[], method="", regions=[]):
             "_" + region + ".txt")
             inputList.append("results/final_reports_" + build + 
             "_" + region + "_intergenic.txt")
-            inputList.append("results/final_reports_sim_" + build + 
-            "_" + region + "_intergenic.txt")
+            #inputList.append("results/final_reports_sim_" + build + 
+            #"_" + region + "_intergenic.txt")
 
     #print(inputList)
     return inputList
