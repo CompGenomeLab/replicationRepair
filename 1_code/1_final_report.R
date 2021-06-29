@@ -4,7 +4,7 @@
 #### import data ####
 
 dir_fr <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                "gitignore/1_TextforPlotting/", sep = "")
+                "gitignore/snakemake_finals/", sep = "")
 
 temp <- list.files(path = dir_fr, pattern = ".txt")
 

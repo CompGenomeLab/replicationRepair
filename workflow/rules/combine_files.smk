@@ -2,7 +2,7 @@ rule combine_files:
     input:
         lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.regions),
     output:
-        "results/final_reports_{build}_{regions}.txt",
+        "results/final/final_reports_{build}_{regions}.txt",
     log:
         "logs/{build}_combine_files_{regions}.log",
     benchmark:
@@ -19,7 +19,7 @@ rule combine_files_sim:
     input:
         lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.regions, outformat="sim"),
     output:
-        "results/final_reports_sim_{build}_{regions}.txt",
+        "results/final/final_reports_sim_{build}_{regions}.txt",
     log:
         "logs/{build}_combine_files_sim_{regions}.log",
     benchmark:
@@ -36,7 +36,7 @@ rule combine_files_intergenic:
     input:
         lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.regions, outformat="intergenic"),
     output:
-        "results/final_reports_{build}_{regions}_intergenic.txt",
+        "results/final/final_reports_{build}_{regions}_intergenic.txt",
     log:
         "logs/{build}_combine_files_{regions}_intergenic.log",
     benchmark:
@@ -53,7 +53,7 @@ rule combine_files_sim_intergenic:
     input:
         lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.regions, outformat="sim_intergenic"),
     output:
-        "results/final_reports_sim_{build}_{regions}_intergenic.txt",
+        "results/final/final_reports_sim_{build}_{regions}_intergenic.txt",
     log:
         "logs/{build}_combine_files_sim_{regions}_intergenic.log",
     benchmark:
