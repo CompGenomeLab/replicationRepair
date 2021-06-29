@@ -61,6 +61,10 @@ regions:
   - "late_peaks_windows_11_100"
   - "early_peaks_uv_windows_11_100"
   - "late_peaks_uv_windows_11_100"
+  - "early_peaks_repdomains_windows_11_100"
+  - "late_peaks_repdomains_windows_11_100"
+  - "early_peaks_repdomains_uv_windows_11_100"
+  - "late_peaks_repdomains_uv_windows_11_100"
 
 region_file:
   - "initiation.zones.hela_windows_201_100.bed"
@@ -74,6 +78,10 @@ region_file:
   - "R21061297-EdUrep-4hrls_combined_peaks_windows_11_100.bed"
   - "R21061297-EdUrep-UV1-5hrls_combined_peaks_windows_11_100.bed"
   - "R21061297-EdUrep-UV3-5hrls_combined_peaks_windows_11_100.bed"
+  - "R21061297-EdUrep-2hrls_combined_peaks_repdomains_windows_11_100.bed"
+  - "R21061297-EdUrep-4hrls_combined_peaks_repdomains_windows_11_100.bed"
+  - "R21061297-EdUrep-UV1-5hrls_combined_peaks_repdomains_windows_11_100.bed"
+  - "R21061297-EdUrep-UV3-5hrls_combined_peaks_repdomains_windows_11_100.bed"
 
 region_comb_opt:
   - ""
@@ -81,6 +89,10 @@ region_comb_opt:
   - ""
   - "-strand T" 
   - "-strand T -chr T"
+  - ""
+  - ""
+  - ""
+  - ""
   - ""
   - ""
   - ""
