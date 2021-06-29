@@ -20,7 +20,7 @@ rule more_info_xr:
         python3 workflow/scripts/addColumns.py \
         -i {input.plus} \
         -o {output.plus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} + {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
@@ -28,7 +28,7 @@ rule more_info_xr:
         python3 workflow/scripts/addColumns.py \
         -i {input.minus} \
         -o {output.minus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} - {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
@@ -55,7 +55,7 @@ rule more_info_ds:
         python3 workflow/scripts/addColumns.py \
         -i {input.plus} \
         -o {output.plus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} + {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
@@ -63,7 +63,7 @@ rule more_info_ds:
         python3 workflow/scripts/addColumns.py \
         -i {input.minus} \
         -o {output.minus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} - {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
@@ -90,7 +90,7 @@ rule more_info_sim:
         python3 workflow/scripts/addColumns.py \
         -i {input.plus} \
         -o {output.plus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} + {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
@@ -98,7 +98,7 @@ rule more_info_sim:
         python3 workflow/scripts/addColumns.py \
         -i {input.minus} \
         -o {output.minus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} - {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
@@ -125,7 +125,7 @@ rule more_info_xr_intergenic:
         python3 workflow/scripts/addColumns.py \
         -i {input.plus} \
         -o {output.plus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} + {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
@@ -133,7 +133,7 @@ rule more_info_xr_intergenic:
         python3 workflow/scripts/addColumns.py \
         -i {input.minus} \
         -o {output.minus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} - {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
@@ -160,7 +160,7 @@ rule more_info_ds_intergenic:
         python3 workflow/scripts/addColumns.py \
         -i {input.plus} \
         -o {output.plus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} + {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
@@ -168,7 +168,7 @@ rule more_info_ds_intergenic:
         python3 workflow/scripts/addColumns.py \
         -i {input.minus} \
         -o {output.minus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} - {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
@@ -195,7 +195,7 @@ rule more_info_sim_intergenic:
         python3 workflow/scripts/addColumns.py \
         -i {input.plus} \
         -o {output.plus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} + {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
@@ -203,7 +203,7 @@ rule more_info_sim_intergenic:
         python3 workflow/scripts/addColumns.py \
         -i {input.minus} \
         -o {output.minus} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c {params.info} - {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
         """
