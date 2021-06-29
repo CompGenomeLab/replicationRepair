@@ -248,13 +248,13 @@ def allInput(build="", sampleList=[], method="", regions=[]):
     if method == "report":
 
         for region in regions:
-            inputList.append("results/final_reports_" + build + 
+            inputList.append("results/final/final_reports_" + build + 
             "_" + region + ".txt")
-            inputList.append("results/final_reports_sim_" + build + 
+            inputList.append("results/final/final_reports_sim_" + build + 
             "_" + region + ".txt")
-            inputList.append("results/final_reports_" + build + 
+            inputList.append("results/final/final_reports_" + build + 
             "_" + region + "_intergenic.txt")
-            #inputList.append("results/final_reports_sim_" + build + 
+            #inputList.append("results/final/final_reports_sim_" + build + 
             #"_" + region + "_intergenic.txt")
 
     #print(inputList)
