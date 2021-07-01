@@ -3,8 +3,8 @@ rule tss_xr:
         genes="results/regions/hg19_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
         comb="results/XR/{samples}/{samples}_{build}_sorted_chr.bed",
     output:
-        TS=temp("results/XR/{samples}/{samples}_{build}_sorted_TS_windows.bed"),
-        NTS=temp("results/XR/{samples}/{samples}_{build}_sorted_NTS_windows.bed"),
+        TS=temp("results/XR/{samples}/{samples}_{build}_sorted_TS_{tss_tes}_windows.bed"),
+        NTS=temp("results/XR/{samples}/{samples}_{build}_sorted_NTS_{tss_tes}_windows.bed"),
         tss=temp("results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}.bed"),
         tss_comb=temp("results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}_combined.bed"),
         info=temp("results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}_combined_full.bed"),
@@ -73,8 +73,8 @@ rule tss_ds:
         genes="results/regions/hg19_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
         comb="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_chr.bed",
     output:
-        TS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_TS_windows.bed"),
-        NTS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_NTS_windows.bed"),
+        TS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_TS_{tss_tes}_windows.bed"),
+        NTS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_NTS_{tss_tes}_windows.bed"),
         tss="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}.bed",
         tss_comb=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}_combined.bed"),
         info=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}_combined_full.bed"),
