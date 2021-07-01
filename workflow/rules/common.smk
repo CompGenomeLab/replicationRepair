@@ -292,7 +292,7 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
                 #"_" + region + "_intergenic.txt")
                 
             else:
-                inputList.append("results/final/final_reports_noWindows" + 
+                inputList.append("results/final/final_reports_noWindows_" + 
                 build + "_" + region + ".txt")
                 inputList.append("results/final/final_reports_noWindows_sim_" + 
                 build + "_" + region + ".txt")
