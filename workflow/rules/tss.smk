@@ -1,21 +1,21 @@
 rule tss_xr:
     input:
-        genes="results/regions/hg19_ucsc_genes_knownCanonical_tss_windows_201_100.bed",
+        genes="results/regions/hg19_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
         comb="results/XR/{samples}/{samples}_{build}_sorted_chr.bed",
     output:
         TS=temp("results/XR/{samples}/{samples}_{build}_sorted_TS_windows.bed"),
         NTS=temp("results/XR/{samples}/{samples}_{build}_sorted_NTS_windows.bed"),
-        tss=temp("results/XR/{samples}/{samples}_{build}_sorted_tss.bed"),
-        tss_comb=temp("results/XR/{samples}/{samples}_{build}_sorted_tss_combined.bed"),
-        info=temp("results/XR/{samples}/{samples}_{build}_sorted_tss_combined_full.bed"),
-        rpkm="results/XR/{samples}/{samples}_{build}_sorted_tss_combined_rpkm.bed",
+        tss=temp("results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}.bed"),
+        tss_comb=temp("results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}_combined.bed"),
+        info=temp("results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}_combined_full.bed"),
+        rpkm="results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}_combined_rpkm.bed",
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[1]),
     log:
-        "logs/{samples}/{samples}_{build}_tss_xr.log",
+        "logs/{samples}/{samples}_{build}_{tss_tes}_xr.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_tss_xr.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_{tss_tes}_xr.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -70,22 +70,22 @@ rule tss_xr:
 
 rule tss_ds:
     input:
-        genes="results/regions/hg19_ucsc_genes_knownCanonical_tss_windows_201_100.bed",
+        genes="results/regions/hg19_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
         comb="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_chr.bed",
     output:
         TS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_TS_windows.bed"),
         NTS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_NTS_windows.bed"),
-        tss="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_tss.bed",
-        tss_comb=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_tss_combined.bed"),
-        info=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_tss_combined_full.bed"),
-        rpkm="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_tss_combined_rpkm.bed",
+        tss="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}.bed",
+        tss_comb=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}_combined.bed"),
+        info=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}_combined_full.bed"),
+        rpkm="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}_combined_rpkm.bed",
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[1]),
     log:
-        "logs/{samples}/{samples}_{build}_tss_ds.log",
+        "logs/{samples}/{samples}_{build}_{tss_tes}_ds.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_tss_ds.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_{tss_tes}_ds.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

@@ -209,8 +209,10 @@ def allInput(build="", sampleList=[], method="", regions=[]):
             sampledir = "results/DS/" + sample + "/" 
             simdir = "results/sim/" + sample + "/" 
 
-            #inputList.append(sampledir + sample + "_" + build + 
-            #"_sorted_dipyrimidines_tss_combined_rpkm.bed") 
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_dipyrimidines_tss_combined_rpkm.bed") 
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_dipyrimidines_tes_combined_rpkm.bed") 
             #inputList.append(sampledir + sample + "_" + build + 
             #"_sorted_dipyrimidines_TSNTS.bed")
 
@@ -230,8 +232,10 @@ def allInput(build="", sampleList=[], method="", regions=[]):
             sampledir = "results/XR/" + sample + "/" 
             simdir = "results/sim/" + sample + "/" 
 
-            #inputList.append(sampledir + sample + "_" + build + 
-            #"_sorted_tss_combined_rpkm.bed") 
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_tss_combined_rpkm.bed") 
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_tes_combined_rpkm.bed") 
             #inputList.append(sampledir + sample + "_" + build + 
             #"_sorted_TSNTS.bed")
 
