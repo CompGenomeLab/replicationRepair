@@ -16,6 +16,14 @@ sample_xr:
   - "R19026421-2019XR1-Hela35X3_combined_R1"
   - "R19033030-2019XR3-Hela15X7_combined_R1"
   - "R19033030-2019XR3-Hela35X8_combined_R1"
+  - "Hela15X2_comb"
+  - "Hela35X3_comb"
+  - "HXA64_comb"
+  - "HXE64_comb"
+  - "HXL64_comb"
+  - "HXAC_comb"
+  - "HXEC_comb"
+  - "HXLC_comb"
 
 sample_ds:
   - "HDA64A1_ATCACG"
@@ -34,6 +42,14 @@ sample_ds:
   - "XT4H1-CT5H2-HelaD3-5R2h2_combined"
   - "R19029847-HD2TCD4-HelaD1-5R2h1_combined"
   - "R19029847-HD2TCD4-HelaD3-5R2h1_combined"
+  - "HelaD1_5R2h2_comb"
+  - "HelaD3_5R2h2_comb"
+  - "HDA64_comb"
+  - "HDE64_comb"
+  - "HDL64_comb"
+  - "HDAC_comb"
+  - "HDEC_comb"
+  - "HDLC_comb"
 
 sample_input: 
   - "R19040024-HelainputD-Hl15R2hID_combined"
@@ -69,6 +85,7 @@ regions:
   - "late_broadpeaks_repdomains_windows_51_100"
   - "early_broadpeaks_uv_repdomains_windows_51_100"
   - "late_broadpeaks_uv_repdomains_windows_51_100"
+  - "repdomains_hela"
 
 region_file:
   #- "initiation.zones.hela_windows_201_100.bed"
@@ -77,7 +94,6 @@ region_file:
   #- "chromhmm.repdomains.hela_windows.bed"
   #- "chromhmm.repdomains.hela_windows.bed"
   #- "repdomains.hela_windows_201_10000.bed"
-  #- "repdomains.hela.bed"
   - "R21061297-EdUrep-2hrls_combined_peaks_windows_11_100.bed"
   - "R21061297-EdUrep-4hrls_combined_peaks_windows_11_100.bed"
   - "R21061297-EdUrep-UV1-5hrls_combined_peaks_windows_11_100.bed"
@@ -90,6 +106,7 @@ region_file:
   - "R21061297-EdUrep-4hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
   - "R21061297-EdUrep-UV1-5hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
   - "R21061297-EdUrep-UV3-5hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
+  - "repdomains.hela.bed"
 
 region_comb_opt:
   #- ""
@@ -111,3 +128,6 @@ region_comb_opt:
   - ""
   - ""
   - ""
+
+no_window_regions:
+  - "repdomains_hela"

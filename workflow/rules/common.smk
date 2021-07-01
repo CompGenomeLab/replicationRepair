@@ -98,7 +98,7 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
             inputList.append(sampledir + sample + "_" + build + 
             "_sorted_ds_dipyrimidines_minus_" + regions + "_combined_rpkm.txt")
 
-    if outformat == "intergenic":
+    elif outformat == "intergenic":
         for sample in sampleList_xr:
             sampledir = "results/XR/" + sample + "/" 
 
@@ -149,10 +149,36 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
             inputList.append(sampledir + sample + "_" + build + 
             "_ds_sim_minus_" + regions + "_intergenic_combined_rpkm.txt")   
 
+    elif outformat == "tss":
+        for sample in sampleList_xr:
+            sampledir = "results/XR/" + sample + "/" 
+
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_tss_combined_rpkm.bed") 
+
+        for sample in sampleList_ds:
+            sampledir = "results/DS/" + sample + "/" 
+            
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_dipyrimidines_tss_combined_rpkm.bed") 
+
+    elif outformat == "tes":
+        for sample in sampleList_xr:
+            sampledir = "results/XR/" + sample + "/" 
+
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_tes_combined_rpkm.bed") 
+
+        for sample in sampleList_ds:
+            sampledir = "results/DS/" + sample + "/" 
+            
+            inputList.append(sampledir + sample + "_" + build + 
+            "_sorted_dipyrimidines_tes_combined_rpkm.bed") 
+
     return inputList
 
 
-def allInput(build="", sampleList=[], method="", regions=[]):
+def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
 
     inputList = []
     if method == "input":
@@ -251,15 +277,27 @@ def allInput(build="", sampleList=[], method="", regions=[]):
 
     if method == "report":
 
+        inputList.append("results/final/final_reports_" + build + "_tss.txt")
+        inputList.append("results/final/final_reports_" + build + "_tes.txt")
+
         for region in regions:
-            inputList.append("results/final/final_reports_" + build + 
-            "_" + region + ".txt")
-            inputList.append("results/final/final_reports_sim_" + build + 
-            "_" + region + ".txt")
-            inputList.append("results/final/final_reports_" + build + 
-            "_" + region + "_intergenic.txt")
-            #inputList.append("results/final/final_reports_sim_" + build + 
-            #"_" + region + "_intergenic.txt")
+            if region not in noWindowList:
+                inputList.append("results/final/final_reports_" + build + 
+                "_" + region + ".txt")
+                inputList.append("results/final/final_reports_sim_" + build + 
+                "_" + region + ".txt")
+                inputList.append("results/final/final_reports_" + build + 
+                "_" + region + "_intergenic.txt")
+                #inputList.append("results/final/final_reports_sim_" + build + 
+                #"_" + region + "_intergenic.txt")
+                
+            else:
+                inputList.append("results/final/final_reports_noWindows" + 
+                build + "_" + region + ".txt")
+                inputList.append("results/final/final_reports_noWindows_sim_" + 
+                build + "_" + region + ".txt")
+                inputList.append("results/final/final_reports_noWindows_" + 
+                build + "_" + region + "_intergenic.txt")
 
     #print(inputList)
     return inputList
