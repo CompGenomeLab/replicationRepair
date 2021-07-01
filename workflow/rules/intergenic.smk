@@ -4,8 +4,8 @@ rule intergenic_xr:
         minus="results/XR/{samples}/{samples}_{build}_xr_minus_sorted.txt",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        plus_intergenic=temp("results/XR/{samples}/{samples}_{build}_intergenic_sorted_plus.bed"),
-        minus_intergenic=temp("results/XR/{samples}/{samples}_{build}_intergenic_sorted_minus.bed"),
+        plus_intergenic="results/XR/{samples}/{samples}_{build}_intergenic_sorted_plus.bed",
+        minus_intergenic="results/XR/{samples}/{samples}_{build}_intergenic_sorted_minus.bed",
     log:
         "logs/{samples}/{samples}_{build}_intergenic_xr.log",
     benchmark:
@@ -37,8 +37,8 @@ rule intergenic_ds:
         minus="results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_minus_sorted.txt", 
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        plus_intergenic=temp("results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_plus.bed"),
-        minus_intergenic=temp("results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_minus.bed"), 
+        plus_intergenic="results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_plus.bed",
+        minus_intergenic="results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_minus.bed", 
     log:
         "logs/{samples}/{samples}_{build}_intergenic_ds.log",
     benchmark:
@@ -70,8 +70,8 @@ rule intergenic_sim:
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_sorted.txt",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        plus_intergenic=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_intergenic.bed"),
-        minus_intergenic=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_intergenic.bed"),
+        plus_intergenic="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_intergenic.bed",
+        minus_intergenic="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_intergenic.bed",
     log:
         "logs/{samples}/{samples}_{build}_intergenic_{method}_sim.log",
     benchmark:
