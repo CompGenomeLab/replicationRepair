@@ -210,9 +210,9 @@ rule rpkm_noWindows_xr:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_rpkm.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_rpkm.txt",
     log:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{regions}_xr.log",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_xr.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{regions}_xr.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_xr.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Calculating RPKM values (plus strand)..." &&
@@ -244,9 +244,9 @@ rule rpkm_noWindows_ds:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_rpkm.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_rpkm.txt",
     log:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{regions}_ds.log",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_ds.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{regions}_ds.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_ds.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Calculating RPKM values (plus strand)..." &&
@@ -312,9 +312,9 @@ rule rpkm_noWindows_xr_intergenic:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_intergenic_rpkm.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_intergenic_rpkm.txt",
     log:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{regions}_xr_intergenic.log",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_xr_intergenic.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{regions}_xr_intergenic.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_xr_intergenic.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Calculating RPKM values (plus strand)..." &&
@@ -346,9 +346,9 @@ rule rpkm_noWindows_ds_intergenic:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_intergenic_rpkm.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_intergenic_rpkm.txt",
     log:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{regions}_ds_intergenic.log",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_ds_intergenic.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{regions}_ds_intergenic.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_ds_intergenic.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Calculating RPKM values (plus strand)..." &&

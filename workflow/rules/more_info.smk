@@ -221,9 +221,9 @@ rule more_info_noWindows_xr:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
     log:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{regions}_xr.log",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{noWindows}_xr.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{regions}_xr.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{noWindows}_xr.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Add info (plus strand)..." &&
@@ -256,9 +256,9 @@ rule more_info_noWindows_ds:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
     log:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{regions}_ds.log",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{noWindows}_ds.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{regions}_ds.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{noWindows}_ds.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Add info (plus strand)..." &&
@@ -291,9 +291,9 @@ rule more_info_noWindows_sim:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
     log:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{method}_sim_{regions}.log",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{method}_sim_{noWindows}.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{method}_sim_{regions}.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{method}_sim_{noWindows}.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Add info (plus strand)..." &&
@@ -326,9 +326,9 @@ rule more_info_noWindows_xr_intergenic:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
     log:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{regions}_xr_intergenic.log",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{noWindows}_xr_intergenic.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{regions}_xr_intergenic.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{noWindows}_xr_intergenic.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Add info (plus strand)..." &&
@@ -361,9 +361,9 @@ rule more_info_noWindows_ds_intergenic:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
     log:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{regions}_ds_intergenic.log",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{noWindows}_ds_intergenic.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{regions}_ds_intergenic.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{noWindows}_ds_intergenic.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Add info (plus strand)..." &&
@@ -396,9 +396,9 @@ rule more_info_noWindows_sim_intergenic:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
     log:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{method}_sim_{regions}_intergenic.log",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{method}_sim_{noWindows}_intergenic.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_more_info_noWindows_{method}_sim_{regions}_intergenic.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_more_info_noWindows_{method}_sim_{noWindows}_intergenic.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Add info (plus strand)..." &&
