@@ -9,6 +9,7 @@ wildcard_constraints:
     regions='|'.join([r for r in config["regions"]]),
     build=config["build"],
     samples='|'.join([s for s in (config["sample_ds"] + config["sample_xr"])]),
+    noWindows='|'.join([r for r in config["no_window_regions"]]),
 
 rule all:
     input:
