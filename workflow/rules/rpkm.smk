@@ -278,9 +278,9 @@ rule rpkm_noWindows_sim:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_rpkm.txt",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_rpkm.txt",
     log:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{method}_sim_{regions}.log",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{method}_sim_{noWindows}.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{method}_sim_{regions}.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{method}_sim_{noWindows}.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Calculating RPKM values (plus strand)..." &&
@@ -380,9 +380,9 @@ rule rpkm_noWindows_sim_intergenic:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_intergenic_rpkm.txt",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_intergenic_rpkm.txt",
     log:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{method}_sim_{regions}_intergenic.log",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{method}_sim_{noWindows}_intergenic.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{method}_sim_{regions}_intergenic.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_rpkm_noWindows_{method}_sim_{noWindows}_intergenic.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Calculating RPKM values (plus strand)..." &&
