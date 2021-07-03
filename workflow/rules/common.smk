@@ -180,7 +180,7 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
             inputList.append(sampledir + sample + "_" + build + 
             "_sorted_dipyrimidines_tes_combined_rpkm.bed") 
 
-    print(inputList)
+    #print(inputList)
     return inputList
 
 
