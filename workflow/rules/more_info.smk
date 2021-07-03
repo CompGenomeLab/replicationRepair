@@ -215,8 +215,8 @@ rule more_info_noWindows_xr:
         reads_p="resources/samples/XR/{samples}_{build}_sorted_plus.bed",
         reads_m="resources/samples/XR/{samples}_{build}_sorted_minus.bed",
     output:
-        plus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_info.txt"),
-        minus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_info.txt"),
+        plus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_noW_info.txt"),
+        minus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_noW_info.txt"),
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
@@ -250,8 +250,8 @@ rule more_info_noWindows_ds:
         reads_p="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_plus.bed",
         reads_m="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_minus.bed",
     output:
-        plus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_info.txt"),
-        minus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_info.txt"),
+        plus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_noW_info.txt"),
+        minus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_noW_info.txt"),
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
@@ -285,8 +285,8 @@ rule more_info_noWindows_sim:
         reads_p="results/sim/{samples}/{samples}_{build}_{method}_sim_plus.bed",
         reads_m="results/sim/{samples}/{samples}_{build}_{method}_sim_minus.bed",
     output:
-        plus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_info.txt"),
-        minus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_info.txt"),
+        plus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_noW_info.txt"),
+        minus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_noW_info.txt"),
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
@@ -320,8 +320,8 @@ rule more_info_noWindows_xr_intergenic:
         reads_p="results/XR/{samples}/{samples}_{build}_intergenic_sorted_plus.bed",
         reads_m="results/XR/{samples}/{samples}_{build}_intergenic_sorted_minus.bed",
     output:
-        plus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_intergenic_info.txt"),
-        minus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_intergenic_info.txt"),
+        plus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_noW_intergenic_info.txt"),
+        minus=temp("results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_noW_intergenic_info.txt"),
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
@@ -355,8 +355,8 @@ rule more_info_noWindows_ds_intergenic:
         reads_p="results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_plus.bed",
         reads_m="results/DS/{samples}/{samples}_{build}_intergenic_sorted_ds_dipyrimidines_minus.bed",
     output:
-        plus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_intergenic_info.txt"),
-        minus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_intergenic_info.txt"),
+        plus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_noW_intergenic_info.txt"),
+        minus=temp("results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_noW_intergenic_info.txt"),
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),
@@ -390,8 +390,8 @@ rule more_info_noWindows_sim_intergenic:
         reads_p="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_intergenic.bed",
         reads_m="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_intergenic.bed",
     output:
-        plus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_intergenic_info.txt"),
-        minus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_intergenic_info.txt"),
+        plus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_noW_intergenic_info.txt"),
+        minus=temp("results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_noW_intergenic_info.txt"),
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[2], input[3]),

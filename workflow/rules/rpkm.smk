@@ -204,11 +204,11 @@ rule rpkm_sim_intergenic:
 
 rule rpkm_noWindows_xr:
     input:
-        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_info.txt",
-        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_info.txt",
+        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_noW_info.txt",
+        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_noW_info.txt",
     output:
-        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_rpkm.txt",
-        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_rpkm.txt",
+        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_noW_rpkm.txt",
+        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_noW_rpkm.txt",
     log:
         "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_xr.log",
     benchmark:
@@ -238,11 +238,11 @@ rule rpkm_noWindows_xr:
 
 rule rpkm_noWindows_ds:
     input:
-        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_info.txt",
-        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_info.txt",
+        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_noW_info.txt",
+        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_noW_info.txt",
     output:
-        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_rpkm.txt",
-        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_rpkm.txt",
+        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_noW_rpkm.txt",
+        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_noW_rpkm.txt",
     log:
         "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_ds.log",
     benchmark:
@@ -272,11 +272,11 @@ rule rpkm_noWindows_ds:
 
 rule rpkm_noWindows_sim:
     input:
-        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_info.txt",
-        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_info.txt",
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_noW_info.txt",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_noW_info.txt",
     output:
-        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_rpkm.txt",
-        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_rpkm.txt",
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_noW_rpkm.txt",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_noW_rpkm.txt",
     log:
         "logs/{samples}/{samples}_{build}_rpkm_noWindows_{method}_sim_{noWindows}.log",
     benchmark:
@@ -306,11 +306,11 @@ rule rpkm_noWindows_sim:
 
 rule rpkm_noWindows_xr_intergenic:
     input:
-        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_intergenic_info.txt",
-        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_intergenic_info.txt",
+        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_noW_intergenic_info.txt",
+        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_noW_intergenic_info.txt",
     output:
-        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_intergenic_rpkm.txt",
-        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_intergenic_rpkm.txt",
+        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{noWindows}_noW_intergenic_rpkm.txt",
+        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{noWindows}_noW_intergenic_rpkm.txt",
     log:
         "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_xr_intergenic.log",
     benchmark:
@@ -340,11 +340,11 @@ rule rpkm_noWindows_xr_intergenic:
 
 rule rpkm_noWindows_ds_intergenic:
     input:
-        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_intergenic_info.txt",
-        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_intergenic_info.txt",
+        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_noW_intergenic_info.txt",
+        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_noW_intergenic_info.txt",
     output:
-        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_intergenic_rpkm.txt",
-        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_intergenic_rpkm.txt",
+        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{noWindows}_noW_intergenic_rpkm.txt",
+        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{noWindows}_noW_intergenic_rpkm.txt",
     log:
         "logs/{samples}/{samples}_{build}_rpkm_noWindows_{noWindows}_ds_intergenic.log",
     benchmark:
@@ -374,11 +374,11 @@ rule rpkm_noWindows_ds_intergenic:
 
 rule rpkm_noWindows_sim_intergenic:
     input:
-        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_intergenic_info.txt",
-        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_intergenic_info.txt",
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_noW_intergenic_info.txt",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_noW_intergenic_info.txt",
     output:
-        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_intergenic_rpkm.txt",
-        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_intergenic_rpkm.txt",
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{noWindows}_noW_intergenic_rpkm.txt",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{noWindows}_noW_intergenic_rpkm.txt",
     log:
         "logs/{samples}/{samples}_{build}_rpkm_noWindows_{method}_sim_{noWindows}_intergenic.log",
     benchmark:
