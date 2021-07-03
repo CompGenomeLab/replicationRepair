@@ -108,17 +108,17 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
             sampledir = "results/XR/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_xr_plus_" + regions + "_intergenic_combined_rpkm.txt")
+            "_sorted_xr_plus_" + regions + "_intergenic" + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_xr_minus_" + regions + "_intergenic_combined_rpkm.txt")
+            "_sorted_xr_minus_" + regions + "_intergenic" + window + "rpkm.txt")
 
         for sample in sampleList_ds:
             sampledir = "results/DS/" + sample + "/" 
             
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_ds_dipyrimidines_plus_" + regions + "_intergenic_combined_rpkm.txt")
+            "_sorted_ds_dipyrimidines_plus_" + regions + "_intergenic" + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_ds_dipyrimidines_minus_" + regions + "_intergenic_combined_rpkm.txt")
+            "_sorted_ds_dipyrimidines_minus_" + regions + "_intergenic" + window + "rpkm.txt")
 
     elif outformat == "sim":
         for sample in sampleList_xr:
@@ -180,6 +180,7 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
             inputList.append(sampledir + sample + "_" + build + 
             "_sorted_dipyrimidines_tes_combined_rpkm.bed") 
 
+    print(inputList)
     return inputList
 
 
