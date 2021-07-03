@@ -24,7 +24,9 @@ rule tss_xr:
         bedtools intersect \
         -sorted -a {input.genes} \
         -b {input.comb} \
-        -wa -c -S -F 0.5 > {output.TS} &&
+        -wa -c -S -F 0.5 |
+        awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$5"\\t""TS""\\t"$7}}' \
+        > {output.TS} &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
@@ -32,7 +34,9 @@ rule tss_xr:
         bedtools intersect \
         -sorted -a {input.genes} \
         -b {input.comb} \
-        -wa -c -s -F 0.5 > {output.NTS} &&
+        -wa -c -s -F 0.5 |
+        awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$5"\\t""NTS""\\t"$7}}' \
+        > {output.NTS} &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
 
@@ -94,7 +98,9 @@ rule tss_ds:
         bedtools intersect \
         -sorted -a {input.genes} \
         -b {input.comb} \
-        -wa -c -S -F 0.5 > {output.TS} &&
+        -wa -c -S -F 0.5 |
+        awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$5"\\t""TS""\\t"$7}}' \
+        > {output.TS} &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
@@ -102,7 +108,9 @@ rule tss_ds:
         bedtools intersect \
         -sorted -a {input.genes} \
         -b {input.comb} \
-        -wa -c -s -F 0.5 > {output.NTS} &&
+        -wa -c -s -F 0.5 |
+        awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$5"\\t""NTS""\\t"$7}}' \
+        > {output.NTS} &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
 
