@@ -78,7 +78,12 @@ def getRegion(region, rawRegionList, regionList):
         
     return "results/regions/" + rawRegionList[idx] + "_sorted.bed"
 
-def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="real"):
+def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="real", noW=False):
+
+    if noW:
+        window = "_"
+    else:
+        window = "_combined_"
 
     inputList = []
     if outformat == "real":
@@ -86,17 +91,17 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
             sampledir = "results/XR/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_xr_plus_" + regions + "_combined_rpkm.txt")
+            "_sorted_xr_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_xr_minus_" + regions + "_combined_rpkm.txt")
+            "_sorted_xr_minus_" + regions + window + "rpkm.txt")
 
         for sample in sampleList_ds:
             sampledir = "results/DS/" + sample + "/" 
             
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_ds_dipyrimidines_plus_" + regions + "_combined_rpkm.txt")
+            "_sorted_ds_dipyrimidines_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_ds_dipyrimidines_minus_" + regions + "_combined_rpkm.txt")
+            "_sorted_ds_dipyrimidines_minus_" + regions + window + "rpkm.txt")
 
     elif outformat == "intergenic":
         for sample in sampleList_xr:
@@ -120,17 +125,17 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
             sampledir = "results/sim/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
-            "_xr_sim_plus_" + regions + "_combined_rpkm.txt")
+            "_xr_sim_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_xr_sim_minus_" + regions + "_combined_rpkm.txt")
+            "_xr_sim_minus_" + regions + window + "rpkm.txt")
 
         for sample in sampleList_ds:
             sampledir = "results/sim/" + sample + "/" 
             
             inputList.append(sampledir + sample + "_" + build + 
-            "_ds_sim_plus_" + regions + "_combined_rpkm.txt")
+            "_ds_sim_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_ds_sim_minus_" + regions + "_combined_rpkm.txt")  
+            "_ds_sim_minus_" + regions + window + "rpkm.txt")  
 
     elif outformat == "sim_intergenic":
         for sample in sampleList_xr:

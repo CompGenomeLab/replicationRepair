@@ -85,7 +85,7 @@ rule combine_files_tss:
     
 rule combine_files_noWindows:
     input:
-        lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.noWindows),
+        lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.noWindows, noW=True),
     output:
         "results/final/final_reports_noWindows_{build}_{noWindows}.txt",
     log:
@@ -102,7 +102,7 @@ rule combine_files_noWindows:
 
 rule combine_files_noWindows_sim:
     input:
-        lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.noWindows, outformat="sim"),
+        lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.noWindows, outformat="sim", noW=True),
     output:
         "results/final/final_reports_noWindows_sim_{build}_{noWindows}.txt",
     log:
@@ -119,7 +119,7 @@ rule combine_files_noWindows_sim:
 
 rule combine_files_noWindows_intergenic:
     input:
-        lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.noWindows, outformat="intergenic"),
+        lambda w: combineOutputs(config["build"], config["sample_xr"], config["sample_ds"], w.noWindows, outformat="intergenic", noW=True),
     output:
         "results/final/final_reports_noWindows_{build}_{noWindows}_intergenic.txt",
     log:
