@@ -115,7 +115,7 @@ rule tss_ds:
         echo "`date -R`: Process failed...") >> {log} 2>&1
 
         (echo "`date -R`: Cat TS & NTS files..." &&
-        paste {output.TS} {output.NTS} > {output.tss} &&
+        cat {output.TS} {output.NTS} > {output.tss} &&
         echo "`date -R`: Success! TS & NTS files are combined." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
                 
