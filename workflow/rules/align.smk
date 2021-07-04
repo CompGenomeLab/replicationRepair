@@ -136,7 +136,7 @@ rule bowtie2_se_edu:
         --threads {threads} \
         {params.extra} \
         -x {params.ref_genome} \
-        -U {edu.sample[0]} -S {output.sam} &&
+        -U {input.sample[0]} -S {output.sam} &&
         echo "`date -R`: Success! Alignment is done." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
@@ -170,7 +170,7 @@ rule bowtie2_pe_edu:
         --threads {threads} \
         {params.extra} \
         -x {params.ref_genome} \
-        -1 {edu.sample[0]} -2 {edu.sample[1]} -S {output.sam} &&
+        -1 {input.sample[0]} -2 {input.sample[1]} -S {output.sam} &&
         echo "`date -R`: Success! Alignment is done." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
