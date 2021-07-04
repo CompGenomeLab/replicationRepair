@@ -8,7 +8,7 @@ include: "workflow/rules/common.smk"
 wildcard_constraints:
     regions='|'.join([r for r in config["regions"]]),
     build=config["build"],
-    samples='|'.join([s for s in (config["sample_ds"] + config["sample_xr"])]),
+    samples='|'.join([s for s in (config["sample_ds"] + config["sample_xr"] + config["sample_edu"] + config["sample_input"] + config["sample_okseq"] + config["sample_mutation"])]),
     noWindows='|'.join([r for r in config["no_window_regions"]]),
     tss_tes='tss|tes'
 
