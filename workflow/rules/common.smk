@@ -16,7 +16,7 @@ def isSingle(sample, sampleList, method):
     elif os.path.isfile(pairedR1):
         return False
     else:
-        raise(ValueError("Sample not found..."))
+        raise(ValueError(sample + ": Sample not found..."))
 
 def input4filter(wildcards, sampleList, method):
 
