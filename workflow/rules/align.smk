@@ -11,9 +11,9 @@ rule bowtie2_se_input:
         extra="",
     threads: 16  
     log:
-        "logs/{samples}/{samples}_{build}_bowtie2.log",
+        "logs/{samples}/{samples}_{build}_bowtie2_se_input.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bowtie2.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_bowtie2_se_input.benchmark.txt",
     conda:
         "../envs/align.yaml"
     shell:  
@@ -45,9 +45,9 @@ rule bowtie2_pe_input:
         extra="-X 1000",
     threads: 16  
     log:
-        "logs/{samples}/{samples}_{build}_bowtie2.log",
+        "logs/{samples}/{samples}_{build}_bowtie2_pe_input.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bowtie2.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_bowtie2_pe_input.benchmark.txt",
     conda:
         "../envs/align.yaml"
     shell:  
@@ -82,9 +82,9 @@ rule bowtie2_se_okseq:
         extra="",
     threads: 16  
     log:
-        "logs/{samples}/{samples}_{build}_bowtie2.log",
+        "logs/{samples}/{samples}_{build}_bowtie2_se_okseq.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bowtie2.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_bowtie2_se_okseq.benchmark.txt",
     conda:
         "../envs/align.yaml"
     shell:  
@@ -112,3 +112,70 @@ rule bowtie2_se_okseq:
         """
 
 
+rule bowtie2_se_edu:
+    input:
+        sample=["resources/samples/edu/{samples}.fastq.gz"],
+        bowtie2="resources/ref_genomes/{build}/Bowtie2/genome_{build}.1.bt2",
+    output:
+        sam=temp("results/edu/{samples}/{samples}_se_{build}.sam"),
+        bam="results/edu/{samples}/{samples}_se_{build}.bam",
+    params:
+        ref_genome="resources/ref_genomes/{build}/Bowtie2/genome_{build}",
+        extra="",
+    threads: 16  
+    log:
+        "logs/{samples}/{samples}_{build}_bowtie2_se_edu.log",
+    benchmark:
+        "logs/{samples}/{samples}_{build}_bowtie2_se_edu.benchmark.txt",
+    conda:
+        "../envs/align.yaml"
+    shell:  
+        """
+        (echo "`date -R`: Aligning fastq file..." &&
+        bowtie2 \
+        --threads {threads} \
+        {params.extra} \
+        -x {params.ref_genome} \
+        -U {edu.sample[0]} -S {output.sam} &&
+        echo "`date -R`: Success! Alignment is done." || 
+        echo "`date -R`: Process failed...") > {log} 2>&1
+
+        (echo "`date -R`: Converting sam to bam..." &&
+        samtools view -Sbh -o {output.bam} {output.sam} &&
+        echo "`date -R`: Success! Conversion is done." || 
+        echo "`date -R`: Process failed...") >> {log} 2>&1
+        """
+
+rule bowtie2_pe_edu:
+    input:
+        sample=["resources/samples/edu/{samples}_R1.fastq.gz", "resources/samples/edu/{samples}_R2.fastq.gz"],
+        bowtie2="resources/ref_genomes/{build}/Bowtie2/genome_{build}.1.bt2",
+    output:
+        sam=temp("results/edu/{samples}/{samples}_pe_{build}.sam"),
+        bam="results/edu/{samples}/{samples}_pe_{build}.bam",
+    params:
+        ref_genome="resources/ref_genomes/{build}/Bowtie2/genome_{build}",
+        extra="-X 1000",
+    threads: 16  
+    log:
+        "logs/{samples}/{samples}_{build}_bowtie2_pe_edu.log",
+    benchmark:
+        "logs/{samples}/{samples}_{build}_bowtie2_pe_edu.benchmark.txt",
+    conda:
+        "../envs/align.yaml"
+    shell:  
+        """
+        (echo "`date -R`: Aligning fastq files..." &&
+        bowtie2 \
+        --threads {threads} \
+        {params.extra} \
+        -x {params.ref_genome} \
+        -1 {edu.sample[0]} -2 {edu.sample[1]} -S {output.sam} &&
+        echo "`date -R`: Success! Alignment is done." || 
+        echo "`date -R`: Process failed...") > {log} 2>&1
+
+        (echo "`date -R`: Converting sam to bam..." &&
+        samtools view -Sb -o {output.bam} {output.sam} &&
+        echo "`date -R`: Success! Conversion is done." || 
+        echo "`date -R`: Process failed...") >> {log} 2>&1
+        """

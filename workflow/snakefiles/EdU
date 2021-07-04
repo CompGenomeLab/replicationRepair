@@ -1,0 +1,10 @@
+#!/bin/env python
+
+include: "../rules/fastqc.smk"
+include: "../rules/align.smk"
+include: "../rules/bam2bed.smk"
+include: "../rules/sort_filter.smk"
+include: "../rules/sep_strands.smk"
+include: "../rules/genomecov.smk"
+include: "../rules/bedGraphToBigWig.smk"
+include: "../rules/peak_calling.smk"

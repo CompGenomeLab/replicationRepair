@@ -15,6 +15,7 @@ wildcard_constraints:
 rule all:
     input:
         #lambda w: allInput(config["build"], config["sample_input"], "input"),
+        lambda w: allInput(config["build"], config["sample_edu"], "edu"),
         #lambda w: allInput(config["build"], config["sample_okseq"], "okseq"),
         #lambda w: allInput(config["build"], config["sample_mutation"], "mutation"),
         lambda w: allInput(config["build"], config["sample_ds"], "ds", config["regions"]),
@@ -32,7 +33,7 @@ include: "workflow/rules/genome_idx2ron.smk"
 include: "workflow/snakefiles/DNA-seq"
 
 # EdU
-#include: "workflow/snakefiles/EdU"
+include: "workflow/snakefiles/EdU"
 
 # OK-seq
 include: "workflow/snakefiles/OK-seq"

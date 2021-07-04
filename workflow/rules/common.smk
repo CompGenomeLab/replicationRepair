@@ -18,6 +18,12 @@ def isSingle(sample, sampleList, method):
     else:
         raise(ValueError("Sample not found..."))
 
+def input4filter(wildcards, sampleList, method):
+
+    if isSingle(wildcards.samples, sampleList, method):
+        return ("results/" + method + "/{samples}/{samples}_{build}_se.bed")
+    else:    
+        return ("results/" + method + "/{samples}/{samples}_{build}_pe.bed")
 
 def lineNum(file):
     
@@ -226,6 +232,34 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
             else:
                 inputList.append(sampledir + sample + "_R1.html")
                 inputList.append(sampledir + sample + "_R2.html")
+
+    if method == "edu":
+
+        for sample in sampleList:
+            sampledir = "results/edu/" + sample + "/" 
+
+            if isSingle(sample, sampleList, method):
+                inputList.append(sampledir + sample + ".html")
+                
+                if "inp" not in sample:
+                    inputList.append("results/edu/" + sample + "_" + build + 
+                    "_se_peaks.narrowPeak")
+                    inputList.append("results/edu/" + sample + "_" + build + 
+                    "_se_peaks.broadPeak")
+            else:
+                inputList.append(sampledir + sample + "_R1.html")
+                inputList.append(sampledir + sample + "_R2.html")
+
+                if "inp" not in sample:
+                    inputList.append("results/edu/" + sample + "_" + build + 
+                    "_pe_peaks.narrowPeak")
+                    inputList.append("results/edu/" + sample + "_" + build + 
+                    "_pe_peaks.broadPeak")
+
+            inputList.append(sampledir + sample + "_" + build + 
+                "_sorted_plus.bw")
+            inputList.append(sampledir + sample + "_" + build + 
+                "_sorted_minus.bw")
 
     if method == "mutation":
     
