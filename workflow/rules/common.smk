@@ -29,7 +29,7 @@ def input4peakCalling(wildcards, build, method):
 
     samp = "results/" + method + "/" + wildcards.samples + "/" + wildcards.samples + "_" + build + "_sorted.bam"
 
-    if "rep2" in wildcards.sampless:
+    if "rep2" in wildcards.samples:
         inp = samp.replace("rep2-", "rep2-inp")  
     else:
         inp = samp.replace("rep-", "rep-inp")  
