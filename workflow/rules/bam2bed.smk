@@ -26,7 +26,7 @@ rule bam2bed_pe_input:
         "results/input/{samples}/{samples}_pe_{build}.bam",
     output:
         bed="results/input/{samples}/{samples}_{build}_pe.bed",
-        bam=temp("results/input/{samples}/{samples}_{build}_sorted.bam"),
+        bam="results/input/{samples}/{samples}_{build}_sorted.bam",
     params:
         q_trim="-q 20 -bf 0x2",
     log:
@@ -83,7 +83,7 @@ rule bam2bed_pe_edu:
         "results/edu/{samples}/{samples}_pe_{build}.bam",
     output:
         bed="results/edu/{samples}/{samples}_{build}_pe.bed",
-        bam=temp("results/edu/{samples}/{samples}_{build}_sorted.bam"),
+        bam="results/edu/{samples}/{samples}_{build}_sorted.bam",
     params:
         q_trim="-q 20 -bf 0x2",
     log:
