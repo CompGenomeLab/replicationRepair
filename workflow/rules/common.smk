@@ -240,25 +240,16 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
 
             if isSingle(sample, sampleList, method):
                 inputList.append(sampledir + sample + ".html")
-                inputList.append(sampledir + sample + "_se_" + build + 
-                ".bam")
 
-                if "inp" not in sample:
-                    inputList.append("results/edu/" + sample + "_" + build + 
-                    "_se_peaks.narrowPeak")
-                    inputList.append("results/edu/" + sample + "_" + build + 
-                    "_se_peaks.broadPeak")
             else:
                 inputList.append(sampledir + sample + "_R1.html")
                 inputList.append(sampledir + sample + "_R2.html")
-                inputList.append(sampledir + sample + "_pe_" + build + 
-                ".bam")
 
-                if "inp" not in sample:
-                    inputList.append("results/edu/" + sample + "_" + build + 
-                    "_pe_peaks.narrowPeak")
-                    inputList.append("results/edu/" + sample + "_" + build + 
-                    "_pe_peaks.broadPeak")
+            if "inp" not in sample:
+                inputList.append("results/edu/" + sample + "_" + build + 
+                "_peaks.narrowPeak")
+                inputList.append("results/edu/" + sample + "_" + build + 
+                "_peaks.broadPeak")
 
             inputList.append(sampledir + sample + "_" + build + 
                 "_sorted_plus.bw")
