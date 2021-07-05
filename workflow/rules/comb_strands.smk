@@ -6,9 +6,9 @@ rule comb_strands_mutation:
         comb=temp("results/mutation/{samples}/{samples}_target_mut_comb_{regions}.txt"),
         org="results/mutation/{samples}/{samples}_target_mut_comb_{regions}_org.txt",
     log:
-        "logs/{samples}/{samples}_comb_strands_mutation.log",
+        "logs/{samples}/{samples}_{regions}_comb_strands_mutation.log",
     benchmark:
-        "logs/{samples}/{samples}_comb_strands_mutation.benchmark.txt",
+        "logs/{samples}/{samples}_{regions}_comb_strands_mutation.benchmark.txt",
     shell:  
         """
         (echo "`date -R`: Combining plus stranded mutations..." &&
@@ -36,9 +36,9 @@ rule comb_strands_mutation_intergenic:
         comb=temp("results/mutation/{samples}/{samples}_target_mut_comb_{regions}_intergenic.txt"),
         org="results/mutation/{samples}/{samples}_target_mut_comb_{regions}_intergenic_org.txt",
     log:
-        "logs/{samples}/{samples}_comb_strands_mutation_intergenic.log",
+        "logs/{samples}/{samples}_{regions}_comb_strands_mutation_intergenic.log",
     benchmark:
-        "logs/{samples}/{samples}_comb_strands_mutation_intergenic.benchmark.txt",
+        "logs/{samples}/{samples}_{regions}_comb_strands_mutation_intergenic.benchmark.txt",
     shell:  
         """
         (echo "`date -R`: Combining plus stranded mutations..." &&
