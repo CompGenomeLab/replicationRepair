@@ -5,7 +5,7 @@ rule peak_calling_edu:
         narrow="results/edu/{samples}_{build}_peaks.narrowPeak",
         broad="results/edu/{samples}_{build}_peaks.broadPeak",
     params:
-        name="{samples}_{build}_peaks", 
+        name="{samples}_{build}", 
         outdir="results/edu",
     log:
         "logs/{samples}/{samples}_{build}_peak_calling_edu.log",
