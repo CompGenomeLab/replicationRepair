@@ -106,9 +106,9 @@ rule intergenic_mutation:
         plus_intergenic="results/mutation/{samples}/{samples}_intergenic_target_mut_plus.tsv",
         minus_intergenic="results/mutation/{samples}/{samples}_intergenic_target_mut_minus.tsv",
     log:
-        "logs/{samples}/{samples}_{build}_intergenic_mutation.log",
+        "logs/{samples}/{samples}_intergenic_mutation.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_intergenic_mutation.benchmark.txt",
+        "logs/{samples}/{samples}_intergenic_mutation.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
