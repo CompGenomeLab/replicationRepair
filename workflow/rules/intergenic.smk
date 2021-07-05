@@ -104,7 +104,7 @@ rule intergenic_mutation:
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
         plus_intergenic="results/mutation/{samples}/{samples}_intergenic_target_mut_plus.tsv",
-        minus_intergenic="results/mutation/{samples}/{samples}_intergenic_target_mut_plus.tsv",
+        minus_intergenic="results/mutation/{samples}/{samples}_intergenic_target_mut_minus.tsv",
     log:
         "logs/{samples}/{samples}_{build}_intergenic_mutation.log",
     benchmark:
