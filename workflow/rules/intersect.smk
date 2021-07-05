@@ -259,7 +259,7 @@ rule intersect_mutation_intergenic:
     shell:
         """
         (echo "`date -R`: Sorting and filtering bed file by chromosomes..." &&
-        sort -u -k1,1 -k2,2n -k3,3n {params.region}|&
+        sort -u -k1,1 -k2,2n -k3,3n {params.region} |&
         egrep "'^chr([1-9]|1[0-9]|2[0-2]|X)'" > {params.region}_sorted.bed &&
         echo "`date -R`: Success! Bed file is filtered." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
