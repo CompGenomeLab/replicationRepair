@@ -17,7 +17,7 @@ rule all:
         #lambda w: allInput(config["build"], config["sample_input"], "input"),
         lambda w: allInput(config["build"], config["sample_edu"], "edu"),
         #lambda w: allInput(config["build"], config["sample_okseq"], "okseq"),
-        #lambda w: allInput(config["build"], config["sample_mutation"], "mutation"),
+        lambda w: allInput(config["build"], config["sample_mutation"], "mutation", config["regions_mut"]),
         lambda w: allInput(config["build"], config["sample_ds"], "ds", config["regions"]),
         lambda w: allInput(config["build"], config["sample_xr"], "xr", config["regions"]),
         lambda w: allInput(build=config["build"], method="report", 
