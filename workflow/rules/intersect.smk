@@ -218,17 +218,23 @@ rule intersect_mutation:
         "../envs/bed2fasta.yaml"
     shell:
         """
+        (echo "`date -R`: Sorting and filtering bed file by chromosomes..." &&
+        sort -u -k1,1 -k2,2n -k3,3n {params.region} |&
+        egrep "'^chr([1-9]|1[0-9]|2[0-2]|X)'" > {params.region}_sorted.bed &&
+        echo "`date -R`: Success! Bed file is filtered." || 
+        echo "`date -R`: Process failed...") > {log} 2>&1
+
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {params.region}_sorted.bed \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        echo "`date -R`: Process failed...") >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {params.region}_sorted.bed \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -242,7 +248,6 @@ rule intersect_mutation_intergenic:
     output:
         plus="results/mutation/{samples}/{samples}_target_mut_plus_{regions}_intergenic.txt",
         minus="results/mutation/{samples}/{samples}_target_mut_minus_{regions}_intergenic.txt",
-        region="{regions}.bed_sorted.bed",
     params:
         region=lambda w: getRegion(w.regions, config["region_mut_file"], config["regions_mut"]),    
     log:
@@ -254,14 +259,14 @@ rule intersect_mutation_intergenic:
     shell:
         """
         (echo "`date -R`: Sorting and filtering bed file by chromosomes..." &&
-        sort -u -k1,1 -k2,2n -k3,3n {params.region} |&
-        egrep "'^chr([1-9]|1[0-9]|2[0-2]|X)'" > {output.region} &&
+        sort -u -k1,1 -k2,2n -k3,3n {params.region}|&
+        egrep "'^chr([1-9]|1[0-9]|2[0-2]|X)'" > {params.region}_sorted.bed &&
         echo "`date -R`: Success! Bed file is filtered." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
         
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -sorted -a {params.region}_sorted.bed \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -269,7 +274,7 @@ rule intersect_mutation_intergenic:
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -sorted -a {params.region}_sorted.bed \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
