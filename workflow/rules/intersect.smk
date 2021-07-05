@@ -207,13 +207,13 @@ rule intersect_mutation:
         minus="results/mutation/{samples}/{samples}_target_mut_minus.tsv",
     output:
         plus="results/mutation/{samples}/{samples}_target_mut_plus_{regions}.txt",
-        minus="results/mutation/{samples}/{samples}_target_mut_plus_{regions}.txt",
+        minus="results/mutation/{samples}/{samples}_target_mut_minus_{regions}.txt",
     params:
         region=lambda w: getRegion(w.regions, config["region_mut_file"], config["regions_mut"]),    
     log:
-        "logs/{samples}/{samples}_{build}_intersect_mutation_{regions}.log",
+        "logs/{samples}/{samples}_intersect_mutation_{regions}.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_intersect_mutation_{regions}.benchmark.txt",
+        "logs/{samples}/{samples}_intersect_mutation_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -238,16 +238,16 @@ rule intersect_mutation:
 rule intersect_mutation_intergenic:
     input:
         plus="results/mutation/{samples}/{samples}_intergenic_target_mut_plus.tsv",
-        minus="results/mutation/{samples}/{samples}_intergenic_target_mut_plus.tsv",
+        minus="results/mutation/{samples}/{samples}_intergenic_target_mut_minus.tsv",
     output:
         plus="results/mutation/{samples}/{samples}_target_mut_plus_{regions}_intergenic.txt",
         minus="results/mutation/{samples}/{samples}_target_mut_minus_{regions}_intergenic.txt",
     params:
         region=lambda w: getRegion(w.regions, config["region_mut_file"], config["regions_mut"]),    
     log:
-        "logs/{samples}/{samples}_{build}_intersect_mutation_{regions}_intergenic.log",
+        "logs/{samples}/{samples}_intersect_mutation_{regions}_intergenic.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_intersect_mutation_{regions}_intergenic.benchmark.txt",
+        "logs/{samples}/{samples}_intersect_mutation_{regions}_intergenic.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
