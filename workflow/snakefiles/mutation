@@ -4,4 +4,6 @@ include: "../rules/get_sbs_muts.smk"
 include: "../rules/organize.smk"
 include: "../rules/filter_target_muts.smk"
 include: "../rules/sep_strands.smk"
-
+include: "../rules/intergenic.smk"
+include: "../rules/comb_strands.smk"
+include: "../rules/combine_windows.smk"

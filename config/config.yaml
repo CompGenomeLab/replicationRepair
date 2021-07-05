@@ -99,6 +99,14 @@ regions:
   - "late_broadpeaks_repdomains_windows_51_100"
   - "early_broadpeaks_uv_repdomains_windows_51_100"
   - "late_broadpeaks_uv_repdomains_windows_51_100"
+  - "early_broadpeaks_repdomains_rep2_windows_51_100.bed"
+  - "early_peaks_repdomains_rep2_windows_11_100.bed"
+  - "late_broadpeaks_repdomains_rep2_windows_51_100.bed"
+  - "late_peaks_repdomains_rep2_windows_11_100.bed"
+  - "early_broadpeaks_uv_repdomains_rep2_windows_51_100.bed"
+  - "early_peaks_uv_repdomains_rep2_windows_11_100.bed"
+  - "late_broadpeaks_uv_repdomains_rep2_windows_51_100.bed"
+  - "late_peaks_uv_repdomains_rep2_windows_11_100.bed"
   #- "repdomains_hela"
 
 region_file:
@@ -116,10 +124,18 @@ region_file:
   #- "R21061297-EdUrep-4hrls_combined_peaks_repdomains_windows_11_100.bed"
   #- "R21061297-EdUrep-UV1-5hrls_combined_peaks_repdomains_windows_11_100.bed"
   #- "R21061297-EdUrep-UV3-5hrls_combined_peaks_repdomains_windows_11_100.bed"
-  - "R21061297-EdUrep-2hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
-  - "R21061297-EdUrep-4hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
-  - "R21061297-EdUrep-UV1-5hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
-  - "R21061297-EdUrep-UV3-5hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
+  #- "R21061297-EdUrep-2hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
+  #- "R21061297-EdUrep-4hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
+  #- "R21061297-EdUrep-UV1-5hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
+  #- "R21061297-EdUrep-UV3-5hrls_combined_broadpeaks_repdomains_windows_51_100.bed"
+  - "R21071354-EdUrep2-2hrls2_combined_broadpeaks_repdomains_windows_51_100.bed"
+  - "R21071354-EdUrep2-2hrls2_combined_peaks_repdomains_windows_11_100.bed"
+  - "R21071354-EdUrep2-4hrls2_combined_broadpeaks_repdomains_windows_51_100.bed"
+  - "R21071354-EdUrep2-4hrls2_combined_peaks_repdomains_windows_11_100.bed"
+  - "R21071354-EdUrep2-UV1-5hrls2_combined_broadpeaks_repdomains_windows_51_100.bed"
+  - "R21071354-EdUrep2-UV1-5hrls2_combined_peaks_repdomains_windows_11_100.bed"
+  - "R21071354-EdUrep2-UV3-5hrls2_combined_broadpeaks_repdomains_windows_51_100.bed"
+  - "R21071354-EdUrep2-UV3-5hrls2_combined_peaks_repdomains_windows_11_100.bed"
   #- "repdomains.hela.bed"
 
 region_comb_opt:
@@ -137,6 +153,14 @@ region_comb_opt:
   #- ""
   #- ""
   #- ""
+  #- ""
+  #- ""
+  #- ""
+  #- ""
+  - ""
+  - ""
+  - ""
+  - ""
   - ""
   - ""
   - ""
@@ -145,3 +169,14 @@ region_comb_opt:
 
 no_window_regions:
   - "repdomains_hela"
+
+regions_mut:
+  - "hela_no_overlap_repdomains_windows_201_100"
+
+region_mut_file:
+  - "hela_no_overlap_repdomains_windows_201_100.bed"
+
+region_mut_comb_opt:  
+  - "-score T -strand T"
+
+

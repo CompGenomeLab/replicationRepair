@@ -277,6 +277,16 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
             inputList.append(sampledir + sample + "_target_mut_plus.tsv") 
             inputList.append(sampledir + sample + "_target_mut_minus.tsv")
 
+            for region in regions:
+                inputList.append(sampledir + sample + "_target_mut_comb_" + 
+                region + "_combined.txt")
+                inputList.append(sampledir + sample + "_target_mut_comb_" + 
+                region + "_intergenic_combined.txt")
+                inputList.append(sampledir + sample + "_target_mut_comb_" + 
+                region + "_org.txt")
+                inputList.append(sampledir + sample + "_target_mut_comb_" + 
+                region + "_intergenic_org.txt")
+
     if method == "ds":
 
         for sample in sampleList:
