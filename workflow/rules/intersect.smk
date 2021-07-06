@@ -220,7 +220,7 @@ rule intersect_mutation:
         """
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region}_sorted.bed \
+        -sorted -a {params.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -228,7 +228,7 @@ rule intersect_mutation:
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region}_sorted.bed \
+        -sorted -a {params.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
