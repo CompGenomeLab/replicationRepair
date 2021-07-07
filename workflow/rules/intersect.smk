@@ -5,7 +5,7 @@ rule intersect_xr:
     output:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}.txt",
-        region=temp("results/{samples}_{regions}_xr.bed"),
+        region=temp("results/{samples}_{build}_{regions}_xr.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
@@ -45,7 +45,7 @@ rule intersect_ds:
     output:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}.txt",
-        region=temp("results/{samples}_{regions}_ds.bed"),
+        region=temp("results/{samples}_{build}_{regions}_ds.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),    
     log:
@@ -85,7 +85,7 @@ rule intersect_sim:
     output:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}.txt",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}.txt",
-        region=temp("results/{samples}_{regions}_sim.bed"),
+        region=temp("results/{samples}_{build}_{method}_{regions}_sim.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
@@ -126,7 +126,7 @@ rule intersect_xr_intergenic:
     output:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}_intergenic.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}_intergenic.txt",
-        region=temp("results/{samples}_{regions}_xr_intergenic.bed"),
+        region=temp("results/{samples}_{build}_{regions}_xr_intergenic.bed"),
     log:
         "logs/{samples}/{samples}_{build}_intersect_{regions}_xr_intergenic.log",
     benchmark:
@@ -164,7 +164,7 @@ rule intersect_ds_intergenic:
     output:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}_intergenic.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}_intergenic.txt",
-        region=temp("results/{samples}_{regions}_ds_intergenic.bed"),
+        region=temp("results/{samples}_{build}_{regions}_ds_intergenic.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),    
     log:
@@ -204,7 +204,7 @@ rule intersect_sim_intergenic:
     output:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}_intergenic.txt",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}_intergenic.txt",
-        region=temp("results/{samples}_{regions}_sim_intergenic.bed"),
+        region=temp("results/{samples}_{build}_{method}_{regions}_sim_intergenic.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
