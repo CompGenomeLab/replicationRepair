@@ -80,8 +80,8 @@ rule intersect_ds:
 
 rule intersect_sim:
     input:
-        plus_sim="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_sorted.txt",
-        minus_sim="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_sorted.txt",
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_sorted.txt",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_sorted.txt",
     output:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}.txt",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}.txt",
