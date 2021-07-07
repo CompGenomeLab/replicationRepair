@@ -5,6 +5,7 @@ rule intersect_xr:
     output:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}.txt",
+        region=temp("results/{samples}_{regions}_xr.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
@@ -14,18 +15,23 @@ rule intersect_xr:
     conda:
         "../envs/bed2fasta.yaml"
     shell:
-        """
+        """   
+        (echo "`date -R`: Copy region file {params.region}..." &&
+        cp {params.region} {output.region} &&
+        echo "`date -R`: Success!" || 
+        echo "`date -R`: Process failed...") > {log} 2>&1   
+          
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        echo "`date -R`: Process failed...") >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -39,6 +45,7 @@ rule intersect_ds:
     output:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}.txt",
+        region=temp("results/{samples}_{regions}_ds.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),    
     log:
@@ -48,18 +55,23 @@ rule intersect_ds:
     conda:
         "../envs/bed2fasta.yaml"
     shell:
-        """
+        """   
+        (echo "`date -R`: Copy region file {params.region}..." &&
+        cp {params.region} {output.region} &&
+        echo "`date -R`: Success!" || 
+        echo "`date -R`: Process failed...") > {log} 2>&1   
+          
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        echo "`date -R`: Process failed...") >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -73,6 +85,7 @@ rule intersect_sim:
     output:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}.txt",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}.txt",
+        region=temp("results/{samples}_{regions}_sim.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
@@ -82,19 +95,24 @@ rule intersect_sim:
     conda:
         "../envs/bed2fasta.yaml"
     shell:
-        """
+        """   
+        (echo "`date -R`: Copy region file {params.region}..." &&
+        cp {params.region} {output.region} &&
+        echo "`date -R`: Success!" || 
+        echo "`date -R`: Process failed...") > {log} 2>&1   
+          
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -a {params.region} \
-        -b {input.plus_sim} \
+        -sorted -a {output.region} \
+        -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        echo "`date -R`: Process failed...") >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -a {params.region} \
-        -b {input.minus_sim} \
+        -sorted -a {output.region} \
+        -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
@@ -108,6 +126,7 @@ rule intersect_xr_intergenic:
     output:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}_intergenic.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}_intergenic.txt",
+        region=temp("results/{samples}_{regions}_xr_intergenic.bed"),
     log:
         "logs/{samples}/{samples}_{build}_intersect_{regions}_xr_intergenic.log",
     benchmark:
@@ -115,18 +134,23 @@ rule intersect_xr_intergenic:
     conda:
         "../envs/bed2fasta.yaml"
     shell:
-        """
+        """   
+        (echo "`date -R`: Copy region file {input.region}..." &&
+        cp {input.region} {output.region} &&
+        echo "`date -R`: Success!" || 
+        echo "`date -R`: Process failed...") > {log} 2>&1   
+          
         (echo "`date -R`: Intersecting plus strand with {input.region}..." &&
         bedtools intersect \
-        -sorted -a {input.region} \
+        -sorted -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        echo "`date -R`: Process failed...") >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {input.region}..." &&
         bedtools intersect \
-        -sorted -a {input.region} \
+        -sorted -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -140,6 +164,7 @@ rule intersect_ds_intergenic:
     output:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}_intergenic.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}_intergenic.txt",
+        region=temp("results/{samples}_{regions}_ds_intergenic.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),    
     log:
@@ -149,18 +174,23 @@ rule intersect_ds_intergenic:
     conda:
         "../envs/bed2fasta.yaml"
     shell:
-        """
+        """   
+        (echo "`date -R`: Copy region file {params.region}..." &&
+        cp {params.region} {output.region} &&
+        echo "`date -R`: Success!" || 
+        echo "`date -R`: Process failed...") > {log} 2>&1   
+          
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        echo "`date -R`: Process failed...") >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -174,6 +204,7 @@ rule intersect_sim_intergenic:
     output:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}_intergenic.txt",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}_intergenic.txt",
+        region=temp("results/{samples}_{regions}_sim_intergenic.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
     log:
@@ -183,19 +214,24 @@ rule intersect_sim_intergenic:
     conda:
         "../envs/bed2fasta.yaml"
     shell:
-        """
+        """   
+        (echo "`date -R`: Copy region file {params.region}..." &&
+        cp {params.region} {output.region} &&
+        echo "`date -R`: Success!" || 
+        echo "`date -R`: Process failed...") > {log} 2>&1   
+          
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -a {params.region} \
-        -b {output.plus} \
+        -sorted -a {output.region} \
+        -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        echo "`date -R`: Process failed...") >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -a {params.region} \
-        -b {output.minus} \
+        -sorted -a {output.region} \
+        -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
@@ -208,6 +244,7 @@ rule intersect_mutation:
     output:
         plus="results/mutation/{samples}/{samples}_target_mut_plus_{regions}.txt",
         minus="results/mutation/{samples}/{samples}_target_mut_minus_{regions}.txt",
+        region=temp("results/{samples}_{regions}_mut.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_mut_file"], config["regions_mut"]),    
     log:
@@ -217,18 +254,23 @@ rule intersect_mutation:
     conda:
         "../envs/bed2fasta.yaml"
     shell:
-        """
+        """   
+        (echo "`date -R`: Copy region file {params.region}..." &&
+        cp {params.region} {output.region} &&
+        echo "`date -R`: Success!" || 
+        echo "`date -R`: Process failed...") > {log} 2>&1   
+          
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        echo "`date -R`: Process failed...") >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -242,6 +284,7 @@ rule intersect_mutation_intergenic:
     output:
         plus="results/mutation/{samples}/{samples}_target_mut_plus_{regions}_intergenic.txt",
         minus="results/mutation/{samples}/{samples}_target_mut_minus_{regions}_intergenic.txt",
+        region=temp("results/{samples}_{regions}_mut_intergenic.bed"),
     params:
         region=lambda w: getRegion(w.regions, config["region_mut_file"], config["regions_mut"]),    
     log:
@@ -251,18 +294,23 @@ rule intersect_mutation_intergenic:
     conda:
         "../envs/bed2fasta.yaml"
     shell:
-        """        
+        """   
+        (echo "`date -R`: Copy region file {params.region}..." &&
+        cp {params.region} {output.region} &&
+        echo "`date -R`: Success!" || 
+        echo "`date -R`: Process failed...") > {log} 2>&1   
+          
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        echo "`date -R`: Process failed...") >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {params.region} \
+        -sorted -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
