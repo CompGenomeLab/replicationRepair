@@ -10,14 +10,86 @@ _Yanchao Huang, Cem Azgari, Yi-Ying Chiou, Laura A. Lindsey-Boltz, Aziz Sancar, 
 
 UV-induced damage can cause mutations during DNA replication. The crosstalk between replication and repair may contribute to UV-related mutagenesis. By integrating genome-wide damage and repair maps along with replication maps, we investigated the effects of DNA replication on nucleotide excision repair. Early replication domains are repaired faster due to open chromatin; thus they harbor fewer mutations. Ongoing replication can exert an additional impact of promoting local repair by relaxing surrounding chromatin. Repair levels also show a strand asymmetry favoring leading strands, presumably because leading strand synthesis is more active to recover double-strand after encountering a lesion. This biased repair coincides with the replicative mutation asymmetry in melanoma, indicating a role of exogenous damage and repair in replication-associated mutation asymmetry.
 
-### Required Programs
+## Installation
 
-- cutadapt ==3.1
-- bowtie2 ==2.3.4.1
-- bedtools ==2.27.1
-- bamtools ==2.5.1
-- samtools ==1.9
-- [ART](https://pubmed.ncbi.nlm.nih.gov/22199392/): a next-generation sequencing read simulator
+- This workflow is prepared using 
+[Snakemake](https://snakemake.readthedocs.io/en/stable/) workflow management 
+system and [conda](https://docs.conda.io/en/latest/)
+
+- To run the workflow, you should have conda installed for environment 
+management. All the other packages including Snakemake and their dependencies 
+can be obtained automatically through environments prepared for each step of 
+the workflow. You can follow the installation steps from 
+[the link](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html).
+
+- Initially, you should clone the repository and navigate into the directory: 
+
+    ```
+    git clone https://github.com/CompGenomeLab/replicationRepair.git
+    
+    cd replicationRepair
+    ```
+
+- Next, you should create a conda environment with the defined packages. 
+Install [mamba](https://mamba.readthedocs.io/en/latest/) 
+and create the environment using mamba:
+
+    ```
+    conda install -c conda-forge mamba
+
+    mamba create -c bioconda -c conda-forge -c r -n repair snakemake=6.3.0 python=3.8 rust=1.50 sra-tools=2.11.0
+
+    conda activate repair
+    ```
+
+<br>
+
+## Directory Structure
+
+This workflow is prepared according to the 
+[structure](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html) 
+recommended by Snakemake: 
+
+- `config/`: contains the configuration files.
+
+- `logs/`: contains the log files of each step. 
+This folder will automatically appear when you run the workflow.
+
+- `reports/`: contains the report files, which can be produced 
+after the workflow is over. 
+
+- `resources/`: contains `samples/` where the raw XR-seq and Damage-seq data 
+are stored and `ref_genomes/` where the reference genome files are stored. 
+
+- `results/`: contains the generated files and figures. *** DETAYLI ANLATIM
+
+- `workflow/`: contains `envs/` where the environments are stored, 
+`rules/` where the Snakemake rules are stored, 
+`scripts/` where the scripts used inside the rules are stored, and
+`snakefiles/` where rule flow of each pipeline of the project can be found.
+<br>
+
+## Usage
+
+Before *** XR damage çalışacak, hg19 referansı eklenmeli
+
+After adjusting the configuration file, you can run the workflow 
+from `replicationRepair` directory:
+
+    ```
+    snakemake --cores 64 --use-conda --keep-going
+    ```
+
+| Note: To run the workflow on [Slurm Workload Manager](https://slurm.schedmd.com/srun.html) as set of jobs, `--profile` flag must be provided with proper slurm configuration file (`config/slurm`). |
+| --- |
+
+
+
+
+
+
+
+
 
 ### Usage
 
