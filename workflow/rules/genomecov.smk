@@ -33,7 +33,7 @@ rule genomecov_input:
         -i {input.minus} \
         -g {input.ref_genome} \
         -bg \
-        -scale $(echo {params.read} | awk '{{print 1000000/$1}}') \
+        -scale $(echo {params.read} | awk '{{print -1000000/$1}}') \
         > {output.minus} &&
         echo "`date -R`: Success! Genome coverage is calculated." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
@@ -73,7 +73,7 @@ rule genomecov_edu:
         -i {input.minus} \
         -g {input.ref_genome} \
         -bg \
-        -scale $(echo {params.read} | awk '{{print 1000000/$1}}') \
+        -scale $(echo {params.read} | awk '{{print -1000000/$1}}') \
         > {output.minus} &&
         echo "`date -R`: Success! Genome coverage is calculated." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
