@@ -1,10 +1,10 @@
 
 rule make_windows:
     input:
-        region="results/regions/R21071354-EdUrep2-UV3-5hrls2_combined_hg19_peaks_repdomains_org.narrowPeak",
+        region="results/regions/R21061297-EdUrep-UV3-5hrls_combined_peaks_repdomains_org.narrowPeak",
         genome="resources/ref_genomes/hg19/genome_hg19.bed",
     output:
-        final="results/regions/R21071354-EdUrep2-UV3-5hrls2_combined_broadpeaks_repdomains_windows_101_10.bed",
+        final="results/regions/R21061297-EdUrep-UV3-5hrls_combined_peaks_repdomains_windows_101_10.bed",
     params:
         intervalLen="10",
         windowNum="101",
