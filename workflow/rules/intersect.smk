@@ -1,7 +1,7 @@
 rule intersect_xr:
     input:
-        plus="results/XR/{samples}/{samples}_{build}_xr_plus_sorted.txt",
-        minus="results/XR/{samples}/{samples}_{build}_xr_minus_sorted.txt",
+        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_damSite.txt",
+        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_damSite.txt",
     output:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_{regions}.txt",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_{regions}.txt",
@@ -40,8 +40,8 @@ rule intersect_xr:
 
 rule intersect_ds:
     input:
-        plus="results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_plus_sorted.txt",
-        minus="results/DS/{samples}/{samples}_{build}_ds_dipyrimidines_minus_sorted.txt", 
+        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_damSite.txt",
+        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_damSite.txt",
     output:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_{regions}.txt",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_{regions}.txt",
@@ -80,8 +80,8 @@ rule intersect_ds:
 
 rule intersect_sim:
     input:
-        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_sorted.txt",
-        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_sorted.txt",
+        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_damSite.txt",
+        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_damSite.txt",
     output:
         plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus_{regions}.txt",
         minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus_{regions}.txt",
