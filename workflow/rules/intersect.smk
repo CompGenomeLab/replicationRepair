@@ -23,7 +23,7 @@ rule intersect_xr:
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -31,7 +31,7 @@ rule intersect_xr:
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -63,7 +63,7 @@ rule intersect_ds:
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -71,7 +71,7 @@ rule intersect_ds:
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -103,7 +103,7 @@ rule intersect_sim:
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -111,7 +111,7 @@ rule intersect_sim:
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -142,7 +142,7 @@ rule intersect_xr_intergenic:
           
         (echo "`date -R`: Intersecting plus strand with {input.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -150,7 +150,7 @@ rule intersect_xr_intergenic:
 
         (echo "`date -R`: Intersecting minus strand with {input.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -182,7 +182,7 @@ rule intersect_ds_intergenic:
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -190,7 +190,7 @@ rule intersect_ds_intergenic:
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -222,7 +222,7 @@ rule intersect_sim_intergenic:
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -230,7 +230,7 @@ rule intersect_sim_intergenic:
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -262,7 +262,7 @@ rule intersect_mutation:
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -270,7 +270,7 @@ rule intersect_mutation:
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
@@ -302,7 +302,7 @@ rule intersect_mutation_intergenic:
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
@@ -310,7 +310,7 @@ rule intersect_mutation_intergenic:
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
-        -sorted -a {output.region} \
+        -a {output.region} \
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
