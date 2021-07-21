@@ -1,3 +1,4 @@
+#!/bin/env python 
 
 import warnings
 import os
@@ -305,10 +306,10 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
                 "_sorted_ds_dipyrimidines_plus_" + region + "_combined_rpkm.txt")
                 inputList.append(sampledir + sample + "_" + build + 
                 "_sorted_ds_dipyrimidines_minus_" + region + "_combined_rpkm.txt")
-                #inputList.append(simdir + sample + "_" + build + 
-                #"_ds_sim_plus_" + region + "_combined_rpkm.txt")
-                #inputList.append(simdir + sample + "_" + build + 
-                #"_ds_sim_minus_" + region + "_combined_rpkm.txt")
+                inputList.append(simdir + sample + "_" + build + 
+                "_ds_sim_plus_" + region + "_combined_rpkm.txt")
+                inputList.append(simdir + sample + "_" + build + 
+                "_ds_sim_minus_" + region + "_combined_rpkm.txt")
 
     if method == "xr":
 
@@ -328,10 +329,10 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
                 "_sorted_xr_plus_" + region + "_combined_rpkm.txt")
                 inputList.append(sampledir + sample + "_" + build + 
                 "_sorted_xr_minus_" + region + "_combined_rpkm.txt")
-                #inputList.append(simdir + sample + "_" + build + 
-                #"_xr_sim_plus_" + region + "_combined_rpkm.txt")
-                #inputList.append(simdir + sample + "_" + build + 
-                #"_xr_sim_minus_" + region + "_combined_rpkm.txt")
+                inputList.append(simdir + sample + "_" + build + 
+                "_xr_sim_plus_" + region + "_combined_rpkm.txt")
+                inputList.append(simdir + sample + "_" + build + 
+                "_xr_sim_minus_" + region + "_combined_rpkm.txt")
 
     if method == "report":
 
@@ -342,8 +343,8 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
             if region not in noWindowList:
                 inputList.append("results/final/final_reports_" + build + 
                 "_" + region + ".txt")
-                #inputList.append("results/final/final_reports_sim_" + build + 
-                #"_" + region + ".txt")
+                inputList.append("results/final/final_reports_sim_" + build + 
+                "_" + region + ".txt")
                 inputList.append("results/final/final_reports_" + build + 
                 "_" + region + "_intergenic.txt")
                 #inputList.append("results/final/final_reports_sim_" + build + 
