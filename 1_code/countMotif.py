@@ -37,12 +37,12 @@ if args.agg:
     headerDict={}
     for r in SeqIO.parse(filein, 'fasta'):
         
-        if r.name not in headerDict:
-            headerDict[r.name] = defaultDict.copy()
+        if r.name.strip().split(":")[0] not in headerDict:
+            headerDict[r.name.strip().split(":")[0]] = defaultDict.copy()
             
-        headerDict[r.name]['num'] += 1 
+        headerDict[r.name.strip().split(":")[0]]['num'] += 1 
         for m in motif:
-            headerDict[r.name][m] += countMotif(r, m)         
+            headerDict[r.name.strip().split(":")[0]][m] += countMotif(r, m)         
 
     for k,v in headerDict.items():
         
@@ -59,7 +59,7 @@ if args.agg:
 else:
     for r in SeqIO.parse(filein, 'fasta'):
 
-        outLine = [r.name]
+        outLine = [r.name.strip().split(":")[0]]
         for m in motif:
             outLine.append(str(countMotif(r, m)))
 

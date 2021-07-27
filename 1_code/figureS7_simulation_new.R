@@ -18,22 +18,26 @@ if (rep == "A"){ fig_name = "~/Desktop/supfig11.svg"
 } 
 
 # name of the sample csv file for plot A
-real_csv <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                  "gitignore/1_TextforPlotting/", 
-                  "[2020.09.15]final_report_initiation.zones.hela_sorted",
-                  "_windows_201_100_ready.csv", sep = "")
+real_csv <- paste("/home/azgarian/Documents/myprojects/replicationRepair/",
+                  "final/final_reports_hg19_",
+                  "iz_hela_windows_201_100_ready.csv", 
+                  sep = "")
 
 # name of the sample csv file for plot B
 sim_csv_pA2 <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                       "gitignore/1_TextforPlotting/", 
-                       "[2020.01.19]final_report_InZones_windows_sim_ready.csv", 
-                       sep = "")
+                     "gitignore/1_TextforPlotting/", 
+                     "[2020.01.19]final_report_InZones_windows_sim_ready.csv", 
+                     sep = "")
 
 sim_csv_pB2 <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                      "gitignore/1_TextforPlotting/", 
-                      "[2020.02.25]final_report_inZones_windows_201_100_",
-                      "sim_ready.csv", sep = "")
+                     "gitignore/1_TextforPlotting/", 
+                     "[2020.02.25]final_report_inZones_windows_201_100_",
+                     "sim_ready.csv", sep = "")
 
+sim_csv <- paste("/home/azgarian/Documents/myprojects/replicationRepair/",
+                 "final/final_reports_sim_hg19_",
+                 "iz_hela_windows_201_100_ready.csv", 
+                 sep = "")
 
 #### Default Plot Format ####
 
@@ -49,43 +53,44 @@ source("/home/azgarian/Documents/myprojects/replicationRepair/1_code/4_functions
 
 # for plot A.1 and B.1
 real_df <- read.csv( real_csv )
+
+real_df<- filter(real_df, method != "DNA_seq", phase != "async", 
+                 replicate == "A", product == "CPD")
+
 real_df_org <- window_numbering( real_df, 4, 101 )
 real_df_org$dataset <- gsub("_.*", "", real_df_org$dataset)
 
 real_df_org$sample_strand <- factor(
   real_df_org$sample_strand, levels = c("+","-"))
 
-# for plot A.2
-pA2_df <- read.csv( sim_csv_pA2 )
-pA2_df_org <- window_numbering( pA2_df, 4, 101 )
-pA2_df_org$dataset <- gsub("_.*", "", pA2_df$dataset)
+# for plot A.2 and B.2
+sim_df <- read.csv( sim_csv )
 
-pA2_df_org$sample_strand <- factor(
-  pA2_df_org$sample_strand, levels = c("+","-"))
+sim_df<- filter(sim_df, method != "DNA_seq", phase != "async", 
+                 replicate == "A", product == "CPD")
 
-# for plot B.2
-pB2_df <- read.csv( sim_csv_pB2 )
-pB2_df_org <- window_numbering( pB2_df, 4, 101 )
-pB2_df_org$dataset <- gsub("_.*", "", pB2_df$dataset)
+sim_df_org <- window_numbering( sim_df, 4, 101 )
+sim_df_org$dataset <- gsub("_.*", "", sim_df$dataset)
 
-pB2_df_org$sample_strand <- factor(
-  pB2_df_org$sample_strand, levels = c("+","-"))
+sim_df_org$sample_strand <- factor(
+  sim_df_org$sample_strand, levels = c("+","-"))
+
 
 # filtering for A.1
 pA1_data <- filter(real_df_org, method != "DNA_seq", phase != "async", 
                    replicate == "A", method == "Damage_seq", product == "CPD")
 
 # filtering for A.2
-pA2_data <- filter(pA2_df_org, phase != "async", replicate == "A", 
-                   product == "CPD")
+pA2_data <- filter(sim_df_org, phase != "async", replicate == "A", 
+                   product == "CPD", method == "Damage_seq")
 
 # filtering for B.1
 pB1_data <- filter(real_df_org, method != "DNA_seq", phase != "async", 
                    replicate == "A", method == "XR_seq", product == "CPD")
 
 # filtering for B.2
-pB2_data <- filter(pB2_df_org, phase != "async", method != "DNA_seq", 
-                   replicate == "A", product == "CPD")
+pB2_data <- filter(sim_df_org, phase != "async", method != "DNA_seq", 
+                   replicate == "A", product == "CPD", method == "XR_seq")
 
 # for naming of simulated samples
 method_labs_sim <- c("Simulated \nDamage-seq", "Simulated \nXR-seq")
@@ -113,7 +118,7 @@ p.A.1 <- ggplot(pA1_data, aes(x = windows, y = RPKM)) +
 
 # adding and overriding the default plot format
 p.A.1 <- p.A.1 + p_format +
-    theme(strip.text.y = element_text(size=0, margin = margin(0, 0, 0, 0)),
+  theme(strip.text.y = element_text(size=0, margin = margin(0, 0, 0, 0)),
         panel.border = element_rect(fill = NA)) 
 
 
@@ -220,5 +225,5 @@ p.B.2 <- p.B.2 + plot_layout(tag_level = 'new')
                                   size = 12, face="bold"))
 
 
-ggsave("~/Desktop/supfig7.png", width = 22, height = 18, units = "cm")
+ggsave("~/Desktop/supfig7_new.png", width = 22, height = 18, units = "cm")
 

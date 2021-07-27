@@ -5,13 +5,13 @@ library(VennDiagram)
 library(RColorBrewer)
 myCol <- brewer.pal(3, "Pastel2")
 
-hela <- paste0("/home/azgarian/Desktop/repairRep_revision/inZones/okseq/",
+hela <- paste0("/home/azgarian/Desktop/",
                "SRR2913039_intersect2_SRR2913063_ERR2760855.txt")
 
-gm <- paste0("/home/azgarian/Desktop/repairRep_revision/inZones/okseq/",
+gm <- paste0("/home/azgarian/Desktop/",
              "SRR2913063_intersect2_SRR2913039_ERR2760855.txt")
 
-imr90 <- paste0("/home/azgarian/Desktop/repairRep_revision/inZones/okseq/",
+imr90 <- paste0("/home/azgarian/",
                 "ERR2760855_intersect2_SRR2913039_SRR2913063.txt")
 
 hela_df <- read.table(hela)
@@ -19,8 +19,8 @@ hela_df <- read.table(hela)
 hela_no_overlap <- filter(hela_df, V7 == -1)
 hela_no_overlap$name <- "HeLa" 
 hela_no_overlap <- hela_no_overlap[,c(1,2,3,11,4)]
-#write.table(hela_no_overlap, file = "~/Desktop/hela_no_overlap.bed", sep = "\t",
-#            quote = FALSE, row.names = FALSE, col.names = FALSE)
+write.table(hela_no_overlap, file = "~/Desktop/hela_no_overlap.bed", sep = "\t",
+            quote = FALSE, row.names = FALSE, col.names = FALSE)
 
 hela_df$V10 <- paste("HeLa",hela_df$V1,hela_df$V2,hela_df$V3,hela_df$V4,sep=",")
 hela_df$V11 <- paste(hela_df$V5,hela_df$V6,hela_df$V7,hela_df$V8,hela_df$V9,sep=",")

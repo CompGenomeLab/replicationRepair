@@ -13,12 +13,16 @@ library(grid)
 #### Variables ####
 
 # name of the sample csv file 
-sample_csv <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                    "gitignore/1_TextforPlotting/", 
-                    "[2020.10.13]final_report_inZones_repdomains_intergenic_",
-                    "windows_201_100_ready.csv", 
-                    sep = "")
+#sample_csv <- paste("~/Documents/myprojects/replicationRepair/3_output/",
+#                    "gitignore/1_TextforPlotting/", 
+#                    "[2020.10.13]final_report_inZones_repdomains_intergenic_",
+#                    "windows_201_100_ready.csv", 
+#                    sep = "")
 
+sample_csv <- paste("/home/azgarian/Documents/myprojects/replicationRepair/",
+                    "3_output/gitignore/snakemake_finals/final_reports_hg19_",
+                    "iz_repdomains_hela_widows_201_100_intergenic_ready.csv", 
+                    sep = "")
 
 #### Default Plot Format ####
 
@@ -42,7 +46,7 @@ df_rr_org$sample_strand <- factor(
   df_rr_org$sample_strand, levels = c("+","-"))
 
 # filtering for A.1
-pA1_data <- filter(df_rr_org, phase != "async", replicate == "A", 
+pA1_data <- filter(df_rr_org, replicate == "A", 
                    product == "CPD", time_after_exposure == "12", 
                    phase == "late")
 
@@ -53,7 +57,7 @@ pA2_data <- rr_boxplot( pA1_data )
 pA3_data <- rr_boxplot_plus_minus( pA1_data ) 
 
 # filtering for B.1
-pB1_data <- filter(df_rr_org, phase != "async", replicate == "A", 
+pB1_data <- filter(df_rr_org, replicate == "A", 
                    product == "CPD", time_after_exposure == "120", 
                    phase == "late")
 

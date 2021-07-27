@@ -19,20 +19,24 @@ if (rep == "A" && dprod == "CPD"){ fig_name = "~/Desktop/fig3.png"
 } 
 
 # name of the sample csv file
-sample_csv <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                    "gitignore/1_TextforPlotting/[2020.04.07]final_report_", 
-                    "chromhmm_windows_chr_ready.csv", 
-                    sep = "")
+#sample_csv <- paste("~/Documents/myprojects/replicationRepair/3_output/",
+#                    "gitignore/1_TextforPlotting/[2020.04.07]final_report_", 
+#                    "chromhmm_windows_chr_ready.csv", 
+#                    sep = "")
 
+sample_csv <- paste("/home/azgarian/Documents/myprojects/replicationRepair/",
+                    "3_output/gitignore/snakemake_finals/final_reports_",
+                    "hg19_chromhmm_repdomains_hela_windows_chr_ready.csv", 
+                    sep = "")
 
 #### Default Plot Format ####
 
-source("4_plot_format.R")
+source("/home/azgarian/Documents/myprojects/replicationRepair/1_code/4_plot_format.R")
 
 
 #### Fuctions ####
 
-source("4_functions.R")
+source("/home/azgarian/Documents/myprojects/replicationRepair/1_code/4_functions.R")
 
 
 #### Main ####
