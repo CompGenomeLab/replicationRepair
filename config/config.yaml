@@ -124,6 +124,10 @@ regions:
   - "R21071354-EdUrep2-4hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100"
   - "R21071354-EdUrep2-UV1-5hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100"
   - "R21071354-EdUrep2-UV3-5hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100"
+  - "sns.seq.rep1_int2hi.rfd_plus_hela_repdomains_windows_201_100"
+  - "sns.seq.rep1_int2hi.rfd_minus_hela_repdomains_windows_201_100"
+  - "sns.seq.rep1_int2initiation.zones_hela_repdomains_windows_201_100"
+  - "initiation.zones_int2sns.seq.rep1_hela_repdomains_windows_201_100"
 
 region_file:
   #- "initiation.zones.hela_windows_201_100.bed"
@@ -169,6 +173,10 @@ region_file:
   - "R21071354-EdUrep2-4hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100.broadPeak"
   - "R21071354-EdUrep2-UV1-5hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100.broadPeak"
   - "R21071354-EdUrep2-UV3-5hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100.broadPeak"
+  - "sns.seq.rep1_int2hi.rfd_plus_hela_repdomains_windows_201_100.bed"
+  - "sns.seq.rep1_int2hi.rfd_minus_hela_repdomains_windows_201_100.bed"
+  - "sns.seq.rep1_int2initiation.zones_hela_repdomains_windows_201_100.bed"
+  - "initiation.zones_int2sns.seq.rep1_hela_repdomains_windows_201_100.bed"
 
 region_comb_opt:
   #- ""
@@ -214,7 +222,11 @@ region_comb_opt:
   - ""
   - ""
   - ""
-
+  - ""
+  - ""
+  - ""
+  - ""
+  
 no_window_regions:
   - "repdomains_hela"
 

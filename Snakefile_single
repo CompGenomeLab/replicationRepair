@@ -1,4 +1,4 @@
-#!/bin/env python
+
 
 rule all:
     input:
@@ -10,6 +10,10 @@ rule all:
         "results/regions/R21071354-EdUrep2-4hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100.broadPeak",
         "results/regions/R21071354-EdUrep2-UV1-5hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100.broadPeak",
         "results/regions/R21071354-EdUrep2-UV3-5hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100.broadPeak",
+        "results/regions/sns.seq.rep1_int2hi.rfd_plus_hela_repdomains_windows_201_100.bed",
+        "results/regions/sns.seq.rep1_int2hi.rfd_minus_hela_repdomains_windows_201_100.bed",
+        "results/regions/sns.seq.rep1_int2initiation.zones_hela_repdomains_windows_201_100.bed",
+        "results/regions/initiation.zones_int2sns.seq.rep1_hela_repdomains_windows_201_100.bed",
 
 
 

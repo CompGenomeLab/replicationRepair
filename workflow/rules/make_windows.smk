@@ -1,10 +1,10 @@
 
 rule make_windows:
     input:
-        region="results/regions/{sample}.broadPeak",
+        region="results/regions/{sample}.bed",
         genome="resources/ref_genomes/hg19/genome_hg19.bed",
     output:
-        final="results/regions/{sample}_windows_201_100.broadPeak",
+        final="results/regions/{sample}_windows_201_100.bed",
     params:
         intervalLen="100",
         windowNum="201",
