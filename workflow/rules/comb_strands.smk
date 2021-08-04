@@ -12,12 +12,12 @@ rule comb_strands_mutation:
     shell:  
         """
         (echo "`date -R`: Combining plus stranded mutations..." &&
-        awk '{{print $0"\\t""+"}}' {input.plus} >> {output.comb} &&
+        awk '{{print $0"\\t""+"}}' {input.plus} > {output.comb} &&
         echo "`date -R`: Success! Mutations are combined." || 
         echo "`date -R`: Process failed...") > {log} 2>&1
 
         (echo "`date -R`: Combining minus stranded mutations..." &&
-        awk '{{print $0"\\t""-"}}' {input.minus} > {output.comb} &&
+        awk '{{print $0"\\t""-"}}' {input.minus} >> {output.comb} &&
         echo "`date -R`: Success! Mutations are combined." || 
         echo "`date -R`: Process failed...") >> {log} 2>&1
 
