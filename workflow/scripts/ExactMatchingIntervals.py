@@ -9,7 +9,7 @@ from collections import Counter
 parser = argparse.ArgumentParser()
 parser = argparse.ArgumentParser(description='')
 parser.add_argument('-i', default=sys.stdin, help='input')
-parser.add_argument('-g', default=sys.stdin, help='input')
+parser.add_argument('-g', default=sys.stdin, help='genome')
 parser.add_argument('-o', nargs='?', type=argparse.FileType('w'), default=sys.stdout, help='output')
 args = parser.parse_args()
 
