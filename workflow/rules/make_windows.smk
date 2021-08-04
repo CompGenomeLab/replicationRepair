@@ -4,15 +4,15 @@ rule make_windows:
         region="results/regions/{sample}.bed",
         genome="resources/ref_genomes/hg19/genome_hg19.bed",
     output:
-        final="results/regions/{sample}_windows_201_100.bed",
+        final="results/regions/{sample}_windows_{windowNum}_{interval}.bed",
     params:
-        intervalLen="100",
-        windowNum="201",
+        intervalLen="{interval}",
+        windowNum="{windowNum}",
         rev="",
     log:
-        "logs/{sample}_make_windows.log",
+        "logs/{sample}_{windowNum}_{interval}_make_windows.log",
     benchmark:
-        "logs/{sample}_make_windows.benchmark.txt",
+        "logs/{sample}_{windowNum}_{interval}_make_windows.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:  

@@ -42,7 +42,7 @@ include: "workflow/snakefiles/OK-seq"
 include: "workflow/snakefiles/mutation"
 
 # Process Retrieved Data
-include: "workflow/rules/make_windows.smk"
+#include: "workflow/rules/make_windows.smk"
 #include: "workflow/rules/????.smk"
 
 # Further Analyses
