@@ -287,6 +287,10 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
                 region + "_org.txt")
                 inputList.append(sampledir + sample + "_target_mut_comb_" + 
                 region + "_intergenic_org.txt")
+        
+        for region in regions:
+
+            inputList.append("results/mutation/" + region + "_counts.txt")
 
     if method == "ds":
 
