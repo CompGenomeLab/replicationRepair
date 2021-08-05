@@ -23,3 +23,4 @@ workflow/scripts/4plots/gitignore/
 workflow/scripts/4plots/.Rproj.user/
 workflow/scripts/4plots/.RData
 workflow/scripts/4plots/.Rhistory
+.Rproj.user
