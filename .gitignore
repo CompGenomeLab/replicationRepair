@@ -23,4 +23,7 @@ workflow/scripts/4plots/gitignore/
 workflow/scripts/4plots/.Rproj.user/
 workflow/scripts/4plots/.RData
 workflow/scripts/4plots/.Rhistory
+workflow/scripts/.DS_Store
+workflow/.DS_Store
 .Rproj.user
+.DS_Store
