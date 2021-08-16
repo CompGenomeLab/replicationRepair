@@ -12,41 +12,48 @@ library(grid)
 
 #### Variables ####
 
+type <- ""
+treatment <- "uv"
+edu_phase <- "late"
+rep <- "2"
+
+
+
 # name of the sample csv file 
 sample_csv <- paste("/home/azgarian/Documents/myprojects/replicationRepair/",
-                    "final/final_reports_sim_hg19_R21061297-EdUrep-4hrls_combined",
-                    "_hg19_peaks_repdomains_no_overlap_windows_51_100_ready.csv", 
+                    "final/final_reports_hg19_R21071354-EdUrep2-UV3-5hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100_ready.csv", 
                     sep = "")
-
 sample_df <- read.csv( sample_csv )
 
-type <- "sim"
-edu_phase <- "late"
-treatment <- ""
+sample_df <- filter(sample_df, replicate != "_")
+sample_df <- droplevels(sample_df)
+
+
 
 #### Default Plot Format ####
 
-source("/home/azgarian/Documents/myprojects/replicationRepair/1_code/4_plot_format.R")
+source("/home/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_plot_format.R")
 
 
 #### Fuctions ####
 
-source("/home/azgarian/Documents/myprojects/replicationRepair/1_code/4_functions.R")
+source("/home/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_functions.R")
 
 
 #### Main ####
 
+
 for (myphase in c("late","early","async")) {
- 
+   
   if (edu_phase == "early"){ 
     
-    edu <- "\nEarly EdU Peaks (kb)"
-    edu_file <- "early_edu_broad_rep2_cpd_" 
+    edu <- "\nEarly EdU Peaks (bp)"
+    edu_file <- paste("early_edu_rep",rep,"_cpd_", sep="")
     
   } else if (myphase == "late"){ 
     
-    edu <- "\nLate EdU Peaks (kb)"
-    edu_file <- "late_edu_broad_rep2_cpd_"   
+    edu <- "\nLate EdU Peaks (bp)"
+    edu_file <- paste("late_edu_rep",rep,"_cpd_", sep="")   
     
   }
   
@@ -67,8 +74,9 @@ for (myphase in c("late","early","async")) {
     myheight <- 9
   } 
   
+  
   df_rr <- repair_rate( sample_df )
-  df_rr_org <- window_numbering( df_rr, 4, 26 )
+  df_rr_org <- window_numbering( df_rr, 4, 101 )
   df_rr_org <- domain_name( df_rr_org, 1 )
   df_rr_org$dataset <- "Peaks"
   
@@ -87,17 +95,18 @@ for (myphase in c("late","early","async")) {
   pB3_data <- rr_boxplot_plus_minus( pB1_data ) 
   
   if (myphase == "async"){ } else {
-  # filtering for C.1
-  pC1_data <- filter(df_rr_org, replicate == "A", 
-                     product == "CPD", time_after_exposure == "120", 
-                     phase == myphase)
-  
-  # for plot C.2
-  pC2_data <- rr_boxplot( pC1_data ) 
-  
-  # for plot C.3
-  pC3_data <- rr_boxplot_plus_minus( pC1_data ) 
+    # filtering for C.1
+    pC1_data <- filter(df_rr_org, replicate == "A", 
+                       product == "CPD", time_after_exposure == "120", 
+                       phase == myphase)
+    
+    # for plot C.2
+    pC2_data <- rr_boxplot( pC1_data ) 
+    
+    # for plot C.3
+    pC3_data <- rr_boxplot_plus_minus( pC1_data ) 
   }
+  
   #### Plot A ####
   
   # plot A will be a drawing
@@ -113,9 +122,9 @@ for (myphase in c("late","early","async")) {
     geom_line(aes(color = sample_strand)) + 
     facet_grid(~repdomains) +
     xlab(windows_lab) + ylab(fr_xr_ds_lab) +
-    scale_x_continuous(limits = c(-26, 26), 
-                       breaks = c(-26, 0, 26), 
-                       labels = c("-2.5", "0", "+2.5")) + 
+    scale_x_continuous(limits = c(-100, 100), 
+                       breaks = c(-100, 0, 100), 
+                       labels = c("-10", "0", "+10")) + 
     scale_color_manual(values = strand_colors) + 
     #ylim(-1.5, 1.5) + 
     labs(color = "Strands")
@@ -176,7 +185,7 @@ for (myphase in c("late","early","async")) {
   p.B.3 <- p.B.3 + p_format + 
     theme(strip.background = element_blank(),
           strip.text.x = element_blank())   
-
+  
   if (myphase == "async"){ 
     
     p.B.2.3 <- (p.B.2 / p.B.3)   
@@ -188,90 +197,95 @@ for (myphase in c("late","early","async")) {
                                                rot = -90, gp=gpar(fontsize=12), 
                                                y = unit(.55, "npc")) 
     
-    } else {
+  } else {
     
-  #### Plot C.1 ####
-  # create the plot 
-  p.C.1 <- ggplot(pC1_data, aes(x = windows, y = log2(xr_ds))) + 
-    geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-    geom_line(aes(color = sample_strand)) + 
-    facet_grid(~repdomains) +
-    xlab(paste("Position Relative to", uv, edu, sep="")) + 
-    ylab(fr_xr_ds_lab) +
-    scale_x_continuous(limits = c(-26, 26), 
-                       breaks = c(-26, 0, 26), 
-                       labels = c("-2.5", "0", "+2.5")) + 
-    scale_color_manual(values = strand_colors) + 
-    #ylim(-1.5, 1.5) + 
-    labs(color = "Strands")
-  
-  # adding and overriding the default plot format
-  p.C.1 <- p.C.1 + p_format + 
-    theme(axis.text.x=element_text(hjust=c(0.3, 0.5, 0.7)))
-  
-  
-  #### Plot C.2 ####
-  
-  # create the plot 
-  p.C.2 <- ggplot() + 
-    geom_bar(data = pC2_data, aes(x = Group.2, y = x, 
-                                  fill = Group.3), 
-             stat = "identity", size = 1.5, 
-             position=position_dodge2(padding = 0.05)) +
-    facet_wrap(~direction) +
-    xlab("Replication Domains") + 
-    ylab("Repair\nRate (RR)") +
-    scale_fill_manual(values = c("+" = "#0571b0", 
-                                 "-" = "#ca0020"), 
-                      guide = FALSE) +
-    #scale_y_continuous(breaks = c(0, 1, 2),
-    #                   limits = c(0, 2)) +
-    labs(color = "Strands", fill = "") 
-  
-  # adding and overriding the default plot format
-  p.C.2 <- p.C.2 + p_format + 
-    theme(axis.title.x=element_blank(),
-          axis.text.x=element_blank(),
-          axis.ticks.x = element_blank()) 
-  
-  
-  #### Plot C.3 ####
-  
-  # create the plot 
-  p.C.3 <- ggplot() + 
-    geom_bar(data = pC3_data, aes(x = Group.2, y = x), 
-             stat = "identity", position=position_dodge()) +
-    facet_wrap(~direction) +
-    geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-    xlab("Replication Domains") + 
-    ylab(expression(RR[p] - RR[m])) +
-    scale_fill_manual(values = repdomain_colors, guide = FALSE) 
-  #scale_y_continuous(breaks = c(-.2, 0, .2),
-  #                   limits = c(-.25, .25))
-  
-  # adding and overriding the default plot format
-  p.C.3 <- p.C.3 + p_format + 
-    theme(strip.background = element_blank(),
-          strip.text.x = element_blank()) 
-  
-  
-  #### Combining Plots with Patchwork ####
-  
-  p.C.2.3 <- (p.C.2 / p.C.3)
-  p.B.2.3 <- (p.B.2 / p.B.3) 
-  
-  layout <- "
+    
+    #### Plot C.1 ####
+    
+    # create the plot 
+    p.C.1 <- ggplot(pC1_data, aes(x = windows, y = log2(xr_ds))) + 
+      geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
+      geom_line(aes(color = sample_strand)) + 
+      facet_grid(~repdomains) +
+      xlab(paste("Position Relative to", uv, edu, " (kb)", sep="")) + 
+      ylab(fr_xr_ds_lab) +
+      scale_x_continuous(limits = c(-100, 100), 
+                         breaks = c(-100, 0, 100), 
+                         labels = c("-10", "0", "+10")) + 
+      scale_color_manual(values = strand_colors) + 
+      #ylim(-1.5, 1.5) + 
+      labs(color = "Strands")
+    
+    # adding and overriding the default plot format
+    p.C.1 <- p.C.1 + p_format + 
+      theme(axis.text.x=element_text(hjust=c(0.3, 0.5, 0.7)))
+    
+    
+    #### Plot C.2 ####
+    
+    # create the plot 
+    p.C.2 <- ggplot() + 
+      geom_bar(data = pC2_data, aes(x = Group.2, y = x, 
+                                    fill = Group.3), 
+               stat = "identity", size = 1.5, 
+               position=position_dodge2(padding = 0.05)) +
+      facet_wrap(~direction) +
+      xlab("Replication Domains") + 
+      ylab("Repair\nRate (RR)") +
+      scale_fill_manual(values = c("+" = "#0571b0", 
+                                   "-" = "#ca0020"), 
+                        guide = FALSE) +
+      #scale_y_continuous(breaks = c(0, 1, 2),
+      #                   limits = c(0, 2)) +
+      labs(color = "Strands", fill = "") 
+    
+    # adding and overriding the default plot format
+    p.C.2 <- p.C.2 + p_format + 
+      theme(axis.title.x=element_blank(),
+            axis.text.x=element_blank(),
+            axis.ticks.x = element_blank()) 
+    
+    
+    #### Plot C.3 ####
+    
+    # create the plot 
+    p.C.3 <- ggplot() + 
+      geom_bar(data = pC3_data, aes(x = Group.2, y = x), 
+               stat = "identity", position=position_dodge()) +
+      facet_wrap(~direction) +
+      geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+      xlab("Replication Domains") + 
+      ylab(expression(RR[p] - RR[m])) +
+      scale_fill_manual(values = repdomain_colors, guide = FALSE) 
+    #scale_y_continuous(breaks = c(-.2, 0, .2),
+    #                   limits = c(-.25, .25))
+    
+    # adding and overriding the default plot format
+    p.C.3 <- p.C.3 + p_format + 
+      theme(strip.background = element_blank(),
+            strip.text.x = element_blank()) 
+    
+    
+    #### Combining Plots with Patchwork ####
+    
+    p.C.2.3 <- (p.C.2 / p.C.3)
+    p.B.2.3 <- (p.B.2 / p.B.3) 
+    
+    layout <- "
     BBBCCCD
     EEEFFFG
     "
-  
-  p_comb <-  p.B.1 + p.B.2.3 + grid::textGrob(paste('CPD\n12 min.\n', phase_name, sep=""), 
-                                              rot = -90, gp=gpar(fontsize=12), 
-                                              y = unit(.55, "npc")) + 
-    p.C.1 + p.C.2.3 + grid::textGrob(paste('CPD\n120 min.\n', phase_name, sep=""), 
-                                     rot = -90, gp=gpar(fontsize=12), 
-                                     y = unit(.62, "npc")) 
-    }
+    
+    p_comb <-  p.B.1 + p.B.2.3 + grid::textGrob(paste('CPD\n12 min.\n', phase_name, sep=""), 
+                                                rot = -90, gp=gpar(fontsize=12), 
+                                                y = unit(.55, "npc")) + 
+      p.C.1 + p.C.2.3 + grid::textGrob(paste('CPD\n120 min.\n', phase_name, sep=""), 
+                                       rot = -90, gp=gpar(fontsize=12), 
+                                       y = unit(.62, "npc")) 
+    
+    
+    
+  }
   
   p_comb + plot_layout(design = layout, guides = "collect") & 
     theme(plot.tag = element_text(size = 12, face="bold"),
@@ -280,7 +294,7 @@ for (myphase in c("late","early","async")) {
                                     size = 12, face="bold"))
   
   ggsave(paste("~/Desktop/repairRevision2/edu_figs/", edu_file, treatment, "_", 
-               myphase, type, "_noverlap.png", sep=""), 
+               myphase, type, "_201_100.png", sep=""), 
          width = 22, height = myheight, units = "cm")
-
+  
 }

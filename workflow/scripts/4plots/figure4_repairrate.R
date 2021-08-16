@@ -13,21 +13,20 @@ library(grid)
 #### Variables ####
 
 # name of the sample csv file 
-sample_csv <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                    "gitignore/1_TextforPlotting/", 
-                    "[2020.02.10]final_report_inZones_repdomains_",
-                    "windows_201_100_ready.csv", 
+sample_csv <- paste("~/Documents/myprojects/replicationRepair/final/", 
+                    "final_reports_hg19_sns.seq.rep1.hela_repdomains_no_overlap",
+                    "_windows_201_100_ready.csv", 
                     sep = "")
 
 
 #### Default Plot Format ####
 
-source("4_plot_format.R")
+source("/home/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_plot_format.R")
 
 
 #### Fuctions ####
 
-source("4_functions.R")
+source("/home/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_functions.R")
 
 
 #### Main ####
@@ -83,7 +82,6 @@ p.B.1 <- ggplot(pB1_data, aes(x = windows, y = log2(xr_ds))) +
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
   scale_color_manual(values = strand_colors) + 
-  ylim(-1.5, 1.5) + 
   labs(color = "Strands")
 
 # adding and overriding the default plot format
@@ -151,13 +149,12 @@ p.C.1 <- ggplot(pC1_data, aes(x = windows, y = log2(xr_ds))) +
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
   geom_line(aes(color = sample_strand)) + 
   facet_grid(~repdomains) +
-  xlab("Position Relative to Initiation Zones (kb)") + 
+  xlab("Position Relative to SNS-seq (kb)") + 
   ylab(fr_xr_ds_lab) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
   scale_color_manual(values = strand_colors) + 
-  ylim(-1.5, 1.5) + 
   labs(color = "Strands")
 
 # adding and overriding the default plot format
@@ -236,6 +233,6 @@ p.A + p.B.1 + p.B.2.3 + grid::textGrob('CPD\n12 min.\nLate S Phase',
 
 
 
-ggsave("~/Desktop/fig4.png", width = 22, height = 18, units = "cm")
+ggsave("~/Desktop/sns_noverlap_10kb.png", width = 22, height = 18, units = "cm")
 
 

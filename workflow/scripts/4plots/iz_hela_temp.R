@@ -1,0 +1,123 @@
+#### Packages and Libraries ####
+
+library(stringr)
+library(ggpubr)
+library(ggplot2)
+library(dplyr)
+library(reshape2)
+library(patchwork)
+library(ggthemes)
+library(grid)
+
+
+#### Variables ####
+
+# name of the sample csv file 
+sim_csv <- paste("/home/azgarian/Documents/myprojects/replicationRepair/",
+                 "final/final_reports_sim_hg19_",
+                 "iz_hela_windows_201_100_ready.csv", 
+                 sep = "")
+
+#### Default Plot Format ####
+
+source("4_plot_format.R")
+
+
+#### Fuctions ####
+
+source("4_functions.R")
+
+
+#### Main ####
+
+sim_df <- read.csv( sim_csv )
+
+sim_df_rr <- repair_rate( sim_df )
+sim_df_org <- window_numbering( sim_df_rr, 4, 101 )
+sim_df_org$dataset <- gsub("_.*", "", sim_df_org$dataset)
+
+sim_df_org$sample_strand <- factor(
+  sim_df_org$sample_strand, levels = c("+","-"))
+
+# filtering for B.1
+pB1_data <- filter(sim_df_org, phase != "async", replicate == "A", 
+                   product == "CPD", time_after_exposure == "120", 
+                   phase == "late")
+
+# for plot B.2
+pB2_data <- rr_boxplot( pB1_data ) 
+
+# for plot B.3
+pB3_data <- rr_boxplot_plus_minus( pB1_data ) 
+
+
+#### Plot B.1 ####
+
+# create the plot 
+p.B.1 <- ggplot(pB1_data, aes(x = windows, y = log2(xr_ds))) +
+  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") + 
+  geom_line(aes(color = sample_strand)) + 
+  xlab(windows_lab) + ylab(fr_xr_ds_lab) +
+  scale_x_continuous(limits = c(-101, 101), 
+                     breaks = c(-101, 0, 101), 
+                     labels = c("-10", "0", "+10")) + 
+  scale_color_manual(values = strand_colors) + 
+  ylim(-1.5, 1.5) + 
+  labs(color = "Strands")
+
+# adding and overriding the default plot format
+p.B.1 <- p.B.1 + p_format + 
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_text(hjust=c(0.3, 0.5, 0.7)))
+p.B.1
+
+#### Plot B.2 ####
+
+# "Plus Minus" writing in the plot
+dat_text <- data.frame(
+  label = c("Plus\nMinus", ""),
+  direction = c("Left Replicating", "Right Replicating"),
+  x = c(2, 2), y = c(0.8, 0.8))
+
+# create the plot 
+p.B.2 <- ggplot() + 
+  geom_bar(data = pB2_data, aes(x = Group.2, y = x, 
+                                fill = Group.3), 
+           stat = "identity", size = 1.5, 
+           position=position_dodge2(padding = 0.05)) +
+  facet_wrap(~direction) +
+  xlab("Replication Domains") + 
+  ylab("Repair\nRate (RR)") +
+  scale_fill_manual(values = c("+" = "#0571b0", 
+                               "-" = "#ca0020"), 
+                    guide = FALSE) +
+  labs(color = "Strands", fill = "") +
+  scale_y_continuous(breaks = c(0, 1, 2),
+                     limits = c(0, 2)) +
+  geom_text( data = dat_text, mapping = aes(x = x, y = y, label = label), 
+             angle = 90, colour = "white", size = 2.8 ) 
+
+# adding and overriding the default plot format
+p.B.2 <- p.B.2 + p_format + 
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x = element_blank()) 
+
+
+#### Plot B.3 ####
+
+# create the plot 
+p.B.3 <- ggplot() + 
+  geom_bar(data = pB3_data, aes(x = Group.2, y = x), 
+           stat = "identity", position=position_dodge()) +
+  facet_wrap(~direction) +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  xlab("") + ylab(expression(RR[p] - RR[m])) +
+  scale_y_continuous(breaks = c(-.2, 0, .2),
+                     limits = c(-.25, .25)) +
+  scale_fill_manual(values = repdomain_colors, guide = FALSE) 
+
+# adding and overriding the default plot format
+p.B.3 <- p.B.3 + p_format + 
+  theme(strip.background = element_blank(),
+        strip.text.x = element_blank())  

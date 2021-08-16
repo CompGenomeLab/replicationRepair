@@ -155,7 +155,7 @@ window_numbering <- function( mydata, name_column, middle ){
   names(window) <- c("dataset", "windows")
   window$windows <- as.numeric(as.character(window$windows)) - middle
   newdata <- merge(mydata, window, by.x="dataset", by.y="dataset")
-  newdata <- unique(newdata) # bak biara neden gerekli
+  newdata <- unique(newdata) # farklı samplelar ve 2 strand olduğu için gerekli
   return(newdata)
 }
 
