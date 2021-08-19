@@ -3,7 +3,7 @@
 
 #### import data ####
 
-dir_fr <- "~/Documents/myprojects/replicationRepair/final/"
+dir_fr <- "/Users/azgarian/Documents/myprojects/replicationRepair/results/final"
 
 temp <- list.files(path = dir_fr, pattern = ".txt")
 

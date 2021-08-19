@@ -13,25 +13,27 @@ library(grid)
 #### Variables ####
 
 # name of the sample csv file 
-sample_csv <- paste("/home/azgarian/Documents/myprojects/replicationRepair/",
-                    "final/final_reports_sim_hg19_R21061297-EdUrep-4hrls_combined",
-                    "_hg19_peaks_repdomains_no_overlap_windows_51_100_ready.csv", 
+sample_csv <- paste("/Users/azgarian/Documents/myprojects/replicationRepair/",
+                    "results/final/final_reports_hg19_edu_rep2_2h_hirfd",
+                    "_minus_windows_51_100_ready.csv", 
                     sep = "")
 
 sample_df <- read.csv( sample_csv )
 
-type <- "sim"
-edu_phase <- "late"
+type <- ""
+edu_phase <- "early"
 treatment <- ""
 
 #### Default Plot Format ####
 
-source("/home/azgarian/Documents/myprojects/replicationRepair/1_code/4_plot_format.R")
+source(paste("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/",
+       "scripts/4plots/4_plot_format.R", sep=""))
 
 
 #### Fuctions ####
 
-source("/home/azgarian/Documents/myprojects/replicationRepair/1_code/4_functions.R")
+source(paste("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/",
+       "scripts/4plots/4_functions.R", sep=""))
 
 
 #### Main ####
@@ -279,7 +281,7 @@ for (myphase in c("late","early","async")) {
           plot.title = element_text(hjust = -0.2, vjust = 5, 
                                     size = 12, face="bold"))
   
-  ggsave(paste("~/Desktop/repairRevision2/edu_figs/", edu_file, treatment, "_", 
+  ggsave(paste("~/Desktop/", edu_file, treatment, "_", 
                myphase, type, "_noverlap.png", sep=""), 
          width = 22, height = myheight, units = "cm")
 

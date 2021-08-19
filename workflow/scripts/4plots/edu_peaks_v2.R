@@ -20,7 +20,7 @@ rep <- "2"
 
 
 # name of the sample csv file 
-sample_csv <- paste("/home/azgarian/Documents/myprojects/replicationRepair/",
+sample_csv <- paste("/Users/azgarian/Documents/myprojects/replicationRepair/",
                     "final/final_reports_hg19_R21071354-EdUrep2-UV3-5hrls2_combined_hg19_peaks_repdomains_h1000_windows_201_100_ready.csv", 
                     sep = "")
 sample_df <- read.csv( sample_csv )
@@ -32,12 +32,12 @@ sample_df <- droplevels(sample_df)
 
 #### Default Plot Format ####
 
-source("/home/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_plot_format.R")
+source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_plot_format.R")
 
 
 #### Fuctions ####
 
-source("/home/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_functions.R")
+source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_functions.R")
 
 
 #### Main ####
