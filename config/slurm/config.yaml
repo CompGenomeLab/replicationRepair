@@ -1,2 +1,2 @@
 jobs: 220 
-cluster: "sbatch -A investor -p short_investor -J {rule}.job --qos short_investor --cpus-per-task 2 --time 2:00:00 -o logs/cluster/{rule}_%A.out -e logs/cluster/{rule}_%A.err"
+cluster: "sbatch -A investor -p mid_investor -J {rule}.job --qos mid_investor --cpus-per-task 2 --time 23:00:00 -o logs/cluster/{rule}_%A.out -e logs/cluster/{rule}_%A.err"
