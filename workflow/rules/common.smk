@@ -258,17 +258,18 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
                 inputList.append(sampledir + sample + "_R1.html")
                 inputList.append(sampledir + sample + "_R2.html")
 
-            if "inp" not in sample:
-                inputList.append("results/edu/" + sample + "_" + build + 
-                "_peaks.narrowPeak")
-                inputList.append("results/edu/" + sample + "_" + build + 
-                "_peaks.broadPeak")
+            #if "inp" not in sample:
+            #    inputList.append("results/edu/" + sample + "_" + build + 
+            #    "_peaks.narrowPeak")
+            #    inputList.append("results/edu/" + sample + "_" + build + 
+            #    "_peaks.broadPeak")
 
-            inputList.append(sampledir + sample + "_" + build + "_sorted.bam")
-            inputList.append(sampledir + sample + "_" + build + 
-                "_sorted_plus.bw")
-            inputList.append(sampledir + sample + "_" + build + 
-                "_sorted_minus.bw")
+            #inputList.append(sampledir + sample + "_" + build + "_sorted.bam")
+            #inputList.append(sampledir + sample + "_" + build + 
+            #    "_sorted_plus.bw")
+            #inputList.append(sampledir + sample + "_" + build + 
+            #    "_sorted_minus.bw")
+            inputList.append(sampledir + sample + "_" + build + "_pe.bed")
 
     if method == "mutation":
     
