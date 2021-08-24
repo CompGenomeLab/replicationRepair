@@ -17,5 +17,5 @@ rule filter_target_muts:
         if ($4 ~ "G_A"){{print $0t"0"t"-"}}}}' > \
         {output} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """

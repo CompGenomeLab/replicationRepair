@@ -20,7 +20,7 @@ rule intergenic_xr:
         -b {input.genes} \
         -v -f 0.5 > {output.plus_intergenic} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Getting intergenic (minus strand)..." &&
         bedtools intersect \
@@ -28,7 +28,7 @@ rule intergenic_xr:
         -b {input.genes} \
         -v -f 0.5 > {output.minus_intergenic} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule intergenic_ds:
@@ -53,7 +53,7 @@ rule intergenic_ds:
         -b {input.genes} \
         -v -f 0.5 > {output.plus_intergenic} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Getting intergenic (minus strand)..." &&
         bedtools intersect \
@@ -61,7 +61,7 @@ rule intergenic_ds:
         -b {input.genes} \
         -v -f 0.5 > {output.minus_intergenic} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule intergenic_sim:
@@ -86,7 +86,7 @@ rule intergenic_sim:
         -b {input.genes} \
         -v -f 0.5 > {output.plus_intergenic} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Getting intergenic (minus strand)..." &&
         bedtools intersect \
@@ -94,7 +94,7 @@ rule intergenic_sim:
         -b {input.genes} \
         -v -f 0.5 > {output.minus_intergenic} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule intergenic_mutation:
@@ -119,7 +119,7 @@ rule intergenic_mutation:
         -b {input.genes} \
         -v -f 0.5 > {output.plus_intergenic} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Getting intergenic (minus strand)..." &&
         bedtools intersect \
@@ -127,5 +127,5 @@ rule intergenic_mutation:
         -b {input.genes} \
         -v -f 0.5 > {output.minus_intergenic} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

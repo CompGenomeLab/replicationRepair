@@ -19,7 +19,7 @@ rule intersect_xr:
         (echo "`date -R`: Copy region file {params.region}..." &&
         cp {params.region} {output.region} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1   
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1   
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
@@ -27,7 +27,7 @@ rule intersect_xr:
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
@@ -35,7 +35,7 @@ rule intersect_xr:
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule intersect_ds:
@@ -59,7 +59,7 @@ rule intersect_ds:
         (echo "`date -R`: Copy region file {params.region}..." &&
         cp {params.region} {output.region} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1   
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1   
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
@@ -67,7 +67,7 @@ rule intersect_ds:
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
@@ -75,7 +75,7 @@ rule intersect_ds:
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule intersect_sim:
@@ -99,7 +99,7 @@ rule intersect_sim:
         (echo "`date -R`: Copy region file {params.region}..." &&
         cp {params.region} {output.region} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1   
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1   
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
@@ -107,7 +107,7 @@ rule intersect_sim:
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
@@ -115,7 +115,7 @@ rule intersect_sim:
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule intersect_xr_intergenic:
@@ -138,7 +138,7 @@ rule intersect_xr_intergenic:
         (echo "`date -R`: Copy region file {input.region}..." &&
         cp {input.region} {output.region} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1   
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1   
           
         (echo "`date -R`: Intersecting plus strand with {input.region}..." &&
         bedtools intersect \
@@ -146,7 +146,7 @@ rule intersect_xr_intergenic:
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {input.region}..." &&
         bedtools intersect \
@@ -154,7 +154,7 @@ rule intersect_xr_intergenic:
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule intersect_ds_intergenic:
@@ -178,7 +178,7 @@ rule intersect_ds_intergenic:
         (echo "`date -R`: Copy region file {params.region}..." &&
         cp {params.region} {output.region} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1   
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1   
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
@@ -186,7 +186,7 @@ rule intersect_ds_intergenic:
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
@@ -194,7 +194,7 @@ rule intersect_ds_intergenic:
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule intersect_sim_intergenic:
@@ -218,7 +218,7 @@ rule intersect_sim_intergenic:
         (echo "`date -R`: Copy region file {params.region}..." &&
         cp {params.region} {output.region} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1   
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1   
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
@@ -226,7 +226,7 @@ rule intersect_sim_intergenic:
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
@@ -234,7 +234,7 @@ rule intersect_sim_intergenic:
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule intersect_mutation:
@@ -258,7 +258,7 @@ rule intersect_mutation:
         (echo "`date -R`: Copy region file {params.region}..." &&
         cp {params.region} {output.region} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1   
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1   
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
@@ -266,7 +266,7 @@ rule intersect_mutation:
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
@@ -274,7 +274,7 @@ rule intersect_mutation:
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule intersect_mutation_intergenic:
@@ -298,7 +298,7 @@ rule intersect_mutation_intergenic:
         (echo "`date -R`: Copy region file {params.region}..." &&
         cp {params.region} {output.region} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1   
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1   
           
         (echo "`date -R`: Intersecting plus strand with {params.region}..." &&
         bedtools intersect \
@@ -306,7 +306,7 @@ rule intersect_mutation_intergenic:
         -b {input.plus} \
         -wa -c -F 0.5 > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Intersecting minus strand with {params.region}..." &&
         bedtools intersect \
@@ -314,5 +314,5 @@ rule intersect_mutation_intergenic:
         -b {input.minus} \
         -wa -c -F 0.5 > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

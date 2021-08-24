@@ -15,13 +15,13 @@ rule damage_site_xr:
         awk '{{print $1"\\t"$3-8"\\t"$3-7"\\t""reads""\\t"".""\\t"$6}}' {input.plus} |
         sort -u -k1,1 -k2,2n -k3,3n > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Extracting exact damage sites (minus strand)..." &&
         awk '{{print $1"\\t"$2+7"\t"$2+8"\\t""reads""\\t"".""\\t"$6}}' {input.minus} |
         sort -u -k1,1 -k2,2n -k3,3n > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule damage_site_ds:
@@ -41,13 +41,13 @@ rule damage_site_ds:
         awk '{{print $1"\\t"$3-5"\t"$3-4"\\t""reads""\\t"".""\\t"$6}}' {input.plus} |
         sort -u -k1,1 -k2,2n -k3,3n > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Extracting exact damage sites (minus strand)..." &&
         awk '{{print $1"\\t"$2+4"\t"$2+5"\\t""reads""\\t"".""\\t"$6}}' {input.minus} |
         sort -u -k1,1 -k2,2n -k3,3n > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule damage_site_xr_sim:
@@ -67,13 +67,13 @@ rule damage_site_xr_sim:
         awk '{{print $1"\\t"$3-8"\\t"$3-7"\\t""reads""\\t"".""\\t"$6}}' {input.plus} |
         sort -u -k1,1 -k2,2n -k3,3n > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Extracting exact damage sites (minus strand)..." &&
         awk '{{print $1"\\t"$2+7"\t"$2+8"\\t""reads""\\t"".""\\t"$6}}' {input.minus} |
         sort -u -k1,1 -k2,2n -k3,3n > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule damage_site_ds_sim:
@@ -93,11 +93,11 @@ rule damage_site_ds_sim:
         awk '{{print $1"\\t"$3-5"\t"$3-4"\\t""reads""\\t"".""\\t"$6}}' {input.plus} |
         sort -u -k1,1 -k2,2n -k3,3n > {output.plus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Extracting exact damage sites (minus strand)..." &&
         awk '{{print $1"\\t"$2+4"\t"$2+5"\\t""reads""\\t"".""\\t"$6}}' {input.minus} |
         sort -u -k1,1 -k2,2n -k3,3n > {output.minus} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

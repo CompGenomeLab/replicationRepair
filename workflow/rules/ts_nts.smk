@@ -20,7 +20,7 @@ rule ts_nts_xr:
         cat {input.plus} {input.minus} | \
         sort -k1,1 -k2,2n -k3,3n > {output.comb} &&
         echo "`date -R`: Success! Strands combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Counting reads on TS..." &&
         bedtools intersect \
@@ -28,7 +28,7 @@ rule ts_nts_xr:
         -b {output.comb} \
         -wa -c -S -F 0.5 > {output.TS} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Counting reads on NTS..." &&
         bedtools intersect \
@@ -36,14 +36,14 @@ rule ts_nts_xr:
         -b {output.comb} \
         -wa -c -s -F 0.5 > {output.NTS} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Combine TS & NTS counts..." &&
         paste {output.TS} {output.NTS} | \
         awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$6"\\t"$7"\\t"$14}}' > \
         {output.TSNTS} &&
         echo "`date -R`: Success! TS & NTS counts are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule ts_nts_ds:
@@ -68,7 +68,7 @@ rule ts_nts_ds:
         cat {input.plus} {input.minus} | \
         sort -k1,1 -k2,2n -k3,3n > {output.comb} &&
         echo "`date -R`: Success! Strands combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Counting reads on TS..." &&
         bedtools intersect \
@@ -76,7 +76,7 @@ rule ts_nts_ds:
         -b {output.comb} \
         -wa -c -S -F 0.5 > {output.TS} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Counting reads on NTS..." &&
         bedtools intersect \
@@ -84,12 +84,12 @@ rule ts_nts_ds:
         -b {output.comb} \
         -wa -c -s -F 0.5 > {output.NTS} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Combine TS & NTS counts..." &&
         paste {output.TS} {output.NTS} | \
         awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$6"\\t"$7"\\t"$14}}' > \
         {output.TSNTS} &&
         echo "`date -R`: Success! TS & NTS counts are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

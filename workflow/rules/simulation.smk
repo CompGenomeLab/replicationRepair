@@ -23,7 +23,7 @@ rule simulation:
         -fo {output.fa} \
         -s &&
         echo "`date -R`: Success! {input.bed} is converted." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Simulating reads..." &&
         boquila \
@@ -34,5 +34,5 @@ rule simulation:
         --regions {input.regions} \
         > {output.sim} &&
         echo "`date -R`: Success! Simulation is done." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

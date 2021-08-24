@@ -20,7 +20,7 @@ rule organize:
         awk '{{print $2"\\t"($3-2)"\\t"($4+1)"\\t"$6"_"$7"::"$2":"($3-2)"-"($4+1)"\\t""0""\\t""+"}}' > \
         {output.org} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         
         (echo "`date -R`: Creating fasta to retrieve mutated nucleotides..." &&
         bedtools getfasta \
@@ -29,7 +29,7 @@ rule organize:
         -fo {output.fa} \
         -name &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1    
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1    
 
         (echo "`date -R`: Creating final bed..." &&
         awk -F'[>_:-]' \
@@ -38,5 +38,5 @@ rule organize:
         sort -k1,1 -k2,2n -k3,3n > \
         {output.bed} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1    
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1    
         """

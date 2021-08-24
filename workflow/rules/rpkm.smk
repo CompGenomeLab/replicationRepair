@@ -19,7 +19,7 @@ rule rpkm_xr:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -29,7 +29,7 @@ rule rpkm_xr:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_ds:
@@ -53,7 +53,7 @@ rule rpkm_ds:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -63,7 +63,7 @@ rule rpkm_ds:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_sim:
@@ -87,7 +87,7 @@ rule rpkm_sim:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -97,7 +97,7 @@ rule rpkm_sim:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_xr_intergenic:
@@ -121,7 +121,7 @@ rule rpkm_xr_intergenic:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -131,7 +131,7 @@ rule rpkm_xr_intergenic:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_ds_intergenic:
@@ -155,7 +155,7 @@ rule rpkm_ds_intergenic:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -165,7 +165,7 @@ rule rpkm_ds_intergenic:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_sim_intergenic:
@@ -189,7 +189,7 @@ rule rpkm_sim_intergenic:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -199,7 +199,7 @@ rule rpkm_sim_intergenic:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_noWindows_xr:
@@ -223,7 +223,7 @@ rule rpkm_noWindows_xr:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -233,7 +233,7 @@ rule rpkm_noWindows_xr:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_noWindows_ds:
@@ -257,7 +257,7 @@ rule rpkm_noWindows_ds:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -267,7 +267,7 @@ rule rpkm_noWindows_ds:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_noWindows_sim:
@@ -291,7 +291,7 @@ rule rpkm_noWindows_sim:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -301,7 +301,7 @@ rule rpkm_noWindows_sim:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_noWindows_xr_intergenic:
@@ -325,7 +325,7 @@ rule rpkm_noWindows_xr_intergenic:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -335,7 +335,7 @@ rule rpkm_noWindows_xr_intergenic:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_noWindows_ds_intergenic:
@@ -359,7 +359,7 @@ rule rpkm_noWindows_ds_intergenic:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -369,7 +369,7 @@ rule rpkm_noWindows_ds_intergenic:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule rpkm_noWindows_sim_intergenic:
@@ -393,7 +393,7 @@ rule rpkm_noWindows_sim_intergenic:
         -mr 0 \
         -o {output.plus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values (minus strand)..." &&
         python3 workflow/scripts/RPKM.py \
@@ -403,5 +403,5 @@ rule rpkm_noWindows_sim_intergenic:
         -mr 0 \
         -o {output.minus} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

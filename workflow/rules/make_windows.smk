@@ -25,5 +25,5 @@ rule make_windows:
         {params.intervalLen} {params.windowNum} \
         {params.rev} &&
         echo "`date -R`: Success! Windowed file is ready." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """

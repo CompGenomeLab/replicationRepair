@@ -14,18 +14,18 @@ rule comb_strands_mutation:
         (echo "`date -R`: Combining plus stranded mutations..." &&
         awk '{{print $0"\\t""+"}}' {input.plus} > {output.comb} &&
         echo "`date -R`: Success! Mutations are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
 
         (echo "`date -R`: Combining minus stranded mutations..." &&
         awk '{{print $0"\\t""-"}}' {input.minus} >> {output.comb} &&
         echo "`date -R`: Success! Mutations are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
 
         (echo "`date -R`: Organizing..." &&
         awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$6"\\t"$8"\\t"$7}}' \
         {output.comb} > {output.org} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
         """
 
 rule comb_strands_mutation_intergenic:
@@ -44,16 +44,16 @@ rule comb_strands_mutation_intergenic:
         (echo "`date -R`: Combining plus stranded mutations..." &&
         awk '{{print $0"\\t""+"}}' {input.plus} > {output.comb} &&
         echo "`date -R`: Success! Mutations are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
 
         (echo "`date -R`: Combining minus stranded mutations..." &&
         awk '{{print $0"\\t""-"}}' {input.minus} >> {output.comb} &&
         echo "`date -R`: Success! Mutations are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
 
         (echo "`date -R`: Organizing..." &&
         awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$6"\\t"$8"\\t"$7}}' \
         {output.comb} > {output.org} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
         """

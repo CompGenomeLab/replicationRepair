@@ -71,5 +71,5 @@ rule bed2fasta_xr:
         -fo {output} \
         -s &&
         echo "`date -R`: Success! {input.bed} is converted." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
         """

@@ -19,7 +19,7 @@ rule combine_windows_xr:
         {params} \
         -o {output.plus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Combine windows (minus strand)..." &&
         python3 workflow/scripts/combinewindows.py \
@@ -27,7 +27,7 @@ rule combine_windows_xr:
         {params} \
         -o {output.minus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule combine_windows_ds:
@@ -51,7 +51,7 @@ rule combine_windows_ds:
         {params} \
         -o {output.plus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Combine windows (minus strand)..." &&
         python3 workflow/scripts/combinewindows.py \
@@ -59,7 +59,7 @@ rule combine_windows_ds:
         {params} \
         -o {output.minus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule combine_windows_sim:
@@ -83,7 +83,7 @@ rule combine_windows_sim:
         {params} \
         -o {output.plus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Combine windows (minus strand)..." &&
         python3 workflow/scripts/combinewindows.py \
@@ -91,7 +91,7 @@ rule combine_windows_sim:
         {params} \
         -o {output.minus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule combine_windows_xr_intergenic:
@@ -115,7 +115,7 @@ rule combine_windows_xr_intergenic:
         {params} \
         -o {output.plus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Combine windows (minus strand)..." &&
         python3 workflow/scripts/combinewindows.py \
@@ -123,7 +123,7 @@ rule combine_windows_xr_intergenic:
         {params} \
         -o {output.minus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule combine_windows_ds_intergenic:
@@ -147,7 +147,7 @@ rule combine_windows_ds_intergenic:
         {params} \
         -o {output.plus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Combine windows (minus strand)..." &&
         python3 workflow/scripts/combinewindows.py \
@@ -155,7 +155,7 @@ rule combine_windows_ds_intergenic:
         {params} \
         -o {output.minus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule combine_windows_sim_intergenic:
@@ -179,7 +179,7 @@ rule combine_windows_sim_intergenic:
         {params} \
         -o {output.plus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Combine windows (minus strand)..." &&
         python3 workflow/scripts/combinewindows.py \
@@ -187,7 +187,7 @@ rule combine_windows_sim_intergenic:
         {params} \
         -o {output.minus} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule combine_windows_mutation:
@@ -209,7 +209,7 @@ rule combine_windows_mutation:
         {params} \
         -o {output} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
 
 rule combine_windows_mutation_intergenic:
@@ -231,5 +231,5 @@ rule combine_windows_mutation_intergenic:
         {params} \
         -o {output} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """

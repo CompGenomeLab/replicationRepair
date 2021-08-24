@@ -23,7 +23,7 @@ rule peak_calling_edu:
         -n {params.name} \
         --outdir {params.outdir} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Peak calling (broadPeak)..." && 
         macs2 callpeak \
@@ -34,5 +34,5 @@ rule peak_calling_edu:
         --outdir {params.outdir} \
         --broad &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

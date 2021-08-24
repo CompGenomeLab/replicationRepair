@@ -16,7 +16,7 @@ rule sort_filter_input:
         sort -u -k1,1 -k2,2n -k3,3n {input} |&
         egrep {params.filt} > {output} &&
         echo "`date -R`: Success! Bed file is filtered." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
 
 rule sort_filter_edu:
@@ -36,5 +36,5 @@ rule sort_filter_edu:
         sort -u -k1,1 -k2,2n -k3,3n {input} |&
         egrep {params.filt} > {output} &&
         echo "`date -R`: Success! Bed file is filtered." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """

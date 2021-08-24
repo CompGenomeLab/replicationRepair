@@ -22,7 +22,7 @@ rule countMotifs:
         -fo {output.fa} \
         -name &&
         echo "`date -R`: Success!" ||
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Counting the given motif..." &&
         workflow/scripts/countMotif.py \
@@ -31,5 +31,5 @@ rule countMotifs:
         -m {params} \
         --agg &&
         echo "`date -R`: Success! Counting is done." ||
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

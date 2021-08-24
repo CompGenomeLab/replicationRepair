@@ -14,12 +14,12 @@ rule sep_strands_input:
         (echo "`date -R`: Separating plus stranded reads..." &&
         awk '{{if($6=="+"){{print}}}}' {input} > {output.plus} &&
         echo "`date -R`: Success! Reads are separated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Separating minus stranded reads..." &&
         awk '{{if($6=="-"){{print}}}}' {input} > {output.minus} &&
         echo "`date -R`: Success! Reads are separated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 
@@ -38,12 +38,12 @@ rule sep_strands_mutation:
         (echo "`date -R`: Separating plus stranded mutations..." &&
         awk '{{if($6=="+"){{print}}}}' {input} > {output.plus} &&
         echo "`date -R`: Success! Mutations are separated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Separating minus stranded mutations..." &&
         awk '{{if($6=="-"){{print}}}}' {input} > {output.minus} &&
         echo "`date -R`: Success! Mutations are separated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 
@@ -62,12 +62,12 @@ rule sep_strands_sim:
         (echo "`date -R`: Separating plus stranded mutations..." &&
         awk '{{if($6=="+"){{print}}}}' {input} > {output.plus} &&
         echo "`date -R`: Success! Mutations are separated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Separating minus stranded mutations..." &&
         awk '{{if($6=="-"){{print}}}}' {input} > {output.minus} &&
         echo "`date -R`: Success! Mutations are separated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule sep_strands_edu:
@@ -85,10 +85,10 @@ rule sep_strands_edu:
         (echo "`date -R`: Separating plus stranded reads..." &&
         awk '{{if($6=="+"){{print}}}}' {input} > {output.plus} &&
         echo "`date -R`: Success! Reads are separated." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Separating minus stranded reads..." &&
         awk '{{if($6=="-"){{print}}}}' {input} > {output.minus} &&
         echo "`date -R`: Success! Reads are separated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

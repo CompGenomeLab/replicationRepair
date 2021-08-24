@@ -19,13 +19,13 @@ rule sort_xr:
         sort -u -k1,1 -k2,2n -k3,3n {input.plus} |&
         egrep {params.filt} > {output.plus} &&
         echo "`date -R`: Success! Bed file is filtered." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Sorting and filtering bed file by chromosomes..." &&
         sort -u -k1,1 -k2,2n -k3,3n {input.minus} |&
         egrep {params.filt} > {output.minus} &&
         echo "`date -R`: Success! Bed file is filtered." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule sort_ds:
@@ -49,13 +49,13 @@ rule sort_ds:
         sort -u -k1,1 -k2,2n -k3,3n {input.plus} |&
         egrep {params.filt} > {output.plus} &&
         echo "`date -R`: Success! Bed file is filtered." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Sorting and filtering bed file by chromosomes..." &&
         sort -u -k1,1 -k2,2n -k3,3n {input.minus} |&
         egrep {params.filt} > {output.minus} &&
         echo "`date -R`: Success! Bed file is filtered." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule sort_sim:
@@ -79,13 +79,13 @@ rule sort_sim:
         sort -u -k1,1 -k2,2n -k3,3n {input.plus} |&
         egrep {params.filt} > {output.plus} &&
         echo "`date -R`: Success! Bed file is filtered." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Sorting and filtering bed file by chromosomes..." &&
         sort -u -k1,1 -k2,2n -k3,3n {input.minus} |&
         egrep {params.filt} > {output.minus} &&
         echo "`date -R`: Success! Bed file is filtered." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule sort_regions:
@@ -105,5 +105,5 @@ rule sort_regions:
         sort -u -k1,1 -k2,2n -k3,3n {input} |&
         egrep {params.filt} > {output} &&
         echo "`date -R`: Success! Bed file is filtered." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """

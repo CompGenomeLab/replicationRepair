@@ -28,7 +28,7 @@ rule tss_xr:
         awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$5"\\t""TS""\\t"$7}}' \
         > {output.TS} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Counting reads on NTS..." &&
         bedtools intersect \
@@ -38,12 +38,12 @@ rule tss_xr:
         awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$5"\\t""NTS""\\t"$7}}' \
         > {output.NTS} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Cat TS & NTS files..." &&
         cat {output.TS} {output.NTS} > {output.tss} &&
         echo "`date -R`: Success! TS & NTS files are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         
         (echo "`date -R`: Combine windows..." &&
         python3 workflow/scripts/combinewindows.py \
@@ -51,7 +51,7 @@ rule tss_xr:
         -strand T \
         -o {output.tss_comb} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Add info..." &&
         python3 workflow/scripts/addColumns.py \
@@ -59,7 +59,7 @@ rule tss_xr:
         -o {output.info} \
         -c {params.info} "." {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values..." &&
         python3 workflow/scripts/RPKM.py \
@@ -69,7 +69,7 @@ rule tss_xr:
         -mr 0 \
         -o {output.rpkm} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
 rule tss_ds:
@@ -102,7 +102,7 @@ rule tss_ds:
         awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$5"\\t""TS""\\t"$7}}' \
         > {output.TS} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
 
         (echo "`date -R`: Counting reads on NTS..." &&
         bedtools intersect \
@@ -112,12 +112,12 @@ rule tss_ds:
         awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"\\t"$5"\\t""NTS""\\t"$7}}' \
         > {output.NTS} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Cat TS & NTS files..." &&
         cat {output.TS} {output.NTS} > {output.tss} &&
         echo "`date -R`: Success! TS & NTS files are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
                 
         (echo "`date -R`: Combine windows..." &&
         python3 workflow/scripts/combinewindows.py \
@@ -125,7 +125,7 @@ rule tss_ds:
         -strand T \
         -o {output.tss_comb} &&
         echo "`date -R`: Success! Windows are combined." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Add info..." &&
         python3 workflow/scripts/addColumns.py \
@@ -133,7 +133,7 @@ rule tss_ds:
         -o {output.info} \
         -c {params.info} "." {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
         (echo "`date -R`: Calculating RPKM values..." &&
         python3 workflow/scripts/RPKM.py \
@@ -143,5 +143,5 @@ rule tss_ds:
         -mr 0 \
         -o {output.rpkm} &&
         echo "`date -R`: Success! RPKMs are calculated." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

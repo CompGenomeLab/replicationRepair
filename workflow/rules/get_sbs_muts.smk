@@ -15,7 +15,7 @@ rule get_sbs_muts:
         sed 's/single base sub/single_base_sub/g' > \
         {output.unzip} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         
         (echo "`date -R`: Extracting the subs..." &&
         awk -v t="\\t" '{{print $2t"chr"$9t$10t$11t$14t$16t$17}}' \
@@ -25,5 +25,5 @@ rule get_sbs_muts:
         grep single_base_sub > \
         {output.subs} &&
         echo "`date -R`: Success!" || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1    
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1    
         """

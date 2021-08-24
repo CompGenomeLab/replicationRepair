@@ -38,5 +38,5 @@ rule bedGraphToBigWig_edu:
         (echo "`date -R`: Converting bedGraph to bigWig..." &&
         bedGraphToBigWig {input.bdg} {input.index} {output} &&
         echo "`date -R`: Success! Conversion is done." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
         """

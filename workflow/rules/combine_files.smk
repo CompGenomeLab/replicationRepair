@@ -12,7 +12,7 @@ rule combine_files:
         (echo "`date -R`: Combining files..." &&
         cat {input} > {output} &&
         echo "`date -R`: Success! Files are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
         """
 
 rule combine_files_sim:
@@ -29,7 +29,7 @@ rule combine_files_sim:
         (echo "`date -R`: Combining files..." &&
         cat {input} > {output} &&
         echo "`date -R`: Success! Files are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
         """
 
 rule combine_files_intergenic:
@@ -46,7 +46,7 @@ rule combine_files_intergenic:
         (echo "`date -R`: Combining files..." &&
         cat {input} > {output} &&
         echo "`date -R`: Success! Files are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
 
 rule combine_files_sim_intergenic:
@@ -63,7 +63,7 @@ rule combine_files_sim_intergenic:
         (echo "`date -R`: Combining files..." &&
         cat {input} > {output} &&
         echo "`date -R`: Success! Files are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
 
 rule combine_files_tss:
@@ -80,7 +80,7 @@ rule combine_files_tss:
         (echo "`date -R`: Combining files..." &&
         cat {input} > {output} &&
         echo "`date -R`: Success! Files are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
     
 rule combine_files_noWindows:
@@ -97,7 +97,7 @@ rule combine_files_noWindows:
         (echo "`date -R`: Combining files..." &&
         cat {input} > {output} &&
         echo "`date -R`: Success! Files are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
 
 rule combine_files_noWindows_sim:
@@ -114,7 +114,7 @@ rule combine_files_noWindows_sim:
         (echo "`date -R`: Combining files..." &&
         cat {input} > {output} &&
         echo "`date -R`: Success! Files are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
 
 rule combine_files_noWindows_intergenic:
@@ -131,5 +131,5 @@ rule combine_files_noWindows_intergenic:
         (echo "`date -R`: Combining files..." &&
         cat {input} > {output} &&
         echo "`date -R`: Success! Files are combined." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
