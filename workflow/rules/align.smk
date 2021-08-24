@@ -25,12 +25,12 @@ rule bowtie2_se_input:
         -x {params.ref_genome} \
         -U {input.sample[0]} -S {output.sam} &&
         echo "`date -R`: Success! Alignment is done." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
 
         (echo "`date -R`: Converting sam to bam..." &&
         samtools view -Sbh -o {output.bam} {output.sam} &&
         echo "`date -R`: Success! Conversion is done." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
         """
 
 rule bowtie2_pe_input:
@@ -59,12 +59,12 @@ rule bowtie2_pe_input:
         -x {params.ref_genome} \
         -1 {input.sample[0]} -2 {input.sample[1]} -S {output.sam} &&
         echo "`date -R`: Success! Alignment is done." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
 
         (echo "`date -R`: Converting sam to bam..." &&
         samtools view -Sb -o {output.bam} {output.sam} &&
         echo "`date -R`: Success! Conversion is done." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
         """
 
 rule bowtie2_se_okseq:
@@ -96,19 +96,19 @@ rule bowtie2_se_okseq:
         -x {params.ref_genome} \
         -U {input.sample[0]} -S {output.sam} &&
         echo "`date -R`: Success! Alignment is done." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
 
         (echo "`date -R`: Converting sam to bam..." &&
         samtools view -q 20 -Sbh -o {output.bam} {output.sam} &&
         samtools rmdup -s {output.bam} {output.bam_filt} &&
         samtools sort {output.bam_filt} -o {output.bam_org}
         echo "`date -R`: Success! Conversion is done." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
         
         (echo "`date -R`: Indexing bam..." &&
         samtools index {output.bam_org}
         echo "`date -R`: Success! Indexing is done." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
         """
 
 
@@ -136,14 +136,15 @@ rule bowtie2_se_edu:
         --threads {threads} \
         {params.extra} \
         -x {params.ref_genome} \
+        --no-mixed --no-discordant --reorder \
         -U {input.sample[0]} -S {output.sam} &&
         echo "`date -R`: Success! Alignment is done." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
 
         (echo "`date -R`: Converting sam to bam..." &&
         samtools view -Sbh -o {output.bam} {output.sam} &&
         echo "`date -R`: Success! Conversion is done." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
         """
 
 rule bowtie2_pe_edu:
@@ -170,12 +171,13 @@ rule bowtie2_pe_edu:
         --threads {threads} \
         {params.extra} \
         -x {params.ref_genome} \
+        --no-mixed --no-discordant --reorder -X 1000 \
         -1 {input.sample[0]} -2 {input.sample[1]} -S {output.sam} &&
         echo "`date -R`: Success! Alignment is done." || 
-        echo "`date -R`: Process failed...") > {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
 
         (echo "`date -R`: Converting sam to bam..." &&
         samtools view -Sb -o {output.bam} {output.sam} &&
         echo "`date -R`: Success! Conversion is done." || 
-        echo "`date -R`: Process failed...") >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
         """
