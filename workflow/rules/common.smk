@@ -270,7 +270,14 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
             #inputList.append(sampledir + sample + "_" + build + 
             #    "_sorted_minus.bw")
             inputList.append(sampledir + sample + "_" + build + "_pe.bed")
-
+            inputList.append("results/edu/scatterplot_PearsonCorr_bigwigScores.png")
+            inputList.append("results/edu/PearsonCorr_bigwigScores.tab")
+            inputList.append("results/edu/heatmap_SpearmanCorr_readCounts.png")
+            inputList.append("results/edu/SpearmanCorr_readCounts.tab")
+            inputList.append("results/edu/PCA_readCounts.png")
+            inputList.append("results/edu/PCA_readCounts_early.png")
+            inputList.append("results/edu/PCA_readCounts_late.png")
+            
     if method == "mutation":
     
         for sample in sampleList:
