@@ -269,7 +269,8 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
             #    "_sorted_plus.bw")
             #inputList.append(sampledir + sample + "_" + build + 
             #    "_sorted_minus.bw")
-            inputList.append(sampledir + sample + "_" + build + "_pe.bed")
+            inputList.append("results/edu/merge_RT.txt")
+            inputList.append("results/edu/merge_uv_RT.txt")
             inputList.append("results/edu/scatterplot_PearsonCorr_bigwigScores.png")
             inputList.append("results/edu/PearsonCorr_bigwigScores.tab")
             inputList.append("results/edu/heatmap_SpearmanCorr_readCounts.png")

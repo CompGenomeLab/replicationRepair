@@ -8,7 +8,7 @@ rule genomecov_input:
         plus=temp("results/input/{samples}/{samples}_{build}_sorted_plus.bdg"),
         minus=temp("results/input/{samples}/{samples}_{build}_sorted_minus.bdg"),
     params:
-        read=lambda w, input: mappedReads(input),
+        read=lambda w, input: mappedReads(input[0], input[1]),
     log:
         "logs/{samples}/{samples}_{build}_genomecov_input.log",
     benchmark:
@@ -48,7 +48,7 @@ rule genomecov_edu:
         plus=temp("results/edu/{samples}/{samples}_{build}_sorted_plus.bdg"),
         minus=temp("results/edu/{samples}/{samples}_{build}_sorted_minus.bdg"),
     params:
-        read=lambda w, input: mappedReads(input),
+        read=lambda w, input: mappedReads(input[0], input[1]),
     log:
         "logs/{samples}/{samples}_{build}_genomecov_edu.log",
     benchmark:
@@ -77,4 +77,29 @@ rule genomecov_edu:
         > {output.minus} &&
         echo "`date -R`: Success! Genome coverage is calculated." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
+        """
+
+rule genomecov_edu_v2:
+    input:
+        bed="results/edu/{samples}/{samples}_{build}_pe.bed",
+        genome="resources/ref_genomes/hg19/genome_hg19_50kb.bed"
+    output:
+        "results/edu/{samples}/{samples}_{build}.bdg",
+    params:
+        read=lambda w, input: mappedReads(input[0]),
+    log:
+        "logs/{samples}/{samples}_{build}_genomecov_edu_v2.log",
+    benchmark:
+        "logs/{samples}/{samples}_{build}_genomecov_edu_v2.benchmark.txt",
+    conda:
+        "../envs/genomecov.yaml"
+    shell:  
+        """
+        (echo "`date -R`: Calculating genome coverage..." &&
+        bedtools intersect -c \
+        -b {input.bed} \
+        -a {input.genome} |&
+        awk '{{print $1,$2,$3,$4*1e+06/{params.read} }}' OFS='\\t' | grep chr > {output} &&
+        echo "`date -R`: Success! Genome coverage is calculated." || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
