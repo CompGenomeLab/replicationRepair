@@ -10,7 +10,7 @@ rule fastqc_se_input:
         "logs/{samples}/{samples}_se_input_fastqc.log",
     benchmark:
         "logs/{samples}/{samples}_se_input_fastqc.benchmark.txt",
-    threads: 1
+    threads: 16
     wrapper:
         "0.69.0/bio/fastqc"
 
@@ -25,7 +25,7 @@ rule fastqc_pe_input:
         "logs/{samples}/{samples}_fastqc_pe_input_{ext}.log", 
     benchmark:
         "logs/{samples}/{samples}_fastqc_pe_input_{ext}.benchmark.txt",
-    threads: 1
+    threads: 16
     wrapper:
         "0.69.0/bio/fastqc"
 
@@ -40,7 +40,7 @@ rule fastqc_se_okseq:
         "logs/{samples}/{samples}_fastqc_se_okseq.log",
     benchmark:
         "logs/{samples}/{samples}_fastqc_se_okseq.benchmark.txt",
-    threads: 1
+    threads: 16
     wrapper:
         "0.69.0/bio/fastqc"
 
@@ -55,7 +55,7 @@ rule fastqc_pe_okseq:
         "logs/{samples}/{samples}_fastqc_pe_okseq_{ext}.log", 
     benchmark:
         "logs/{samples}/{samples}_fastqc_pe_okseq_{ext}.benchmark.txt",
-    threads: 1
+    threads: 16
     wrapper:
         "0.69.0/bio/fastqc"
 
@@ -70,7 +70,7 @@ rule fastqc_se_edu:
         "logs/{samples}/{samples}_fastqc_se_edu.log",
     benchmark:
         "logs/{samples}/{samples}_fastqc_se_edu.benchmark.txt",
-    threads: 1
+    threads: 16
     wrapper:
         "0.69.0/bio/fastqc"
 
@@ -85,6 +85,6 @@ rule fastqc_pe_edu:
         "logs/{samples}/{samples}_fastqc_pe_edu_{ext}.log", 
     benchmark:
         "logs/{samples}/{samples}_fastqc_pe_edu_{ext}.benchmark.txt",
-    threads: 1
+    threads: 16
     wrapper:
         "0.69.0/bio/fastqc"
