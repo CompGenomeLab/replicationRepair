@@ -32,17 +32,21 @@ for line in filein:
     domain_length = float(ll[chr_endline]) - float(ll[chr_startline])
     #print(domain_length) 
     
-    if type(args.mr) is list:
-        mappedreadsline = (int((str(args.mr).strip().split("'"))[1]) -1)
-        mappedReads = float(ll[mappedreadsline])
-        #print(mappedreadsline)
-    else: mappedReads = 1000000     
+    if domain_length == 0:
+        continue
+    else:
 
-    RPKM = (1000000 * float(ll[countline]) / mappedReads) * 1000 / domain_length
-    RPKM = [str(RPKM)]
-    #print(RPKM)
-    #print(float(ll[mappedreadsline]))
-    newList = ll + RPKM
-    #print(newList)
-    out.write(separator.join(newList) + "\n")
+        if type(args.mr) is list:
+            mappedreadsline = (int((str(args.mr).strip().split("'"))[1]) -1)
+            mappedReads = float(ll[mappedreadsline])
+            #print(mappedreadsline)
+        else: mappedReads = 1000000     
+
+        RPKM = (1000000 * float(ll[countline]) / mappedReads) * 1000 / domain_length
+        RPKM = [str(RPKM)]
+        #print(RPKM)
+        #print(float(ll[mappedreadsline]))
+        newList = ll + RPKM
+        #print(newList)
+        out.write(separator.join(newList) + "\n")
       
