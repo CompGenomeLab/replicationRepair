@@ -8,6 +8,8 @@ rule bam_correlation_pe_edu:
         "results/edu/R21071354-EdUrep2-4hrls2_combined/R21071354-EdUrep2-4hrls2_combined_hg19_sorted_rmdup.bam",
         "results/edu/R21071354-EdUrep2-UV1-5hrls2_combined/R21071354-EdUrep2-UV1-5hrls2_combined_hg19_sorted_rmdup.bam",
         "results/edu/R21071354-EdUrep2-UV3-5hrls2_combined/R21071354-EdUrep2-UV3-5hrls2_combined_hg19_sorted_rmdup.bam",
+        "results/edu/R21102739-EdUrep3-UV1-5hrls3_combined/R21102739-EdUrep3-UV1-5hrls3_combined_hg19_sorted_rmdup.bam",
+        "results/edu/R21102739-EdUrep3-UV3-5hrls3_combined/R21102739-EdUrep3-UV3-5hrls3_combined_hg19_sorted_rmdup.bam",
     output:
         out="results/edu/readCounts.npz",
         raw_out="results/edu/readCounts.tab",
@@ -23,7 +25,7 @@ rule bam_correlation_pe_edu:
         multiBamSummary bins \
         --bamfiles {input} \
         --minMappingQuality 20 \
-        --labels early_rep1 late_rep1 early_uv_rep1 late_uv_rep1 early_rep2 late_rep2 early_uv_rep2 late_uv_rep2 \
+        --labels early_rep1 late_rep1 early_uv_rep1 late_uv_rep1 early_rep2 late_rep2 early_uv_rep2 late_uv_rep2 early_uv_rep3 late_uv_rep3 \
         -out {output.out} --outRawCounts {output.raw_out} &&
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
@@ -35,6 +37,7 @@ rule bam_correlation_pe_edu_early:
         "results/edu/R21061297-EdUrep-UV1-5hrls_combined/R21061297-EdUrep-UV1-5hrls_combined_hg19_sorted_rmdup.bam",
         "results/edu/R21071354-EdUrep2-2hrls2_combined/R21071354-EdUrep2-2hrls2_combined_hg19_sorted_rmdup.bam",
         "results/edu/R21071354-EdUrep2-UV1-5hrls2_combined/R21071354-EdUrep2-UV1-5hrls2_combined_hg19_sorted_rmdup.bam",
+        "results/edu/R21102739-EdUrep3-UV1-5hrls3_combined/R21102739-EdUrep3-UV1-5hrls3_combined_hg19_sorted_rmdup.bam",
     output:
         out="results/edu/readCounts_early.npz",
         raw_out="results/edu/readCounts_early.tab",
@@ -50,7 +53,7 @@ rule bam_correlation_pe_edu_early:
         multiBamSummary bins \
         --bamfiles {input} \
         --minMappingQuality 20 \
-        --labels early_rep1 early_uv_rep1 early_rep2 early_uv_rep2 \
+        --labels early_rep1 early_uv_rep1 early_rep2 early_uv_rep2 early_uv_rep3 \
         -out {output.out} --outRawCounts {output.raw_out} &&
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
@@ -62,6 +65,7 @@ rule bam_correlation_pe_edu_late:
         "results/edu/R21061297-EdUrep-UV3-5hrls_combined/R21061297-EdUrep-UV3-5hrls_combined_hg19_sorted_rmdup.bam",
         "results/edu/R21071354-EdUrep2-4hrls2_combined/R21071354-EdUrep2-4hrls2_combined_hg19_sorted_rmdup.bam",
         "results/edu/R21071354-EdUrep2-UV3-5hrls2_combined/R21071354-EdUrep2-UV3-5hrls2_combined_hg19_sorted_rmdup.bam",
+        "results/edu/R21102739-EdUrep3-UV3-5hrls3_combined/R21102739-EdUrep3-UV3-5hrls3_combined_hg19_sorted_rmdup.bam",
     output:
         out="results/edu/readCounts_late.npz",
         raw_out="results/edu/readCounts_late.tab",
@@ -77,7 +81,7 @@ rule bam_correlation_pe_edu_late:
         multiBamSummary bins \
         --bamfiles {input} \
         --minMappingQuality 20 \
-        --labels late_rep1 late_uv_rep1 late_rep2 late_uv_rep2 \
+        --labels late_rep1 late_uv_rep1 late_rep2 late_uv_rep2 late_uv_rep3 \
         -out {output.out} --outRawCounts {output.raw_out} &&
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
