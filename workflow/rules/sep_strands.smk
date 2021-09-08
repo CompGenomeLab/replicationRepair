@@ -46,30 +46,6 @@ rule sep_strands_mutation:
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
 
-
-rule sep_strands_sim:
-    input:
-        "resources/samples/sim/{samples}_{build}_{method}_sim.bed",
-    output:
-        plus="results/sim/{samples}/{samples}_{build}_{method}_sim_plus.bed",
-        minus="results/sim/{samples}/{samples}_{build}_{method}_sim_minus.bed",
-    log:
-        "logs/{samples}/{samples}_{build}_{method}_sim_sep_strands.log",
-    benchmark:
-        "logs/{samples}/{samples}_{build}_{method}_sim_sep_strands.benchmark.txt",
-    shell:  
-        """
-        (echo "`date -R`: Separating plus stranded mutations..." &&
-        awk '{{if($6=="+"){{print}}}}' {input} > {output.plus} &&
-        echo "`date -R`: Success! Mutations are separated." || 
-        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
-
-        (echo "`date -R`: Separating minus stranded mutations..." &&
-        awk '{{if($6=="-"){{print}}}}' {input} > {output.minus} &&
-        echo "`date -R`: Success! Mutations are separated." || 
-        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
-        """
-
 rule sep_strands_edu:
     input:
         "results/edu/{samples}/{samples}_{build}_sorted_chr.bed",

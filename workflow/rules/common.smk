@@ -73,7 +73,8 @@ def info(wildcards):
 
             if line.strip().split(",")[1] == sample_name:
 
-                targetLine = line.strip().replace(",","\t")
+                #targetLine = line.strip().replace(",","\t")
+                targetLine = line.strip()
                 return targetLine
             
         if targetLine == "":
@@ -95,14 +96,12 @@ def getRegion(region, rawRegionList, regionList):
     except:
        raise(ValueError("Designated wildcard cannot be found in region list."))
         
-    return "results/regions/" + rawRegionList[idx] + "_sorted.bed"
+    return rawRegionList[idx] 
 
-def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="real", noW=False):
+def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="real"):
 
-    if noW:
-        window = "_"
-    else:
-        window = "_combined_"
+
+    window = "_combined_"
 
     inputList = []
     if outformat == "real":
@@ -110,68 +109,68 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
             sampledir = "results/XR/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_xr_plus_" + regions + window + "rpkm.txt")
+            "_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_xr_minus_" + regions + window + "rpkm.txt")
+            "_minus_" + regions + window + "rpkm.txt")
 
         for sample in sampleList_ds:
             sampledir = "results/DS/" + sample + "/" 
             
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_ds_dipyrimidines_plus_" + regions + window + "rpkm.txt")
+            "_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_ds_dipyrimidines_minus_" + regions + window + "rpkm.txt")
+            "_minus_" + regions + window + "rpkm.txt")
 
     elif outformat == "intergenic":
         for sample in sampleList_xr:
-            sampledir = "results/XR/" + sample + "/" 
+            sampledir = "results/intergenic/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_xr_plus_" + regions + "_intergenic" + window + "rpkm.txt")
+            "_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_xr_minus_" + regions + "_intergenic" + window + "rpkm.txt")
+            "_minus_" + regions + window + "rpkm.txt")
 
         for sample in sampleList_ds:
-            sampledir = "results/DS/" + sample + "/" 
-            
+            sampledir = "results/intergenic/" + sample + "/" 
+
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_ds_dipyrimidines_plus_" + regions + "_intergenic" + window + "rpkm.txt")
+            "_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_sorted_ds_dipyrimidines_minus_" + regions + "_intergenic" + window + "rpkm.txt")
+            "_minus_" + regions + window + "rpkm.txt")
 
     elif outformat == "sim":
         for sample in sampleList_xr:
             sampledir = "results/sim/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
-            "_xr_sim_plus_" + regions + window + "rpkm.txt")
+            "_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_xr_sim_minus_" + regions + window + "rpkm.txt")
+            "_minus_" + regions + window + "rpkm.txt")
 
         for sample in sampleList_ds:
             sampledir = "results/sim/" + sample + "/" 
-            
+
             inputList.append(sampledir + sample + "_" + build + 
-            "_ds_sim_plus_" + regions + window + "rpkm.txt")
+            "_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_ds_sim_minus_" + regions + window + "rpkm.txt")  
+            "_minus_" + regions + window + "rpkm.txt")
 
     elif outformat == "sim_intergenic":
         for sample in sampleList_xr:
-            sampledir = "results/sim/" + sample + "/" 
+            sampledir = "results/intergenic_sim/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
-            "_xr_sim_plus_" + regions + "_intergenic_combined_rpkm.txt")
+            "_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_xr_sim_minus_" + regions + "_intergenic_combined_rpkm.txt")
+            "_minus_" + regions + window + "rpkm.txt")
 
         for sample in sampleList_ds:
-            sampledir = "results/sim/" + sample + "/" 
-            
+            sampledir = "results/intergenic_sim/" + sample + "/" 
+
             inputList.append(sampledir + sample + "_" + build + 
-            "_ds_sim_plus_" + regions + "_intergenic_combined_rpkm.txt")
+            "_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
-            "_ds_sim_minus_" + regions + "_intergenic_combined_rpkm.txt")   
+            "_minus_" + regions + window + "rpkm.txt")  
 
     elif outformat == "tss":
         for sample in sampleList_xr:
@@ -203,7 +202,7 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
     return inputList
 
 
-def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
+def allInput(build="", sampleList=[], method="", regions=[]):
 
     inputList = []
     if method == "input":
@@ -306,6 +305,8 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
         for sample in sampleList:
             sampledir = "results/DS/" + sample + "/" 
             simdir = "results/sim/" + sample + "/" 
+            intdir = "results/intergenic/" + sample + "/" 
+            intsimdir = "results/intergenic_sim/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + 
             "_sorted_dipyrimidines_tss_combined_rpkm.bed") 
@@ -315,20 +316,21 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
             #"_sorted_dipyrimidines_TSNTS.bed")
 
             for region in regions:
-                inputList.append(sampledir + sample + "_" + build + 
-                "_sorted_ds_dipyrimidines_plus_" + region + "_combined_rpkm.txt")
-                inputList.append(sampledir + sample + "_" + build + 
-                "_sorted_ds_dipyrimidines_minus_" + region + "_combined_rpkm.txt")
-                inputList.append(simdir + sample + "_" + build + 
-                "_ds_sim_plus_" + region + "_combined_rpkm.txt")
-                inputList.append(simdir + sample + "_" + build + 
-                "_ds_sim_minus_" + region + "_combined_rpkm.txt")
+
+                for mydir in [sampledir, simdir, intdir, intsimdir]:
+                
+                    inputList.append(mydir + sample + "_" + build + 
+                    "_plus_" + region + "_combined_rpkm.txt")
+                    inputList.append(mydir + sample + "_" + build + 
+                    "_minus_" + region + "_combined_rpkm.txt")
 
     if method == "xr":
 
         for sample in sampleList:
             sampledir = "results/XR/" + sample + "/" 
             simdir = "results/sim/" + sample + "/" 
+            intdir = "results/intergenic/" + sample + "/" 
+            intsimdir = "results/intergenic_sim/" + sample + "/"
 
             inputList.append(sampledir + sample + "_" + build + 
             "_sorted_tss_combined_rpkm.bed") 
@@ -338,14 +340,13 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
             #"_sorted_TSNTS.bed")
 
             for region in regions:
-                inputList.append(sampledir + sample + "_" + build + 
-                "_sorted_xr_plus_" + region + "_combined_rpkm.txt")
-                inputList.append(sampledir + sample + "_" + build + 
-                "_sorted_xr_minus_" + region + "_combined_rpkm.txt")
-                inputList.append(simdir + sample + "_" + build + 
-                "_xr_sim_plus_" + region + "_combined_rpkm.txt")
-                inputList.append(simdir + sample + "_" + build + 
-                "_xr_sim_minus_" + region + "_combined_rpkm.txt")
+
+                for mydir in [sampledir, simdir, intdir, intsimdir]:
+
+                    inputList.append(mydir + sample + "_" + build + 
+                    "_plus_" + region + "_combined_rpkm.txt")
+                    inputList.append(mydir + sample + "_" + build + 
+                    "_minus_" + region + "_combined_rpkm.txt")
 
     if method == "report":
 
@@ -353,23 +354,14 @@ def allInput(build="", sampleList=[], method="", regions=[], noWindowList=[]):
         inputList.append("results/final/final_reports_" + build + "_tes.txt")
 
         for region in regions:
-            if region not in noWindowList:
                 inputList.append("results/final/final_reports_" + build + 
                 "_" + region + ".txt")
                 inputList.append("results/final/final_reports_sim_" + build + 
                 "_" + region + ".txt")
                 inputList.append("results/final/final_reports_" + build + 
                 "_" + region + "_intergenic.txt")
-                #inputList.append("results/final/final_reports_sim_" + build + 
-                #"_" + region + "_intergenic.txt")
-                
-            else:
-                inputList.append("results/final/final_reports_noWindows_" + 
-                build + "_" + region + ".txt")
-                inputList.append("results/final/final_reports_noWindows_sim_" + 
-                build + "_" + region + ".txt")
-                inputList.append("results/final/final_reports_noWindows_" + 
-                build + "_" + region + "_intergenic.txt")
+                inputList.append("results/final/final_reports_sim_" + build + 
+                "_" + region + "_intergenic.txt")
 
     #print(inputList)
     return inputList
