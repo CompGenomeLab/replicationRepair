@@ -2,7 +2,7 @@ rule pre_mapping_xr:
     input:
         plus="resources/samples/XR/{samples}_{build}_sorted_plus.bed",
         minus="resources/samples/XR/{samples}_{build}_sorted_minus.bed",
-        genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
         plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_damSite.bed",
         minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_damSite.bed",
@@ -57,7 +57,7 @@ rule pre_mapping_ds:
     input:
         plus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_plus.bed",
         minus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_minus.bed", 
-        genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
         plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_damSite.bed",
         minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_damSite.bed",
@@ -111,7 +111,7 @@ rule pre_mapping_ds:
 rule pre_mapping_xr_sim:
     input:
         bed="resources/samples/sim/{samples}_{build}_xr_sim.bed", 
-        genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
         plus=temp("results/sim/{samples}/{samples}_{build}_xr_sim_plus_sorted.bed"),
         minus=temp("results/sim/{samples}/{samples}_{build}_xr_sim_minus_sorted.bed"),
@@ -177,7 +177,7 @@ rule pre_mapping_xr_sim:
 rule pre_mapping_ds_sim:
     input:
         bed="resources/samples/sim/{samples}_{build}_ds_sim.bed",
-        genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
         plus=temp("results/sim/{samples}/{samples}_{build}_ds_sim_plus_sorted.bed"),
         minus=temp("results/sim/{samples}/{samples}_{build}_ds_sim_minus_sorted.bed"),
