@@ -82,6 +82,23 @@ sample_okseq:
 sample_mutation:
   - "melanoma"
 
+sample_markers:
+  - ENCFF916VLX_h3k79me2_hela
+  - ENCFF803UAY_h3k4me3_hela
+  - ENCFF723WDR_h3k9ac_hela
+  - ENCFF582MED_h3k36me3_hela
+  - ENCFF572NWJ_h3k4me1_hela
+  - ENCFF563OMA_h3k9me3_hela
+  - ENCFF526HPH_h3k4me3_hela
+  - ENCFF447CLK_h3k4me3_hela
+  - ENCFF410YQK_h3k27me3_hela
+  - ENCFF252BLX_h3k27me3_hela
+  - ENCFF144EOJ_h3k27ac_hela
+  - ENCFF108DAJ_h3k4me2_hela
+  - ENCFF094MFL_h2afz_hela
+  - ENCFF069BQG_h4k20me1_hela
+  - ENCFF056OVB_h3k36me3_hela
+
 build: "hg19"
 
 regions:
