@@ -63,22 +63,45 @@ def mappedReads(*files):
 
     return lineNumber
 
-def info(wildcards):
+def info(wildcards, method="sample"):
+
     sample_name = wildcards.samples.replace("-","_")
 
-    with open("resources/samples/samples.csv") as f:
+    if method == "sample":
 
-        targetLine = ""
-        for line in f:
+        with open("resources/samples/samples.csv") as f:
 
-            if line.strip().split(",")[1] == sample_name:
+            targetLine = ""
+            for line in f:
 
-                #targetLine = line.strip().replace(",","\t")
-                targetLine = line.strip()
-                return targetLine
-            
-        if targetLine == "":
-            raise(ValueError(sample_name + " not found in samples.csv file..."))
+                if line.strip().split(",")[1] == sample_name:
+
+                    #targetLine = line.strip().replace(",","\t")
+                    targetLine = line.strip()
+                    return targetLine
+                
+            if targetLine == "":
+                raise(ValueError(sample_name + " not found in samples.csv file..."))
+    
+    elif method == "marker":
+
+        with open("resources/samples/markers.csv") as f:
+
+            targetLine = ""
+            for line in f:
+
+                if line.strip().split(",")[2] == sample_name:
+
+                    #targetLine = line.strip().replace(",","\t")
+                    targetLine = line.strip()
+                    return targetLine
+                
+            if targetLine == "":
+                raise(ValueError(sample_name + " not found in markers.csv file..."))
+
+def getMarkerName(wildcards):
+    return wildcards.samples.split("_")[1]
+
 
 def getCombine(region, combineList, regionList):
 
@@ -98,7 +121,7 @@ def getRegion(region, rawRegionList, regionList):
         
     return rawRegionList[idx] 
 
-def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="real"):
+def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regions="", outformat="real"):
 
 
     window = "_combined_"
@@ -171,6 +194,12 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions=[], outformat="r
             "_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
             "_minus_" + regions + window + "rpkm.txt")  
+
+    elif outformat == "markers_intergenic":
+        for sample in sampleList_markers:
+            sampledir = "results/intergenic_markers/" + sample + "/" 
+
+            inputList.append(sampledir + sample + "_" + regions + window + "rpkm.txt")
 
     elif outformat == "tss":
         for sample in sampleList_xr:
@@ -348,6 +377,16 @@ def allInput(build="", sampleList=[], method="", regions=[]):
                     inputList.append(mydir + sample + "_" + build + 
                     "_minus_" + region + "_combined_rpkm.txt")
 
+    if method == "markers":
+
+        for sample in sampleList:
+
+            sampledir = "results/intergenic_markers/" + sample + "/" 
+            
+            for region in regions:
+        
+                inputList.append(sampledir + sample + "_" + region + "_combined_rpkm.txt")
+
     if method == "report":
 
         inputList.append("results/final/final_reports_" + build + "_tss.txt")
@@ -362,6 +401,8 @@ def allInput(build="", sampleList=[], method="", regions=[]):
                 "_" + region + "_intergenic.txt")
                 inputList.append("results/final/final_reports_sim_" + build + 
                 "_" + region + "_intergenic.txt")
+                inputList.append("results/final/final_reports_markers_" + 
+                region + "_intergenic.txt")
 
     #print(inputList)
     return inputList

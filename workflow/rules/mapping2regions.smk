@@ -343,3 +343,116 @@ rule mapping2regions_ds_intergenic_sim:
         {params.mappedReads} \
         {log}
         """
+
+rule mapping2regions_markers_intergenic:
+    input:
+        bed="results/markers/{samples}/{samples}_org_intergenic.bed",
+    output:
+        sorted_region=temp("results/intergenic_markers/{samples}/{samples}_{regions}_sorted.bed"),
+        intersect=temp("results/intergenic_markers/{samples}/{samples}_{regions}.txt"),
+        comb=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined.txt"),
+        info=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined_info.txt"),
+        rpkm="results/intergenic_markers/{samples}/{samples}_{regions}_combined_rpkm.txt",
+    params:
+        sdir="results/intergenic_markers/{samples}",
+        sname="{samples}",
+        region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
+        region_name="{regions}",
+        getComb=lambda w: getCombine(w.regions, config["region_comb_opt"], config["regions"]),
+        info=lambda w: info(w, method="marker"),
+        mappedReads=lambda w, input: mappedReads(input[0]), 
+    log:
+        "logs/markers/{samples}/{samples}_mapping2regions_markers_intergenic_{regions}.log",
+    benchmark:
+        "logs/markers/{samples}/{samples}_mapping2regions_markers_intergenic_{regions}.benchmark.txt",
+    conda:
+        "../envs/bed2fasta.yaml"
+    shell:
+        """
+        workflow/scripts/mapping2regionsMarkers.sh \
+        {input.bed} \
+        {params.sdir} \
+        {params.sname} \
+        {params.region} \
+        {params.region_name} \
+        {params.getComb} \
+        {params.info} \
+        {params.mappedReads} \
+        {log}
+        """
+
+rule mapping2regions_mutation:
+    input:
+        plus="results/mutation/{samples}/{samples}_target_mut_plus.tsv",
+        minus="results/mutation/{samples}/{samples}_target_mut_minus.tsv",
+    output:
+        sorted_region=temp("results/intergenic_markers/{samples}/{samples}_{regions}_sorted.bed"),
+        intersect=temp("results/intergenic_markers/{samples}/{samples}_{regions}.txt"),
+        comb=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined.txt"),
+        info=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined_info.txt"),
+        rpkm="results/intergenic_markers/{samples}/{samples}_{regions}_combined_rpkm.txt",
+    params:
+        sdir="results/intergenic_markers/{samples}",
+        sname="{samples}",
+        region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
+        region_name="{regions}",
+        getComb=lambda w: getCombine(w.regions, config["region_comb_opt"], config["regions"]),
+        info=lambda w: info(w, method="marker"),
+        mappedReads=lambda w, input: mappedReads(input[0]), 
+    log:
+        "logs/mutation/{samples}/{samples}_mapping2regions_mutation_{regions}.log",
+    benchmark:
+        "logs/mutation/{samples}/{samples}_mapping2regions_mutation_{regions}.benchmark.txt",
+    conda:
+        "../envs/bed2fasta.yaml"
+    shell:
+        """
+        workflow/scripts/mapping2regionsMarkers.sh \
+        {input.bed} \
+        {params.sdir} \
+        {params.sname} \
+        {params.region} \
+        {params.region_name} \
+        {params.getComb} \
+        {params.info} \
+        {params.mappedReads} \
+        {log}
+        """
+
+rule mapping2regions_mutation_intergenic:
+    input:
+        plus="results/mutation/{samples}/{samples}_target_mut_plus_{regions}_intergenic.txt",
+        minus="results/mutation/{samples}/{samples}_target_mut_minus_{regions}_intergenic.txt",
+    output:
+        sorted_region=temp("results/intergenic_markers/{samples}/{samples}_{regions}_sorted.bed"),
+        intersect=temp("results/intergenic_markers/{samples}/{samples}_{regions}.txt"),
+        comb=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined.txt"),
+        info=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined_info.txt"),
+        rpkm="results/intergenic_markers/{samples}/{samples}_{regions}_combined_rpkm.txt",
+    params:
+        sdir="results/intergenic_markers/{samples}",
+        sname="{samples}",
+        region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
+        region_name="{regions}",
+        getComb=lambda w: getCombine(w.regions, config["region_comb_opt"], config["regions"]),
+        info=lambda w: info(w, method="marker"),
+        mappedReads=lambda w, input: mappedReads(input[0]), 
+    log:
+        "logs/mutation/{samples}/{samples}_mapping2regions_mutation_intergenic_{regions}.log",
+    benchmark:
+        "logs/mutation/{samples}/{samples}_mapping2regions_mutation_intergenic_{regions}.benchmark.txt",
+    conda:
+        "../envs/bed2fasta.yaml"
+    shell:
+        """
+        workflow/scripts/mapping2regionsMarkers.sh \
+        {input.bed} \
+        {params.sdir} \
+        {params.sname} \
+        {params.region} \
+        {params.region_name} \
+        {params.getComb} \
+        {params.info} \
+        {params.mappedReads} \
+        {log}
+        """

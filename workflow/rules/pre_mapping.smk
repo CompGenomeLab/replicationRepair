@@ -239,3 +239,39 @@ rule pre_mapping_ds_sim:
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
        """
+
+rule pre_mapping_markers:
+    input:
+        bed="resources/samples/markers/{samples}.bed", 
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
+    output:
+        org="results/markers/{samples}/{samples}_org.bed",
+        intergenic="results/markers/{samples}/{samples}_org_intergenic.bed",
+    params:
+        filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",  
+        marker_name=lambda w: getMarkerName(w), 
+    log:
+        "logs/{samples}/{samples}_pre_mapping_markers.log",
+    benchmark:
+        "logs/{samples}/{samples}_pre_mapping_markers.benchmark.txt",
+    conda:
+        "../envs/bed2fasta.yaml"
+    shell:
+        """
+        (echo "`date -R`: Reorganizing..." &&
+        awk '{{print $1"\\t"$2"\\t"$3"\\t""{params.marker_name}""\\t"".""\\t"$6}}' {input.bed} |
+        sort -u -k1,1 -k2,2n -k3,3n |&
+        egrep {params.filt} > {output.org} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; rm {output.org}; exit 1; }}  ) > {log} 2>&1
+
+        (echo "`date -R`: Getting intergenic..." &&
+        bedtools intersect \
+        -a {output.org} \
+        -b {input.genes} \
+        -v -f 0.5 |&
+        sort -u -k1,1 -k2,2n -k3,3n |&
+        egrep {params.filt} > {output.intergenic} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
+        """
