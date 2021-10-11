@@ -18,6 +18,15 @@ reports/*
 !reports/README.md
 
 final/
+!final/HDL64A5_ACAGTG_cutadapt_sorted_10_dinucleotideTable.txt
+!final/HDLCA12_CTTGTA_cutadapt_sorted_10_dinucleotideTable.txt
+!final/HXL64A3_TTAGGC_cutadapt_length_distribution.txt
+!final/HXL64A3_TTAGGC_cutadapt_sorted_26_dinucleotideTable.txt
+!final/HXLCA6_GCCAAT_cutadapt_length_distribution.txt
+!final/HXLCA6_GCCAAT_cutadapt_sorted_26_dinucleotideTable.txt
+!final/R19026421-2019XR1-Hela35X3_combined_R1_cutadapt_length_distribution.txt
+!final/R19026421-2019XR1-Hela35X3_combined_R1_cutadapt_sorted_26_dinucleotideTable.txt
+!final/XT4H1-CT5H2-HelaD3-5R2h2_combined_cutadapt_sorted_10_dinucleotideTable.txt
 
 workflow/scripts/4plots/gitignore/
 workflow/scripts/4plots/.Rproj.user/
