@@ -10,6 +10,7 @@ resources/ref_genomes/hg19/
 results/*
 !results/processed_files/processed_files.zip
 !results/plots/
+results/final/*
 !results/final/HDL64A5_ACAGTG_cutadapt_sorted_10_dinucleotideTable.txt
 !results/final/HDLCA12_CTTGTA_cutadapt_sorted_10_dinucleotideTable.txt
 !results/final/HXL64A3_TTAGGC_cutadapt_length_distribution.txt
