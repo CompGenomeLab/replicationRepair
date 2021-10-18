@@ -130,6 +130,10 @@ regions:
   - "repdomains_uv_mean0.5_windows_201_10000"
   - "iz_repdomains_uv_m0.5_hela_windows_201_100"
   - "iz_repdomains_m0.5_hela_windows_201_100"
+  - "sns-seq_repdomains_uv_m0.5_hela_windows_21_1000"
+  - "sns-seq_repdomains_m0.5_hela_windows_21_1000"
+  - "iz_repdomains_uv_m0.5_hela_windows_21_1000"
+  - "iz_repdomains_m0.5_hela_windows_21_1000"
 
 region_file:
   #- "initiation.zones.hela_windows_201_100.bed"
@@ -160,6 +164,10 @@ region_file:
   - "repdomains_uv_mean0.5_windows_201_10000.bed"
   - "iz_repdomains_uv_m0.5_hela_windows_201_100.bed"
   - "iz_repdomains_m0.5_hela_windows_201_100.bed"
+  - "sns-seq_repdomains_uv_m0.5_hela_windows_21_1000.bed"
+  - "sns-seq_repdomains_m0.5_hela_windows_21_1000.bed"
+  - "iz_repdomains_uv_m0.5_hela_windows_21_1000.bed"
+  - "iz_repdomains_m0.5_hela_windows_21_1000.bed"
 
 region_comb_opt:
   #- "-"
@@ -190,7 +198,11 @@ region_comb_opt:
   - "-"
   - "-"
   - "-"
-
+  - "-"
+  - "-"
+  - "-"
+  - "-"
+  
 regions_mut:
   - "hela_no_overlap_repdomains_windows_201_100"
   - "sns.seq.rep1_int2hi.rfd_plus_hela_repdomains_windows_201_100"
