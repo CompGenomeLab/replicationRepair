@@ -8,16 +8,15 @@ include: "workflow/rules/common.smk"
 wildcard_constraints:
     regions='|'.join([r for r in (config["regions"] + config["regions_mut"])]),
     build=config["build"],
-    samples='|'.join([s for s in (config["sample_ds"] + config["sample_xr"] + config["sample_edu"] + config["sample_input"] + config["sample_okseq"] + config["sample_mutation"] + config["sample_markers"])]),
+    samples='|'.join([s for s in (config["sample_ds"] + config["sample_xr"] + config["sample_edu"] + config["sample_okseq"] + config["sample_mutation"] + config["chipseq"]["samples"])]),
     tss_tes='tss|tes'
 
 rule all:
     input:
-        #lambda w: allInput(config["build"], config["sample_input"], "input"),
         #lambda w: allInput(config["build"], config["sample_edu"], "edu"),
         #lambda w: allInput(config["build"], config["sample_okseq"], "okseq"),
         #lambda w: allInput(config["build"], config["sample_mutation"], "mutation", config["regions_mut"]),
-        lambda w: allInput(config["build"], config["sample_markers"], "markers", config["regions"]),
+        lambda w: allInput(config["build"], config["chipseq"]["samples"], "markers", config["regions"]),
         lambda w: allInput(config["build"], config["sample_ds"], "ds", config["regions"]),
         lambda w: allInput(config["build"], config["sample_xr"], "xr", config["regions"]),
         lambda w: allInput(build=config["build"], method="report", 
@@ -32,6 +31,12 @@ include: "workflow/snakefiles/EdU"
 
 # OK-seq
 #include: "workflow/snakefiles/OK-seq"
+
+# chip-seq
+if config["chipseq"]["srr"]["enabled"]:
+    include: "workflow/rules/sra_chipseq.smk"
+include: "workflow/rules/align.smk"
+include: "workflow/rules/bam2bed.smk" 
 
 # Mutation Analyses
 include: "workflow/rules/get_sbs_muts.smk"

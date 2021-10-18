@@ -240,20 +240,21 @@ rule pre_mapping_ds_sim:
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
        """
 
-rule pre_mapping_markers:
+rule pre_mapping_chipseq:
     input:
-        bed="resources/samples/markers/{samples}.bed", 
+        bed=lambda w: input4chip(w, config["chipseq"]["samples"], 
+            config["chipseq"]["srr"]["enabled"], config["chipseq"]["srr"]["codes"]),
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
-        org="results/markers/{samples}/{samples}_org.bed",
-        intergenic="results/markers/{samples}/{samples}_org_intergenic.bed",
+        org="results/chipseq/{samples}/{samples}_{build}_org.bed",
+        intergenic="results/chipseq/{samples}/{samples}_{build}_org_intergenic.bed",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",  
         marker_name=lambda w: getMarkerName(w), 
     log:
-        "logs/{samples}/{samples}_pre_mapping_markers.log",
+        "logs/{samples}/{samples}_{build}_pre_mapping_chipseq.log",
     benchmark:
-        "logs/{samples}/{samples}_pre_mapping_markers.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_pre_mapping_chipseq.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
