@@ -52,7 +52,6 @@ include: "workflow/rules/pre_mapping.smk"
 include: "workflow/rules/mapping2regions.smk"
 include: "workflow/rules/combine_files.smk"
 
-
 # Plots
-#include: "workflow/rules/????.smk"
-#include: "workflow/rules/????.smk"
+include: "workflow/rules/figure1.smk"
+include: "workflow/rules/figure2.smk"

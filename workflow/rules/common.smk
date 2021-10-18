@@ -389,8 +389,10 @@ def allInput(build="", sampleList=[], method="", regions=[]):
 
     if method == "report":
 
-        inputList.append("results/final/final_reports_" + build + "_tss.txt")
-        inputList.append("results/final/final_reports_" + build + "_tes.txt")
+        inputList.append("results/plots/figure1B.pdf")
+        inputList.append("results/plots/figure1C.pdf")
+        inputList.append("results/plots/figure1D.pdf")
+        inputList.append("results/plots/figure2.pdf")
 
         for region in regions:
                 inputList.append("results/final/final_reports_" + build + 

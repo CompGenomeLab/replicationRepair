@@ -1,17 +1,15 @@
 #### Packages and Libraries ####
 
+library(argparser)
 library(stringr)
 library(ggpubr)
 library(ggplot2)
 library(dplyr)
 library(reshape2)
 library(patchwork)
-library(ggthemes)
 
 ######## Arguments ##########
-
-######## Arguments ##########
-p <- arg_parser("producing the figure 1")
+p <- arg_parser("producing the figure 2")
 p <- add_argument(p, "--windowed", help="windowed (20kb) region file with read counts")
 p <- add_argument(p, "--windowed_sim", help="windowed (20kb) region file with simulated read counts")
 p <- add_argument(p, "--noW", help="Replication domains with read counts")
@@ -108,12 +106,12 @@ if (rep == "A"){
   lab_lrd <- "p ="
 } else if (rep == "_"){ 
   fig_name = "~/Desktop/fig2_comb.png" 
-  ann_text_ERD <- data.frame(phase = 1, real_sim = 5.3,
+  ann_text_ERD <- data.frame(phase = 0.7, real_sim = 4.7,
                              dataset = factor("ERD",levels = c("ERD","LRD")),
                              product = factor("64_PP", 
                                               levels = c("64_PP", "CPD")))
   lab_erd <- "p ="
-  ann_text_LRD <- data.frame(phase = 1, real_sim = 5.3,
+  ann_text_LRD <- data.frame(phase = 0.7, real_sim = 4.7,
                              dataset = factor("LRD",levels = c("ERD","LRD")),
                              product = factor("64_PP", 
                                               levels = c("64_PP", "CPD")))
@@ -210,7 +208,7 @@ pA2_data <- filter(pA_df_rr_rs, phase != "async", dataset == "LRD",
 pB_data <- filter(pB_df_rr_rs, dataset == "ERD" | dataset == "LRD", 
                  replicate == rep, phase != "async", 
                  time_after_exposure == "12", real_sim != "NA")
-str(pB_data)
+
 pB_data$real_sim <- as.numeric(pB_data$real_sim)
 
 #### Plot A.1 ####
