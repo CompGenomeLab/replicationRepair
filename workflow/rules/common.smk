@@ -419,8 +419,8 @@ def allInput(build="", sampleList=[], method="", regions=[]):
                 "_" + region + "_intergenic.txt")
                 inputList.append("results/final/final_reports_sim_" + build + 
                 "_" + region + "_intergenic.txt")
-                #inputList.append("results/final/final_reports_markers_" + 
-                #region + "_intergenic.txt")
+                inputList.append("results/final/final_reports_markers_" + 
+                region + "_intergenic.txt")
 
     #print(inputList)
     return inputList
