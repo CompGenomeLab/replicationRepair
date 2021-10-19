@@ -16,7 +16,7 @@ rule all:
         #lambda w: allInput(config["build"], config["sample_edu"], "edu"),
         #lambda w: allInput(config["build"], config["sample_okseq"], "okseq"),
         #lambda w: allInput(config["build"], config["sample_mutation"], "mutation", config["regions_mut"]),
-        lambda w: allInput(config["build"], config["chipseq"]["samples"], "markers", config["regions"]),
+        lambda w: allInput(config["build"], config["chipseq"]["samples"], "markers_intergenic", config["regions"]),
         lambda w: allInput(config["build"], config["sample_ds"], "ds", config["regions"]),
         lambda w: allInput(config["build"], config["sample_xr"], "xr", config["regions"]),
         lambda w: allInput(build=config["build"], method="report", 
@@ -60,3 +60,4 @@ include: "workflow/rules/combine_files.smk"
 # Plots
 include: "workflow/rules/figure1.smk"
 include: "workflow/rules/figure2.smk"
+include: "workflow/rules/figure3.smk"

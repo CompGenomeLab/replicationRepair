@@ -41,7 +41,7 @@ else
 
 fi
 
-moreinfo="$(echo $7 | sed 's/,/\t/g' | cut -f2 )"
+moreinfo="$(echo $7 | sed 's/,/\t/g' | cut -f1 )"
 
 ( echo "`date -R`: Add info..." &&
 python3 workflow/scripts/addColumns.py \
