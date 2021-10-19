@@ -346,25 +346,25 @@ rule mapping2regions_ds_intergenic_sim:
 
 rule mapping2regions_markers_intergenic:
     input:
-        bed="results/markers/{samples}/{samples}_org_intergenic.bed",
+        bed="results/chipseq/{samples}/{samples}_{build}_org_intergenic.bed",
     output:
-        sorted_region=temp("results/intergenic_markers/{samples}/{samples}_{regions}_sorted.bed"),
-        intersect=temp("results/intergenic_markers/{samples}/{samples}_{regions}.txt"),
-        comb=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined.txt"),
-        info=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined_info.txt"),
-        rpkm="results/intergenic_markers/{samples}/{samples}_{regions}_combined_rpkm.txt",
+        sorted_region=temp("results/intergenic_markers/{samples}/{samples}_{build}_{regions}_sorted.bed"),
+        intersect=temp("results/intergenic_markers/{samples}/{samples}_{build}_{regions}.txt"),
+        comb=temp("results/intergenic_markers/{samples}/{samples}_{build}_{regions}_combined.txt"),
+        info=temp("results/intergenic_markers/{samples}/{samples}_{build}_{regions}_combined_info.txt"),
+        rpkm="results/intergenic_markers/{samples}/{samples}_{build}_{regions}_combined_rpkm.txt",
     params:
         sdir="results/intergenic_markers/{samples}",
-        sname="{samples}",
+        sname="{samples}_{build}",
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
         region_name="{regions}",
         getComb=lambda w: getCombine(w.regions, config["region_comb_opt"], config["regions"]),
         info=lambda w: info(w, method="marker"),
         mappedReads=lambda w, input: mappedReads(input[0]), 
     log:
-        "logs/markers/{samples}/{samples}_mapping2regions_markers_intergenic_{regions}.log",
+        "logs/markers/{samples}/{samples}_{build}_mapping2regions_markers_intergenic_{regions}.log",
     benchmark:
-        "logs/markers/{samples}/{samples}_mapping2regions_markers_intergenic_{regions}.benchmark.txt",
+        "logs/markers/{samples}/{samples}_{build}_mapping2regions_markers_intergenic_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -381,18 +381,19 @@ rule mapping2regions_markers_intergenic:
         {log}
         """
 
+'''
 rule mapping2regions_mutation:
     input:
         plus="results/mutation/{samples}/{samples}_target_mut_plus.tsv",
         minus="results/mutation/{samples}/{samples}_target_mut_minus.tsv",
     output:
-        sorted_region=temp("results/intergenic_markers/{samples}/{samples}_{regions}_sorted.bed"),
-        intersect=temp("results/intergenic_markers/{samples}/{samples}_{regions}.txt"),
-        comb=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined.txt"),
-        info=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined_info.txt"),
-        rpkm="results/intergenic_markers/{samples}/{samples}_{regions}_combined_rpkm.txt",
+        sorted_region=temp("results/mutation/{samples}/{samples}_{regions}_sorted.bed"),
+        intersect=temp("results/mutation/{samples}/{samples}_{regions}.txt"),
+        comb=temp("results/mutation/{samples}/{samples}_{regions}_combined.txt"),
+        info=temp("results/mutation/{samples}/{samples}_{regions}_combined_info.txt"),
+        rpkm="results/mutation/{samples}/{samples}_{regions}_combined_rpkm.txt",
     params:
-        sdir="results/intergenic_markers/{samples}",
+        sdir="results/mutation/{samples}",
         sname="{samples}",
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
         region_name="{regions}",
@@ -424,13 +425,13 @@ rule mapping2regions_mutation_intergenic:
         plus="results/mutation/{samples}/{samples}_target_mut_plus_{regions}_intergenic.txt",
         minus="results/mutation/{samples}/{samples}_target_mut_minus_{regions}_intergenic.txt",
     output:
-        sorted_region=temp("results/intergenic_markers/{samples}/{samples}_{regions}_sorted.bed"),
-        intersect=temp("results/intergenic_markers/{samples}/{samples}_{regions}.txt"),
-        comb=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined.txt"),
-        info=temp("results/intergenic_markers/{samples}/{samples}_{regions}_combined_info.txt"),
-        rpkm="results/intergenic_markers/{samples}/{samples}_{regions}_combined_rpkm.txt",
+        sorted_region=temp("results/intergenic_mutation/{samples}/{samples}_{regions}_sorted.bed"),
+        intersect=temp("results/intergenic_mutation/{samples}/{samples}_{regions}.txt"),
+        comb=temp("results/intergenic_mutation/{samples}/{samples}_{regions}_combined.txt"),
+        info=temp("results/intergenic_mutation/{samples}/{samples}_{regions}_combined_info.txt"),
+        rpkm="results/intergenic_mutation/{samples}/{samples}_{regions}_combined_rpkm.txt",
     params:
-        sdir="results/intergenic_markers/{samples}",
+        sdir="results/intergenic_mutation/{samples}",
         sname="{samples}",
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
         region_name="{regions}",
@@ -456,3 +457,4 @@ rule mapping2regions_mutation_intergenic:
         {params.mappedReads} \
         {log}
         """
+'''

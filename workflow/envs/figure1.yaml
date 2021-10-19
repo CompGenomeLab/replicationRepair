@@ -1,0 +1,15 @@
+name: figure1
+channels:
+  - defaults
+dependencies:
+  - conda-forge::r-base ==3.5.1
+  - conda-forge::r-patchwork ==1.0
+  - conda-forge::r-argparser ==0.4
+  - conda-forge::r-ggplot2 ==3.0.0
+  - conda-forge::r-dplyr ==0.8.0.1
+  - conda-forge::r-tidyr ==0.8.2
+  - conda-forge::r-futile.logger ==1.4.3
+  - conda-forge::r-ggpubr ==0.1.9
+  - conda-forge::r-viridis ==0.5.1  
+  - r::r-stringr ==1.4.0
+  - r::r-reshape2 ==1.4.3

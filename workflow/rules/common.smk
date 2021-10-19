@@ -6,25 +6,61 @@ import subprocess
 
 ################### Helper Functions ###########################################
 
-def isSingle(sample, sampleList, method):
+def getSRR(sample, srrList, sampleList):
 
-    sample_dir = "resources/samples/" + method + "/"
-    single = sample_dir + sample + ".fastq.gz"
-    pairedR1 = sample_dir + sample + "_R1.fastq.gz"
-    
-    if os.path.isfile(single) and "_R1" not in single:
-        return True
-    elif os.path.isfile(pairedR1):
-        return False
+    try:
+        idx = sampleList.index(sample)
+    except:
+       raise(ValueError("Designated wildcard cannot be found in sample list."))
+        
+    return srrList[idx]
+
+def isSingle(sample, sampleList, srrEnabled, srrList, sample_dir):
+
+    if srrEnabled:
+
+        mySRR = getSRR(sample, srrList, sampleList)
+
+        if mySRR == "NA":
+
+            single = sample_dir + sample + ".fastq.gz"
+            pairedR1 = sample_dir + sample + "_R1.fastq.gz"
+            paired1 = sample_dir + sample + "_1.fastq.gz"
+            
+            if os.path.isfile(pairedR1) or os.path.isfile(paired1):
+                return False
+            elif os.path.isfile(single):
+                return True
+            else:
+                raise(ValueError(paired1, single, "Sample not found..."))
+
+        if ":" in mySRR:
+            mySRR = mySRR.split(":")[0]
+
+        shellCommand = 'fastq-dump -X 1 -Z --split-spot ' + mySRR + ' | wc -l'
+        #print(shellCommand)
+        p=subprocess.getoutput(shellCommand)
+        #print(p)
+        lineNum = int(p.split("\n")[2])
+        #print(lineNum)
+
+        if lineNum == 4:
+            return True
+        else:
+            return False
+
     else:
-        raise(ValueError(sample + ": Sample not found..."))
 
-def input4filter(wildcards, sampleList, method):
-
-    if isSingle(wildcards.samples, sampleList, method):
-        return ("results/" + method + "/{samples}/{samples}_{build}_se.bed")
-    else:    
-        return ("results/" + method + "/{samples}/{samples}_{build}_pe.bed")
+        single = sample_dir + sample + ".fastq.gz"
+        pairedR1 = sample_dir + sample + "_R1.fastq.gz"
+        paired1 = sample_dir + sample + "_1.fastq.gz"
+        
+        if os.path.isfile(pairedR1) or os.path.isfile(paired1):
+            return False
+        elif os.path.isfile(single):
+            return True
+        else:
+            raise(ValueError(paired1, single, "Sample not found..."))
 
 def input4peakCalling(wildcards, build, method):
 
@@ -37,6 +73,12 @@ def input4peakCalling(wildcards, build, method):
 
     return [samp, inp]
 
+def input4chip(wildcards, sampleList, srrEnabled, srrList):
+
+    if isSingle(wildcards.samples, sampleList, srrEnabled, srrList, "resources/samples/chipseq/"):
+        return "results/chipseq/{samples}/{samples}_{build}_se.bed"
+    else:    
+        return "results/chipseq/{samples}/{samples}_{build}_pe.bed"
 
 def lineNum(file):
     
@@ -89,8 +131,7 @@ def info(wildcards, method="sample"):
 
             targetLine = ""
             for line in f:
-
-                if line.strip().split(",")[2] == sample_name:
+                if line.strip().split(",")[0] == sample_name:
 
                     #targetLine = line.strip().replace(",","\t")
                     targetLine = line.strip()
@@ -199,7 +240,7 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regi
         for sample in sampleList_markers:
             sampledir = "results/intergenic_markers/" + sample + "/" 
 
-            inputList.append(sampledir + sample + "_" + regions + window + "rpkm.txt")
+            inputList.append(sampledir + sample + "_" + build + "_" + regions + window + "rpkm.txt")
 
     elif outformat == "tss":
         for sample in sampleList_xr:
@@ -234,37 +275,12 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regi
 def allInput(build="", sampleList=[], method="", regions=[]):
 
     inputList = []
-    if method == "input":
-    
-        for sample in sampleList:
-            sampledir = "results/input/" + sample + "/" 
-
-            if isSingle(sample, sampleList, method):
-                inputList.append(sampledir + sample + ".html")
-            else:
-                inputList.append(sampledir + sample + "_R1.html")
-                inputList.append(sampledir + sample + "_R2.html")
-
-            inputList.append(sampledir + sample + "_" + build + 
-                "_length_distribution.png")
-            inputList.append(sampledir + sample + "_" + build + 
-                "_sorted_plus.bw")
-            inputList.append(sampledir + sample + "_" + build + 
-                "_sorted_minus.bw")
-
-            inputList.append(sampledir + sample + "_" + 
-                build + "_sorted_plus.bed") 
-            inputList.append(sampledir + sample + "_" + 
-                build + "_sorted_minus.bed") 
-            inputList.append(sampledir + sample + "_" + 
-                build + "_sim.bed") 
-
     if method == "okseq":
     
         for sample in sampleList:
             sampledir = "results/okseq/" + sample + "/" 
 
-            if isSingle(sample, sampleList, method):
+            if isSingle(sample, sampleList, method, False, "resources/okseq/"):
                 inputList.append(sampledir + sample + ".html")
                 inputList.append(sampledir + sample + "_se_" + build + 
                 "_sorted.bam")
@@ -385,12 +401,14 @@ def allInput(build="", sampleList=[], method="", regions=[]):
             
             for region in regions:
         
-                inputList.append(sampledir + sample + "_" + region + "_combined_rpkm.txt")
+                inputList.append(sampledir + sample + "_" + build + "_" + region + "_combined_rpkm.txt")
 
     if method == "report":
 
-        inputList.append("results/final/final_reports_" + build + "_tss.txt")
-        inputList.append("results/final/final_reports_" + build + "_tes.txt")
+        inputList.append("results/plots/figure1B.pdf")
+        inputList.append("results/plots/figure1C.pdf")
+        inputList.append("results/plots/figure1D.pdf")
+        inputList.append("results/plots/figure2.pdf")
 
         for region in regions:
                 inputList.append("results/final/final_reports_" + build + 
@@ -401,8 +419,8 @@ def allInput(build="", sampleList=[], method="", regions=[]):
                 "_" + region + "_intergenic.txt")
                 inputList.append("results/final/final_reports_sim_" + build + 
                 "_" + region + "_intergenic.txt")
-                inputList.append("results/final/final_reports_markers_" + 
-                region + "_intergenic.txt")
+                #inputList.append("results/final/final_reports_markers_" + 
+                #region + "_intergenic.txt")
 
     #print(inputList)
     return inputList

@@ -53,11 +53,13 @@ rule tss_xr:
         echo "`date -R`: Success! Windows are combined." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
+        moreinfo="$(echo {params.info} | sed 's/,/\\t/g' )"
+
         (echo "`date -R`: Add info..." &&
         python3 workflow/scripts/addColumns.py \
         -i {output.tss_comb} \
         -o {output.info} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c $moreinfo "." {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
@@ -127,11 +129,13 @@ rule tss_ds:
         echo "`date -R`: Success! Windows are combined." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 
+        moreinfo="$(echo {params.info} | sed 's/,/\\t/g' )"
+
         (echo "`date -R`: Add info..." &&
         python3 workflow/scripts/addColumns.py \
         -i {output.tss_comb} \
         -o {output.info} \
-        -c {params.info} "." {params.mappedReads} &&
+        -c $moreinfo "." {params.mappedReads} &&
         echo "`date -R`: Success! Info is added." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
 

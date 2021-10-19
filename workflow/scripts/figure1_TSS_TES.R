@@ -19,7 +19,9 @@ p <- add_argument(p, "--len_xr_64_12", help="length dist of a xr sample")
 p <- add_argument(p, "--len_xr_cpd_12", help="length dist of a xr sample")
 p <- add_argument(p, "--tss", help="input tss file")
 p <- add_argument(p, "--tes", help="input tes file")
-p <- add_argument(p, "-o", help="output")
+p <- add_argument(p, "-o1", help="output")
+p <- add_argument(p, "-o2", help="output")
+p <- add_argument(p, "-o3", help="output")
 p <- add_argument(p, "--log", help="log file")
 
 # Parse the command line arguments
@@ -165,6 +167,7 @@ pD_comb_data <- filter(pD_comb, phase != "async", replicate == "A",
 flog.info("Plotting...")
 #### Plot A ####
 
+flog.info("Plotting A...")
 # plot A will be experimental setup drawing
 # we are creating an empty text for that part
 p.A <- wrap_elements(grid::textGrob(''))
@@ -172,6 +175,7 @@ p.A <- wrap_elements(grid::textGrob(''))
 
 #### Plot B.1 ####
 
+flog.info("Plotting B...")
 # create the plot 
 p.B.1 <- ggplot(pB1_data, aes(x = oligomer_length, y = counts/1000000)) + 
   #fill = counts)) + 
@@ -212,6 +216,7 @@ p.B.2 <- p.B.2 + p_format
 
 #### Plot C.1 ####
 
+flog.info("Plotting C...")
 # create the plot 
 p.C.1 <- ggplot(pC1_data, 
                 aes(x = positions, y = freq, fill = dinucleotides)) + 
@@ -303,6 +308,7 @@ p.C.4 <- p.C.4 + p_format + guides(fill = "none") +
 
 #### Plot D ####
 
+flog.info("Plotting D...")
 # create the plot 
 p.D <- ggplot(pD_data, aes(x = windows, y = log2(xr_ds))) + 
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
@@ -358,7 +364,11 @@ p.D_comb <- p.D_comb + p_format +
   theme(legend.position = c(0.5, 0.9),
         axis.text.x = element_text(hjust=c(0.1, 0.4, 0.5, 0.6, 0.9)))
 
+ggsave(argv$o3, width = 22, height = 18, units = "cm")
+
 #### Combining Plots with Patchwork ####
+
+flog.info("Plotting all together...")
 
 layout <- "
 AAAABB
@@ -375,10 +385,15 @@ layout2 <- "
 AAAAAAAABBBB
 "
 
+flog.info("p.B")
 p.B <- (p.B.1 / p.B.2) 
 
+ggsave(argv$o1, width = 22, height = 18, units = "cm")
+
+flog.info("p.A.B")
 p.A.B <- p.A + p.B
 
+flog.info("p.C")
 p.C.1.2 <- p.C.1 + p.C.2 +
   plot_layout(design = layout2)
 
@@ -387,15 +402,6 @@ p.C.3.4 <- p.C.3 + p.C.4 +
 
 p.C <- p.C.1.2 / p.C.3.4 
 
-p_final <- p.A.B + p.C + p.D_comb +
-  plot_layout(design = layout) +
-  plot_annotation(caption = 
-                    'Position Relative to the first base of reads',
-                  theme = theme(plot.caption = element_text(size = 12,
-                                                            hjust = .1, 
-                                                            vjust = 9.5))) &
-  theme(plot.tag = element_text(size = 12, face="bold"))
-
-ggsave(argv$o, width = 22, height = 18, units = "cm")
+ggsave(argv$o2, width = 22, height = 18, units = "cm")
 
 flog.info("Saved.")

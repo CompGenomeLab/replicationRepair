@@ -1,3 +1,4 @@
+build: "hg19"
 
 sample_xr:
   - "HXA64A1_ATCACG"
@@ -51,9 +52,6 @@ sample_ds:
   - "HDEC_comb"
   - "HDLC_comb"
 
-sample_input: 
-  - "R19040024-HelainputD-Hl15R2hID_combined"
-
 sample_edu: 
   - "R21061297-EdUrep-2hrls_combined"
   - "R21061297-EdUrep-4hrls_combined"
@@ -82,24 +80,41 @@ sample_okseq:
 sample_mutation:
   - "melanoma"
 
-sample_markers:
-  - ENCFF916VLX_h3k79me2_hela
-  - ENCFF803UAY_h3k4me3_hela
-  - ENCFF723WDR_h3k9ac_hela
-  - ENCFF582MED_h3k36me3_hela
-  - ENCFF572NWJ_h3k4me1_hela
-  - ENCFF563OMA_h3k9me3_hela
-  - ENCFF526HPH_h3k4me3_hela
-  - ENCFF447CLK_h3k4me3_hela
-  - ENCFF410YQK_h3k27me3_hela
-  - ENCFF252BLX_h3k27me3_hela
-  - ENCFF144EOJ_h3k27ac_hela
-  - ENCFF108DAJ_h3k4me2_hela
-  - ENCFF094MFL_h2afz_hela
-  - ENCFF069BQG_h4k20me1_hela
-  - ENCFF056OVB_h3k36me3_hela
-
-build: "hg19"
+chipseq:
+  samples:
+    - HeLa_H2AFZ_A
+    - HeLa_H3K27ac_A
+    - HeLa_H3K27me3_A
+    - HeLa_H3K27me3_B
+    - HeLa_H3K36me3_A
+    - HeLa_H3K36me3_B
+    - HeLa_H3K4me1_A
+    - HeLa_H3K4me2_A
+    #- HeLa_H3K4me3_A
+    - HeLa_H3K4me3_B
+    - HeLa_H3K4me3_C
+    - HeLa_H3K79me2_A
+    - HeLa_H3K9ac_A
+    - HeLa_H3K9me3_A
+    - HeLa_H4K20me1_A
+  srr: 
+    enabled: True
+    codes:
+      - "SRR568260:SRR568261"
+      - "SRR227445:SRR227446"
+      - "SRR577392:SRR577393"
+      - "SRR227472:SRR227473"
+      - "SRR577429:SRR577430"
+      - "SRR227505:SRR227506"
+      - "SRR350914:SRR350915"
+      - "SRR227556:SRR227557"
+      #- "SRR5338596:SRR5338597:SRR5338598:SRR5338599:SRR5338600"
+      - "SRR577378:SRR577379"
+      - "SRR227441:SRR227442"
+      - "SRR227413:SRR227414"
+      - "SRR227602:SRR227603"
+      - "SRR568254:SRR568255"
+      - "SRR227456:SRR227457"
 
 regions:
   #- "iz_hela_windows_201_100"
@@ -130,6 +145,10 @@ regions:
   - "repdomains_uv_mean0.5_windows_201_10000"
   - "iz_repdomains_uv_m0.5_hela_windows_201_100"
   - "iz_repdomains_m0.5_hela_windows_201_100"
+  - "sns-seq_repdomains_uv_m0.5_hela_windows_21_1000"
+  - "sns-seq_repdomains_m0.5_hela_windows_21_1000"
+  - "iz_repdomains_uv_m0.5_hela_windows_21_1000"
+  - "iz_repdomains_m0.5_hela_windows_21_1000"
 
 region_file:
   #- "initiation.zones.hela_windows_201_100.bed"
@@ -160,6 +179,10 @@ region_file:
   - "repdomains_uv_mean0.5_windows_201_10000.bed"
   - "iz_repdomains_uv_m0.5_hela_windows_201_100.bed"
   - "iz_repdomains_m0.5_hela_windows_201_100.bed"
+  - "sns-seq_repdomains_uv_m0.5_hela_windows_21_1000.bed"
+  - "sns-seq_repdomains_m0.5_hela_windows_21_1000.bed"
+  - "iz_repdomains_uv_m0.5_hela_windows_21_1000.bed"
+  - "iz_repdomains_m0.5_hela_windows_21_1000.bed"
 
 region_comb_opt:
   #- "-"
@@ -190,7 +213,11 @@ region_comb_opt:
   - "-"
   - "-"
   - "-"
-
+  - "-"
+  - "-"
+  - "-"
+  - "-"
+  
 regions_mut:
   - "hela_no_overlap_repdomains_windows_201_100"
   - "sns.seq.rep1_int2hi.rfd_plus_hela_repdomains_windows_201_100"
@@ -221,7 +248,3 @@ region_mut_comb_opt:
   - "-score T -strand T"
   - "-score T -strand T"
   - "-score T -strand T"
- 
-     
-
-
