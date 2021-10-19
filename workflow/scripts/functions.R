@@ -1,6 +1,7 @@
 #### libraries ####
 
 library(stringr)
+library(dplyr)
 
 #### functions ####
 

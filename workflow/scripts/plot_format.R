@@ -21,6 +21,17 @@ general_states <- c("Active Promoter",
                     "Polycob Repressed", 
                     "Heterochromatin/\nRepetitive/\nCopy Number Variation")
 
+general_states_short <- c("Active Promoter", 
+                    "Promoter Flanking", 
+                    "Inactive Promoter", 
+                    "C. Strong Enh.", 
+                    "C. Weak Enh.", 
+                    "Distal CTCF/C. Insulator", 
+                    "Transcription Associated", 
+                    "Low Activity Proximal", 
+                    "Polycob Repressed", 
+                    "HET/Rep./C.N.V.")
+
 chrState2generalState <- c("Active Promoter", 
                            "Active Promoter", 
                            "Promoter Flanking", 
