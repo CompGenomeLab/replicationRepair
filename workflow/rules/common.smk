@@ -409,6 +409,8 @@ def allInput(build="", sampleList=[], method="", regions=[]):
         inputList.append("results/plots/figure1C.pdf")
         inputList.append("results/plots/figure1D.pdf")
         inputList.append("results/plots/figure2.pdf")
+        inputList.append("results/plots/figure3.pdf")
+        inputList.append("results/plots/supplementary_figure_ChromHMM_64PP.pdf")
 
         for region in regions:
                 inputList.append("results/final/final_reports_" + build + 

@@ -5,7 +5,6 @@ library(ggplot2)
 library(stringr)
 library(reshape2)
 library(dplyr)
-library(ggthemes)
 library(patchwork)
 library(argparser)
 
@@ -36,12 +35,12 @@ dprod <- argv$dtype # damage product (CPD/64_PP)
 
 #### Default Plot Format ####
 
-source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/plot_format.R")
+source("workflow/scripts/plot_format.R")
 
 
 #### Fuctions ####
 
-source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/functions.R")
+source("workflow/scripts/functions.R")
 
 #### Main ####
 
