@@ -13,77 +13,50 @@ library(grid)
 #### Variables ####
 
 # name of the sample csv file 
-sample_csv <- paste("~/Documents/myprojects/replicationRepair/results/final/", 
-                    "final_reports_hg19_iz_repdomains_uv_hela",
-                    "_windows_201_100_intergenic_ready.csv", 
+sample_csv <- paste("/Users/azgarian/Desktop/final/", 
+                    "final_reports_markers_iz_repdomains_uv_m0.5_hela_windows_21_1000_intergenic.txt",
                     sep = "")
 
 
 #### Default Plot Format ####
 
-source("~/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_plot_format.R")
+source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_plot_format.R")
 
 
 #### Fuctions ####
 
-source("~/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_functions.R")
+source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_functions.R")
 
 
 #### Main ####
 
-sample_df <- read.csv( sample_csv )
-df_rr <- repair_rate( sample_df )
-df_rr_org <- window_numbering( df_rr, 4, 101 )
+sample_df <- read.table( sample_csv )
+
+colnames(sample_df) <- c("chromosomes", "start_position", "end_position", "dataset", 
+                  "score", "dataset_strand", "counts", "sample_names", 
+                  "sample_strand", 
+                  "mapped_reads", "RPKM")
+
+df_rr_org <- window_numbering( sample_df, 4, 11 )
 df_rr_org <- domain_name( df_rr_org, 1 )
 df_rr_org$dataset <- "Initiation Zones"
 
 df_rr_org$sample_strand <- factor(
   df_rr_org$sample_strand, levels = c("+","-"))
 
-# filtering for B.1
-pB1_data <- filter(df_rr_org, phase != "async", replicate == "A", 
-                   product == "CPD", time_after_exposure == "12", 
-                   phase == "early")
-
-# for plot B.2
-pB2_data <- rr_boxplot( pB1_data ) 
-
-# for plot B.3
-pB3_data <- rr_boxplot_plus_minus( pB1_data ) 
-
-# filtering for C.1
-pC1_data <- filter(df_rr_org, phase != "async", replicate == "A", 
-                   product == "CPD", time_after_exposure == "120", 
-                   phase == "early")
-
-# for plot C.2
-pC2_data <- rr_boxplot( pC1_data ) 
-
-# for plot C.3
-pC3_data <- rr_boxplot_plus_minus( pC1_data ) 
-
-
-#### Plot A ####
-
-# plot A will be a drawing
-# we are creating an empty text for that part
-p.A <- wrap_elements(grid::textGrob(''))
-
-
-#### Plot B.1 ####
 
 # create the plot 
-p.B.1 <- ggplot(pB1_data, aes(x = windows, y = log2(xr_ds))) +
+p <- ggplot(df_rr_org, aes(x = windows, y = RPKM)) +
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") + 
-  geom_line(aes(color = sample_strand)) + 
-  facet_grid(~repdomains) +
-  xlab(windows_lab) + ylab(fr_xr_ds_lab) +
-  scale_x_continuous(limits = c(-101, 101), 
-                     breaks = c(-101, 0, 101), 
+  geom_line() + 
+  facet_grid(~sample_names~repdomains) +
+  xlab(windows_lab) + ylab("RPKM") +
+  scale_x_continuous(limits = c(-11, 11), 
+                     breaks = c(-11, 0, 11), 
                      labels = c("-10", "0", "+10")) + 
   scale_color_manual(values = strand_colors) + 
   labs(color = "Strands")
-
+p
 # adding and overriding the default plot format
 p.B.1 <- p.B.1 + p_format + 
   theme(axis.title.x=element_blank(),

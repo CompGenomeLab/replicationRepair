@@ -1,73 +1,40 @@
 #### Packages and Libraries ####
 
+library(argparser)
+library(futile.logger)
 library(dplyr)
 library(tidyr)
 library(reshape2)
 library(ggplot2)
-library(ggpubr)
 library(patchwork)
-library(grid)
-library(gridExtra)
 library("viridis")
-library(scales)
 
+######## Arguments ##########
+p <- arg_parser("producing the figure 1")
+p <- add_argument(p, "--dinuc_ds_64_12", help="dinuc content of a ds sample")
+p <- add_argument(p, "--dinuc_ds_cpd_12", help="dinuc content of a ds sample")
+p <- add_argument(p, "--dinuc_xr_64_12", help="dinuc content of a xr sample")
+p <- add_argument(p, "--dinuc_xr_cpd_12", help="dinuc content of a xr sample")
+p <- add_argument(p, "--len_xr_64_12", help="length dist of a xr sample")
+p <- add_argument(p, "--len_xr_cpd_12", help="length dist of a xr sample")
+p <- add_argument(p, "--tss", help="input tss file")
+p <- add_argument(p, "--tes", help="input tes file")
+p <- add_argument(p, "-o", help="output")
+p <- add_argument(p, "--log", help="log file")
 
-#### Variables ####
+# Parse the command line arguments
+argv <- parse_args(p)
 
-# name of the sample bed files for plot B
-dinuc_ds_64_12 <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                        "gitignore/2_sample_control/dinucleotide_composition/", 
-                        "HDL64A5_ACAGTG_cutadapt_sorted_",
-                        "10_dinucleotideTable.txt", sep = "")
-
-dinuc_ds_cpd_12 <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                         "gitignore/2_sample_control/dinucleotide_composition/", 
-                         "HDLCA12_CTTGTA_cutadapt_sorted_",
-                         "10_dinucleotideTable.txt", sep = "")
-
-dinuc_xr_64_12 <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                        "gitignore/2_sample_control/dinucleotide_composition/", 
-                        "HXL64A3_TTAGGC_cutadapt_sorted_",
-                        "26_dinucleotideTable.txt", sep = "")
-
-dinuc_xr_cpd_12 <- paste("~/Documents/myprojects/replicationRepair/3_output/",
-                         "gitignore/2_sample_control/dinucleotide_composition/", 
-                         "HXLCA6_GCCAAT_cutadapt_sorted_",
-                         "26_dinucleotideTable.txt", sep = "")
-
-# name of the sample txt files for plot C
-len_xr_64_12 <- paste("~/Documents/myprojects/replicationRepair/3_output/", 
-                      "gitignore/2_sample_control/length_distribution/", 
-                      "HXL64A3_TTAGGC_cutadapt_length_distribution.txt", 
-                      sep = "")
-
-len_xr_cpd_12 <- paste("~/Documents/myprojects/replicationRepair/3_output/", 
-                       "gitignore/2_sample_control/length_distribution/", 
-                       "HXLCA6_GCCAAT_cutadapt_length_distribution.txt", 
-                       sep = "")
-
-# name of the sample csv file for plot D  
-sample_csv_pD <- paste("/home/azgarian/Documents/myprojects/replicationRepair/",
-                       "final/final_reports_hg19_tss_ready.csv", 
-                       sep = "")
-
-
-sample_csv_pD.2 <- paste("/home/azgarian/Documents/myprojects/replicationRepair/",
-                       "final/final_reports_hg19_tes_ready.csv", 
-                       sep = "")
-
+# log file
+flog.appender(appender.file(argv$log))
 
 #### Default Plot Format ####
 
-source("/home/azgarian/Documents/myprojects/replicationRepair/1_code/4_plot_format.R")
-
-#phase_labs <- c("Async.", "Early S Phase", "Late S Phase")
-#names(phase_labs) <- c("async", "early", "late")
-
+source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_plot_format.R")
 
 #### Fuctions ####
 
-source("/home/azgarian/Documents/myprojects/replicationRepair/1_code/4_functions.R")
+source("workflow/scripts/4plots/4_functions.R")
 
 dinuc <- function( dinucleotide_table, method ){
   # rename columns and get their order
@@ -116,20 +83,20 @@ dinuc <- function( dinucleotide_table, method ){
 #### Main ####
 
 # for plot B
-pB1_data <- read.delim( len_xr_64_12, header = FALSE )
+pB1_data <- read.delim( argv$len_xr_64_12, header = FALSE )
 colnames(pB1_data) <- c("oligomer_length", "counts")
 
-pB2_data <- read.delim( len_xr_cpd_12, header = FALSE )
+pB2_data <- read.delim( argv$len_xr_cpd_12, header = FALSE )
 colnames(pB2_data) <- c("oligomer_length", "counts")
 
 pB1_data$sample <- "(6-4)PP\n\n12 min."
 pB2_data$sample <- "CPD\n\n12 min."
 
 # for plot C
-pC1_sample <- read.table( dinuc_xr_64_12, header = TRUE )
-pC2_sample <- read.table( dinuc_ds_64_12, header = TRUE )
-pC3_sample <-  read.table( dinuc_xr_cpd_12, header = TRUE )
-pC4_sample <- read.table( dinuc_ds_cpd_12, header = TRUE )
+pC1_sample <- read.table( argv$dinuc_xr_64_12, header = TRUE )
+pC2_sample <- read.table( argv$dinuc_ds_64_12, header = TRUE )
+pC3_sample <-  read.table( argv$dinuc_xr_cpd_12, header = TRUE )
+pC4_sample <- read.table( argv$dinuc_ds_cpd_12, header = TRUE )
 
 pC1_data <- dinuc(pC1_sample, "XR")
 pC2_data <- dinuc(pC2_sample, "DS") 
@@ -142,7 +109,7 @@ pC2_data$product <- "(6-4)PP"
 pC4_data$product <- "CPD"
 
 # for plot D
-pD_sample_df <- read.csv( sample_csv_pD )
+pD_sample_df <- read.csv( argv$tss )
 pD_df_rr <- repair_rate( pD_sample_df )
 pD_df_rr_org <- window_numbering( pD_df_rr, 4, 101 )
 pD_df_rr_org$dataset <- "TSS"
@@ -150,7 +117,7 @@ pD_df_rr_org$dataset <- "TSS"
 pD_df_rr_org$dataset_strand <- factor(
   pD_df_rr_org$dataset_strand, levels = c("TS","NTS"))
 
-pD2_sample_df <- read.csv( sample_csv_pD.2 )
+pD2_sample_df <- read.csv( argv$tes )
 pD2_df_rr <- repair_rate( pD2_sample_df )
 pD2_df_rr_org <- window_numbering( pD2_df_rr, 4, 101 )
 pD2_df_rr_org$dataset <- "TES"
@@ -190,11 +157,6 @@ p.B.1 <- ggplot(pB1_data, aes(x = oligomer_length, y = counts/1000000)) +
                      labels = c("0", "2", expression(paste("(x10"^"6",")", 
                                                            sep = ""))),
                      limits = c(0, 5)) +
-  #scale_fill_gradient(name = "",
-  #                    limits = c(0, 4000000), 
-  #                    breaks = c(0, 1000000, 2000000, 3000000, 4000000),
-  #                    labels = c(0, 1, 2, 3, expression(paste("(x10"^"6",")", 
-  #                                                            sep = "")))) +
   xlim(15, 35) +
   xlab("Oligomer Length") + ylab("Counts") 
 
@@ -218,7 +180,7 @@ p.B.2 <- ggplot(pB2_data, aes(x = oligomer_length, y = counts/1000000)) +
                      limits = c(0, 5)) +
   xlim(15, 35) +
   xlab("Oligomer Length") + ylab("Counts") +
-  guides(fill = FALSE)
+  guides(fill = "none")
 
 # adding and overriding the default plot format
 p.B.2 <- p.B.2 + p_format 
@@ -240,7 +202,7 @@ p.C.1 <- ggplot(pC1_data,
   labs(fill = "")
 
 # adding and overriding the default plot format
-p.C.1 <- p.C.1 + p_format + guides(fill = FALSE) +
+p.C.1 <- p.C.1 + p_format + guides(fill = "none") +
   theme(axis.title.x = element_blank(),
         plot.title = element_text(size = 12, margin=margin(0,0,-40,0)),
         legend.margin = margin(-2,0,-8,0)) 
@@ -262,7 +224,7 @@ p.C.2 <- ggplot(pC2_data,
   labs(fill = "")
 
 # adding and overriding the default plot format
-p.C.2 <- p.C.2 + p_format + guides(fill = FALSE) +
+p.C.2 <- p.C.2 + p_format + guides(fill = "none") +
   theme(axis.text.y = element_blank(),
         axis.ticks.y = element_blank(),
         axis.title.y = element_blank(),
@@ -308,7 +270,7 @@ p.C.4 <- ggplot(pC4_data,
   labs(fill = "")
 
 # adding and overriding the default plot format
-p.C.4 <- p.C.4 + p_format + guides(fill = FALSE) +
+p.C.4 <- p.C.4 + p_format + guides(fill = "none") +
   theme(axis.title.y = element_blank(),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank(),
@@ -335,12 +297,7 @@ p.D <- ggplot(pD_data, aes(x = windows, y = log2(xr_ds))) +
                      labels = c("-10", "0", "+10")) + 
   scale_color_manual(values = c("magenta2", "seagreen")) +
   labs(color = "") +
-  guides(alpha = FALSE)
-
-# adding and overriding the default plot format
-p.D <- p.D + p_format +
-  theme(legend.position = c(0.5, 0.9),
-        axis.text.x = element_text(hjust=c(0.1, 0.5, 0.9)))
+  guides(alpha = "none")
 
 # create the plot 
 p.D2 <- ggplot(pD2_data, aes(x = windows, y = log2(xr_ds))) + 
@@ -353,20 +310,9 @@ p.D2 <- ggplot(pD2_data, aes(x = windows, y = log2(xr_ds))) +
                                  replicate = rep_labs, phase = phase_labs)) + 
   xlab("Position Relative to TES (kb)") + 
   ylab(fr_xr_ds_lab) +
-  #scale_y_continuous(breaks = c(0, 1, 2, 3),
-  #                   limits = c(0, 3)) +
-  #scale_x_continuous(limits = c(-101, 101), 
-  #                   breaks = c(-101, 0, 101), 
-  #                   labels = c("-10", "0", "+10")) + 
   scale_color_manual(values = c("magenta2", "seagreen")) +
   labs(color = "") +
-  guides(alpha = FALSE)
-
-# adding and overriding the default plot format
-p.D2 <- p.D2 + p_format +
-  theme(legend.position = c(0.5, 0.9),
-        axis.text.x = element_text(hjust=c(0.1, 0.5, 0.9)))
-#p.D + p.D2
+  guides(alpha = "none")
 
 # create the plot 
 p.D_comb <- ggplot(pD_comb_data, aes(x = windows, y = log2(xr_ds))) + 
@@ -379,20 +325,15 @@ p.D_comb <- ggplot(pD_comb_data, aes(x = windows, y = log2(xr_ds))) +
                                  replicate = rep_labs)) + 
   xlab("Position Relative to TSS and TES (kb)") + 
   ylab(fr_xr_ds_lab) +
-  #scale_y_continuous(breaks = c(0, 1, 2, 3),
-  #                   limits = c(0, 3)) +
-  #scale_x_continuous(limits = c(-101, 101), 
-  #                   breaks = c(-101, 0, 101), 
-  #                   labels = c("-10", "0", "+10")) + 
   scale_color_manual(values = c("magenta2", "seagreen")) +
   labs(color = "") +
-  guides(alpha = FALSE)
+  guides(alpha = "none")
 
 # adding and overriding the default plot format
 p.D_comb <- p.D_comb + p_format +
   theme(legend.position = c(0.5, 0.9),
-        axis.text.x = element_text(hjust=c(0.1, 0.5, 0.9)))
-p.D_comb
+        axis.text.x = element_text(hjust=c(0.1, 0.4, 0.5, 0.6, 0.9)))
+
 #### Combining Plots with Patchwork ####
 
 layout <- "
@@ -422,7 +363,7 @@ p.C.3.4 <- p.C.3 + p.C.4 +
 
 p.C <- p.C.1.2 / p.C.3.4 
 
-p.A.B + p.C + p.D_comb +
+p_final <- p.A.B + p.C + p.D_comb +
   plot_layout(design = layout) +
   plot_annotation(caption = 
                     'Position Relative to the first base of reads',
@@ -431,5 +372,5 @@ p.A.B + p.C + p.D_comb +
                                                             vjust = 9.5))) &
   theme(plot.tag = element_text(size = 12, face="bold"))
 
-ggsave("~/Desktop/fig1.png", width = 22, height = 18, units = "cm")
+ggsave(argv$o, width = 22, height = 18, units = "cm")
 
