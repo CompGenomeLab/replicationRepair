@@ -405,9 +405,7 @@ def allInput(build="", sampleList=[], method="", regions=[]):
 
     if method == "report":
 
-        inputList.append("results/plots/figure1B.pdf")
-        inputList.append("results/plots/figure1C.pdf")
-        inputList.append("results/plots/figure1D.pdf")
+        inputList.append("results/plots/figure1.pdf")
         inputList.append("results/plots/figure2.pdf")
         inputList.append("results/plots/figure3.pdf")
         inputList.append("results/plots/supplementary_figure_ChromHMM_64PP.pdf")

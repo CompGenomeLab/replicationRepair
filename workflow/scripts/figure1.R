@@ -30,11 +30,12 @@ flog.appender(appender.file(argv$log))
 
 #### Default Plot Format ####
 
-source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/4plots/4_plot_format.R")
+source("workflow/scripts/plot_format.R")
 
 #### Fuctions ####
+flog.info("Importing the functions...") 
 
-source("workflow/scripts/4plots/4_functions.R")
+source("workflow/scripts/functions.R")
 
 dinuc <- function( dinucleotide_table, method ){
   # rename columns and get their order
@@ -82,7 +83,7 @@ dinuc <- function( dinucleotide_table, method ){
 
 #### Main ####
 
-# for plot B
+flog.info("Importing length dist samples (plot B)...")
 pB1_data <- read.delim( argv$len_xr_64_12, header = FALSE )
 colnames(pB1_data) <- c("oligomer_length", "counts")
 
@@ -92,12 +93,13 @@ colnames(pB2_data) <- c("oligomer_length", "counts")
 pB1_data$sample <- "(6-4)PP\n\n12 min."
 pB2_data$sample <- "CPD\n\n12 min."
 
-# for plot C
+flog.info("Importing dinucleotide tables (plot C)...")
 pC1_sample <- read.table( argv$dinuc_xr_64_12, header = TRUE )
 pC2_sample <- read.table( argv$dinuc_ds_64_12, header = TRUE )
 pC3_sample <-  read.table( argv$dinuc_xr_cpd_12, header = TRUE )
 pC4_sample <- read.table( argv$dinuc_ds_cpd_12, header = TRUE )
 
+flog.info("Reshaping dinucleotide tables (plot C)...")
 pC1_data <- dinuc(pC1_sample, "XR")
 pC2_data <- dinuc(pC2_sample, "DS") 
 pC3_data <- dinuc(pC3_sample, "XR") 
@@ -108,8 +110,17 @@ pC2_data$method <- "Damage-\nseq"
 pC2_data$product <- "(6-4)PP"
 pC4_data$product <- "CPD"
 
-# for plot D
-pD_sample_df <- read.csv( argv$tss )
+flog.info("Importing file of read counts on TSS region (plot D)...")
+pD_sample_df <- read.delim(argv$tss, header = FALSE, sep = "\t")
+
+colnames(pD_sample_df) <- c("chromosomes", "start_position", "end_position", 
+                            "dataset", "score", "dataset_strand", "counts", 
+                            "sample_names", "file_names", "layout", "cell_line", 
+                            "product", "method", "uv_exposure", "treatment", 
+                            "phase", "time_after_exposure", "replicate", 
+                            "project", "sample_source", "sample_strand", 
+                            "mapped_reads", "RPKM")
+
 pD_df_rr <- repair_rate( pD_sample_df )
 pD_df_rr_org <- window_numbering( pD_df_rr, 4, 101 )
 pD_df_rr_org$dataset <- "TSS"
@@ -117,7 +128,17 @@ pD_df_rr_org$dataset <- "TSS"
 pD_df_rr_org$dataset_strand <- factor(
   pD_df_rr_org$dataset_strand, levels = c("TS","NTS"))
 
-pD2_sample_df <- read.csv( argv$tes )
+flog.info("Importing file of read counts on TES region (plot D)...")
+pD2_sample_df <- read.delim(argv$tes, header = FALSE, sep = "\t")
+
+colnames(pD2_sample_df) <- c("chromosomes", "start_position", "end_position", 
+                            "dataset", "score", "dataset_strand", "counts", 
+                            "sample_names", "file_names", "layout", "cell_line", 
+                            "product", "method", "uv_exposure", "treatment", 
+                            "phase", "time_after_exposure", "replicate", 
+                            "project", "sample_source", "sample_strand", 
+                            "mapped_reads", "RPKM")
+
 pD2_df_rr <- repair_rate( pD2_sample_df )
 pD2_df_rr_org <- window_numbering( pD2_df_rr, 4, 101 )
 pD2_df_rr_org$dataset <- "TES"
@@ -130,6 +151,7 @@ pD_comb$dataset <- factor(pD_comb$dataset, levels = c("TSS", "TES"))
 
 #### Filtering Samples ####
 
+flog.info("Filtering samples (plot D)...")
 pD_data <- filter(pD_df_rr_org, phase != "async", replicate == "A",
                   time_after_exposure == "12")
 
@@ -139,13 +161,15 @@ pD2_data <- filter(pD2_df_rr_org, phase != "async", replicate == "A",
 pD_comb_data <- filter(pD_comb, phase != "async", replicate == "A",
                        time_after_exposure == "12", phase == "early")
 
+flog.info("Plotting...")
 #### Plot A ####
 
+flog.info("Plotting A...")
 # plot A will be experimental setup drawing
 # we are creating an empty text for that part
 p.A <- wrap_elements(grid::textGrob(''))
 
-
+flog.info("Plotting B...")
 #### Plot B.1 ####
 
 # create the plot 
@@ -185,7 +209,7 @@ p.B.2 <- ggplot(pB2_data, aes(x = oligomer_length, y = counts/1000000)) +
 # adding and overriding the default plot format
 p.B.2 <- p.B.2 + p_format 
 
-
+flog.info("Plotting C...")
 #### Plot C.1 ####
 
 # create the plot 
@@ -276,7 +300,7 @@ p.C.4 <- p.C.4 + p_format + guides(fill = "none") +
         axis.ticks.y = element_blank(),
         axis.title.x = element_blank())
 
-
+flog.info("Plotting D...")
 #### Plot D ####
 
 # create the plot 
@@ -334,6 +358,7 @@ p.D_comb <- p.D_comb + p_format +
   theme(legend.position = c(0.5, 0.9),
         axis.text.x = element_text(hjust=c(0.1, 0.4, 0.5, 0.6, 0.9)))
 
+flog.info("Plotting all together...")
 #### Combining Plots with Patchwork ####
 
 layout <- "
