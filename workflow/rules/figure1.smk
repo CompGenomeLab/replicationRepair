@@ -9,18 +9,16 @@ rule figure1:
         tss="results/final/final_reports_hg19_tss.txt",            
         tes="results/final/final_reports_hg19_tes.txt",                
     output:
-        B="results/plots/figure1B.pdf",
-        C="results/plots/figure1C.pdf",
-        D="results/plots/figure1D.pdf",
+        "results/plots/figure1.pdf",
     log:
         "logs/figure1.log",
     benchmark:
         "logs/figure1.benchmark.txt",
     conda:
-        "../envs/figure1_2_3.yaml",
+        "../envs/figures.yaml",
     shell:
         """
-        Rscript workflow/scripts/figure1_TSS_TES.R \
+        Rscript workflow/scripts/figure1.R \
         --dinuc_ds_64_12 {input.dDS64} \
         --dinuc_ds_cpd_12 {input.dDSCPD} \
         --dinuc_xr_64_12 {input.dXR64} \
@@ -29,9 +27,7 @@ rule figure1:
         --len_xr_cpd_12 {input.lenCPD} \
         --tss {input.tss} \
         --tes {input.tes} \
-        -o1 {output.B} \
-        -o2 {output.C} \
-        -o3 {output.D} \
+        -o {output} \
         --log {log} &> {log}
         """
 
