@@ -10,7 +10,7 @@ rule figure3:
     benchmark:
         "logs/figure3.benchmark.txt",
     conda:
-        "../envs/figure1.yaml",
+        "../envs/figure1_2_3.yaml",
     shell:
         """
         Rscript workflow/scripts/figure3.R \

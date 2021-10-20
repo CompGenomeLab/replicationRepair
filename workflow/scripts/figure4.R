@@ -10,7 +10,7 @@ library(grid)
 library(argparser)
 
 ######## Arguments ##########
-p <- arg_parser("producing the figure 3")
+p <- arg_parser("producing the figure 4 and 5")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
 p <- add_argument(p, "--intergenic", help="True if reads come from intergenic regions")
@@ -42,12 +42,12 @@ if (argv$intergenic == "True"){ xlabname = "Position Relative to Initiation Zone
 
 #### Default Plot Format ####
 
-source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/plot_format.R")
+source("workflow/scripts/plot_format.R")
 
 
 #### Fuctions ####
 
-source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/functions.R")
+source("workflow/scripts/functions.R")
 
 #### Main ####
 
@@ -296,4 +296,4 @@ p.B.1 + p.B.2.3 + grid::textGrob('CPD\n12 min.\nEarly S Phase',
         plot.title = element_text(hjust = -0.2, vjust = 5, 
                                   size = 12, face="bold"))
 
-ggsave(argv$o, width = 22, height = 18, units = "cm")
+ggsave( argv$o, width = 22, height = 18, units = "cm" )

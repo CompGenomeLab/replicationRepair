@@ -11,7 +11,7 @@ rule figure2:
     benchmark:
         "logs/figure2.benchmark.txt",
     conda:
-        "../envs/figure1.yaml",
+        "../envs/figure1_2_3.yaml",
     shell:
         """
         Rscript workflow/scripts/figure2.R \
