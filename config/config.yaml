@@ -1,84 +1,97 @@
 build: "hg19"
 
-sample_xr:
-  - "HXA64A1_ATCACG"
-  - "HXA64B7_CAGATC"
-  - "HXACA4_TGACCA"
-  - "HXACB10_TAGCTT"
-  - "HXE64A2_CGATGT"
-  - "HXE64B8_ACTTGA"
-  - "HXECA5_ACAGTG"
-  - "HXECB11_GGCTAC"
-  - "HXL64A3_TTAGGC"
-  - "HXL64B9_GATCAG"
-  - "HXLCA6_GCCAAT"
-  - "HXLCB12_CTTGTA"
-  - "R19026421-2019XR1-Hela15X2_combined_R1"
-  - "R19026421-2019XR1-Hela35X3_combined_R1"
-  - "R19033030-2019XR3-Hela15X7_combined_R1"
-  - "R19033030-2019XR3-Hela35X8_combined_R1"
-  - "Hela15X2_comb"
-  - "Hela35X3_comb"
-  - "HXA64_comb"
-  - "HXE64_comb"
-  - "HXL64_comb"
-  - "HXAC_comb"
-  - "HXEC_comb"
-  - "HXLC_comb"
+xr:
+  samples: 
+    - "HXA64A1_ATCACG"
+    - "HXA64B7_CAGATC"
+    - "HXACA4_TGACCA"
+    - "HXACB10_TAGCTT"
+    - "HXE64A2_CGATGT"
+    - "HXE64B8_ACTTGA"
+    - "HXECA5_ACAGTG"
+    - "HXECB11_GGCTAC"
+    - "HXL64A3_TTAGGC"
+    - "HXL64B9_GATCAG"
+    - "HXLCA6_GCCAAT"
+    - "HXLCB12_CTTGTA"
+    - "R19026421-2019XR1-Hela15X2_combined_R1"
+    - "R19026421-2019XR1-Hela35X3_combined_R1"
+    - "R19033030-2019XR3-Hela15X7_combined_R1"
+    - "R19033030-2019XR3-Hela35X8_combined_R1"
+    - "Hela15X2_comb"
+    - "Hela35X3_comb"
+    - "HXA64_comb"
+    - "HXE64_comb"
+    - "HXL64_comb"
+    - "HXAC_comb"
+    - "HXEC_comb"
+    - "HXLC_comb"
 
-sample_ds:
-  - "HDA64A1_ATCACG"
-  - "HDA64B19_GTGAAA"
-  - "HDACA6_GCCAAT"
-  - "HDACB23_GAGTGG"
-  - "HDE64A4_TGACCA"
-  - "HDE64B20_GTGGCC"
-  - "HDECA10_TAGCTT"
-  - "HDECB25_ACTGAT"
-  - "HDL64A5_ACAGTG"
-  - "HDL64B22_CGTACG"
-  - "HDLCA12_CTTGTA"
-  - "HDLCB27_ATTCCT"
-  - "NT4H1-CT5H2-HelaD1-5R2h2_combined"
-  - "XT4H1-CT5H2-HelaD3-5R2h2_combined"
-  - "R19029847-HD2TCD4-HelaD1-5R2h1_combined"
-  - "R19029847-HD2TCD4-HelaD3-5R2h1_combined"
-  - "HelaD1_5R2h2_comb"
-  - "HelaD3_5R2h2_comb"
-  - "HDA64_comb"
-  - "HDE64_comb"
-  - "HDL64_comb"
-  - "HDAC_comb"
-  - "HDEC_comb"
-  - "HDLC_comb"
+ds:
+  samples: 
+    - "HDA64A1_ATCACG"
+    - "HDA64B19_GTGAAA"
+    - "HDACA6_GCCAAT"
+    - "HDACB23_GAGTGG"
+    - "HDE64A4_TGACCA"
+    - "HDE64B20_GTGGCC"
+    - "HDECA10_TAGCTT"
+    - "HDECB25_ACTGAT"
+    - "HDL64A5_ACAGTG"
+    - "HDL64B22_CGTACG"
+    - "HDLCA12_CTTGTA"
+    - "HDLCB27_ATTCCT"
+    - "NT4H1-CT5H2-HelaD1-5R2h2_combined"
+    - "XT4H1-CT5H2-HelaD3-5R2h2_combined"
+    - "R19029847-HD2TCD4-HelaD1-5R2h1_combined"
+    - "R19029847-HD2TCD4-HelaD3-5R2h1_combined"
+    - "HelaD1_5R2h2_comb"
+    - "HelaD3_5R2h2_comb"
+    - "HDA64_comb"
+    - "HDE64_comb"
+    - "HDL64_comb"
+    - "HDAC_comb"
+    - "HDEC_comb"
+    - "HDLC_comb"
 
-sample_edu: 
-  - "R21061297-EdUrep-2hrls_combined"
-  - "R21061297-EdUrep-4hrls_combined"
-  - "R21061297-EdUrep-UV1-5hrls_combined"
-  - "R21061297-EdUrep-UV3-5hrls_combined"
-  - "R21061297-EdUrep-inp2hrls_combined"
-  - "R21061297-EdUrep-inp4hrls_combined" 
-  - "R21061297-EdUrep-inpUV1-5hrls_combined" 
-  - "R21061297-EdUrep-inpUV3-5hrls_combined"
-  - "R21071354-EdUrep2-2hrls2_combined"
-  - "R21071354-EdUrep2-4hrls2_combined"
-  - "R21071354-EdUrep2-inp2hrls2_combined"
-  - "R21071354-EdUrep2-inp4hrls2_combined"
-  - "R21071354-EdUrep2-UV1-5hrls2_combined"
-  - "R21071354-EdUrep2-UV3-5hrls2_combined"
-  - "R21071354-EdUrep2-inpUV1-5hrls2_combined"
-  - "R21071354-EdUrep2-inpUV3-5hrls2_combined"
-  - "R21102739-EdUrep3-inpUV1-5hrls3_combined"
-  - "R21102739-EdUrep3-inpUV3-5hrls3_combined"
-  - "R21102739-EdUrep3-UV1-5hrls3_combined"
-  - "R21102739-EdUrep3-UV3-5hrls3_combined"
+edu:
+  samples: 
+    - "R21061297-EdUrep-2hrls_combined"
+    - "R21061297-EdUrep-4hrls_combined"
+    - "R21061297-EdUrep-UV1-5hrls_combined"
+    - "R21061297-EdUrep-UV3-5hrls_combined"
+    - "R21061297-EdUrep-inp2hrls_combined"
+    - "R21061297-EdUrep-inp4hrls_combined" 
+    - "R21061297-EdUrep-inpUV1-5hrls_combined" 
+    - "R21061297-EdUrep-inpUV3-5hrls_combined"
+    - "R21071354-EdUrep2-2hrls2_combined"
+    - "R21071354-EdUrep2-4hrls2_combined"
+    - "R21071354-EdUrep2-inp2hrls2_combined"
+    - "R21071354-EdUrep2-inp4hrls2_combined"
+    - "R21071354-EdUrep2-UV1-5hrls2_combined"
+    - "R21071354-EdUrep2-UV3-5hrls2_combined"
+    - "R21071354-EdUrep2-inpUV1-5hrls2_combined"
+    - "R21071354-EdUrep2-inpUV3-5hrls2_combined"
+    - "R21102739-EdUrep3-inpUV1-5hrls3_combined"
+    - "R21102739-EdUrep3-inpUV3-5hrls3_combined"
+    - "R21102739-EdUrep3-UV1-5hrls3_combined"
+    - "R21102739-EdUrep3-UV3-5hrls3_combined"
+  srr: 
+    enabled: False
+    codes:
+      - ""
 
-sample_okseq:
-  - "cem"
+okseq:
+  samples:
+    - "cem"
+  srr: 
+    enabled: True
+    codes:
+      - "SRR568260:SRR568261"
 
-sample_mutation:
-  - "melanoma"
+mutation:
+  samples:
+    - "melanoma"
 
 chipseq:
   samples:
@@ -98,7 +111,7 @@ chipseq:
     - HeLa_H3K9me3_A
     - HeLa_H4K20me1_A
   srr: 
-    enabled: True
+    enabled: False
     codes:
       - "SRR568260:SRR568261"
       - "SRR227445:SRR227446"
