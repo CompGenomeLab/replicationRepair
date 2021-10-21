@@ -2,7 +2,7 @@ rule intergenic_mutation:
     input:
         plus="results/mutation/{samples}/{samples}_target_mut_plus.tsv",
         minus="results/mutation/{samples}/{samples}_target_mut_minus.tsv",
-        genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
         plus_intergenic="results/mutation/{samples}/{samples}_intergenic_target_mut_plus.tsv",
         minus_intergenic="results/mutation/{samples}/{samples}_intergenic_target_mut_minus.tsv",

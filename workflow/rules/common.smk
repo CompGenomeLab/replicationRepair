@@ -62,16 +62,12 @@ def isSingle(sample, sampleList, srrEnabled, srrList, sample_dir):
         else:
             raise(ValueError(paired1, single, "Sample not found..."))
 
-def input4peakCalling(wildcards, build, method):
+def input4filter(wildcards, sampleList, srrEnabled, srrList, method, dirRaw):
 
-    samp = "results/" + method + "/" + wildcards.samples + "/" + wildcards.samples + "_" + build + "_sorted.bam"
-
-    if "rep2" in wildcards.samples:
-        inp = samp.replace("rep2-", "rep2-inp")  
-    else:
-        inp = samp.replace("rep-", "rep-inp")  
-
-    return [samp, inp]
+    if isSingle(wildcards.samples, sampleList, srrEnabled, srrList, dirRaw):
+        return "results/" + method + "/{samples}/{samples}_{build}_se.bed"
+    else:    
+        return "results/" + method + "/{samples}/{samples}_{build}_pe.bed"
 
 def input4chip(wildcards, sampleList, srrEnabled, srrList):
 
@@ -272,7 +268,7 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regi
     return inputList
 
 
-def allInput(build="", sampleList=[], method="", regions=[]):
+def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", regions=[]):
 
     inputList = []
     if method == "okseq":
@@ -280,7 +276,7 @@ def allInput(build="", sampleList=[], method="", regions=[]):
         for sample in sampleList:
             sampledir = "results/okseq/" + sample + "/" 
 
-            if isSingle(sample, sampleList, method, False, "resources/okseq/"):
+            if isSingle(sample, sampleList, srrEnabled, srrList, "resources/samples/okseq/"):
                 inputList.append(sampledir + sample + ".html")
                 inputList.append(sampledir + sample + "_se_" + build + 
                 "_sorted.bam")
@@ -295,33 +291,27 @@ def allInput(build="", sampleList=[], method="", regions=[]):
         for sample in sampleList:
             sampledir = "results/edu/" + sample + "/" 
 
-            if isSingle(sample, sampleList, method):
+            if isSingle(sample, sampleList, srrEnabled, srrList, "resources/samples/edu/"):
                 inputList.append(sampledir + sample + ".html")
 
             else:
                 inputList.append(sampledir + sample + "_R1.html")
                 inputList.append(sampledir + sample + "_R2.html")
 
-            #if "inp" not in sample:
-            #    inputList.append("results/edu/" + sample + "_" + build + 
-            #    "_peaks.narrowPeak")
-            #    inputList.append("results/edu/" + sample + "_" + build + 
-            #    "_peaks.broadPeak")
-
-            #inputList.append(sampledir + sample + "_" + build + "_sorted.bam")
-            #inputList.append(sampledir + sample + "_" + build + 
-            #    "_sorted_plus.bw")
-            #inputList.append(sampledir + sample + "_" + build + 
-            #    "_sorted_minus.bw")
+            inputList.append(sampledir + sample + "_" + build + "_sorted.bam")
+            inputList.append(sampledir + sample + "_" + build + 
+                "_sorted_plus.bw")
+            inputList.append(sampledir + sample + "_" + build + 
+                "_sorted_minus.bw")
             inputList.append("results/edu/merge_RT.txt")
             inputList.append("results/edu/merge_uv_RT.txt")
-            inputList.append("results/edu/scatterplot_PearsonCorr_bigwigScores.png")
+            inputList.append("results/plots/scatterplot_PearsonCorr_bigwigScores.png")
             inputList.append("results/edu/PearsonCorr_bigwigScores.tab")
-            inputList.append("results/edu/heatmap_SpearmanCorr_readCounts.png")
+            inputList.append("results/plots/heatmap_SpearmanCorr_readCounts.png")
             inputList.append("results/edu/SpearmanCorr_readCounts.tab")
-            inputList.append("results/edu/PCA_readCounts.png")
-            inputList.append("results/edu/PCA_readCounts_early.png")
-            inputList.append("results/edu/PCA_readCounts_late.png")
+            inputList.append("results/plots/PCA_readCounts.png")
+            inputList.append("results/plots/PCA_readCounts_early.png")
+            inputList.append("results/plots/PCA_readCounts_late.png")
             
     if method == "mutation":
     

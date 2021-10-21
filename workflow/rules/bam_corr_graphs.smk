@@ -2,11 +2,11 @@ rule bam_corr_graphs:
     input:
         npz="results/edu/readCounts.npz",
     output:
-        scatter="results/edu/scatterplot_PearsonCorr_bigwigScores.png",
+        scatter="results/plots/scatterplot_PearsonCorr_bigwigScores.png",
         tab="results/edu/PearsonCorr_bigwigScores.tab",
-        heatmap="results/edu/heatmap_SpearmanCorr_readCounts.png",
+        heatmap="results/plots/heatmap_SpearmanCorr_readCounts.png",
         tab2="results/edu/SpearmanCorr_readCounts.tab",
-        pca="results/edu/PCA_readCounts.png",
+        pca="results/plots/PCA_readCounts.png",
     log:
         "logs/bam_corr_graphs.log",
     benchmark:
@@ -49,11 +49,11 @@ rule bam_corr_graphs_early:
     input:
         npz="results/edu/readCounts_early.npz",
     output:
-        scatter="results/edu/scatterplot_PearsonCorr_bigwigScores_early.png",
+        scatter="results/plots/scatterplot_PearsonCorr_bigwigScores_early.png",
         tab="results/edu/PearsonCorr_bigwigScores_early.tab",
-        heatmap="results/edu/heatmap_SpearmanCorr_readCounts_early.png",
+        heatmap="results/plots/heatmap_SpearmanCorr_readCounts_early.png",
         tab2="results/edu/SpearmanCorr_readCounts_early.tab",
-        pca="results/edu/PCA_readCounts_early.png",
+        pca="results/plots/PCA_readCounts_early.png",
     log:
         "logs/bam_corr_graphs_early.log",
     benchmark:
@@ -96,11 +96,11 @@ rule bam_corr_graphs_late:
     input:
         npz="results/edu/readCounts_late.npz",
     output:
-        scatter="results/edu/scatterplot_PearsonCorr_bigwigScores_late.png",
+        scatter="results/plots/scatterplot_PearsonCorr_bigwigScores_late.png",
         tab="results/edu/PearsonCorr_bigwigScores_late.tab",
-        heatmap="results/edu/heatmap_SpearmanCorr_readCounts_late.png",
+        heatmap="results/plots/heatmap_SpearmanCorr_readCounts_late.png",
         tab2="results/edu/SpearmanCorr_readCounts_late.tab",
-        pca="results/edu/PCA_readCounts_late.png",
+        pca="results/plots/PCA_readCounts_late.png",
     log:
         "logs/bam_corr_graphs_late.log",
     benchmark:
