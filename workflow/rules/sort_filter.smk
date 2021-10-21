@@ -1,6 +1,7 @@
 rule sort_filter_edu:
     input:
-        lambda w: input4filter(w, config["sample_edu"], "edu"),
+        lambda w: input4filter(w, config["edu"]["samples"], config["edu"]["srr"]["enabled"], 
+            config["edu"]["srr"]["codes"], "edu", "resources/samples/edu/"),
     output:
         "results/edu/{samples}/{samples}_{build}_sorted_chr.bed",
     params:
