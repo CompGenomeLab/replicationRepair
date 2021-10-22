@@ -121,6 +121,7 @@ include: "workflow/rules/combine_files.smk"
 
 # Plots
 include: "workflow/rules/bam_corr_graphs.smk"
+include: "workflow/rules/figure_markers.smk"
 include: "workflow/rules/figure1.smk"
 include: "workflow/rules/figure2.smk"
 include: "workflow/rules/figure3.smk"

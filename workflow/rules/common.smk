@@ -298,7 +298,6 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                 inputList.append(sampledir + sample + "_R1.html")
                 inputList.append(sampledir + sample + "_R2.html")
 
-            inputList.append(sampledir + sample + "_" + build + "_sorted.bam")
             inputList.append(sampledir + sample + "_" + build + 
                 "_sorted_plus.bw")
             inputList.append(sampledir + sample + "_" + build + 
@@ -395,6 +394,7 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
 
     if method == "report":
 
+        inputList.append("results/plots/figure_markers.pdf")
         inputList.append("results/plots/figure1.pdf")
         inputList.append("results/plots/figure2.pdf")
         inputList.append("results/plots/figure3.pdf")

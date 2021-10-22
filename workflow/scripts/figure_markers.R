@@ -6,7 +6,6 @@ library(ggplot2)
 library(dplyr)
 library(reshape2)
 library(patchwork)
-library(ggthemes)
 library(grid)
 library(argparser)
 
