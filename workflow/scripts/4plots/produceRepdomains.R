@@ -1,7 +1,15 @@
 library(preprocessCore)
+library(argparser)
 
-setwd("~/Desktop")
-merge<-read.table("merge_RT.txt", header=FALSE)
+######## Arguments ##########
+p <- arg_parser("producing the marker figure")
+p <- add_argument(p, "-i", help="input")
+p <- add_argument(p, "-o", help="output")
+
+# Parse the command line arguments
+argv <- parse_args(p)
+
+merge<-read.table(argv$i, header=FALSE)
 colnames(merge)<-c("chr","start","end","rep1_T.bg","rep2_T.bg")
 
 merge$rep1_T.bg <- as.double(merge$rep1_T.bg)
@@ -102,6 +110,6 @@ myAvg <- rbind(myAvgEarly, myAvgLate)
 myAvg_org <- myAvg[,c(2,3,4,8,6)]
 myAvg_org$strand <- "."
 
-write.table(myAvg_org, "repdomains_mean0.5.bed", col.names=F, row.names=F, quote=F, sep="\t")
+write.table(myAvg_org, argv$o, col.names=F, row.names=F, quote=F, sep="\t")
 
 
