@@ -27,13 +27,13 @@ rule all:
             srrList=config["edu"]["srr"]["codes"],
             method="edu"
             ),
-        #lambda w: allInput(
-        #    build=config["build"], 
-        #    sampleList=config["okseq"]["samples"],
-        #    srrEnabled=config["okseq"]["srr"]["enabled"], 
-        #    srrList=config["okseq"]["srr"]["codes"], 
-        #    method="okseq"
-        #    ),
+        lambda w: allInput(
+            build=config["build"], 
+            sampleList=config["okseq"]["samples"],
+            srrEnabled=config["okseq"]["srr"]["enabled"], 
+            srrList=config["okseq"]["srr"]["codes"], 
+            method="okseq"
+            ),
         lambda w: allInput(
             build=config["build"], 
             sampleList=config["mutation"]["samples"], 
@@ -82,7 +82,7 @@ include: "workflow/rules/genomecov.smk"
 include: "workflow/rules/bedGraphToBigWig.smk"
 include: "workflow/rules/bam_correlation.smk"
 include: "workflow/rules/replication_timing.smk"
-#include: "workflow/rules/produceReplicationDomains.smk"
+include: "workflow/rules/produceReplicationDomains.smk"
 
 # OK-seq Analysis
 if config["okseq"]["srr"]["enabled"]:
@@ -90,15 +90,15 @@ if config["okseq"]["srr"]["enabled"]:
 include: "workflow/rules/fastqc.smk"
 include: "workflow/rules/adaptor_handling.smk"
 include: "workflow/rules/align.smk"
-#include: "workflow/rules/bam_correlation.smk"
-#include: "workflow/rules/produceInitiationZones.smk"
+include: "workflow/rules/bam_correlation.smk"
+include: "workflow/rules/produceInitiationZones.smk"
 
 # Chip-seq Analysis
 if config["chipseq"]["srr"]["enabled"]:
     include: "workflow/rules/sra_chipseq.smk"
 include: "workflow/rules/align.smk"
 include: "workflow/rules/bam2bed.smk" 
-#include: "workflow/rules/bam_correlation.smk"
+include: "workflow/rules/bam_correlation.smk"
 
 # Mutation Analysis
 include: "workflow/rules/get_sbs_muts.smk"
@@ -112,7 +112,7 @@ include: "workflow/rules/intergenic.smk"
 #include: "workflow/rules/????.smk"
 
 # Further Analyses
-#include: "workflow/rules/sep_strands.smk"
+include: "workflow/rules/combine_replicates.smk"
 include: "workflow/rules/ts_nts.smk"
 include: "workflow/rules/tss.smk"
 include: "workflow/rules/pre_mapping.smk"

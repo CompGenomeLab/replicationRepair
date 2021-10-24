@@ -83,11 +83,15 @@ edu:
 
 okseq:
   samples:
-    - "cem"
+    - "IMR90"
+    - "GM06990"
+    - "HeLa"
   srr: 
     enabled: True
     codes:
-      - "SRR568260:SRR568261"
+      - "ERR2760855"
+      - "SRR2913060:SRR2913061:SRR2913062:SRR2913063"
+      - "SRR2913036:SRR2913037:SRR2913038:SRR2913039:SRR2913040:SRR2913041:SRR2913042"
 
 mutation:
   samples:
