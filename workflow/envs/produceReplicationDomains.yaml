@@ -1,0 +1,8 @@
+name: produceReplicationDomains
+channels:
+  - defaults
+dependencies:
+  - conda-forge::r-base ==4.0.0
+  - conda-forge::r-argparser ==0.7.1
+  - bioconda::bioconductor-preprocesscore ==1.50.0
+  - bioconda::bioconductor-dnacopy ==1.64.0

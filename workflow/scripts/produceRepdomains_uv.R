@@ -1,3 +1,6 @@
+#if (!requireNamespace("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager", repos = "http://cran.us.r-project.org")
+#BiocManager::install("preprocessCore", configure.args="--disable-threading")
 library(preprocessCore)
 library(argparser)
 
@@ -10,12 +13,13 @@ p <- add_argument(p, "-o", help="output")
 argv <- parse_args(p)
 
 merge<-read.table(argv$i, header=FALSE)
-colnames(merge)<-c("chr","start","end","rep1_T.bg","rep2_T.bg")
+colnames(merge)<-c("chr","start","end","rep1_uv_T.bg","rep2_uv_T.bg","rep3_uv_T.bg")
 
-merge$rep1_T.bg <- as.double(merge$rep1_T.bg)
-merge$rep2_T.bg <- as.double(merge$rep2_T.bg)
+merge$rep1_uv_T.bg <- as.double(merge$rep1_uv_T.bg)
+merge$rep2_uv_T.bg <- as.double(merge$rep2_uv_T.bg)
+merge$rep3_uv_T.bg <- as.double(merge$rep3_uv_T.bg)
 
-merge$avg_T.bg <- (merge$rep1_T.bg + merge$rep2_T.bg) / 2 
+merge$avg_uv_T.bg <- (merge$rep1_uv_T.bg + merge$rep2_uv_T.bg + merge$rep3_uv_T.bg) / 3 
 
 merge_values<-as.matrix(merge[,4:ncol(merge)])
 
@@ -25,10 +29,10 @@ norm_data<-normalize.quantiles.use.target(merge_values,ad)
 merge_norm<-data.frame(merge[,1:3],norm_data)
 colnames(merge_norm)<-colnames(merge)
 
-for(i in 4:ncol(merge_norm))
-{write.table(merge_norm[complete.cases(merge_norm[,i]), c(1,2,3,i)],
-             gsub(".bg", "_qnorm.bedGraph", colnames(merge_norm)[i]),
-             sep="\t",row.names=FALSE, quote=FALSE, col.names=FALSE)}
+#for(i in 4:ncol(merge_norm))
+#{write.table(merge_norm[complete.cases(merge_norm[,i]), c(1,2,3,i)],
+#             gsub(".bg", "_qnorm.bedGraph", colnames(merge_norm)[i]),
+#             sep="\t",row.names=FALSE, quote=FALSE, col.names=FALSE)}
 
 chrs=grep(levels(as.factor(merge_norm$chr)),pattern="[_YM]",invert=TRUE,value=TRUE)
 
@@ -51,15 +55,16 @@ for(i in 1:(ncol(merge_norm)-3)){
     if(length(AllLoess[[i]])==0){
       AllLoess[[i]]=RTl}}}
 
-for(i in 1:length(AllLoess)){write.table(AllLoess[[i]]
-  [complete.cases(AllLoess[[i]]),], gsub(".bg","_Loess.bedGraph",
-  colnames(AllLoess[[i]]))[4], sep="\t", row.names=FALSE, quote=FALSE,
-                                         col.names=FALSE)}
+#for(i in 1:length(AllLoess)){write.table(AllLoess[[i]]
+#                                         [complete.cases(AllLoess[[i]]),], gsub(".bg","_Loess.bedGraph",
+#                                                                                colnames(AllLoess[[i]]))[4], sep="\t", row.names=FALSE, quote=FALSE,
+#                                         col.names=FALSE)}
 
 
 LS <- merge(AllLoess[[1]], AllLoess[[2]], by = c("chr", "start","end"))  
 LS <- merge(LS, AllLoess[[3]], by = c("chr", "start","end")) 
-cor(LS[,c(4:6)])
+LS <- merge(LS, AllLoess[[4]], by = c("chr", "start","end")) 
+cor(LS[,c(4:7)])
 
 RTc = subset(merge, chr =="chr1")    # Subset of raw timing data in chr1
 LS1c = subset(AllLoess[[1]], chr =="chr1")    # Subset of smoothed data in chr1
@@ -68,22 +73,22 @@ LSAc = subset(AllLoess[[3]], chr =="chr1")
 
 #par(mar=c(2.2,5.1,1,1), mfrow=c(3,1), col="grey", pch=19, cex=0.5, cex.lab=1.8, xaxs="i")
 
-#plot(RTc$rep1_T.bg~RTc$end, ylab="rep1", xaxt="n") # Plot raw data points
-#lines(LS1c$rep1_T.bg~LS1c$end, col="blue3", lwd=3) # Overlay loess line
+#plot(RTc$rep1_uv_T.bg~RTc$end, ylab="rep1", xaxt="n") # Plot raw data points
+#lines(LS1c$rep1_uv_T.bg~LS1c$end, col="blue3", lwd=3) # Overlay loess line
 
-#plot(RTc$rep2_T.bg~RTc$end, ylab="rep2", xaxt="n")
-#lines(LS2c$rep2_T.bg~LS2c$end, col="blue3", lwd=3)
+#plot(RTc$rep2_uv_T.bg~RTc$end, ylab="rep2", xaxt="n")
+#lines(LS2c$rep2_uv_T.bg~LS2c$end, col="blue3", lwd=3)
 
-#plot(RTc$avg_T.bg~RTc$end, ylab="avg", xaxt="n")
-#lines(LSAc$avg_T.bg~LSAc$end, col="blue3", lwd=3)
+#plot(RTc$avg_uv_T.bg~RTc$end, ylab="avg", xaxt="n")
+#lines(LSAc$avg_uv_T.bg~LSAc$end, col="blue3", lwd=3)
 
 
 #### Segmentation
 
 library(DNAcopy)
 
-avg =CNA(merge_norm$avg_T.bg, merge_norm$chr, merge_norm$end, 
-            data.type="logratio", sampleid ="untreated_avg")
+avg =CNA(merge_norm$avg_uv_T.bg, merge_norm$chr, merge_norm$end, 
+         data.type="logratio", sampleid ="untreated_avg")
 Seg.avg =segment(avg, nperm=10000, alpha=1e-15, undo.splits="sdundo", 
                  undo.SD=1.5, verbose=2)
 
@@ -111,5 +116,6 @@ myAvg_org <- myAvg[,c(2,3,4,8,6)]
 myAvg_org$strand <- "."
 
 write.table(myAvg_org, argv$o, col.names=F, row.names=F, quote=F, sep="\t")
+
 
 
