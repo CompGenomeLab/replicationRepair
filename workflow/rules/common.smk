@@ -273,6 +273,8 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
     inputList = []
     if method == "okseq":
     
+        inputList.append("results/plots/PCA_readCounts_okseq.png")
+
         for sample in sampleList:
             sampledir = "results/okseq/" + sample + "/" 
 
@@ -285,8 +287,16 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
             else:
                 inputList.append(sampledir + sample + "_R1.html")
                 inputList.append(sampledir + sample + "_R2.html")
+     
+            inputList.append(sampledir + sample + "_" + build + "_HMMsegments_highFlatZone.bed")
 
     if method == "edu":
+
+        inputList.append("results/regions/repdomains_mean0.5.bed")
+        inputList.append("results/regions/repdomains_uv_mean0.5.bed")
+        inputList.append("results/plots/PCA_readCounts.png")
+        inputList.append("results/plots/PCA_readCounts_early.png")
+        inputList.append("results/plots/PCA_readCounts_late.png")
 
         for sample in sampleList:
             sampledir = "results/edu/" + sample + "/" 
@@ -302,15 +312,6 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                 "_sorted_plus.bw")
             inputList.append(sampledir + sample + "_" + build + 
                 "_sorted_minus.bw")
-            inputList.append("results/edu/merge_RT.txt")
-            inputList.append("results/edu/merge_uv_RT.txt")
-            inputList.append("results/plots/scatterplot_PearsonCorr_bigwigScores.png")
-            inputList.append("results/edu/PearsonCorr_bigwigScores.tab")
-            inputList.append("results/plots/heatmap_SpearmanCorr_readCounts.png")
-            inputList.append("results/edu/SpearmanCorr_readCounts.tab")
-            inputList.append("results/plots/PCA_readCounts.png")
-            inputList.append("results/plots/PCA_readCounts_early.png")
-            inputList.append("results/plots/PCA_readCounts_late.png")
             
     if method == "mutation":
     
@@ -383,6 +384,8 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                     "_minus_" + region + "_combined_rpkm.txt")
 
     if method == "markers":
+        
+        inputList.append("results/plots/PCA_readCounts_chipseq.png")
 
         for sample in sampleList:
 
