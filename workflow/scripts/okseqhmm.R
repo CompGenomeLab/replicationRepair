@@ -1,7 +1,19 @@
-#library("HMM")
-#library("Rsamtools")
-#library("GenomicAlignments")
+#### Packages and Libraries ####
 
+library("HMM")
+library("Rsamtools")
+library("GenomicAlignments")
+library(argparser)
+
+######## Arguments ##########
+p <- arg_parser("producing initiation zones")
+p <- add_argument(p, "-i", help="input")
+p <- add_argument(p, "--genome", help="genome file containing chr sizes")
+p <- add_argument(p, "-p", help="output prefix")
+p <- add_argument(p, "-o", help="output")
+
+# Parse the command line arguments
+argv <- parse_args(p)
 
 #' OKseqHMM backage
 #'
@@ -384,8 +396,7 @@ OKseqHMM <- function(bamfile,chrsizes,fileOut, thresh, winS, binSize=1000, hwinS
   
 }
 
-setwd("/home/azgarian/Desktop/repairRevision2/")
-OKseqHMM(bamfile = "R21061297-EdUrep-2hrls_combined_sorted.bam",thresh= 10, chrsizes = "hg19.chr.size.txt", winS=20, fileOut = "edu_early")
+OKseqHMM(bamfile = argv$i, thresh = 10, chrsizes = argv$genome, winS = 20, fileOut = argv$p)
 
 # end of the function =========================================================================
 
