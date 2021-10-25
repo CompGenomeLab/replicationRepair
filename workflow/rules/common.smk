@@ -288,7 +288,7 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                 inputList.append(sampledir + sample + "_R1.html")
                 inputList.append(sampledir + sample + "_R2.html")
      
-            inputList.append(sampledir + sample + "_" + build + "_HMMsegments_highFlatZone.bed")
+            inputList.append(sampledir + sample + "_" + build + "_HMMsegments_IZ.bed")
 
     if method == "edu":
 
@@ -397,6 +397,10 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
 
     if method == "report":
 
+        inputList.append("results/regions/iz_hela_repdomains_uv_mean0.5_windows_201_100.bed")
+        inputList.append("results/regions/sns_seq_hela_repdomains_uv_mean0.5_windows_201_100.bed")
+        inputList.append("results/regions/repdomains_uv_mean0.5_windows_201_10000.bed")
+        inputList.append("results/regions/chromhmm_hela_repdomains_uv_mean0.5.bed")
         inputList.append("results/plots/figure_markers.pdf")
         inputList.append("results/plots/figure1.pdf")
         inputList.append("results/plots/figure2.pdf")

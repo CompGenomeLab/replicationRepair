@@ -3,7 +3,7 @@ rule produceInitiationZones:
         okseq="results/okseq/{samples}/{samples}_se_{build}_sorted.bam",  
         genome="resources/ref_genomes/{build}/genome_{build}.txt",           
     output: 
-        "results/okseq/{samples}/{samples}_{build}_HMMsegments_highFlatZone.bed",  
+        "results/okseq/{samples}/{samples}_{build}_HMMsegments_IZ.bed",  
     params:
         prefix="results/okseq/{samples}/{samples}_{build}",
     log:
