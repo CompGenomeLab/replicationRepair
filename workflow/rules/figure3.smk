@@ -1,7 +1,7 @@
 rule figure3:
     input:  
-        df="results/final/final_reports_hg19_chromhmm_repdomains_hela_windows_chr.txt", 
-        df_sim="results/final/final_reports_sim_hg19_chromhmm_repdomains_hela_windows_chr.txt",            
+        df="results/final/final_reports_hg19_chromhmm_hela_repdomains_uv_mean0.5_chr.txt", 
+        df_sim="results/final/final_reports_sim_hg19_chromhmm_hela_repdomains_uv_mean0.5_chr.txt",            
     output:
         CPD="results/plots/figure3.pdf",
         PP64="results/plots/supplementary_figure_ChromHMM_64PP.pdf",

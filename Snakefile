@@ -108,7 +108,8 @@ include: "workflow/rules/sep_strands.smk"
 include: "workflow/rules/intergenic.smk"
 
 # Process Retrieved Data
-#include: "workflow/rules/make_windows.smk"
+include: "workflow/rules/intersect2repDomains.smk"
+include: "workflow/rules/make_windows.smk"
 #include: "workflow/rules/????.smk"
 
 # Further Analyses

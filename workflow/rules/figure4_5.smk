@@ -1,9 +1,9 @@
 rule figure4_5:
     input:  
-        df="results/final/final_reports_hg19_iz_repdomains_m0.5_hela_windows_201_100.txt", 
-        df_sim="results/final/final_reports_sim_hg19_iz_repdomains_m0.5_hela_windows_201_100.txt",  
-        df_int="results/final/final_reports_hg19_iz_repdomains_m0.5_hela_windows_201_100_intergenic.txt", 
-        df_int_sim="results/final/final_reports_sim_hg19_iz_repdomains_m0.5_hela_windows_201_100_intergenic.txt",          
+        df="results/final/final_reports_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100.txt", 
+        df_sim="results/final/final_reports_sim_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100.txt",  
+        df_int="results/final/final_reports_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100_intergenic.txt", 
+        df_int_sim="results/final/final_reports_sim_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100_intergenic.txt",          
     output:
         fig4="results/plots/figure4.pdf",
         fig5="results/plots/figure5.pdf",
