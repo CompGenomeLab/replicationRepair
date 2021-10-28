@@ -4,7 +4,7 @@ rule figure3:
         df_sim="results/final/final_reports_sim_hg19_chromhmm_hela_repdomains_uv_mean0.5_chr.txt",            
     output:
         CPD="results/plots/figure3.pdf",
-        PP64="results/plots/supplementary_figure_ChromHMM_64PP.pdf",
+        PP64="results/plots/figureS4.pdf",
     log:
         "logs/figure3.log",
     benchmark:
