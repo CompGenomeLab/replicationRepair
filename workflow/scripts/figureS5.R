@@ -1,5 +1,6 @@
 #### Packages and Libraries ####
 
+library(argparser)
 library(stringr)
 library(ggpubr)
 library(ggplot2)
@@ -7,45 +8,41 @@ library(dplyr)
 library(reshape2)
 library(patchwork)
 library(grid)
-library(ggthemes)
 
+######## Arguments ##########
+p <- arg_parser("producing the suplementary figure 5")
+p <- add_argument(p, "--real", help="windowed (20kb) initiation zones file with read counts")
+p <- add_argument(p, "--sim", help="windowed (20kb) initiation zones file with simulated read counts")
+p <- add_argument(p, "-o", help="output")
+
+# Parse the command line arguments
+argv <- parse_args(p)
 
 #### Variables ####
 
 rep <- "_" 
-if (rep == "_"){ fig_name = "~/Desktop/supfig11.svg" 
-} else if (rep == "B"){ fig_name = "no_need.svg" 
-} 
-
-real_df <- paste("/Users/azgarian/Desktop/replication_final/final_reports_hg19_",
-                  "iz_hela_windows_201_100.txt", 
-                  sep = "")
-
-sim_df <- paste("/Users/azgarian/Desktop/replication_final/final_reports_sim_hg19_",
-                 "iz_hela_windows_201_100.txt", 
-                 sep = "")
 
 #### Default Plot Format ####
 
-source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/plot_format.R")
+source("workflow/scripts/plot_format.R")
 
 
-#### Fuctions ####
+#### Functions ####
 
-source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/functions.R")
+source("workflow/scripts/functions.R")
 
 
 #### Main ####
 
 # for plot A.1 and B.1
-real_df <- read.delim( real_df, header = F )
+real_df <- read.delim( argv$real, header = F )
 colnames(real_df) <- c("chromosomes", "start_position", "end_position", 
-                            "dataset", "score", "dataset_strand", "counts", 
-                            "sample_names", "file_names", "layout", "cell_line", 
-                            "product", "method", "uv_exposure", "treatment", 
-                            "phase", "time_after_exposure", "replicate", 
-                            "project", "sample_source", "sample_strand", 
-                            "mapped_reads", "RPKM")
+                       "dataset", "score", "dataset_strand", "counts", 
+                       "sample_names", "file_names", "layout", "cell_line", 
+                       "product", "method", "uv_exposure", "treatment", 
+                       "phase", "time_after_exposure", "replicate", 
+                       "project", "sample_source", "sample_strand", 
+                       "mapped_reads", "RPKM")
 
 real_df<- filter(real_df, method != "DNA_seq", phase != "async", 
                  replicate == "A", product == "CPD")
@@ -59,15 +56,15 @@ real_df_org$sample_strand <- factor(
 # for plot A.2 and B.2
 sim_df <- read.delim( sim_df, header = F )
 colnames(sim_df) <- c("chromosomes", "start_position", "end_position", 
-                            "dataset", "score", "dataset_strand", "counts", 
-                            "sample_names", "file_names", "layout", "cell_line", 
-                            "product", "method", "uv_exposure", "treatment", 
-                            "phase", "time_after_exposure", "replicate", 
-                            "project", "sample_source", "sample_strand", 
-                            "mapped_reads", "RPKM")
+                      "dataset", "score", "dataset_strand", "counts", 
+                      "sample_names", "file_names", "layout", "cell_line", 
+                      "product", "method", "uv_exposure", "treatment", 
+                      "phase", "time_after_exposure", "replicate", 
+                      "project", "sample_source", "sample_strand", 
+                      "mapped_reads", "RPKM")
 
-sim_df<- filter(sim_df, method != "DNA_seq", phase != "async", 
-                 replicate == "A", product == "CPD")
+sim_df<- filter(argv$sim, method != "DNA_seq", phase != "async", 
+                replicate == "A", product == "CPD")
 
 sim_df_org <- window_numbering( sim_df, 4, 101 )
 sim_df_org$dataset <- gsub("_.*", "", sim_df$dataset)
@@ -225,5 +222,5 @@ p.B.2 <- p.B.2 + plot_layout(tag_level = 'new')
                                   size = 12, face="bold"))
 
 
-ggsave("~/Desktop/supfig7_new.png", width = 22, height = 18, units = "cm")
+ggsave(argv$o, width = 22, height = 18, units = "cm")
 
