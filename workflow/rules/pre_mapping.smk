@@ -276,3 +276,39 @@ rule pre_mapping_chipseq:
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
+
+rule pre_mapping_methyl:
+    input:
+        bed="resources/samples/methyl/{samples}_{build}_chr.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
+    output:
+        org="results/methyl/{samples}/{samples}_{build}_org.bed",
+        intergenic="results/methyl/{samples}/{samples}_{build}_org_intergenic.bed",
+    params:
+        filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",  
+        marker_name=lambda w: getMarkerName(w, idx=5), 
+    log:
+        "logs/{samples}/{samples}_{build}_pre_mapping_methyl.log",
+    benchmark:
+        "logs/{samples}/{samples}_{build}_pre_mapping_methyl.benchmark.txt",
+    conda:
+        "../envs/bed2fasta.yaml"
+    shell:
+        """
+        (echo "`date -R`: Reorganizing..." &&
+        awk '{{print $1"\\t"$2"\\t"$3"\\t""{params.marker_name}""\\t"".""\\t"$6}}' {input.bed} |
+        sort -u -k1,1 -k2,2n -k3,3n |&
+        egrep {params.filt} > {output.org} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; rm {output.org}; exit 1; }}  ) > {log} 2>&1
+
+        (echo "`date -R`: Getting intergenic..." &&
+        bedtools intersect \
+        -a {output.org} \
+        -b {input.genes} \
+        -v -f 0.5 |&
+        sort -u -k1,1 -k2,2n -k3,3n |&
+        egrep {params.filt} > {output.intergenic} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
+        """

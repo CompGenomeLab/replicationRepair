@@ -99,3 +99,20 @@ rule combine_files_markers_intergenic:
         echo "`date -R`: Success! Files are combined." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
+
+rule combine_files_methyl_intergenic:
+    input:
+        lambda w: combineOutputs(config["build"], config["xr"]["samples"], config["ds"]["samples"], config["methyl"]["samples"], w.regions, outformat="methyl_intergenic"),
+    output:
+        "results/final/final_reports_methyl_{regions}_intergenic.txt",
+    log:
+        "logs/combine_files_methyl_{regions}_intergenic.log",
+    benchmark:
+        "logs/combine_files_methyl_{regions}_intergenic.benchmark.txt",
+    shell:
+        """
+        (echo "`date -R`: Combining files..." &&
+        cat {input} > {output} &&
+        echo "`date -R`: Success! Files are combined." || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
+        """

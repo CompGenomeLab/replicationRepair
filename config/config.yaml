@@ -87,7 +87,7 @@ okseq:
     - "GM06990"
     - "HeLa"
   srr: 
-    enabled: True
+    enabled: False
     codes:
       - "ERR2760855"
       - "SRR2913060:SRR2913061:SRR2913062:SRR2913063"
@@ -96,6 +96,12 @@ okseq:
 mutation:
   samples:
     - "melanoma"
+
+methyl:
+  samples:
+    - "GSM3633947_ENCFF093WZD_methylation_state_at_CHG"
+    - "GSM3633947_ENCFF474VQX_methylation_state_at_CHH"
+    - "GSM3633947_ENCFF696OLO_methylation_state_at_CpG"
 
 chipseq:
   samples:
