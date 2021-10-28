@@ -412,18 +412,16 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                 inputList.append(sampledir + sample + "_" + build + "_" + region + "_combined_rpkm.txt")
 
     if method == "report":
-
-        inputList.append("results/regions/iz_hela_repdomains_uv_mean0.5_windows_201_100.bed")
-        inputList.append("results/regions/sns_seq_hela_repdomains_uv_mean0.5_windows_201_100.bed")
-        inputList.append("results/regions/repdomains_uv_mean0.5_windows_201_10000.bed")
-        inputList.append("results/regions/chromhmm_hela_repdomains_uv_mean0.5.bed")
+    
         inputList.append("results/plots/figure_markers.pdf")
         inputList.append("results/plots/figure1.pdf")
         inputList.append("results/plots/figure2.pdf")
         inputList.append("results/plots/figure3.pdf")
-        inputList.append("results/plots/supplementary_figure_ChromHMM_64PP.pdf")
         inputList.append("results/plots/figure4.pdf")
         inputList.append("results/plots/figure5.pdf")
+        inputList.append("results/plots/figureS2.pdf")
+        inputList.append("results/plots/figureS3.pdf")
+        inputList.append("results/plots/figureS4.pdf")
 
         for region in regions:
                 inputList.append("results/final/final_reports_" + build + 
@@ -436,8 +434,8 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                 "_" + region + "_intergenic.txt")
                 inputList.append("results/final/final_reports_markers_" + 
                 region + "_intergenic.txt")
-                inputList.append("results/final/final_reports_methyl_" + 
-                region + "_intergenic.txt")
+                #inputList.append("results/final/final_reports_methyl_" + 
+                #region + "_intergenic.txt")
 
     #print(inputList)
     return inputList

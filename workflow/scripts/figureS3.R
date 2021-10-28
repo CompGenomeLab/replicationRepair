@@ -1,12 +1,12 @@
 #### Packages and Libraries ####
 
+library(argparser)
 library(stringr)
 library(ggpubr)
 library(ggplot2)
 library(dplyr)
 library(reshape2)
 library(patchwork)
-library(ggthemes)
 
 ######## Arguments ##########
 p <- arg_parser("producing the supplementary figure 3")

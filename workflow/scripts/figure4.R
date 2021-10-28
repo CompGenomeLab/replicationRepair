@@ -100,7 +100,7 @@ df_rr_rs$xr_ds <- df_rr_rs$real / df_rr_rs$sim
 # filtering for B.1
 pB1_data <- filter(df_rr_rs, phase != "async", replicate == "_", 
                    product == "CPD", time_after_exposure == "12", 
-                   phase == "early")
+                   phase == "late")
 
 # for plot B.2
 pB2_data <- rr_boxplot( pB1_data ) 
@@ -111,7 +111,7 @@ pB3_data <- rr_boxplot_plus_minus( pB1_data )
 # filtering for C.1
 pC1_data <- filter(df_rr_rs, phase != "async", replicate == "_", 
                    product == "CPD", time_after_exposure == "120", 
-                   phase == "early")
+                   phase == "late")
 
 # for plot C.2
 pC2_data <- rr_boxplot( pC1_data ) 
@@ -158,7 +158,7 @@ pB1_data$log2val <- log2(pB1_data$xr_ds)
 pB1_boxplot <- pB1_data[,c("repdomains", "log2val", "sample_strand", "direction", "windows")]
 
 p.B.2 <- ggplot(data=pB1_boxplot, aes(x=repdomains, y=log2val, fill=sample_strand)) +
-  geom_boxplot() +
+  geom_boxplot(outlier.shape = NA) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
   ylab("n. Repair\nRate (RR)") +
@@ -171,10 +171,12 @@ p.B.2 <- ggplot(data=pB1_boxplot, aes(x=repdomains, y=log2val, fill=sample_stran
 
 # adding and overriding the default plot format
 p.B.2 <- p.B.2 + p_format + 
-  stat_compare_means(label = "p.signif", label.y= 0,  paired = TRUE) +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x = element_blank()) 
+  stat_compare_means(label = "p.signif",  paired = TRUE) + 
+  theme(strip.background = element_blank(),
+        strip.text.x = element_blank()) 
+#  theme(axis.title.x=element_blank(),
+#        axis.text.x=element_blank(),
+#        axis.ticks.x = element_blank()) 
 
 #### Plot B.3 ####
 
@@ -226,7 +228,7 @@ pC1_data$log2val <- log2(pC1_data$xr_ds)
 pC1_boxplot <- pC1_data[,c("repdomains", "log2val", "sample_strand", "direction", "windows")]
 
 p.C.2 <- ggplot(data=pC1_boxplot, aes(x=repdomains, y=log2val, fill=sample_strand)) +
-  geom_boxplot() +
+  geom_boxplot(outlier.shape = NA) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
   ylab("n. Repair\nRate (RR)") +
@@ -239,10 +241,12 @@ p.C.2 <- ggplot(data=pC1_boxplot, aes(x=repdomains, y=log2val, fill=sample_stran
 
 # adding and overriding the default plot format
 p.C.2 <- p.C.2 + p_format + 
-  stat_compare_means(label = "p.signif", label.y= 0,  paired = TRUE) +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x = element_blank()) 
+  stat_compare_means(label = "p.signif",  paired = TRUE) + 
+  theme(strip.background = element_blank(),
+        strip.text.x = element_blank()) 
+#  theme(axis.title.x=element_blank(),
+#        axis.text.x=element_blank(),
+#        axis.ticks.x = element_blank()) 
 
 #### Plot C.3 ####
 
@@ -284,10 +288,10 @@ layout3 <- "
 BBBCCCD
 FFFGGGH
 "
-p.B.1 + p.B.2.3 + grid::textGrob('CPD\n12 min.\nEarly S Phase', 
+p.B.1 + p.B.2 + grid::textGrob('CPD\n12 min.\nLate S Phase', 
                                  rot = -90, gp=gpar(fontsize=12), 
                                  y = unit(.55, "npc")) + 
-  p.C.1 + p.C.2.3 + grid::textGrob('CPD\n120 min.\nEarly S Phase', 
+  p.C.1 + p.C.2 + grid::textGrob('CPD\n120 min.\nLate S Phase', 
                                    rot = -90, gp=gpar(fontsize=12), 
                                    y = unit(.62, "npc")) + 
   plot_layout(design = layout3, guides = "collect") & 

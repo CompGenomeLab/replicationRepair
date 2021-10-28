@@ -49,12 +49,12 @@ rule all:
             method="markers_intergenic", 
             regions=config["regions"]
             ),
-        lambda w: allInput(
-            build=config["build"], 
-            sampleList=config["methyl"]["samples"],  
-            method="methyl", 
-            regions=config["regions"]
-            ),
+        #lambda w: allInput(
+        #    build=config["build"], 
+        #    sampleList=config["methyl"]["samples"],  
+        #    method="methyl", 
+        #    regions=config["regions"]
+        #    ),
         lambda w: allInput(
             build=config["build"], 
             sampleList=config["ds"]["samples"],  
@@ -137,3 +137,5 @@ include: "workflow/rules/figure1.smk"
 include: "workflow/rules/figure2.smk"
 include: "workflow/rules/figure3.smk"
 include: "workflow/rules/figure4_5.smk"
+include: "workflow/rules/figureS2.smk"
+include: "workflow/rules/figureS3.smk"
