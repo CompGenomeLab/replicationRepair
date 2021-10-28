@@ -381,6 +381,42 @@ rule mapping2regions_markers_intergenic:
         {log}
         """
 
+rule mapping2regions_methyl_intergenic:
+    input:
+        bed="results/methyl/{samples}/{samples}_{build}_org_intergenic.bed",
+    output:
+        sorted_region=temp("results/intergenic_methyl/{samples}/{samples}_{build}_{regions}_sorted.bed"),
+        intersect=temp("results/intergenic_methyl/{samples}/{samples}_{build}_{regions}.txt"),
+        comb=temp("results/intergenic_methyl/{samples}/{samples}_{build}_{regions}_combined.txt"),
+        info=temp("results/intergenic_methyl/{samples}/{samples}_{build}_{regions}_combined_info.txt"),
+        rpkm="results/intergenic_methyl/{samples}/{samples}_{build}_{regions}_combined_rpkm.txt",
+    params:
+        sdir="results/intergenic_methyl/{samples}",
+        sname="{samples}_{build}",
+        region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
+        region_name="{regions}",
+        getComb=lambda w: getCombine(w.regions, config["region_comb_opt"], config["regions"]),
+        info=lambda w: info(w, method="marker"),
+        mappedReads=lambda w, input: mappedReads(input[0]), 
+    log:
+        "logs/methyl/{samples}/{samples}_{build}_mapping2regions_methyl_intergenic_{regions}.log",
+    benchmark:
+        "logs/methyl/{samples}/{samples}_{build}_mapping2regions_methyl_intergenic_{regions}.benchmark.txt",
+    conda:
+        "../envs/bed2fasta.yaml"
+    shell:
+        """
+        workflow/scripts/mapping2regionsMarkers.sh \
+        {input.bed} \
+        {params.sdir} \
+        {params.sname} \
+        {params.region} \
+        {params.region_name} \
+        {params.getComb} \
+        {params.info} \
+        {params.mappedReads} \
+        {log}
+        """
 '''
 rule mapping2regions_mutation:
     input:

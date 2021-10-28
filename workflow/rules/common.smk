@@ -136,8 +136,8 @@ def info(wildcards, method="sample"):
             if targetLine == "":
                 raise(ValueError(sample_name + " not found in markers.csv file..."))
 
-def getMarkerName(wildcards):
-    return wildcards.samples.split("_")[1]
+def getMarkerName(wildcards, idx=1):
+    return wildcards.samples.split("_")[idx]
 
 
 def getCombine(region, combineList, regionList):
@@ -235,6 +235,12 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regi
     elif outformat == "markers_intergenic":
         for sample in sampleList_markers:
             sampledir = "results/intergenic_markers/" + sample + "/" 
+
+            inputList.append(sampledir + sample + "_" + build + "_" + regions + window + "rpkm.txt")
+
+    elif outformat == "methyl_intergenic":
+        for sample in sampleList_markers:
+            sampledir = "results/intergenic_methyl/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_" + build + "_" + regions + window + "rpkm.txt")
 
@@ -395,6 +401,16 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         
                 inputList.append(sampledir + sample + "_" + build + "_" + region + "_combined_rpkm.txt")
 
+    if method == "methyl":
+
+        for sample in sampleList:
+
+            sampledir = "results/intergenic_methyl/" + sample + "/" 
+            
+            for region in regions:
+        
+                inputList.append(sampledir + sample + "_" + build + "_" + region + "_combined_rpkm.txt")
+
     if method == "report":
 
         inputList.append("results/regions/iz_hela_repdomains_uv_mean0.5_windows_201_100.bed")
@@ -419,6 +435,8 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                 inputList.append("results/final/final_reports_sim_" + build + 
                 "_" + region + "_intergenic.txt")
                 inputList.append("results/final/final_reports_markers_" + 
+                region + "_intergenic.txt")
+                inputList.append("results/final/final_reports_methyl_" + 
                 region + "_intergenic.txt")
 
     #print(inputList)
