@@ -14,7 +14,7 @@ rmv_low_counted_regions <- function ( df, count_threshold = 1 ){
   return(df)
 }
 
-repair_rate <- function ( df, ds_rep = "A" ){
+repair_rate <- function ( df, ds_rep = "_" ){
   ds <- filter(df, method == "Damage_seq" & replicate == ds_rep)
   xr <- filter(df, method == "XR_seq")
   xr_list <- split(xr, xr$replicate)

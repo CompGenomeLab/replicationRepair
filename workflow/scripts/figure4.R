@@ -98,7 +98,7 @@ df_rr_rs <- merge(df_rr_org, df_rr_org_sim, by = c("chromosomes", "start_positio
 df_rr_rs$xr_ds <- df_rr_rs$real / df_rr_rs$sim
 
 # filtering for B.1
-pB1_data <- filter(df_rr_rs, phase != "async", replicate == "A", 
+pB1_data <- filter(df_rr_rs, phase != "async", replicate == "_", 
                    product == "CPD", time_after_exposure == "12", 
                    phase == "early")
 
@@ -109,7 +109,7 @@ pB2_data <- rr_boxplot( pB1_data )
 pB3_data <- rr_boxplot_plus_minus( pB1_data ) 
 
 # filtering for C.1
-pC1_data <- filter(df_rr_rs, phase != "async", replicate == "A", 
+pC1_data <- filter(df_rr_rs, phase != "async", replicate == "_", 
                    product == "CPD", time_after_exposure == "120", 
                    phase == "early")
 

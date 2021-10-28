@@ -152,13 +152,13 @@ pD_comb$dataset <- factor(pD_comb$dataset, levels = c("TSS", "TES"))
 #### Filtering Samples ####
 
 flog.info("Filtering samples (plot D)...")
-pD_data <- filter(pD_df_rr_org, phase != "async", replicate == "A",
+pD_data <- filter(pD_df_rr_org, phase != "async", replicate == "_",
                   time_after_exposure == "12")
 
-pD2_data <- filter(pD2_df_rr_org, phase != "async", replicate == "A",
+pD2_data <- filter(pD2_df_rr_org, phase != "async", replicate == "_",
                    time_after_exposure == "12")
 
-pD_comb_data <- filter(pD_comb, phase != "async", replicate == "A",
+pD_comb_data <- filter(pD_comb, phase != "async", replicate == "_",
                        time_after_exposure == "12", phase == "early")
 
 flog.info("Plotting...")
