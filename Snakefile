@@ -14,7 +14,8 @@ wildcard_constraints:
                                 config["edu"]["samples"] + 
                                 config["okseq"]["samples"] + 
                                 config["mutation"]["samples"] + 
-                                config["chipseq"]["samples"]
+                                config["chipseq"]["samples"] +
+                                config["methyl"]["samples"]
                                 )]),
     tss_tes='tss|tes'
 
@@ -46,6 +47,12 @@ rule all:
             srrEnabled=config["chipseq"]["srr"]["enabled"], 
             srrList=config["chipseq"]["srr"]["codes"], 
             method="markers_intergenic", 
+            regions=config["regions"]
+            ),
+        lambda w: allInput(
+            build=config["build"], 
+            sampleList=config["methyl"]["samples"],  
+            method="methyl", 
             regions=config["regions"]
             ),
         lambda w: allInput(
@@ -99,6 +106,9 @@ if config["chipseq"]["srr"]["enabled"]:
 include: "workflow/rules/align.smk"
 include: "workflow/rules/bam2bed.smk" 
 include: "workflow/rules/bam_correlation.smk"
+
+# Methylation
+#include: "workflow/rules/liftMethyl.smk"
 
 # Mutation Analysis
 include: "workflow/rules/get_sbs_muts.smk"
