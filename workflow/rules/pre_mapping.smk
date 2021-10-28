@@ -296,9 +296,8 @@ rule pre_mapping_methyl:
     shell:
         """
         (echo "`date -R`: Reorganizing..." &&
-        awk '{{print $1"\\t"$2"\\t"$3"\\t""{params.marker_name}""\\t"".""\\t"$6}}' {input.bed} |
-        sort -u -k1,1 -k2,2n -k3,3n |&
-        egrep {params.filt} > {output.org} &&
+        sed "s/\./{params.marker_name}/g" {input.bed} \
+        > {output.org} &&
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; rm {output.org}; exit 1; }}  ) > {log} 2>&1
 
@@ -306,9 +305,8 @@ rule pre_mapping_methyl:
         bedtools intersect \
         -a {output.org} \
         -b {input.genes} \
-        -v -f 0.5 |&
-        sort -u -k1,1 -k2,2n -k3,3n |&
-        egrep {params.filt} > {output.intergenic} &&
+        -v -f 0.5 \
+        > {output.intergenic} &&
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
