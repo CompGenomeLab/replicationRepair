@@ -82,7 +82,7 @@ dinuc <- function( dinucleotide_table, method ){
 
 flog.info("Importing length dist sample (plot B)...")
 pB_data <- read.delim( argv$len_xr_cpd_120, header = FALSE )
-colnames(pB2_data) <- c("oligomer_length", "counts")
+colnames(pB_data) <- c("oligomer_length", "counts")
 
 pB_data$sample <- "CPD\n\n120 min."
 
@@ -138,6 +138,8 @@ pD2_df_rr_org$dataset_strand <- factor(
 pD_comb <- rbind(pD_df_rr_org, pD2_df_rr_org)
 pD_comb$dataset <- factor(pD_comb$dataset, levels = c("TSS", "TES"))
 
+pD_comb$sample <- "CPD\n\n120 min."
+
 #### Filtering Samples ####
 
 flog.info("Filtering samples (plot D)...")
@@ -166,10 +168,9 @@ p.B <- ggplot(pB_data, aes(x = oligomer_length, y = counts/1000000)) +
   #fill = counts)) + 
   geom_bar(stat = "identity") +
   facet_grid(sample~.) +
-  scale_y_continuous(breaks = c(0, 2, 4),
-                     labels = c("0", "2", expression(paste("(x10"^"6",")", 
-                                                           sep = ""))),
-                     limits = c(0, 5)) +
+  scale_y_continuous(breaks = c(0, 6, 12),
+                     labels = c("0", "6", expression(paste("(x10"^"6",")", 
+                                                           sep = "")))) +
   xlim(15, 35) +
   xlab("Oligomer Length") + ylab("Counts") 
 
@@ -264,11 +265,7 @@ p.D2 <- ggplot(pD2_data, aes(x = windows, y = log2(xr_ds))) +
 p.D_comb <- ggplot(pD_comb_data, aes(x = windows, y = log2(xr_ds))) + 
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
   geom_line(aes(color = dataset_strand, alpha = .9)) + 
-  facet_grid(~product~time_after_exposure~dataset,
-             labeller = labeller(product = product_labs, 
-                                 method = method_labs, 
-                                 time_after_exposure = taex_labs, 
-                                 replicate = rep_labs)) + 
+  facet_grid(~sample~dataset) + 
   xlab("Position Relative to TSS and TES (kb)") + 
   ylab(fr_xr_ds_lab) +
   scale_color_manual(values = c("magenta2", "seagreen")) +
