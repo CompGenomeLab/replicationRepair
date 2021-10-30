@@ -13,7 +13,6 @@ library(argparser)
 p <- arg_parser("producing the figure 4 and 5")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
-p <- add_argument(p, "--phase", help="early or late")
 p <- add_argument(p, "--intergenic", help="True if reads come from intergenic regions")
 p <- add_argument(p, "-o", help="output")
 
@@ -24,19 +23,9 @@ sample_csv <- argv$df
 
 sample_sim_csv <- argv$df_sim
 
-myphase <- argv$phase
-
 if (argv$intergenic == "True"){ xlabname = "Position Relative to Initiation Zones (kb)\n(Intergenic)" 
 } else if (argv$intergenic == "False"){ xlabname = "Position Relative to Initiation Zones (kb)"
 }
-
-if (myphase == "early"){ 
-  ylabname1 = 'CPD\n12 min.\nEarly S Phase'
-  ylabname2 = 'CPD\n120 min.\nEarly S Phase'
-} else if (myphase == "late"){  
-  ylabname1 = 'CPD\n12 min.\nLate S Phase'
-  ylabname2 = 'CPD\n120 min.\nLate S Phase'
-  }
 
 #### Variables ####
 
@@ -110,8 +99,7 @@ df_rr_rs$xr_ds <- df_rr_rs$real / df_rr_rs$sim
 
 # filtering for B.1
 pB1_data <- filter(df_rr_rs, phase != "async", replicate == "_", 
-                   product == "CPD", time_after_exposure == "12", 
-                   phase == myphase)
+                   product == "64_PP", phase == "early")
 
 # for plot B.2
 pB2_data <- rr_boxplot( pB1_data ) 
@@ -121,8 +109,7 @@ pB3_data <- rr_boxplot_plus_minus( pB1_data )
 
 # filtering for C.1
 pC1_data <- filter(df_rr_rs, phase != "async", replicate == "_", 
-                   product == "CPD", time_after_exposure == "120", 
-                   phase == myphase)
+                   product == "64_PP", phase == "late")
 
 # for plot C.2
 pC2_data <- rr_boxplot( pC1_data ) 
@@ -299,10 +286,10 @@ layout3 <- "
 BBBCCCD
 FFFGGGH
 "
-p.B.1 + p.B.2 + grid::textGrob(ylabname1, 
+p.B.1 + p.B.2 + grid::textGrob('(6-4)PP\n12 min.\nEarly S Phase', 
                                  rot = -90, gp=gpar(fontsize=12), 
                                  y = unit(.55, "npc")) + 
-  p.C.1 + p.C.2 + grid::textGrob(ylabname2, 
+  p.C.1 + p.C.2 + grid::textGrob('(6-4)PP\n12 min.\nLate S Phase', 
                                    rot = -90, gp=gpar(fontsize=12), 
                                    y = unit(.62, "npc")) + 
   plot_layout(design = layout3, guides = "collect") & 

@@ -424,6 +424,10 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figureS3.pdf")
         inputList.append("results/plots/figureS4.pdf")
         inputList.append("results/plots/figureS5.pdf")
+        inputList.append("results/plots/figureS6.pdf")
+        inputList.append("results/plots/figureS7.pdf")
+        inputList.append("results/plots/figureS8.pdf")
+        inputList.append("results/plots/figureS9.pdf")
         inputList.append("results/plots/figure_markers.pdf")
         inputList.append("results/plots/figure_methyl.pdf")
 

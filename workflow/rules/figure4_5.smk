@@ -7,6 +7,8 @@ rule figure4_5:
     output:
         fig4="results/plots/figure4.pdf",
         fig5="results/plots/figure5.pdf",
+        figS6="results/plots/figureS6.pdf",
+        figS7="results/plots/figureS7.pdf",
     log:
         "logs/figure4_5.log",
     benchmark:
@@ -18,12 +20,28 @@ rule figure4_5:
         Rscript workflow/scripts/figure4.R \
         --df {input.df} \
         --df_sim {input.df_sim} \
+        --phase "late" \
         --intergenic False \
         -o {output.fig4} &> {log}
 
         Rscript workflow/scripts/figure4.R \
         --df {input.df_int} \
         --df_sim {input.df_int_sim} \
+        --phase "late" \
         --intergenic True \
         -o {output.fig5} &>> {log}
+
+        Rscript workflow/scripts/figure4.R \
+        --df {input.df} \
+        --df_sim {input.df_sim} \
+        --phase "early" \
+        --intergenic False \
+        -o {output.figS6} &>> {log}
+
+        Rscript workflow/scripts/figure4.R \
+        --df {input.df_int} \
+        --df_sim {input.df_int_sim} \
+        --phase "early" \
+        --intergenic True \
+        -o {output.figS7} &>> {log}
         """
