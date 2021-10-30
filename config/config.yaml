@@ -173,10 +173,10 @@ regions:
   #- "iz_repdomains_uv_m0.5_hela_windows_21_1000"
   #- "iz_repdomains_m0.5_hela_windows_21_1000"
   - "iz_hela_repdomains_uv_mean0.5_windows_201_100"
-  - "chromhmm_hela_repdomains_uv_mean0.5"
-  - "chromhmm_hela_repdomains_uv_mean0.5_chr"
-  - "repdomains_uv_mean0.5_windows_201_10000"
-  - "repdomains_uv_mean0.5"
+  #- "chromhmm_hela_repdomains_uv_mean0.5"
+  #- "chromhmm_hela_repdomains_uv_mean0.5_chr"
+  #- "repdomains_uv_mean0.5_windows_201_10000"
+  #- "repdomains_uv_mean0.5"
 
 region_file:
   #- "initiation.zones.hela_windows_201_100.bed"
@@ -212,10 +212,10 @@ region_file:
   #- "iz_repdomains_uv_m0.5_hela_windows_21_1000.bed"
   #- "iz_repdomains_m0.5_hela_windows_21_1000.bed"
   - "iz_hela_repdomains_uv_mean0.5_windows_201_100.bed"
-  - "chromhmm_hela_repdomains_uv_mean0.5.bed"
-  - "chromhmm_hela_repdomains_uv_mean0.5.bed"
-  - "repdomains_uv_mean0.5_windows_201_10000.bed"
-  - "repdomains_uv_mean0.5.bed"
+  #- "chromhmm_hela_repdomains_uv_mean0.5.bed"
+  #- "chromhmm_hela_repdomains_uv_mean0.5.bed"
+  #- "repdomains_uv_mean0.5_windows_201_10000.bed"
+  #- "repdomains_uv_mean0.5.bed"
 
 region_comb_opt:
   #- "-"
@@ -251,10 +251,10 @@ region_comb_opt:
   #- "-"
   #- "-"
   - "-"
-  - "'-strand T'" 
-  - "'-strand T -chr T'"
-  - "-"
-  - "notCombine"
+  #- "'-strand T'" 
+  #- "'-strand T -chr T'"
+  #- "-"
+  #- "notCombine"
 
 regions_mut:
   - "hela_no_overlap_repdomains_windows_201_100"
