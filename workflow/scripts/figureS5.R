@@ -44,7 +44,7 @@ colnames(real_df) <- c("chromosomes", "start_position", "end_position",
                        "project", "sample_source", "sample_strand", 
                        "mapped_reads", "RPKM")
 
-real_df<- filter(real_df, method != "DNA_seq", phase != "async", 
+real_df<- filter( real_df, method != "DNA_seq", phase != "async", 
                  replicate == "A", product == "CPD")
 
 real_df_org <- window_numbering( real_df, 4, 101 )
@@ -54,7 +54,7 @@ real_df_org$sample_strand <- factor(
   real_df_org$sample_strand, levels = c("+","-"))
 
 # for plot A.2 and B.2
-sim_df <- read.delim( sim_df, header = F )
+sim_df <- read.delim( argv$sim, header = F )
 colnames(sim_df) <- c("chromosomes", "start_position", "end_position", 
                       "dataset", "score", "dataset_strand", "counts", 
                       "sample_names", "file_names", "layout", "cell_line", 
@@ -63,7 +63,7 @@ colnames(sim_df) <- c("chromosomes", "start_position", "end_position",
                       "project", "sample_source", "sample_strand", 
                       "mapped_reads", "RPKM")
 
-sim_df<- filter(argv$sim, method != "DNA_seq", phase != "async", 
+sim_df<- filter( sim_df, method != "DNA_seq", phase != "async", 
                 replicate == "A", product == "CPD")
 
 sim_df_org <- window_numbering( sim_df, 4, 101 )
@@ -105,8 +105,8 @@ p.A.1 <- ggplot(pA1_data, aes(x = windows, y = RPKM)) +
                                  time_after_exposure = taex_labs,
                                  phase = phase_labs)) + 
   xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .2, .3),
-                     limits = c(.1, .3)) +
+  scale_y_continuous(breaks = c(.1, .3, .5),
+                     limits = c(.1, .5)) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
@@ -131,8 +131,8 @@ p.A.2 <- ggplot(pA2_data, aes(x = windows, y = RPKM)) +
                                  time_after_exposure = taex_labs,
                                  phase = phase_labs)) +
   xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .2, .3),
-                     limits = c(.1, .3)) +
+  scale_y_continuous(breaks = c(.1, .3, .5),
+                     limits = c(.1, .5)) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
@@ -160,8 +160,8 @@ p.B.1 <- ggplot(pB1_data, aes(x = windows, y = RPKM)) +
                                  time_after_exposure = taex_labs,
                                  phase = phase_labs)) + 
   xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .2, .3),
-                     limits = c(.1, .35)) +
+  scale_y_continuous(breaks = c(.1, .3, .5),
+                     limits = c(.1, .5)) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
@@ -187,8 +187,8 @@ p.B.2 <- ggplot(pB2_data, aes(x = windows, y = RPKM)) +
                                  time_after_exposure = taex_labs, 
                                  phase = phase_labs)) + 
   xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .2, .3),
-                     limits = c(.1, .35)) +
+  scale_y_continuous(breaks = c(.1, .3, .5),
+                     limits = c(.1, .5)) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 

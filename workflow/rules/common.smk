@@ -242,7 +242,8 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regi
         for sample in sampleList_markers:
             sampledir = "results/intergenic_methyl/" + sample + "/" 
 
-            inputList.append(sampledir + sample + "_" + build + "_" + regions + window + "rpkm.txt")
+            inputList.append(sampledir + sample + "_" + build + "_minus_" + regions + window + "rpkm.txt")
+            inputList.append(sampledir + sample + "_" + build + "_plus_" + regions + window + "rpkm.txt")
 
     elif outformat == "tss":
         for sample in sampleList_xr:
@@ -409,11 +410,11 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
             
             for region in regions:
         
-                inputList.append(sampledir + sample + "_" + build + "_" + region + "_combined_rpkm.txt")
+                inputList.append(sampledir + sample + "_" + build + "_minus_" + region + "_combined_rpkm.txt")
+                inputList.append(sampledir + sample + "_" + build + "_plus_" + region + "_combined_rpkm.txt")
 
     if method == "report":
     
-        inputList.append("results/plots/figure_markers.pdf")
         inputList.append("results/plots/figure1.pdf")
         inputList.append("results/plots/figure2.pdf")
         inputList.append("results/plots/figure3.pdf")
@@ -422,6 +423,9 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figureS2.pdf")
         inputList.append("results/plots/figureS3.pdf")
         inputList.append("results/plots/figureS4.pdf")
+        inputList.append("results/plots/figureS5.pdf")
+        inputList.append("results/plots/figure_markers.pdf")
+        inputList.append("results/plots/figure_methyl.pdf")
 
         for region in regions:
                 inputList.append("results/final/final_reports_" + build + 
@@ -434,8 +438,8 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                 "_" + region + "_intergenic.txt")
                 inputList.append("results/final/final_reports_markers_" + 
                 region + "_intergenic.txt")
-                #inputList.append("results/final/final_reports_methyl_" + 
-                #region + "_intergenic.txt")
+                inputList.append("results/final/final_reports_methyl_" + 
+                region + "_intergenic.txt")
 
     #print(inputList)
     return inputList

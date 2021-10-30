@@ -385,11 +385,17 @@ rule mapping2regions_methyl_intergenic:
     input:
         bed="results/methyl/{samples}/{samples}_{build}_org_intergenic.bed",
     output:
+        plus=temp("results/methyl/{samples}/{samples}_{build}_{regions}_org_intergenic_plus.bed"),
+        minus=temp("results/methyl/{samples}/{samples}_{build}_{regions}_org_intergenic_minus.bed"),
         sorted_region=temp("results/intergenic_methyl/{samples}/{samples}_{build}_{regions}_sorted.bed"),
-        intersect=temp("results/intergenic_methyl/{samples}/{samples}_{build}_{regions}.txt"),
-        comb=temp("results/intergenic_methyl/{samples}/{samples}_{build}_{regions}_combined.txt"),
-        info=temp("results/intergenic_methyl/{samples}/{samples}_{build}_{regions}_combined_info.txt"),
-        rpkm="results/intergenic_methyl/{samples}/{samples}_{build}_{regions}_combined_rpkm.txt",
+        int_plus=temp("results/intergenic_methyl/{samples}/{samples}_{build}_plus_{regions}.txt"),
+        int_minus=temp("results/intergenic_methyl/{samples}/{samples}_{build}_minus_{regions}.txt"),
+        comb_plus=temp("results/intergenic_methyl/{samples}/{samples}_{build}_plus_{regions}_combined.txt"),
+        comb_minus=temp("results/intergenic_methyl/{samples}/{samples}_{build}_minus_{regions}_combined.txt"),
+        info_plus=temp("results/intergenic_methyl/{samples}/{samples}_{build}_plus_{regions}_combined_info.txt"),
+        info_minus=temp("results/intergenic_methyl/{samples}/{samples}_{build}_minus_{regions}_combined_info.txt"),
+        rpkm_plus="results/intergenic_methyl/{samples}/{samples}_{build}_plus_{regions}_combined_rpkm.txt",
+        rpkm_minus="results/intergenic_methyl/{samples}/{samples}_{build}_minus_{regions}_combined_rpkm.txt",
     params:
         sdir="results/intergenic_methyl/{samples}",
         sname="{samples}_{build}",
@@ -406,8 +412,19 @@ rule mapping2regions_methyl_intergenic:
         "../envs/bed2fasta.yaml"
     shell:
         """
-        workflow/scripts/mapping2regionsMarkers.sh \
-        {input.bed} \
+        (echo "`date -R`: Separating plus strands..." &&
+        awk '{{if($6=="+"){{print}}}}' {input.bed} > {output.plus} &&
+        echo "`date -R`: Success! Strands are separated." || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
+
+        (echo "`date -R`: Separating minus strands..." &&
+        awk '{{if($6=="-"){{print}}}}' {input.bed} > {output.minus} &&
+        echo "`date -R`: Success! Strands are separated." || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
+
+        workflow/scripts/mapping2regions.sh \
+        {output.plus} \
+        {output.minus} \
         {params.sdir} \
         {params.sname} \
         {params.region} \

@@ -282,7 +282,6 @@ rule pre_mapping_methyl:
         bed="resources/samples/methyl/{samples}_{build}_chr.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
-        org="results/methyl/{samples}/{samples}_{build}_org.bed",
         intergenic="results/methyl/{samples}/{samples}_{build}_org_intergenic.bed",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",  
@@ -295,18 +294,12 @@ rule pre_mapping_methyl:
         "../envs/bed2fasta.yaml"
     shell:
         """
-        (echo "`date -R`: Reorganizing..." &&
-        sed "s/\./{params.marker_name}/g" {input.bed} \
-        > {output.org} &&
-        echo "`date -R`: Success!" || 
-        {{ echo "`date -R`: Process failed..."; rm {output.org}; exit 1; }}  ) > {log} 2>&1
-
         (echo "`date -R`: Getting intergenic..." &&
         bedtools intersect \
-        -a {output.org} \
+        -a {input.bed} \
         -b {input.genes} \
         -v -f 0.5 \
         > {output.intergenic} &&
         echo "`date -R`: Success!" || 
-        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """

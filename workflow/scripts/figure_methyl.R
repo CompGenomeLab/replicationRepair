@@ -15,7 +15,7 @@ p <- add_argument(p, "-i", help="input")
 p <- add_argument(p, "-o", help="output")
 
 # Parse the command line arguments
-#argv <- parse_args(p)
+argv <- parse_args(p)
 
 #### Variables ####
 
@@ -53,7 +53,7 @@ df_rr_org$sample_strand <- factor(
 
 
 # create the plot 
-p <- ggplot(df_rr_org, aes(x = windows, y = RPKM, color=sample_names, linetype=sample_strand)) +
+p <- ggplot(df_rr_org, aes(x = windows, y = RPKM, color=methylation, linetype=sample_strand)) +
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") + 
   geom_line() + 
   facet_grid(~repdomains) +
