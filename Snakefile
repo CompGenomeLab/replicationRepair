@@ -49,12 +49,12 @@ rule all:
             method="markers_intergenic", 
             regions=config["regions"]
             ),
-        #lambda w: allInput(
-        #    build=config["build"], 
-        #    sampleList=config["methyl"]["samples"],  
-        #    method="methyl", 
-        #    regions=config["regions"]
-        #    ),
+        lambda w: allInput(
+            build=config["build"], 
+            sampleList=config["methyl"]["samples"],  
+            method="methyl", 
+            regions=config["regions"]
+            ),
         lambda w: allInput(
             build=config["build"], 
             sampleList=config["ds"]["samples"],  
@@ -120,7 +120,6 @@ include: "workflow/rules/intergenic.smk"
 # Process Retrieved Data
 include: "workflow/rules/intersect2repDomains.smk"
 include: "workflow/rules/make_windows.smk"
-#include: "workflow/rules/????.smk"
 
 # Further Analyses
 include: "workflow/rules/combine_replicates.smk"
@@ -139,3 +138,4 @@ include: "workflow/rules/figure3.smk"
 include: "workflow/rules/figure4_5.smk"
 include: "workflow/rules/figureS2.smk"
 include: "workflow/rules/figureS3.smk"
+include: "workflow/rules/figureS5.smk"
