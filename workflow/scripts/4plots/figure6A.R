@@ -1,25 +1,45 @@
+#### Packages and Libraries ####
 
+library(argparser)
 library(dplyr)
 library(tidyr)
 library(VennDiagram)
 library(RColorBrewer)
 myCol <- brewer.pal(3, "Pastel2")
 
-hela <- paste0("/home/azgarian/Desktop/",
-               "SRR2913039_intersect2_SRR2913063_ERR2760855.txt")
+######## Arguments ##########
+p <- arg_parser("producing the figure 6A")
+p <- add_argument(p, "--hela", help="HeLa initiation zones intersected to GM06990 and IMR90")
+p <- add_argument(p, "--gm06990", help="GM06990 initiation zones intersected to HeLa and IMR90")
+p <- add_argument(p, "--imr90", help="IMR90 initiation zones intersected to GM06990 and HeLa")
+p <- add_argument(p, "--noverlap", help="non-overlapping HeLa initiation zones")
+p <- add_argument(p, "--overlap", help="overlapping HeLa initiation zones")
+p <- add_argument(p, "--fig6A", help="figure output")
 
-gm <- paste0("/home/azgarian/Desktop/",
-             "SRR2913063_intersect2_SRR2913039_ERR2760855.txt")
+# Parse the command line arguments
+argv <- parse_args(p)
 
-imr90 <- paste0("/home/azgarian/",
-                "ERR2760855_intersect2_SRR2913039_SRR2913063.txt")
+hela <- argv$hela
+
+gm06990 <- argv$gm06990
+
+imr90 <- argv$imr90
+
+#hela <- paste0("/home/azgarian/Desktop/",
+#               "SRR2913039_intersect2_SRR2913063_ERR2760855.txt")
+
+#gm <- paste0("/home/azgarian/Desktop/",
+#             "SRR2913063_intersect2_SRR2913039_ERR2760855.txt")
+
+#imr90 <- paste0("/home/azgarian/",
+#                "ERR2760855_intersect2_SRR2913039_SRR2913063.txt")
 
 hela_df <- read.table(hela)
 
 hela_no_overlap <- filter(hela_df, V7 == -1)
 hela_no_overlap$name <- "HeLa" 
 hela_no_overlap <- hela_no_overlap[,c(1,2,3,11,4)]
-write.table(hela_no_overlap, file = "~/Desktop/hela_no_overlap.bed", sep = "\t",
+write.table(hela_no_overlap, file = argv$noverlap, sep = "\t",
             quote = FALSE, row.names = FALSE, col.names = FALSE)
 
 hela_df$V10 <- paste("HeLa",hela_df$V1,hela_df$V2,hela_df$V3,hela_df$V4,sep=",")
@@ -80,8 +100,8 @@ hela_combined <- hela_combined %>% separate(combined, c("name","chr","start","en
                                                         ".6",".7",".8",".9",".10"), sep=",")
 
 hela_only <- hela_combined[,c(2,3,4,1,5)]
-#write.table(hela_only, file = "~/Desktop/hela_intersect2_gm_imr.bed", sep = "\t",
-#            quote = FALSE, row.names = FALSE, col.names = FALSE)
+write.table(hela_only, file = argv$overlap, sep = "\t",
+            quote = FALSE, row.names = FALSE, col.names = FALSE)
 
 temp <- venn.diagram(
   x = list(hela_all, gm_all, imr90_all),
@@ -117,6 +137,6 @@ temp <- venn.diagram(
   filename = NULL
 )
 grid.draw(temp)
-pdf(file='~/Desktop/fig6A.pdf')
+pdf(file=argv$fig6A)
   grid.draw(temp)
 dev.off()

@@ -21,7 +21,7 @@ helanover_nuc <- "~/Documents/myprojects/replicationRepair/results/final/hela_no
 source("4_plot_format.R")
 
 
-#### Fuctions ####
+#### Functions ####
 
 source("4_functions.R")
 

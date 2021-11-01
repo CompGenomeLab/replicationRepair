@@ -50,7 +50,7 @@ sample_csv_pB_sim <- argv$noW_sim
 source("workflow/scripts/plot_format.R")
 
 
-#### Fuctions ####
+#### Functions ####
 
 source("workflow/scripts/functions.R")
 

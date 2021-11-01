@@ -33,7 +33,7 @@ sample_csv_pB_sim <- paste("/Users/azgarian/Desktop/replication_final/",
 source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/plot_format.R")
 
 
-#### Fuctions ####
+#### Functions ####
 
 source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/functions.R")
 

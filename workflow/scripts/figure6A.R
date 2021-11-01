@@ -14,7 +14,7 @@ p <- add_argument(p, "--gm06990", help="GM06990 initiation zones intersected to 
 p <- add_argument(p, "--imr90", help="IMR90 initiation zones intersected to GM06990 and HeLa")
 p <- add_argument(p, "--noverlap", help="non-overlapping HeLa initiation zones")
 p <- add_argument(p, "--overlap", help="overlapping HeLa initiation zones")
-p <- add_argument(p, "-fig6A", help="figure output")
+p <- add_argument(p, "--fig6A", help="figure output")
 
 # Parse the command line arguments
 argv <- parse_args(p)

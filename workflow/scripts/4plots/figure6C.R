@@ -12,17 +12,17 @@ library(ggthemes)
 #### Variables ####
 
 # name of the mutation bed file 
-hela_bed <- "/home/azgarian/Documents/myprojects/replicationRepair/3_output/gitignore/1_TextforPlotting/[2021.04.05.10:47]iz_hela_to_gm_imr_repdomains_with_scores_201_100_melanoma_mutations_combined_intergenic.bed"
+hela_bed <- "/Users/azgarian/Documents/myprojects/replicationRepair/results/processed_files/processed_files/[2021.04.05.10.47]iz_hela_to_gm_imr_repdomains_with_scores_201_100_melanoma_mutations_combined_intergenic.bed"
 
 
 #### Default Plot Format ####
 
-source("4_plot_format.R")
+source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/plot_format.R")
 
 
-#### Fuctions ####
+#### Functions ####
 
-source("4_functions.R")
+source("/Users/azgarian/Documents/myprojects/replicationRepair/workflow/scripts/functions.R")
 
 
 #### main ####
