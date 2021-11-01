@@ -45,7 +45,7 @@ source("workflow/scripts/functions.R")
 #### Main ####
 
 # TC content df arrangement
-TCcontent <- read.table( helanover_nuc, header = TRUE)
+TCcontent <- read.table( hela2gmimr_nuc, header = TRUE)
 
 TCcontent$`+` <- TCcontent$tc + TCcontent$cc
 TCcontent$`-` <- TCcontent$ga + TCcontent$gg
@@ -60,15 +60,18 @@ TCcontent <- rbind(TCcontent_plus, TCcontent_minus)
 names(TCcontent) <- c("name","strands", "TC_content")
 
 # mutations
-mut_df <- read.table( helanover_bed )
+mut_df <- read.table( hela2gmimr_bed )
+
+mut_df <- mut_df[,c(1,2,3,4,5,9,11)]
+
 names(mut_df) <- c("chr", "start_pos", "end_pos", "name", "score", "strands", 
                    "count")
 mut <- merge(mut_df, TCcontent, by.x=c("name", "strands"), 
              by.y=c("name", "strands"))
-Windows = data.frame(str_split_fixed(mut$name, "_", -1))
-mut$window_number = as.numeric(levels(Windows[ , ncol(Windows)]
-))[Windows[ , ncol(Windows)]] -101
-mut$repdomains <- Windows[,2]
+window_number = data.frame(str_split_fixed(mut$name, "_", -1))
+mut$window_number <- as.numeric(
+  as.character(str_split_fixed(mut$name, "_",3)[,3])) - 101
+mut$repdomains <- window_number[,2]
 mut$name <- "Initiation_Zones"
 mut$norm <- mut$count / mut$TC_content
 
@@ -130,80 +133,33 @@ p.A.1 <- p.A.1 + p_format +
         plot.subtitle = element_text(hjust = 0.5),
         axis.text.x = element_text(hjust=c(0.1, 0.5, 0.9))) 
 
-
 #### Plot A.2 ####
 
-# create the plot
-p.A.2 <- ggplot(data = pA2_data, aes(x = Group.2, y = x, 
-                                     fill = Group.3)) + 
-  geom_bar(stat = "identity", size = 1.5, 
-           position=position_dodge2(padding = 0.05)) +
+mut$direction[mut$window_number<0] <- "Left Replicating" 
+mut$direction[mut$window_number>0] <- "Right Replicating" 
+
+mut <- filter(mut, direction != "NA")
+mut$log2val <- log2(mut$norm)
+
+pA1_boxplot <- mut[,c("repdomains", "log2val", "strands", "direction", "window_number")]
+
+p.A.2 <- ggplot(data=pA1_boxplot, aes(x=repdomains, y=log2val, fill=strands)) +
+  geom_boxplot(outlier.shape = NA) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
-  ylab("Mutation\nCount (MC)") +
+  ylab("n. Repair\nRate (RR)") +
   scale_fill_manual(values = c("+" = "#0571b0", 
                                "-" = "#ca0020"), 
-                    guide = FALSE) +
-  scale_y_continuous(breaks = c(.00, .02, .04),
-                     limits = c(0, .05)) +
+                    guide = "none") +
+  #scale_y_continuous(breaks = c(0, 1, 2),
+  #                   limits = c(0, 2)) +
   labs(color = "Strands", fill = "") 
 
 # adding and overriding the default plot format
 p.A.2 <- p.A.2 + p_format + 
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x = element_blank())
-
-pC1_data$direction[pC1_data$windows<0] <- "Left Replicating" 
-pC1_data$direction[pC1_data$windows>0] <- "Right Replicating" 
-
-pC1_data <- filter(pC1_data, direction != "NA")
-pC1_data$log2val <- log2(pC1_data$real_sim)
-
-pC1_boxplot <- pC1_data[,c("repdomains", "log2val", "sample_strand", "direction", "windows")]
-
-p.C.2.v2 <- ggplot(data=pC1_boxplot, aes(x=sample_strand, y=log2val, fill=sample_strand)) +
-  geom_boxplot() +
-  geom_line(aes(group=windows), colour="grey", size=0.4) +
-  facet_wrap(~direction~repdomains) +
-  xlab("Replication Domains") + 
-  ylab("Repair\nRate (RR)") +
-  scale_fill_manual(values = c("+" = "#0571b0", 
-                               "-" = "#ca0020"), 
-                    guide = "none") +
-  #scale_y_continuous(breaks = c(0, 1, 2),
-  #                   limits = c(0, 2)) +
-  labs(color = "Strands", fill = "") 
-
-# adding and overriding the default plot format
-p.C.2.v2 <- p.C.2.v2 + p_format + 
-  stat_compare_means(label = "p.format", paired = TRUE) +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x = element_blank()) 
-
-p.C.2.v2
-
-p.C.2.v3 <- ggplot(data=pC1_boxplot, aes(x=repdomains, y=log2val, fill=sample_strand)) +
-  geom_boxplot() +
-  facet_wrap(~direction) +
-  xlab("Replication Domains") + 
-  ylab("Repair\nRate (RR)") +
-  scale_fill_manual(values = c("+" = "#0571b0", 
-                               "-" = "#ca0020"), 
-                    guide = "none") +
-  #scale_y_continuous(breaks = c(0, 1, 2),
-  #                   limits = c(0, 2)) +
-  labs(color = "Strands", fill = "") 
-
-# adding and overriding the default plot format
-p.C.2.v3 <- p.C.2.v3 + p_format + 
-  stat_compare_means(label = "p.signif", label.y= 0,  paired = TRUE) +
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x = element_blank()) 
-
-p.C.2.v3
+  stat_compare_means(label = "p.signif",  paired = TRUE) + 
+  theme(strip.background = element_blank(),
+        strip.text.x = element_blank()) 
 
 #### Plot A.3 ####
 
@@ -226,13 +182,11 @@ p.A.3 <- p.A.3 + p_format +
 
 layout <- "
 AABB
-AACC
 "
 
-(p.A.1 + p.A.2 + p.A.3) +
+(p.A.1 + p.A.2) +
   plot_layout(design = layout, guides = "collect", tag_level = 'new') & 
   theme(legend.position = 'bottom') 
-
 
 ############### size is problem 
 ggsave(argv$fig6D, width = 22, height = 10, units = "cm") 

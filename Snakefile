@@ -99,6 +99,8 @@ include: "workflow/rules/adaptor_handling.smk"
 include: "workflow/rules/align.smk"
 include: "workflow/rules/bam_correlation.smk"
 include: "workflow/rules/produceInitiationZones.smk"
+include: "workflow/rules/okseqIntersect.smk"
+include: "workflow/rules/getHeLaIZ.smk"
 
 # Chip-seq Analysis
 if config["chipseq"]["srr"]["enabled"]:
@@ -120,6 +122,7 @@ include: "workflow/rules/intergenic.smk"
 # Process Retrieved Data
 include: "workflow/rules/intersect2repDomains.smk"
 include: "workflow/rules/make_windows.smk"
+include: "workflow/rules/countMotifs.smk"
 
 # Further Analyses
 include: "workflow/rules/combine_replicates.smk"
@@ -136,6 +139,10 @@ include: "workflow/rules/figure1.smk"
 include: "workflow/rules/figure2.smk"
 include: "workflow/rules/figure3.smk"
 include: "workflow/rules/figure4_5.smk"
+include: "workflow/rules/figure6A.smk"
+include: "workflow/rules/figure6B.smk"
+include: "workflow/rules/figure6C.smk"
+include: "workflow/rules/figure6D.smk"
 include: "workflow/rules/figureS2.smk"
 include: "workflow/rules/figureS3.smk"
 include: "workflow/rules/figureS5.smk"

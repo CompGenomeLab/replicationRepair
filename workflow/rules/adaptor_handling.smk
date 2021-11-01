@@ -6,7 +6,7 @@ rule cutadapt_se_okseq:
         fastq=temp("results/okseq/{samples}/{samples}_cutadapt.fastq.gz"),
         qc=report("results/okseq/{samples}/{samples}_cutadapt.qc.txt", category="QC"),   
     params:
-        adapters="-a ACACTCTTTCCCTACACGACGCTCTTCC",  
+        adapters="-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",  
         extra="",  
     log:
         "logs/{samples}/{samples}_cutadapt.log",

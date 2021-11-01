@@ -4,13 +4,13 @@ rule countMotifs:
         genome="resources/ref_genomes/hg19/genome_hg19.fa",
     output:
         fa=temp("results/regions/{regions}.fa"),
-        counts="results/mutation/{regions}_counts.txt",
+        counts="results/regions/{regions}_counts.txt",
     params:
         "tc cc ga gg",
     log:
-        "logs/mutation/countMotifs_{regions}.log",
+        "logs/regions/countMotifs_{regions}.log",
     benchmark:
-        "logs/mutation/countMotifs_{regions}.benchmark.txt",
+        "logs/regions/countMotifs_{regions}.benchmark.txt",
     conda:
         "../envs/countMotifs.yaml"
     shell:

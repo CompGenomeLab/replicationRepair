@@ -16,7 +16,7 @@ echo "`date -R`: Success!" ||
 { echo "`date -R`: Process failed..."; exit 1; } ) >> $9 2>&1
 
 # no Windows
-if [ $6 == "notCombine" ]; then
+if [ "$6" == "notCombine" ]; then
 
     ( echo "`date -R`: Passing combine..." &&
     cp $2/$3_$5.txt $2/$3_$5_combined.txt &&
@@ -25,7 +25,7 @@ if [ $6 == "notCombine" ]; then
 
 else
 
-    if [ $6 == "-" ]; then 
+    if [ "$6" == "-" ]; then 
         combOpt="" 
     else
         combOpt="$6"

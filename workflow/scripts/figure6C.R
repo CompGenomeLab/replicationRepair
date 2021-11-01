@@ -16,7 +16,7 @@ p <- add_argument(p, "--fig6C", help="figure output")
 # Parse the command line arguments
 argv <- parse_args(p)
 
-hela_bed <- argv$noverlap
+hela_bed <- argv$hela
 
 #hela_bed <- "/Users/azgarian/Documents/myprojects/replicationRepair/results/processed_files/processed_files/[2021.04.05.10.47]iz_hela_to_gm_imr_repdomains_with_scores_201_100_melanoma_mutations_combined_intergenic.bed"
 
@@ -35,9 +35,11 @@ source("workflow/scripts/functions.R")
 
 mut_df <- read.table( hela_bed )
 
+mut_df <- mut_df[,c(1,2,3,4,5,9,11)]
+
 #gm_df <- read.table( gm_bed )
 
-mut_df$V7 <- as.numeric(mut_df$V7)
+mut_df$V11 <- as.numeric(mut_df$V11)
 
 mut_df$windows <- as.numeric(
   as.character(str_split_fixed(mut_df$V4, "_",4)[,4])) - 101
@@ -52,20 +54,20 @@ mut_df_quant <- within(mut_df_quant, score_quant <- as.integer(cut(score, quanti
 
 
 mut_df_quant$domains <- factor(mut_df_quant$domains, levels = c("UTZ", "ERD", "DTZ", "LRD"))
-mut_df_quant$V6 <- factor(
-  mut_df_quant$V6, levels = c("+","-"))
+mut_df_quant$V9 <- factor(
+  mut_df_quant$V9, levels = c("+","-"))
 
 
 # for plot A.3
 
-mut_filt <- mut_df_quant[,c("name","domains","windows","score_quant","V6","V7")]
+mut_filt <- mut_df_quant[,c("name","domains","windows","score_quant","V9","V11")]
 
-mut_agg <- aggregate(mut_filt$V7, 
+mut_agg <- aggregate(mut_filt$V11, 
                      by = list(mut_filt$name, 
                                mut_filt$domains, 
                                mut_filt$windows, 
                                mut_filt$score_quant,
-                               mut_filt$V6),
+                               mut_filt$V9),
                      FUN = mean)
 
 mut_casted <- dcast(mut_agg, Group.1 + Group.2 + Group.3 + Group.4 ~ Group.5, 

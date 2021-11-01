@@ -324,23 +324,22 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
     
         for sample in sampleList:
             sampledir = "results/mutation/" + sample + "/" 
+            sampledir_int = "results/intergenic_mutation/" + sample + "/" 
 
             inputList.append(sampledir + sample + "_target_mut_plus.tsv") 
             inputList.append(sampledir + sample + "_target_mut_minus.tsv")
+            inputList.append(sampledir + sample + "_intergenic_target_mut_plus.tsv") 
+            inputList.append(sampledir + sample + "_intergenic_target_mut_minus.tsv")
 
             for region in regions:
-                inputList.append(sampledir + sample + "_target_mut_comb_" + 
-                region + "_combined.txt")
-                inputList.append(sampledir + sample + "_target_mut_comb_" + 
-                region + "_intergenic_combined.txt")
-                inputList.append(sampledir + sample + "_target_mut_comb_" + 
-                region + "_org.txt")
-                inputList.append(sampledir + sample + "_target_mut_comb_" + 
-                region + "_intergenic_org.txt")
+                inputList.append(sampledir + sample + "_target_mut_" + 
+                region + "_combined_rpkm.txt")
+                inputList.append(sampledir_int + sample + "_target_mut_" + 
+                region + "_combined_rpkm.txt")
         
         for region in regions:
 
-            inputList.append("results/mutation/" + region + "_counts.txt")
+            inputList.append("results/regions/" + region + "_counts.txt")
 
     if method == "ds":
 
@@ -420,6 +419,10 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figure3.pdf")
         inputList.append("results/plots/figure4.pdf")
         inputList.append("results/plots/figure5.pdf")
+        inputList.append("results/plots/figure6A.pdf")
+        inputList.append("results/plots/figure6B.pdf")
+        inputList.append("results/plots/figure6C.pdf")
+        inputList.append("results/plots/figure6D.pdf")
         inputList.append("results/plots/figureS2.pdf")
         inputList.append("results/plots/figureS3.pdf")
         inputList.append("results/plots/figureS4.pdf")
