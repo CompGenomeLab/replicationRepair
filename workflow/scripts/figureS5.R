@@ -13,7 +13,9 @@ library(grid)
 p <- arg_parser("producing the suplementary figure 5")
 p <- add_argument(p, "--real", help="windowed (20kb) initiation zones file with read counts")
 p <- add_argument(p, "--sim", help="windowed (20kb) initiation zones file with simulated read counts")
+p <- add_argument(p, "--prod", help="Damage type (64_PP or CPD)")
 p <- add_argument(p, "-o", help="output")
+
 
 # Parse the command line arguments
 argv <- parse_args(p)
@@ -21,6 +23,8 @@ argv <- parse_args(p)
 #### Variables ####
 
 rep <- "_" 
+
+prod <- argv$prod
 
 #### Default Plot Format ####
 
@@ -45,7 +49,7 @@ colnames(real_df) <- c("chromosomes", "start_position", "end_position",
                        "mapped_reads", "RPKM")
 
 real_df<- filter( real_df, method != "DNA_seq", phase != "async", 
-                 replicate == "A", product == "CPD")
+                 replicate == "A", product == prod)
 
 real_df_org <- window_numbering( real_df, 4, 101 )
 real_df_org$dataset <- gsub("_.*", "", real_df_org$dataset)
@@ -64,7 +68,7 @@ colnames(sim_df) <- c("chromosomes", "start_position", "end_position",
                       "mapped_reads", "RPKM")
 
 sim_df<- filter( sim_df, method != "DNA_seq", phase != "async", 
-                replicate == "A", product == "CPD")
+                replicate == "A", product == prod)
 
 sim_df_org <- window_numbering( sim_df, 4, 101 )
 sim_df_org$dataset <- gsub("_.*", "", sim_df$dataset)
@@ -75,19 +79,19 @@ sim_df_org$sample_strand <- factor(
 
 # filtering for A.1
 pA1_data <- filter(real_df_org, method != "DNA_seq", phase != "async", 
-                   replicate == "A", method == "Damage_seq", product == "CPD")
+                   replicate == "A", method == "Damage_seq", product == prod)
 
 # filtering for A.2
 pA2_data <- filter(sim_df_org, phase != "async", replicate == "A", 
-                   product == "CPD", method == "Damage_seq")
+                   product == prod, method == "Damage_seq")
 
 # filtering for B.1
 pB1_data <- filter(real_df_org, method != "DNA_seq", phase != "async", 
-                   replicate == "A", method == "XR_seq", product == "CPD")
+                   replicate == "A", method == "XR_seq", product == prod)
 
 # filtering for B.2
 pB2_data <- filter(sim_df_org, phase != "async", method != "DNA_seq", 
-                   replicate == "A", product == "CPD", method == "XR_seq")
+                   replicate == "A", product == prod, method == "XR_seq")
 
 # for naming of simulated samples
 method_labs_sim <- c("Simulated \nDamage-seq", "Simulated \nXR-seq")
