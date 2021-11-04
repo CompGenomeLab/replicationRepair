@@ -7,9 +7,9 @@ rule intersect2repDomains:
         iz_comb="results/okseq/HeLa_intersect2_GM06990_IMR90.bed",
         iz_hela="results/okseq/HeLa_no_overlap.bed",
     output:
-        iz="results/regions/iz_hela_repdomains_uv_mean0.5_cop.bed",  
-        sns="results/regions/sns_seq_hela_repdomains_uv_mean0.5_cop.bed",
-        chromhmm="results/regions/chromhmm_hela_repdomains_uv_mean0.5_cop.bed",
+        iz="results/regions/iz_hela_repdomains_uv_mean0.5.bed",  
+        sns="results/regions/sns_seq_hela_repdomains_uv_mean0.5.bed",
+        chromhmm="results/regions/chromhmm_hela_repdomains_uv_mean0.5.bed",
         iz_comb_scores="results/regions/iz_hela_to_gm_imr_repdomains_uv_mean0.5_with_scores.bed",
         iz_comb="results/regions/iz_hela_to_gm_imr_repdomains_uv_mean0.5.bed",
         iz_hela="results/regions/iz_hela_no_overlap_repdomains_uv_mean0.5.bed",

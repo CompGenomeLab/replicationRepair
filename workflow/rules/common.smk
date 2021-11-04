@@ -427,12 +427,21 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figureS3.pdf")
         inputList.append("results/plots/figureS4.pdf")
         inputList.append("results/plots/figureS5.pdf")
+        inputList.append("results/plots/figureS5_intergenic.pdf")
+        inputList.append("results/plots/figureS5_64.pdf")
+        inputList.append("results/plots/figureS5_intergenic_64.pdf")  
+        inputList.append("results/plots/figureS5_repdomains.pdf")
+        inputList.append("results/plots/figureS5_repdomains_intergenic.pdf")
+        inputList.append("results/plots/figureS5_repdomains_64.pdf")
+        inputList.append("results/plots/figureS5_repdomains_intergenic_64.pdf")  
         inputList.append("results/plots/figureS6.pdf")
         inputList.append("results/plots/figureS7.pdf")
         inputList.append("results/plots/figureS8.pdf")
         inputList.append("results/plots/figureS9.pdf")
         inputList.append("results/plots/figure_markers.pdf")
         inputList.append("results/plots/figure_methyl.pdf")
+
+        inputList.append("results/regions/iz_hela_repdomains_uv_mean0.5_windows_201_100_kmer_counts.txt")
 
         for region in regions:
                 inputList.append("results/final/final_reports_" + build + 
