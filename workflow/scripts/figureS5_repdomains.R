@@ -52,6 +52,11 @@ real_df<- filter( real_df, method != "DNA_seq", phase != "async",
                  replicate == rep, product == prod)
 
 real_df_org <- window_numbering( real_df, 4, 101 )
+
+real_df_org$repdomains <- data.frame(str_split_fixed(real_df_org$dataset, "_", -1))[,2]
+
+real_df_org$repdomains <- factor(real_df_org$repdomains, levels = c("UTZ", "ERD", "DTZ", "LRD"))
+
 real_df_org$dataset <- gsub("_.*", "", real_df_org$dataset)
 
 real_df_org$sample_strand <- factor(
@@ -71,6 +76,11 @@ sim_df<- filter( sim_df, method != "DNA_seq", phase != "async",
                 replicate == rep, product == prod)
 
 sim_df_org <- window_numbering( sim_df, 4, 101 )
+
+sim_df_org$repdomains <- data.frame(str_split_fixed(sim_df_org$dataset, "_", -1))[,2]
+
+sim_df_org$repdomains <- factor(sim_df_org$repdomains, levels = c("UTZ", "ERD", "DTZ", "LRD"))
+
 sim_df_org$dataset <- gsub("_.*", "", sim_df$dataset)
 
 sim_df_org$sample_strand <- factor(
@@ -103,14 +113,14 @@ names(method_labs_sim) <- c("Damage_seq", "XR_seq")
 p.A.1 <- ggplot(pA1_data, aes(x = windows, y = RPKM)) + 
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
   geom_line(aes(color = sample_strand)) + 
-  facet_grid(~product~time_after_exposure~phase~method, 
+  facet_grid(~repdomains~product~time_after_exposure~phase~method, 
              labeller = labeller(product = product_labs, 
                                  method = method_labs, 
                                  time_after_exposure = taex_labs,
                                  phase = phase_labs)) + 
   xlab("") + ylab(fr_lab) +
   scale_y_continuous(breaks = c(.1, .3, .5),
-                     limits = c(.1, .5)) +
+                     limits = c(.0, .5)) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
@@ -129,14 +139,14 @@ p.A.1 <- p.A.1 + p_format +
 p.A.2 <- ggplot(pA2_data, aes(x = windows, y = RPKM)) + 
   geom_line(aes(color = sample_strand)) + 
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-  facet_grid(~product~time_after_exposure~phase~method,
+  facet_grid(~repdomains~product~time_after_exposure~phase~method,
              labeller = labeller(product = product_labs,
                                  method = method_labs_sim,
                                  time_after_exposure = taex_labs,
                                  phase = phase_labs)) +
   xlab("") + ylab(fr_lab) +
   scale_y_continuous(breaks = c(.1, .3, .5),
-                     limits = c(.1, .5)) +
+                     limits = c(.0, .5)) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
@@ -158,14 +168,14 @@ p.A.2 <- p.A.2 + p_format +
 p.B.1 <- ggplot(pB1_data, aes(x = windows, y = RPKM)) + 
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
   geom_line(aes(color = sample_strand)) + 
-  facet_grid(~product~time_after_exposure~phase~method, 
+  facet_grid(~repdomains~product~time_after_exposure~phase~method, 
              labeller = labeller(product = product_labs, 
                                  method = method_labs, 
                                  time_after_exposure = taex_labs,
                                  phase = phase_labs)) + 
   xlab("") + ylab(fr_lab) +
   scale_y_continuous(breaks = c(.1, .3, .5),
-                     limits = c(.1, .5)) +
+                     limits = c(.0, .5)) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
@@ -185,14 +195,14 @@ p.B.1 <- p.B.1 + p_format +
 p.B.2 <- ggplot(pB2_data, aes(x = windows, y = RPKM)) + 
   geom_line(aes(color = sample_strand)) + 
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-  facet_grid(~product~time_after_exposure~phase~method, 
+  facet_grid(~repdomains~product~time_after_exposure~phase~method, 
              labeller = labeller(product = product_labs, 
                                  method = method_labs_sim, 
                                  time_after_exposure = taex_labs, 
                                  phase = phase_labs)) + 
   xlab("") + ylab(fr_lab) +
   scale_y_continuous(breaks = c(.1, .3, .5),
-                     limits = c(.1, .5)) +
+                     limits = c(.0, .5)) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 

@@ -5,3 +5,4 @@ channels:
 dependencies:
   - bedtools =2.29.0
   - biopython =1.78
+  - anaconda::more-itertools ==8.10.0
