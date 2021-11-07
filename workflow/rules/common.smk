@@ -440,8 +440,11 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figureS9.pdf")
         inputList.append("results/plots/figure_markers.pdf")
         inputList.append("results/plots/figure_methyl.pdf")
-
-        inputList.append("results/regions/iz_hela_repdomains_uv_mean0.5_windows_201_100_kmer_counts.txt")
+        inputList.append("results/plots/mer1.pdf")
+        inputList.append("results/plots/mer2.pdf")
+        inputList.append("results/plots/mer3.pdf")
+        inputList.append("results/plots/mer4.pdf")
+        inputList.append("results/plots/mer5.pdf")
 
         for region in regions:
                 inputList.append("results/final/final_reports_" + build + 
