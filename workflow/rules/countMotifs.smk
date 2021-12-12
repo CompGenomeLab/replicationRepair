@@ -82,3 +82,26 @@ rule countMotifs_kmer:
         echo "`date -R`: Success! Counting is done." ||
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
+
+rule countMotifs_genome:
+    input:
+        genome="resources/ref_genomes/hg19/genome_hg19.fa",
+    output:
+        genome="results/regions/genome_T_counts.txt",
+    log:
+        "logs/regions/countMotifs_genome.log",
+    benchmark:
+        "logs/regions/countMotifs_genome.benchmark.txt",
+    conda:
+        "../envs/countMotifs.yaml"
+    shell:
+        """
+        (echo "`date -R`: Counting the given motif..." &&
+        python3 workflow/scripts/countMotif.py \
+        -i {input.genome} \
+        -o {output.genome} \
+        -m "T" \
+        --agg &&
+        echo "`date -R`: Success! Counting is done." ||
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
+        """

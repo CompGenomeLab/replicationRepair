@@ -110,21 +110,21 @@ rule pre_mapping_ds:
 
 rule pre_mapping_xr_sim:
     input:
-        bed="resources/samples/sim/{samples}_{build}_xr_sim.bed", 
+        bed="resources/samples/sim/{samples}_{build}_xr_sim_{kmer}.bed", 
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
-        plus=temp("results/sim/{samples}/{samples}_{build}_xr_sim_plus_sorted.bed"),
-        minus=temp("results/sim/{samples}/{samples}_{build}_xr_sim_minus_sorted.bed"),
-        plus_dam="results/sim/{samples}/{samples}_{build}_xr_sim_plus_damSite.bed",
-        minus_dam="results/sim/{samples}/{samples}_{build}_xr_sim_minus_damSite.bed",
-        plus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_xr_sim_intergenic_plus.bed",
-        minus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_xr_sim_intergenic_minus.bed",
+        plus=temp("results/sim/{samples}/{samples}_{build}_xr_sim_{kmer}_plus_sorted.bed"),
+        minus=temp("results/sim/{samples}/{samples}_{build}_xr_sim_{kmer}_minus_sorted.bed"),
+        plus_dam="results/sim/{samples}/{samples}_{build}_xr_sim_{kmer}_plus_damSite.bed",
+        minus_dam="results/sim/{samples}/{samples}_{build}_xr_sim_{kmer}_minus_damSite.bed",
+        plus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_xr_sim_{kmer}_intergenic_plus.bed",
+        minus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_xr_sim_{kmer}_intergenic_minus.bed",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",    
     log:
-        "logs/{samples}/{samples}_{build}_pre_mapping_sim_xr.log",
+        "logs/{samples}/{samples}_{build}_pre_mapping_sim_{kmer}_xr.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_pre_mapping_sim_xr.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_pre_mapping_sim_{kmer}_xr.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -176,21 +176,21 @@ rule pre_mapping_xr_sim:
 
 rule pre_mapping_ds_sim:
     input:
-        bed="resources/samples/sim/{samples}_{build}_ds_sim.bed",
+        bed="resources/samples/sim/{samples}_{build}_ds_sim_{kmer}.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
-        plus=temp("results/sim/{samples}/{samples}_{build}_ds_sim_plus_sorted.bed"),
-        minus=temp("results/sim/{samples}/{samples}_{build}_ds_sim_minus_sorted.bed"),
-        plus_dam="results/sim/{samples}/{samples}_{build}_ds_sim_plus_damSite.bed",
-        minus_dam="results/sim/{samples}/{samples}_{build}_ds_sim_minus_damSite.bed",
-        plus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_ds_sim_intergenic_plus.bed",
-        minus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_ds_sim_intergenic_minus.bed",
+        plus=temp("results/sim/{samples}/{samples}_{build}_ds_sim_{kmer}_plus_sorted.bed"),
+        minus=temp("results/sim/{samples}/{samples}_{build}_ds_sim_{kmer}_minus_sorted.bed"),
+        plus_dam="results/sim/{samples}/{samples}_{build}_ds_sim_{kmer}_plus_damSite.bed",
+        minus_dam="results/sim/{samples}/{samples}_{build}_ds_sim_{kmer}_minus_damSite.bed",
+        plus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_ds_sim_{kmer}_intergenic_plus.bed",
+        minus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_ds_sim_{kmer}_intergenic_minus.bed",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",    
     log:
-        "logs/{samples}/{samples}_{build}_pre_mapping_sim_ds.log",
+        "logs/{samples}/{samples}_{build}_pre_mapping_sim_{kmer}_ds.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_pre_mapping_sim_ds.benchmark.txt",
+        "logs/{samples}/{samples}_{build}_pre_mapping_sim_{kmer}_ds.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

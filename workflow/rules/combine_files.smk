@@ -66,6 +66,23 @@ rule combine_files_sim_intergenic:
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
         """
 
+rule combine_files_sim_kmer:
+    input:
+        lambda w: combineOutputs(config["build"], config["xr"]["samples"], config["ds"]["samples"], config["chipseq"]["samples"], w.regions, outformat="sim_kmer", kmer=w.kmer),
+    output:
+        "results/final/final_reports_sim_{kmer}_{build}_{regions}.txt",
+    log:
+        "logs/{build}_combine_files_sim_{kmer}_{regions}.log",
+    benchmark:
+        "logs/{build}_combine_files_sim_{kmer}_{regions}.benchmark.txt",
+    shell:
+        """
+        (echo "`date -R`: Combining files..." &&
+        cat {input} > {output} &&
+        echo "`date -R`: Success! Files are combined." || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
+        """
+
 rule combine_files_tss:
     input:
         lambda w: combineOutputs(config["build"], config["xr"]["samples"], config["ds"]["samples"], config["chipseq"]["samples"], outformat=w.tss_tes),

@@ -1,2 +1,3 @@
-jobs: 220 
-cluster: "sbatch -A investor -p mid_investor -J {rule}.job --qos mid_investor --cpus-per-task 4 -e logs/cluster/{rule}_%A.err"
+jobs: 30000 
+cluster: "sbatch -A investor -p mem -J {rule}.job --qos mem --mem 32G --time 23:00:00 -e logs/cluster/{rule}_%A.err --output=/dev/null"
+#default-resources: [cpus=32]

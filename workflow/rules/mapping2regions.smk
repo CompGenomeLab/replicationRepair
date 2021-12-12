@@ -178,31 +178,31 @@ rule mapping2regions_ds_intergenic:
 
 rule mapping2regions_xr_sim:
     input:
-        plus="results/sim/{samples}/{samples}_{build}_xr_sim_plus_damSite.bed",
-        minus="results/sim/{samples}/{samples}_{build}_xr_sim_minus_damSite.bed",
+        plus="results/sim/{samples}/{samples}_{build}_xr_sim_{kmer}_plus_damSite.bed",
+        minus="results/sim/{samples}/{samples}_{build}_xr_sim_{kmer}_minus_damSite.bed",
         reg="results/regions/{regions}.bed",
     output:
-        sorted_region=temp("results/sim/{samples}/{samples}_{build}_{regions}_sorted.bed"),
-        int_plus=temp("results/sim/{samples}/{samples}_{build}_plus_{regions}.txt"),
-        int_minus=temp("results/sim/{samples}/{samples}_{build}_minus_{regions}.txt"),
-        comb_plus=temp("results/sim/{samples}/{samples}_{build}_plus_{regions}_combined.txt"),
-        comb_minus=temp("results/sim/{samples}/{samples}_{build}_minus_{regions}_combined.txt"),
-        info_plus=temp("results/sim/{samples}/{samples}_{build}_plus_{regions}_combined_info.txt"),
-        info_minus=temp("results/sim/{samples}/{samples}_{build}_minus_{regions}_combined_info.txt"),
-        rpkm_plus="results/sim/{samples}/{samples}_{build}_plus_{regions}_combined_rpkm.txt",
-        rpkm_minus="results/sim/{samples}/{samples}_{build}_minus_{regions}_combined_rpkm.txt",
+        sorted_region=temp("results/sim/{samples}/{samples}_xr_{kmer}_{build}_{regions}_sorted.bed"),
+        int_plus=temp("results/sim/{samples}/{samples}_xr_{kmer}_{build}_plus_{regions}.txt"),
+        int_minus=temp("results/sim/{samples}/{samples}_xr_{kmer}_{build}_minus_{regions}.txt"),
+        comb_plus=temp("results/sim/{samples}/{samples}_xr_{kmer}_{build}_plus_{regions}_combined.txt"),
+        comb_minus=temp("results/sim/{samples}/{samples}_xr_{kmer}_{build}_minus_{regions}_combined.txt"),
+        info_plus=temp("results/sim/{samples}/{samples}_xr_{kmer}_{build}_plus_{regions}_combined_info.txt"),
+        info_minus=temp("results/sim/{samples}/{samples}_xr_{kmer}_{build}_minus_{regions}_combined_info.txt"),
+        rpkm_plus="results/sim/{samples}/{samples}_xr_{kmer}_{build}_plus_{regions}_combined_rpkm.txt",
+        rpkm_minus="results/sim/{samples}/{samples}_xr_{kmer}_{build}_minus_{regions}_combined_rpkm.txt",
     params:
         sdir="results/sim/{samples}",
-        sname="{samples}_{build}",
+        sname="{samples}_xr_{kmer}_{build}",
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
         region_name="{regions}",
         getComb=lambda w: getCombine(w.regions, config["region_comb_opt"], config["regions"]), 
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[0], input[1]),
     log:
-        "logs/XR/{samples}/{samples}_{build}_sim_mapping2regions_xr_{regions}.log",
+        "logs/XR/{samples}/{samples}_{kmer}_{build}_sim_mapping2regions_xr_{regions}.log",
     benchmark:
-        "logs/XR/{samples}/{samples}_{build}_sim_mapping2regions_xr_{regions}.benchmark.txt",
+        "logs/XR/{samples}/{samples}_{kmer}_{build}_sim_mapping2regions_xr_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -222,31 +222,31 @@ rule mapping2regions_xr_sim:
 
 rule mapping2regions_ds_sim:
     input:
-        plus="results/sim/{samples}/{samples}_{build}_ds_sim_plus_damSite.bed",
-        minus="results/sim/{samples}/{samples}_{build}_ds_sim_minus_damSite.bed",
+        plus="results/sim/{samples}/{samples}_{build}_ds_sim_{kmer}_plus_damSite.bed",
+        minus="results/sim/{samples}/{samples}_{build}_ds_sim_{kmer}_minus_damSite.bed",
         reg="results/regions/{regions}.bed",
     output:
-        sorted_region=temp("results/sim/{samples}/{samples}_{build}_{regions}_sorted.bed"),
-        int_plus=temp("results/sim/{samples}/{samples}_{build}_plus_{regions}.txt"),
-        int_minus=temp("results/sim/{samples}/{samples}_{build}_minus_{regions}.txt"),
-        comb_plus=temp("results/sim/{samples}/{samples}_{build}_plus_{regions}_combined.txt"),
-        comb_minus=temp("results/sim/{samples}/{samples}_{build}_minus_{regions}_combined.txt"),
-        info_plus=temp("results/sim/{samples}/{samples}_{build}_plus_{regions}_combined_info.txt"),
-        info_minus=temp("results/sim/{samples}/{samples}_{build}_minus_{regions}_combined_info.txt"),
-        rpkm_plus="results/sim/{samples}/{samples}_{build}_plus_{regions}_combined_rpkm.txt",
-        rpkm_minus="results/sim/{samples}/{samples}_{build}_minus_{regions}_combined_rpkm.txt",
+        sorted_region=temp("results/sim/{samples}/{samples}_ds_{kmer}_{build}_{regions}_sorted.bed"),
+        int_plus=temp("results/sim/{samples}/{samples}_ds_{kmer}_{build}_plus_{regions}.txt"),
+        int_minus=temp("results/sim/{samples}/{samples}_ds_{kmer}_{build}_minus_{regions}.txt"),
+        comb_plus=temp("results/sim/{samples}/{samples}_ds_{kmer}_{build}_plus_{regions}_combined.txt"),
+        comb_minus=temp("results/sim/{samples}/{samples}_ds_{kmer}_{build}_minus_{regions}_combined.txt"),
+        info_plus=temp("results/sim/{samples}/{samples}_ds_{kmer}_{build}_plus_{regions}_combined_info.txt"),
+        info_minus=temp("results/sim/{samples}/{samples}_ds_{kmer}_{build}_minus_{regions}_combined_info.txt"),
+        rpkm_plus="results/sim/{samples}/{samples}_ds_{kmer}_{build}_plus_{regions}_combined_rpkm.txt",
+        rpkm_minus="results/sim/{samples}/{samples}_ds_{kmer}_{build}_minus_{regions}_combined_rpkm.txt",
     params:
         sdir="results/sim/{samples}",
-        sname="{samples}_{build}",
+        sname="{samples}_ds_{kmer}_{build}",
         region=lambda w: getRegion(w.regions, config["region_file"], config["regions"]),
         region_name="{regions}",
         getComb=lambda w: getCombine(w.regions, config["region_comb_opt"], config["regions"]),
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[0], input[1]), 
     log:
-        "logs/DS/{samples}/{samples}_{build}_sim_mapping2regions_ds_{regions}.log",
+        "logs/DS/{samples}/{samples}_{kmer}_{build}_sim_mapping2regions_ds_{regions}.log",
     benchmark:
-        "logs/DS/{samples}/{samples}_{build}_sim_mapping2regions_ds_{regions}.benchmark.txt",
+        "logs/DS/{samples}/{samples}_{kmer}_{build}_sim_mapping2regions_ds_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

@@ -17,7 +17,8 @@ wildcard_constraints:
                                 config["chipseq"]["samples"] +
                                 config["methyl"]["samples"]
                                 )]),
-    tss_tes='tss|tes'
+    tss_tes='tss|tes',
+    kmer='1|2|3|4|5|rmTTTT|IZ|IZ_rmTTTT',
 
 rule all:
     input:
@@ -124,6 +125,10 @@ include: "workflow/rules/intersect2repDomains.smk"
 include: "workflow/rules/make_windows.smk"
 include: "workflow/rules/countMotifs.smk"
 
+# Simulation
+#include: "workflow/rules/filt4sim.smk"
+#include: "workflow/rules/simulation.smk"
+
 # Further Analyses
 include: "workflow/rules/combine_replicates.smk"
 include: "workflow/rules/ts_nts.smk"
@@ -140,9 +145,7 @@ include: "workflow/rules/figure2.smk"
 include: "workflow/rules/figure3.smk"
 include: "workflow/rules/figure4_5.smk"
 include: "workflow/rules/figure6A.smk"
-include: "workflow/rules/figure6B.smk"
-include: "workflow/rules/figure6C.smk"
-include: "workflow/rules/figure6D.smk"
+include: "workflow/rules/figure6.smk"
 include: "workflow/rules/figureS2.smk"
 include: "workflow/rules/figureS3.smk"
 include: "workflow/rules/figureS5.smk"

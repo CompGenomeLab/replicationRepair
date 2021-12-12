@@ -76,6 +76,40 @@ def input4chip(wildcards, sampleList, srrEnabled, srrList):
     else:    
         return "results/chipseq/{samples}/{samples}_{build}_pe.bed"
 
+def getInput(sample, inputExist, inputList, inputIdx, sampleList, build, region=""):
+
+    if inputExist:
+        inpDict={}
+        for inp_idx in range(len(inputIdx)):
+            idx_split = inputIdx[inp_idx].strip().split(",")
+            indexList=[]
+            for sample_idx in idx_split:
+                sample_idx = sample_idx.strip() 
+                if "-" in sample_idx:
+                    for range_idx in range(int(sample_idx.split("-")[0]), int(sample_idx.split("-")[1])+1):
+                        indexList.append(int(range_idx)) 
+                else:
+                    indexList.append(int(sample_idx)) 
+                
+            for sample_idx in indexList:
+                if inputList[inp_idx] not in inpDict:
+                    inpDict[inputList[inp_idx]] = [sampleList[sample_idx]]
+                else:
+                    inpDict[inputList[inp_idx]].append(sampleList[sample_idx])
+        for k,v in inpDict.items():
+        
+            if sample in v and region=="IZ":
+            
+                return "resources/samples/input/" + k + "_" + build + "_IZ.fasta"
+            
+            if sample in v:
+            
+                return "resources/samples/input/" + k + "_" + build + ".fasta"
+                
+    else:
+        return "resources/ref_genomes/" + build + "/genome_" + build + ".ron" 
+
+
 def lineNum(file):
     
     linenum = 0
@@ -158,7 +192,7 @@ def getRegion(region, rawRegionList, regionList):
         
     return rawRegionList[idx] 
 
-def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regions="", outformat="real"):
+def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regions="", outformat="real", kmer=""):
 
 
     window = "_combined_"
@@ -213,6 +247,24 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regi
             inputList.append(sampledir + sample + "_" + build + 
             "_plus_" + regions + window + "rpkm.txt")
             inputList.append(sampledir + sample + "_" + build + 
+            "_minus_" + regions + window + "rpkm.txt")
+
+    elif outformat == "sim_kmer":
+
+        for sample in sampleList_xr:
+            sampledir = "results/sim/" + sample + "/" 
+
+            inputList.append(sampledir + sample + "_xr_" + kmer + "_" + build + 
+            "_plus_" + regions + window + "rpkm.txt")
+            inputList.append(sampledir + sample + "_xr_" + kmer + "_" + build + 
+            "_minus_" + regions + window + "rpkm.txt")
+
+        for sample in sampleList_ds:
+            sampledir = "results/sim/" + sample + "/" 
+
+            inputList.append(sampledir + sample + "_ds_" + kmer + "_" + build + 
+            "_plus_" + regions + window + "rpkm.txt")
+            inputList.append(sampledir + sample + "_ds_" + kmer + "_" + build + 
             "_minus_" + regions + window + "rpkm.txt")
 
     elif outformat == "sim_intergenic":
@@ -414,15 +466,14 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
 
     if method == "report":
     
+        inputList.append("results/regions/genome_T_counts.txt")
         inputList.append("results/plots/figure1.pdf")
         inputList.append("results/plots/figure2.pdf")
         inputList.append("results/plots/figure3.pdf")
         inputList.append("results/plots/figure4.pdf")
         inputList.append("results/plots/figure5.pdf")
         inputList.append("results/plots/figure6A.pdf")
-        inputList.append("results/plots/figure6B.pdf")
-        inputList.append("results/plots/figure6C.pdf")
-        inputList.append("results/plots/figure6D.pdf")
+        inputList.append("results/plots/figure6.pdf")
         inputList.append("results/plots/figureS2.pdf")
         inputList.append("results/plots/figureS3.pdf")
         inputList.append("results/plots/figureS4.pdf")
@@ -434,6 +485,13 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figureS5_repdomains_intergenic.pdf")
         inputList.append("results/plots/figureS5_repdomains_64.pdf")
         inputList.append("results/plots/figureS5_repdomains_intergenic_64.pdf")  
+        #inputList.append("results/plots/figureS5_repdomains_2.pdf")
+        #inputList.append("results/plots/figureS5_repdomains_3.pdf")
+        #inputList.append("results/plots/figureS5_repdomains_4.pdf")
+        #inputList.append("results/plots/figureS5_repdomains_5.pdf")
+        #inputList.append("results/plots/figureS5_repdomains_rmTTTT.pdf")
+        #inputList.append("results/plots/figureS5_repdomains_IZ_rmTTTT.pdf")
+        #inputList.append("results/plots/figureS5_repdomains_IZ.pdf")
         inputList.append("results/plots/figureS6.pdf")
         inputList.append("results/plots/figureS7.pdf")
         inputList.append("results/plots/figureS8.pdf")
@@ -445,12 +503,28 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/mer3.pdf")
         inputList.append("results/plots/mer4.pdf")
         inputList.append("results/plots/mer5.pdf")
+        inputList.append("results/plots/mer.pdf")
+        inputList.append("results/table/seq_asymmetry.csv")
 
         for region in regions:
                 inputList.append("results/final/final_reports_" + build + 
                 "_" + region + ".txt")
                 inputList.append("results/final/final_reports_sim_" + build + 
                 "_" + region + ".txt")
+                #inputList.append("results/final/final_reports_sim_2_" + build + 
+                #"_" + region + ".txt")
+                #inputList.append("results/final/final_reports_sim_3_" + build + 
+                #"_" + region + ".txt")
+                #inputList.append("results/final/final_reports_sim_4_" + build + 
+                #"_" + region + ".txt")
+                #inputList.append("results/final/final_reports_sim_5_" + build + 
+                #"_" + region + ".txt")
+                inputList.append("results/final/final_reports_sim_IZ_" + build + 
+                "_" + region + ".txt")
+                inputList.append("results/final/final_reports_sim_IZ_rmTTTT_" + build + 
+                "_" + region + ".txt")
+                #inputList.append("results/final/final_reports_sim_rmTTTT_" + build + 
+                #"_" + region + ".txt")
                 inputList.append("results/final/final_reports_" + build + 
                 "_" + region + "_intergenic.txt")
                 inputList.append("results/final/final_reports_sim_" + build + 
