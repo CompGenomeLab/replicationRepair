@@ -179,6 +179,7 @@ regions:
   #- "chromhmm_hela_repdomains_uv_mean0.5_chr"
   #- "repdomains_uv_mean0.5_windows_201_10000"
   #- "repdomains_uv_mean0.5"
+  - "methylation"
 
 region_file:
   #- "initiation.zones.hela_windows_201_100.bed"
@@ -218,6 +219,7 @@ region_file:
   #- "chromhmm_hela_repdomains_uv_mean0.5.bed"
   #- "repdomains_uv_mean0.5_windows_201_10000.bed"
   #- "repdomains_uv_mean0.5.bed"
+  - "methylation.bed"
 
 region_comb_opt:
   #- "-"
@@ -257,6 +259,7 @@ region_comb_opt:
   #- "'-strand T -chr T'"
   #- "-"
   #- "notCombine"
+  - "notCombine"
 
 regions_mut:
   #- "hela_no_overlap_repdomains_windows_201_100"

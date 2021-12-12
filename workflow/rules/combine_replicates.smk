@@ -217,3 +217,22 @@ rule combine_replicates_sim:
         echo "`date -R`: Success! All replicates are combined." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
         """
+
+rule combine_methyl:
+    input:
+        CpG="results/methyl/GSM3633947_ENCFF696OLO_methylation_state_at_CpG/GSM3633947_ENCFF696OLO_methylation_state_at_CpG_hg19_org_intergenic.bed",
+        CHH="results/methyl/GSM3633947_ENCFF474VQX_methylation_state_at_CHH/GSM3633947_ENCFF474VQX_methylation_state_at_CHH_hg19_org_intergenic.bed",
+        CHG="results/methyl/GSM3633947_ENCFF093WZD_methylation_state_at_CHG/GSM3633947_ENCFF093WZD_methylation_state_at_CHG_hg19_org_intergenic.bed",
+    output:
+        "results/regions/methylation.bed",
+    log:
+        "logs/combine_methyl.log",
+    benchmark:
+        "logs/combine_methyl.benchmark.txt",
+    shell:  
+        """
+        (echo "`date -R`: Combining methylation files..." &&
+        cat {input.CpG} {input.CHH} {input.CHG}  > {output} &&
+        echo "`date -R`: Success! All files are combined." || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
+        """
