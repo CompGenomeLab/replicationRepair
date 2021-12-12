@@ -2,8 +2,8 @@ rule figure2:
     input:  
         windowed="results/final/final_reports_hg19_repdomains_uv_mean0.5_windows_201_10000.txt", 
         windowed_sim="results/final/final_reports_sim_hg19_repdomains_uv_mean0.5_windows_201_10000.txt",        
-        noW="results/final/final_reports_noWindows_hg19_repdomains_uv_mean0.5.txt",            
-        noW_sim="results/final/final_reports_noWindows_sim_hg19_repdomains_uv_mean0.5.txt",                
+        noW="results/final/final_reports_hg19_repdomains_uv_mean0.5.txt",            
+        noW_sim="results/final/final_reports_sim_hg19_repdomains_uv_mean0.5.txt",                
     output:
         "results/plots/figure2.pdf",
     log:
