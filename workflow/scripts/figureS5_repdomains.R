@@ -174,8 +174,8 @@ p.B.1 <- ggplot(pB1_data, aes(x = windows, y = RPKM)) +
                                  time_after_exposure = taex_labs,
                                  phase = phase_labs)) + 
   xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .3, .5),
-                     limits = c(.0, .5)) +
+  scale_y_continuous(breaks = c(.1, .5, 1),
+                     limits = c(.0, 1)) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
@@ -201,8 +201,8 @@ p.B.2 <- ggplot(pB2_data, aes(x = windows, y = RPKM)) +
                                  time_after_exposure = taex_labs, 
                                  phase = phase_labs)) + 
   xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .3, .5),
-                     limits = c(.0, .5)) +
+  #scale_y_continuous(breaks = c(.1, .5, 1),
+  #                   limits = c(.0, 1)) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
@@ -210,11 +210,11 @@ p.B.2 <- ggplot(pB2_data, aes(x = windows, y = RPKM)) +
   labs(color = "Strands")
 
 # adding and overriding the default plot format
-p.B.2 <- p.B.2 + p_format + 
-  theme(axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank(),
-        panel.border = element_rect(fill = NA))
+#p.B.2 <- p.B.2 + p_format + 
+#  theme(axis.title.y=element_blank(),
+#        axis.text.y=element_blank(),
+#        axis.ticks.y=element_blank(),
+#        panel.border = element_rect(fill = NA))
 
 
 #### Combining Plots with Patchwork ####

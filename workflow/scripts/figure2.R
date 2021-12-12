@@ -86,12 +86,12 @@ if (rep == "A"){
                              dataset = factor("ERD",levels = c("ERD","LRD")),
                              product = factor("64_PP", 
                                               levels = c("64_PP", "CPD")))
-  lab_erd <- "p ="
+  lab_erd <- ""
   ann_text_LRD <- data.frame(phase = 0.9, real_sim = 4.8,
                              dataset = factor("LRD",levels = c("ERD","LRD")),
                              product = factor("64_PP", 
                                               levels = c("64_PP", "CPD")))
-  lab_lrd <- "p ="
+  lab_lrd <- ""
 } else if (rep == "B"){ 
   fig_name = "~/Desktop/supfig4.png" 
   ann_text_ERD <- data.frame(phase = 0.7, real_sim = 4.8,
@@ -103,19 +103,19 @@ if (rep == "A"){
                              dataset = factor("LRD",levels = c("ERD","LRD")),
                              product = factor("64_PP", 
                                               levels = c("64_PP", "CPD")))
-  lab_lrd <- "p ="
+  lab_lrd <- ""
 } else if (rep == "_"){ 
   fig_name = "~/Desktop/fig2_comb.png" 
   ann_text_ERD <- data.frame(phase = 0.7, real_sim = 4.7,
                              dataset = factor("ERD",levels = c("ERD","LRD")),
                              product = factor("64_PP", 
                                               levels = c("64_PP", "CPD")))
-  lab_erd <- "p ="
+  lab_erd <- ""
   ann_text_LRD <- data.frame(phase = 0.7, real_sim = 4.7,
                              dataset = factor("LRD",levels = c("ERD","LRD")),
                              product = factor("64_PP", 
                                               levels = c("64_PP", "CPD")))
-  lab_lrd <- "p ="
+  lab_lrd <- ""
 } 
 
 #### Main ####
@@ -225,7 +225,7 @@ p.A.1 <- ggplot(pA1_data, aes(x = windows, y = log2(real_sim))) +
                      breaks = c(-101, 0, 101), 
                      labels = c("-1000", "0", "+1000")) + 
   scale_color_manual(name = "Phase", 
-                     label = c("Early Phase", "Late Phase", "Asyncronized"), 
+                     label = c("Early S Phase", "Late S Phase", "Asyncronized"), 
                      values = phase_colors) + 
   labs(color = "Phase", linetype = "Strands") +
   ylim(-2, 1) +
@@ -252,7 +252,7 @@ p.A.2 <- ggplot(pA2_data, aes(x = windows, y = log2(real_sim))) +
                      breaks = c(-101, 0, 101), 
                      labels = c("-1000", "0", "+1000")) + 
   scale_color_manual(name = "Phase", 
-                     label = c("Early Phase", "Late Phase", "Asyncronized"), 
+                     label = c("Early S Phase", "Late S Phase", "Asyncronized"), 
                      values = phase_colors) + 
   labs(color = "Phase", linetype = "Strands") +
   ylim(-2, 1) +
@@ -293,11 +293,11 @@ p.B <- p.B + p_format +
   geom_text(data = ann_text_LRD, label = lab_lrd)
 
 #### Combining Plots with Patchwork ####
-p_final <- p.A.1 + p.A.2 + p.B +
+p_final <- (p.A.1 + labs(title="A")) + p.A.2 + (p.B  + labs(title="B")) +
   plot_layout(guides = "collect") &
   theme(plot.tag = element_text(size = 12, face="bold"),
         legend.position = 'bottom', 
-        plot.title = element_text(hjust = -0.2, vjust = 5, 
+        plot.title = element_text(hjust = -0.2, 
                                   size = 12, face="bold"))
 
 ggsave(argv$o, width = 22, height = 18, units = "cm")

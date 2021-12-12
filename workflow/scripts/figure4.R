@@ -171,8 +171,8 @@ pB1_boxplot <- pB1_data[,c("repdomains", "log2val", "sample_strand", "direction"
 p.B.2 <- ggplot(data=pB1_boxplot, aes(x=repdomains, y=log2val, fill=sample_strand)) +
   geom_boxplot(outlier.shape = NA) +
   facet_wrap(~direction) +
-  xlab("Replication Domains") + 
-  ylab("n. Repair\nRate (RR)") +
+  xlab("") + 
+  ylab("") +
   scale_fill_manual(values = c("+" = "#0571b0", 
                                "-" = "#ca0020"), 
                     guide = "none") +
@@ -182,12 +182,12 @@ p.B.2 <- ggplot(data=pB1_boxplot, aes(x=repdomains, y=log2val, fill=sample_stran
 
 # adding and overriding the default plot format
 p.B.2 <- p.B.2 + p_format + 
-  stat_compare_means(label = "p.signif",  paired = TRUE) + 
   theme(strip.background = element_blank(),
-        strip.text.x = element_blank()) 
+#        strip.text.x = element_blank()
 #  theme(axis.title.x=element_blank(),
 #        axis.text.x=element_blank(),
-#        axis.ticks.x = element_blank()) 
+#        axis.ticks.x = element_blank() 
+        ) 
 
 #### Plot B.3 ####
 
@@ -242,7 +242,7 @@ p.C.2 <- ggplot(data=pC1_boxplot, aes(x=repdomains, y=log2val, fill=sample_stran
   geom_boxplot(outlier.shape = NA) +
   facet_wrap(~direction) +
   xlab("Replication Domains") + 
-  ylab("n. Repair\nRate (RR)") +
+  ylab("") +
   scale_fill_manual(values = c("+" = "#0571b0", 
                                "-" = "#ca0020"), 
                     guide = "none") +
@@ -252,12 +252,12 @@ p.C.2 <- ggplot(data=pC1_boxplot, aes(x=repdomains, y=log2val, fill=sample_stran
 
 # adding and overriding the default plot format
 p.C.2 <- p.C.2 + p_format + 
-  stat_compare_means(label = "p.signif",  paired = TRUE) + 
   theme(strip.background = element_blank(),
-        strip.text.x = element_blank()) 
+#        strip.text.x = element_blank(), 
 #  theme(axis.title.x=element_blank(),
 #        axis.text.x=element_blank(),
-#        axis.ticks.x = element_blank()) 
+#        axis.ticks.x = element_blank(),
+  )
 
 #### Plot C.3 ####
 
@@ -299,16 +299,48 @@ layout3 <- "
 BBBCCCD
 FFFGGGH
 "
-p.B.1 + p.B.2 + grid::textGrob(ylabname1, 
-                                 rot = -90, gp=gpar(fontsize=12), 
-                                 y = unit(.55, "npc")) + 
-  p.C.1 + p.C.2 + grid::textGrob(ylabname2, 
-                                   rot = -90, gp=gpar(fontsize=12), 
-                                   y = unit(.62, "npc")) + 
-  plot_layout(design = layout3, guides = "collect") & 
+
+if (argv$intergenic == "False" & myphase == "late"){
+
+p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.4) 
+p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.05) 
+
+(p.A + labs(title="A")) + 
+(p.B.1 + labs(title="B")) + p.B.2 + 
+  grid::textGrob(ylabname1, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.55, "npc")) + 
+  (p.C.1 + labs(title="C")) + p.C.2 + 
+  grid::textGrob(ylabname2, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.62, "npc")) + 
+  plot_layout(design = layout2, guides = "collect") & 
   theme(plot.tag = element_text(size = 12, face="bold"),
         legend.position = 'bottom', 
-        plot.title = element_text(hjust = -0.2, vjust = 5, 
+        plot.title = element_text(hjust = -0.2, 
                                   size = 12, face="bold"))
 
 ggsave( argv$o, width = 22, height = 18, units = "cm" )
+
+} else {
+
+p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE) 
+p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE) 
+
+(p.B.1 + labs(title="A")) + p.B.2 + 
+  grid::textGrob(ylabname1, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.55, "npc")) + 
+  (p.C.1 + labs(title="B")) + p.C.2 + 
+  grid::textGrob(ylabname2, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.62, "npc")) + 
+  plot_layout(design = layout3, guides = "collect") & 
+  theme(plot.tag = element_text(size = 12, face="bold"),
+        legend.position = 'bottom', 
+        plot.title = element_text(hjust = -0.2, 
+                                  size = 12, face="bold"))
+
+ggsave( argv$o, width = 22, height = 18, units = "cm" )
+
+}

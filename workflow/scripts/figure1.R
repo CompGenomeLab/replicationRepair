@@ -376,26 +376,26 @@ layout2 <- "
 AAAAAAAABBBB
 "
 
-p.B <- (p.B.1 / p.B.2) 
+p.B <- (p.B.1 / (p.B.2 + plot_layout(tag_level = 'new'))) 
 
-p.A.B <- p.A + p.B
-
-p.C.1.2 <- p.C.1 + p.C.2 +
+p.C.1.2 <- p.C.1 + (p.C.2 + plot_layout(tag_level = 'new')) +
   plot_layout(design = layout2)
 
-p.C.3.4 <- p.C.3 + p.C.4 +
+p.C.3.4 <- (p.C.3 + plot_layout(tag_level = 'new')) + 
+  (p.C.4 + plot_layout(tag_level = 'new')) +
   plot_layout(design = layout2)
 
 p.C <- p.C.1.2 / p.C.3.4 
 
-p_final <- p.A.B + p.C + p.D_comb +
+p_final <- p.A + p.B + 
+  p.C + p.D_comb +
   plot_layout(design = layout) +
-  plot_annotation(caption = 
+  plot_annotation(tag_levels = 'A', caption = 
                     'Position Relative to the first base of reads',
                   theme = theme(plot.caption = element_text(size = 12,
                                                             hjust = .1, 
                                                             vjust = 9.5))) &
-  theme(plot.tag = element_text(size = 12, face="bold"))
+  theme(plot.tag = element_text(hjust = -0.2, size = 12, face="bold"))
 
 ggsave(argv$o, width = 22, height = 18, units = "cm")
 
