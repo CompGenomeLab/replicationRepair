@@ -297,12 +297,12 @@ AAAAAAAABBBB
 
 p.A.B <- p.A + p.B
 
-p.C <- p.C.1 + p.C.2 +
+p.C <- p.C.1 + (p.C.2 + plot_layout(tag_level = 'new')) +
   plot_layout(design = layout2)
 
 p_final <- p.A.B + p.C + p.D_comb +
   plot_layout(design = layout) +
-  plot_annotation(caption = 
+  plot_annotation(tag_levels = 'A', caption = 
                     'Position Relative to the first base of reads',
                   theme = theme(plot.caption = element_text(size = 12,
                                                             hjust = .1, 
