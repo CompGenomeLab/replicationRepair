@@ -7,6 +7,8 @@ rule figure_seq_context_asymmetry:
         o3="results/plots/mer3.pdf",
         o4="results/plots/mer4.pdf",
         o5="results/plots/mer5.pdf",
+        comb="results/plots/mer.pdf",
+        t="results/table/seq_asymmetry.csv",
     log:
         "logs/figure_seq_context_asymmetry.log",
     benchmark:
@@ -21,5 +23,7 @@ rule figure_seq_context_asymmetry:
         --o2 {output.o2} \
         --o3 {output.o3} \
         --o4 {output.o4} \
-        --o5 {output.o5} &> {log}
+        --o5 {output.o5} \
+        --comb {output.comb} \
+        --table {output.t} &> {log}
         """
