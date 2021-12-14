@@ -94,6 +94,20 @@ for (nuc_id in 1:length(complementary_list)){
   }
 }
 
+for (nuc_id in 1:length(counts_total_df$variable)){
+  if (str_count(counts_total_df$variable[nuc_id], "A") + 
+      str_count(counts_total_df$variable[nuc_id], "G") 
+      >= str_count(counts_total_df$variable[nuc_id], "C") + 
+      str_count(counts_total_df$variable[nuc_id], "T") & 
+      (substr(counts_total_df$variable[nuc_id],1,1) == "G" | 
+       substr(counts_total_df$variable[nuc_id],1,1) == "A" )){ 
+
+    temp_base <- counts_total_df$variable[nuc_id]
+    counts_total_df$variable[nuc_id] <- counts_total_df$complementary[nuc_id]
+    counts_total_df$complementary[nuc_id] <- as.character(temp_base)  
+    }
+}
+
 counts_total_dcast <- dcast(counts_total_df, direction + repdomains + variable + complementary ~ strand, 
   value.var = "value")
 
