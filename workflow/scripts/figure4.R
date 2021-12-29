@@ -324,8 +324,8 @@ ggsave( argv$o, width = 22, height = 18, units = "cm" )
 
 } else if (argv$intergenic == "True" & myphase == "early"){
 
-p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.4) 
-p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.05) 
+p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.85) 
+p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.15) 
 
 p.A + labs(title="A") + 
 (p.B.1 + labs(title="B")) + p.B.2 + 
