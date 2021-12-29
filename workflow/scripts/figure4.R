@@ -322,6 +322,28 @@ p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y 
 
 ggsave( argv$o, width = 22, height = 18, units = "cm" )
 
+} else if (argv$intergenic == "True" & myphase == "early"){
+
+p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.4) 
+p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.05) 
+
+p.A + labs(title="A") + 
+(p.B.1 + labs(title="B")) + p.B.2 + 
+  grid::textGrob(ylabname1, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.55, "npc")) + 
+  (p.C.1 + labs(title="C")) + p.C.2 + 
+  grid::textGrob(ylabname2, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.62, "npc")) + 
+  plot_layout(design = layout2, guides = "collect") & 
+  theme(plot.tag = element_text(size = 12, face="bold"),
+        legend.position = 'bottom', 
+        plot.title = element_text(hjust = -0.2, 
+                                  size = 12, face="bold"))
+
+ggsave( argv$o, width = 22, height = 18, units = "cm" )
+
 } else {
 
 p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE) 
