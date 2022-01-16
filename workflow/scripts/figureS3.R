@@ -84,6 +84,8 @@ pA1_data <- filter(pA_df_rs, phase != "async",
                    replicate == "_", time_after_exposure == "12",
                    product == "CPD")
 
+pA1_data$time_after_exposure[pA1_data$method == "Damage_seq"] <- "0" 
+
 #### Plot A.1 ####
 
 # create the plot
