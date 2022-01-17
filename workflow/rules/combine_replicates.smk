@@ -224,15 +224,25 @@ rule combine_methyl:
         CHH="results/methyl/GSM3633947_ENCFF474VQX_methylation_state_at_CHH/GSM3633947_ENCFF474VQX_methylation_state_at_CHH_hg19_org_intergenic.bed",
         CHG="results/methyl/GSM3633947_ENCFF093WZD_methylation_state_at_CHG/GSM3633947_ENCFF093WZD_methylation_state_at_CHG_hg19_org_intergenic.bed",
     output:
-        "results/regions/methylation.bed",
+        CpG="results/methyl/GSM3633947_ENCFF696OLO_methylation_state_at_CpG/GSM3633947_ENCFF696OLO_methylation_state_at_CpG_hg19_org_intergenic_shuf1m.bed",
+        CHH="results/methyl/GSM3633947_ENCFF474VQX_methylation_state_at_CHH/GSM3633947_ENCFF474VQX_methylation_state_at_CHH_hg19_org_intergenic_shuf1m.bed",
+        CHG="results/methyl/GSM3633947_ENCFF093WZD_methylation_state_at_CHG/GSM3633947_ENCFF093WZD_methylation_state_at_CHG_hg19_org_intergenic_shuf1m.bed",
+        comb="results/regions/methylation_shuf_1m_windows_1_3.bed",
     log:
         "logs/combine_methyl.log",
     benchmark:
         "logs/combine_methyl.benchmark.txt",
     shell:  
         """
-        (echo "`date -R`: Combining methylation files..." &&
-        cat {input.CpG} {input.CHH} {input.CHG}  > {output} &&
+        (echo "`date -R`: Getting random million reads for each file..." &&
+        shuf -n 1000000 {input.CpG} | awk '{{print $1"\\t"$2"\\t"$3"\\t""CpG_1""\\t"$5"\\t"$6}}' > {output.CpG} &&
+        shuf -n 1000000 {input.CHG} | awk '{{print $1"\\t"$2"\\t"$3"\\t""CHG_1""\\t"$5"\\t"$6}}' > {output.CHG} &&
+        shuf -n 1000000 {input.CHH} | awk '{{print $1"\\t"$2"\\t"$3"\\t""CHH_1""\\t"$5"\\t"$6}}' > {output.CHH} &&
         echo "`date -R`: Success! All files are combined." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
+        
+        (echo "`date -R`: Combining methylation files..." &&
+        cat {output.CpG} {output.CHH} {output.CHG}  > {output.comb} &&
+        echo "`date -R`: Success! All files are combined." || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
         """
