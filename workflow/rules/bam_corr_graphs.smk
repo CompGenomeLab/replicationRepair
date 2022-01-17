@@ -232,3 +232,50 @@ rule bam_corr_graphs_chipseq:
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
         """
+
+rule bam_corr_graphs_repli:
+    input:
+        npz="results/edu/readCounts_repli.npz",
+    output:
+        scatter="results/plots/scatterplot_PearsonCorr_bigwigScores_repli.png",
+        tab="results/edu/PearsonCorr_bigwigScores_repli.tab",
+        heatmap="results/plots/heatmap_SpearmanCorr_readCounts_repli.png",
+        tab2="results/edu/SpearmanCorr_readCounts_repli.tab",
+        pca="results/plots/PCA_readCounts_repli.png",
+    log:
+        "logs/bam_corr_graphs_repli.log",
+    benchmark:
+        "logs/bam_corr_graphs_repli.benchmark.txt",
+    conda:
+        "../envs/bam_correlation.yaml"
+    shell:  
+        """
+        (echo "`date -R`: Plotting correlation (scatter)..." &&
+        plotCorrelation \
+        -in {input.npz} \
+        --corMethod pearson --skipZeros \
+        --plotTitle "Pearson Correlation of Bam Files" \
+        --whatToPlot scatterplot \
+        -o {output.scatter} \
+        --outFileCorMatrix {output.tab} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
+
+        (echo "`date -R`: Plotting correlation (heatmap)..." &&
+        plotCorrelation \
+        -in {input.npz} \
+        --corMethod spearman --skipZeros \
+        --plotTitle "Spearman Correlation of Read Counts" \
+        --whatToPlot heatmap --colorMap RdYlBu --plotNumbers \
+        -o {output.heatmap} \
+        --outFileCorMatrix {output.tab2} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
+
+        (echo "`date -R`: PCA analysis..." &&
+        plotPCA -in {input.npz} \
+        -o {output.pca} \
+        -T "PCA of read counts" &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
+        """
