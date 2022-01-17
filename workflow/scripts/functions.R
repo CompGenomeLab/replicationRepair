@@ -9,7 +9,8 @@ rmv_low_counted_regions <- function ( df, count_threshold = 1 ){
   trash = filter(df, counts < count_threshold)
   df = df[!(df$chromosomes %in% trash$chromosomes & 
             df$start_position %in% trash$start_position &
-            df$end_position %in% trash$end_position), ]
+            df$end_position %in% trash$end_position &
+              df$dataset %in% trash$dataset), ]
   
   return(df)
 }

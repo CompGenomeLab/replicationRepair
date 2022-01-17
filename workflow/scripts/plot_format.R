@@ -6,7 +6,7 @@ library(ggpubr)
 #### label names ####
 
 chr_states <- c("Tss", "TssF", "PromF", "PromP", "Enh", "EnhF", "EnhWF", 
-                "EnhW", "FaireW", "Ctcf", "Gen5'", "Elon", "ElonW", "Gen3'", 
+                "EnhW", "DnaseD", "DnaseU", "FaireW", "CtcfO", "Ctcf", "Gen5'", "Elon", "ElonW", "Gen3'", 
                 "Pol2", "H4K20", "Low", "ReprD", "Repr", "ReprW", 
                 "Quies", "Art")
 
@@ -39,9 +39,12 @@ chrState2generalState <- c("Active Promoter",
                            "Candidate Strong\nEnhancer", 
                            "Candidate Strong\nEnhancer", 
                            "Candidate Weak\nEnhancer", 
+                           "Candidate Weak\nEnhancer",
+                           "Candidate Weak\nEnhancer",
                            "Candidate Weak\nEnhancer", 
                            "Candidate Weak\nEnhancer", 
                            "Distal CTCF/Candidate\nInsulator", 
+                           "Distal CTCF/Candidate\nInsulator",
                            "Transcription Associated", 
                            "Transcription Associated", 
                            "Transcription Associated", 
@@ -61,8 +64,8 @@ names(product_labs) <- c("CPD", "64_PP")
 method_labs <- c("XR-seq", "Damage-seq", "DNA-seq")
 names(method_labs) <- c("XR_seq", "Damage_seq", "DNA_seq")
 
-taex_labs <- c("12 min.", "120 min.", "60 min.")
-names(taex_labs) <- c("12", "120", "60")
+taex_labs <- c("0 min.", "12 min.", "120 min.", "60 min.")
+names(taex_labs) <- c("0", "12", "120", "60")
 
 phase_labs <- c("Async.", "Early S\nPhase", "Late S\nPhase")
 names(phase_labs) <- c("async", "early", "late")

@@ -13,7 +13,8 @@ p <- arg_parser("producing the figure 3")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
 p <- add_argument(p, "--dtype", help="damage type of the sample to visualize")
-p <- add_argument(p, "-o", help="output")
+p <- add_argument(p, "--o1", help="output")
+p <- add_argument(p, "--o2", help="output (paired t-test)")
 
 # Parse the command line arguments
 argv <- parse_args(p)
@@ -55,7 +56,12 @@ colnames(sample_df) <- c("chromosomes", "start_position", "end_position",
                             "project", "sample_source", "sample_strand", 
                             "mapped_reads", "RPKM")
 
-df_rr <- repair_rate( sample_df )
+sample_df_filt <- filter(sample_df, product == dprod, replicate == rep, 
+                         phase != "async", time_after_exposure == "12")
+
+sample_df_rmlow <- rmv_low_counted_regions(sample_df_filt, 2)
+
+df_rr <- repair_rate( sample_df_rmlow )
 
 colnames(df_rr)[12] <- "real"
 
@@ -69,7 +75,12 @@ colnames(sample_df_sim) <- c("chromosomes", "start_position", "end_position",
                          "project", "sample_source", "sample_strand", 
                          "mapped_reads", "RPKM")
 
-df_rr_sim <- repair_rate( sample_df_sim )
+sample_df_sim_filt <- filter(sample_df_sim, product == dprod, replicate == rep, 
+                         phase != "async", time_after_exposure == "12")
+
+sample_df_sim_rmlow <- rmv_low_counted_regions(sample_df_sim_filt, 2)
+
+df_rr_sim <- repair_rate( sample_df_sim_rmlow )
 
 colnames(df_rr_sim)[12] <- "sim"
 
@@ -108,6 +119,9 @@ pA_filt <- filter(pA_df_rr, xr_ds != "NaN", xr_ds != "Inf",
                   dataset_strand != "DTZ", dataset_strand != "UTZ", 
                   product == dprod, replicate == rep, phase != "async", 
                   time_after_exposure == "12")
+
+pA_filt$state_short <- factor(pA_filt$state_short, levels=general_states_short)
+
 pA_data <- aggregate(x = pA_filt$xr_ds, by = list(pA_filt$dataset, 
                                                   pA_filt$dataset_strand, 
                                                   pA_filt$phase, 
@@ -123,6 +137,8 @@ pB_filt <- filter(pB_df_rr_ear_la, ear_la != "NaN", ear_la != "Inf",
                   dataset_strand != "DTZ", dataset_strand != "UTZ", 
                   product == dprod, replicate == rep,
                   time_after_exposure == "12")
+pB_filt$state_short <- factor(pB_filt$state_short, levels=general_states_short)
+
 pB_data <- aggregate(x = pB_filt$ear_la, by = list(pB_filt$dataset, 
                                                    pB_filt$dataset_strand, 
                                                    pB_filt$states, 
@@ -134,50 +150,53 @@ pB_data$Group.4 <- factor(pB_data$Group.4, levels=general_states_short)
 
 #### Plot A ####
 
+pA_filt$phase[pA_filt$phase == "early"] <- "Early S Phase"
+pA_filt$phase[pA_filt$phase == "late"] <- "Late S Phase"
+
 # create the plot
-p.A <- ggplot(pA_data, aes(x = Group.5, y = log2(x))) + 
+p.A <- ggplot(pA_filt, aes(x = state_short, y = log2(xr_ds))) + 
   geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  geom_boxplot(aes(fill = factor(Group.4)), outlier.shape = NA, lwd=0.1) +
-  facet_grid(~Group.3~Group.2, labeller = labeller(Group.3 = phase_labs)) +
+  geom_boxplot(aes(fill=factor(states), linetype = factor(phase)), 
+               outlier.shape = NA, lwd=0.5) +
+  facet_grid(~dataset_strand) +
   xlab("") + ylab("n. Repair Rate (RR) (log2)") +
   scale_fill_manual(name = "Chromatin States", values = state_colors) +
-  ylim(-2,3) +
+  scale_linetype_manual(name = "Phases", values = c("Early S Phase" =  "solid", 
+                                                    "Late S Phase" = "dashed")) +
+  ylim(-4,5) +
   guides(size = "none") 
 
 # adding and overriding the default plot format
-p.A <- p.A + p_format + 
-  theme(panel.border=element_rect(size=1, fill = NA),
-        legend.position = "right", 
-        axis.ticks.x = element_blank(),
-        axis.text.x = element_blank())
-
-
-#### Plot B ####
-
-# create the plot
-p.B <- ggplot(pB_data, aes(x = Group.4, y = log2(x))) + 
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  geom_boxplot(aes(fill = factor(Group.3)), outlier.shape = NA, lwd=0.1) +
-  facet_wrap(~Group.2) +
-  xlab(chrState_lab) + ylab(expression(RR[E] / RR[L] (log2))) +
-  scale_fill_manual(name = "Chromatin States", values = state_colors) +
-  ylim(-1,1) +
-  guides(size = "none") 
-
-# adding and overriding the default plot format
-p.B <- p.B + p_format +
+p.A <- p.A + p_format +
   theme(panel.border=element_rect(size=1, fill = NA),
         strip.text = element_blank(),
         legend.position = "right", 
         axis.text.x = element_text(angle = 60, vjust = 0.95, hjust = 0.95))
 
+ggsave(argv$o1, width = 22, height = 18, units = "cm")
 
-#### Combining Plots with Patchwork ####
+#### Plot A_ttest ####
 
-p.A / p.B + 
-  plot_layout(guides = "collect") & 
-  plot_annotation(tag_levels = 'A') &
-  theme(plot.tag = element_text(size = 12, face="bold"),
-        legend.margin=margin())
+# create the plot
+p.A_ttest <- ggplot(pA_filt, aes(x = phase, y = log2(xr_ds))) + 
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  geom_boxplot(aes(fill=factor(states), linetype = factor(phase)), 
+               outlier.shape = NA, lwd=0.5) +
+  facet_grid(~dataset_strand~state_short) +
+  xlab("") + ylab("n. Repair Rate (RR) (log2)") +
+  scale_fill_manual(name = "Chromatin States", values = state_colors) +
+  #ylim(-2,3) +
+  guides(size = "none", fill="none") 
 
-ggsave(argv$o, width = 22, height = 18, units = "cm")
+# adding and overriding the default plot format
+p.A_ttest <- p.A_ttest + p_format + 
+  theme(panel.border=element_rect(size=1, fill = NA),
+        legend.position = "right", 
+        axis.ticks.x = element_blank(),
+        axis.text.x = element_blank())
+
+p.A_ttest <- p.A_ttest +
+  stat_compare_means(method = "t.test", label = "p.signif", paired = T, 
+                     comparisons = list(c("Early S Phase", "Late S Phase")), label.y = 4)
+
+ggsave(argv$o2, width = 22, height = 18, units = "cm")
