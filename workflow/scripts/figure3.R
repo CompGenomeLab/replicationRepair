@@ -158,7 +158,7 @@ p.A <- ggplot(pA_filt, aes(x = state_short, y = log2(xr_ds))) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
   geom_boxplot(aes(fill=factor(states), linetype = factor(phase)), 
                outlier.shape = NA, lwd=0.5) +
-  facet_grid(~dataset_strand) +
+  facet_grid(dataset_strand~.) +
   xlab("") + ylab("n. Repair Rate (RR) (log2)") +
   scale_fill_manual(name = "Chromatin States", values = state_colors) +
   scale_linetype_manual(name = "Phases", values = c("Early S Phase" =  "solid", 
