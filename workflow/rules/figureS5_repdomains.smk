@@ -41,3 +41,24 @@ rule figureS5_repdomains:
         --prod 64_PP \
         -o {output.int_figS5_64} &>> {log}
         """
+
+rule figureS5_repdomains_sub:
+    input:  
+        real="results/final/final_reports_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100.txt", 
+        sim="results/final/final_reports_sim_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100.txt",  
+    output:
+        figS5="results/plots/figureS5_repdomains_sub.pdf",   
+    log:
+        "logs/figureS5_repdomains_sub.log",
+    benchmark:
+        "logs/figureS5_repdomains_sub.benchmark.txt",
+    conda:
+        "../envs/figures.yaml",
+    shell:
+        """
+        Rscript workflow/scripts/figureS5_repdomains_sub.R \
+        --real {input.real} \
+        --sim {input.sim} \
+        --prod CPD \
+        -o {output.figS5} &> {log}
+        """
