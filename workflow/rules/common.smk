@@ -304,6 +304,7 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/PCA_readCounts.png")
         inputList.append("results/plots/PCA_readCounts_early.png")
         inputList.append("results/plots/PCA_readCounts_late.png")
+        inputList.append("results/plots/heatmap_SpearmanCorr_readCounts_repli.png")
 
         for sample in sampleList:
             sampledir = "results/edu/" + sample + "/" 
@@ -431,20 +432,17 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figureS5_repdomains.pdf")
         inputList.append("results/plots/figureS5_repdomains_intergenic.pdf")
         inputList.append("results/plots/figureS5_repdomains_64.pdf")
-        inputList.append("results/plots/figureS5_repdomains_intergenic_64.pdf")  
+        inputList.append("results/plots/figureS5_repdomains_intergenic_64.pdf") 
+        inputList.append("results/plots/figureS5_repdomains_sub.pdf")
         inputList.append("results/plots/figureS6.pdf")
         inputList.append("results/plots/figureS7.pdf")
         inputList.append("results/plots/figureS8.pdf")
         inputList.append("results/plots/figureS9.pdf")
         inputList.append("results/plots/figure_markers.pdf")
         inputList.append("results/plots/figure_methyl.pdf")
-        inputList.append("results/plots/mer1.pdf")
-        inputList.append("results/plots/mer2.pdf")
-        inputList.append("results/plots/mer3.pdf")
-        inputList.append("results/plots/mer4.pdf")
-        inputList.append("results/plots/mer5.pdf")
-        inputList.append("results/plots/mer.pdf")
-        inputList.append("results/table/seq_asymmetry.csv")
+        inputList.append("results/plots/figure4_seq_asymmetry.pdf")
+        inputList.append("results/table/seq_asymmetry_exp_obs.csv")
+        inputList.append("results/plots/figure_normDSXR.pdf")
 
         for region in regions:
                 inputList.append("results/final/final_reports_" + build + 
@@ -455,10 +453,10 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                 "_" + region + "_intergenic.txt")
                 inputList.append("results/final/final_reports_sim_" + build + 
                 "_" + region + "_intergenic.txt")
-                inputList.append("results/final/final_reports_markers_" + 
-                region + "_intergenic.txt")
-                inputList.append("results/final/final_reports_methyl_" + 
-                region + "_intergenic.txt")
+                #inputList.append("results/final/final_reports_markers_" + 
+                #region + "_intergenic.txt")
+                #inputList.append("results/final/final_reports_methyl_" + 
+                #region + "_intergenic.txt")
 
     #print(inputList)
     return inputList
