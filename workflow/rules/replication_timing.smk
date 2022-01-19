@@ -8,14 +8,14 @@ rule replication_timing:
         lr2="results/edu/R21071354-EdUrep2-4hrls2_combined/R21071354-EdUrep2-4hrls2_combined_hg19.bdg",
         euvr2="results/edu/R21071354-EdUrep2-UV1-5hrls2_combined/R21071354-EdUrep2-UV1-5hrls2_combined_hg19.bdg",
         luvr2="results/edu/R21071354-EdUrep2-UV3-5hrls2_combined/R21071354-EdUrep2-UV3-5hrls2_combined_hg19.bdg",
-        euvr3="results/edu/R21102739-EdUrep3-UV1-5hrls3_combined/R21102739-EdUrep3-UV1-5hrls3_combined_hg19.bdg",
-        luvr3="results/edu/R21102739-EdUrep3-UV3-5hrls3_combined/R21102739-EdUrep3-UV3-5hrls3_combined_hg19.bdg",
+        #euvr3="results/edu/R21102739-EdUrep3-UV1-5hrls3_combined/R21102739-EdUrep3-UV1-5hrls3_combined_hg19.bdg",
+        #luvr3="results/edu/R21102739-EdUrep3-UV3-5hrls3_combined/R21102739-EdUrep3-UV3-5hrls3_combined_hg19.bdg",
     output:
         r1="results/edu/rep1_T.bg",
         r2="results/edu/rep2_T.bg",
         uvr1="results/edu/rep1_uv_T.bg",
         uvr2="results/edu/rep2_uv_T.bg",
-        uvr3="results/edu/rep3_uv_T.bg",
+        #uvr3="results/edu/rep3_uv_T.bg",
         untreated="results/edu/merge_RT.txt",
         uv="results/edu/merge_uv_RT.txt",
     log:
@@ -50,14 +50,9 @@ rule replication_timing:
         paste {input.euvr2} {input.luvr2} | awk '{{if($8 != 0 && $4 != 0){{print $1,$2,$3,log($4/$8)/log(2)}}}}' OFS='\\t' > {output.uvr2} &&
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
-
-        (echo "`date -R`: Replication timing uv replicate 3..." &&
-        paste {input.euvr3} {input.luvr3} | awk '{{if($8 != 0 && $4 != 0){{print $1,$2,$3,log($4/$8)/log(2)}}}}' OFS='\\t' > {output.uvr3} &&
-        echo "`date -R`: Success!" || 
-        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
-
+        
         (echo "`date -R`: Replication timing combine replicates..." &&
-        bedtools unionbedg -filler “NA” -i {output.uvr1} {output.uvr2} {output.uvr3} > {output.uv} &&
+        bedtools unionbedg -filler “NA” -i {output.uvr1} {output.uvr2} > {output.uv} &&
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """

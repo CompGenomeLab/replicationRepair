@@ -1,2 +1,2 @@
 jobs: 220 
-cluster: "sbatch -A investor -p mem -J {rule}.job --qos mem --mem 32G --time 23:00:00 -e logs/cluster/{rule}_%A.err --output=/dev/null"
+cluster: "sbatch -A investor -p mem -J {rule}.job --qos mem --mem 64G --time 23:00:00 -e logs/cluster/{rule}_%A.err --output=/dev/null"

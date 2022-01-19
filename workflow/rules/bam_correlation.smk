@@ -162,8 +162,6 @@ rule bam_correlation_edu_repli:
         "results/edu/R21071354-EdUrep2-4hrls2_combined/R21071354-EdUrep2-4hrls2_combined_hg19_sorted_rmdup.bam",
         "results/edu/R21071354-EdUrep2-UV1-5hrls2_combined/R21071354-EdUrep2-UV1-5hrls2_combined_hg19_sorted_rmdup.bam",
         "results/edu/R21071354-EdUrep2-UV3-5hrls2_combined/R21071354-EdUrep2-UV3-5hrls2_combined_hg19_sorted_rmdup.bam",
-        "results/edu/R21102739-EdUrep3-UV1-5hrls3_combined/R21102739-EdUrep3-UV1-5hrls3_combined_hg19_sorted_rmdup.bam",
-        "results/edu/R21102739-EdUrep3-UV3-5hrls3_combined/R21102739-EdUrep3-UV3-5hrls3_combined_hg19_sorted_rmdup.bam",
         "results/edu/repliseqG1b.bam",
         "results/edu/repliseqS1.bam",
         "results/edu/repliseqS2.bam",
@@ -185,7 +183,7 @@ rule bam_correlation_edu_repli:
         multiBamSummary bins \
         --bamfiles {input} \
         --minMappingQuality 20 \
-        --labels early_rep1 late_rep1 early_uv_rep1 late_uv_rep1 early_rep2 late_rep2 early_uv_rep2 late_uv_rep2 early_uv_rep3 late_uv_rep3 G1b S1 S2 S3 S4 G2 \
+        --labels early_rep1 late_rep1 early_uv_rep1 late_uv_rep1 early_rep2 late_rep2 early_uv_rep2 late_uv_rep2 G1b S1 S2 S3 S4 G2 \
         -out {output.out} --outRawCounts {output.raw_out} &&
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1

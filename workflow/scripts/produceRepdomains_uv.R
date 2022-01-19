@@ -13,13 +13,15 @@ p <- add_argument(p, "-o", help="output")
 argv <- parse_args(p)
 
 merge<-read.table(argv$i, header=FALSE)
-colnames(merge)<-c("chr","start","end","rep1_uv_T.bg","rep2_uv_T.bg","rep3_uv_T.bg")
+#colnames(merge)<-c("chr","start","end","rep1_uv_T.bg","rep2_uv_T.bg","rep3_uv_T.bg")
+colnames(merge)<-c("chr","start","end","rep1_uv_T.bg","rep2_uv_T.bg")
 
 merge$rep1_uv_T.bg <- as.double(merge$rep1_uv_T.bg)
 merge$rep2_uv_T.bg <- as.double(merge$rep2_uv_T.bg)
-merge$rep3_uv_T.bg <- as.double(merge$rep3_uv_T.bg)
+#merge$rep3_uv_T.bg <- as.double(merge$rep3_uv_T.bg)
 
-merge$avg_uv_T.bg <- (merge$rep1_uv_T.bg + merge$rep2_uv_T.bg + merge$rep3_uv_T.bg) / 3 
+#merge$avg_uv_T.bg <- (merge$rep1_uv_T.bg + merge$rep2_uv_T.bg + merge$rep3_uv_T.bg) / 3 
+merge$avg_uv_T.bg <- (merge$rep1_uv_T.bg + merge$rep2_uv_T.bg) / 2 
 
 merge_values<-as.matrix(merge[,4:ncol(merge)])
 
@@ -63,8 +65,9 @@ for(i in 1:(ncol(merge_norm)-3)){
 
 LS <- merge(AllLoess[[1]], AllLoess[[2]], by = c("chr", "start","end"))  
 LS <- merge(LS, AllLoess[[3]], by = c("chr", "start","end")) 
-LS <- merge(LS, AllLoess[[4]], by = c("chr", "start","end")) 
-cor(LS[,c(4:7)])
+#LS <- merge(LS, AllLoess[[4]], by = c("chr", "start","end")) 
+#cor(LS[,c(4:7)])
+cor(LS[,c(4:6)])
 
 RTc = subset(merge, chr =="chr1")    # Subset of raw timing data in chr1
 LS1c = subset(AllLoess[[1]], chr =="chr1")    # Subset of smoothed data in chr1

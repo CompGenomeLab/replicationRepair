@@ -162,7 +162,7 @@ p.A <- ggplot(pA_filt, aes(x = state_short, y = log2(xr_ds))) +
   xlab("") + ylab("n. Repair Rate (RR) (log2)") +
   scale_fill_manual(name = "Chromatin States", values = state_colors) +
   scale_linetype_manual(name = "Phases", values = c("Early S Phase" =  "solid", 
-                                                    "Late S Phase" = "dashed")) +
+                                                    "Late S Phase" = "dotted")) +
   ylim(-4,5) +
   guides(size = "none") 
 
