@@ -80,6 +80,9 @@ pA1_data <- filter(pA_df_rs, phase != "async",
 
 pA1_data$time_after_exposure[pA1_data$method == "Damage_seq"] <- "0" 
 
+pA1_data$sample_strand <- factor(
+  pA1_data$sample_strand, levels = c("+","-"))
+
 #### Plot A.1 ####
 
 # create the plot
@@ -94,9 +97,7 @@ p.A.1 <- ggplot(pA1_data, aes(x = windows, y = log2(xr_ds))) +
   scale_x_continuous(limits = c(-101, 101), 
                      breaks = c(-101, 0, 101), 
                      labels = c("-10", "0", "+10")) + 
-  scale_color_manual(name = "Phase", 
-                     label = c("Early Phase", "Late Phase", "Asyncronized"), 
-                     values = strand_colors) + 
+  scale_color_manual(values = strand_colors) +
   labs(color = "Strands") 
 
 # adding and overriding the default plot format
