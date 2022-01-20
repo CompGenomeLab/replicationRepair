@@ -241,5 +241,5 @@ p.B.2 <- p.B.2 + p_format +
         legend.position = 'bottom')
 
 
-ggsave(argv$o, width = 22, height = 18, units = "cm")
+ggsave(argv$o, width = 11, height = 9, units = "cm")
 
