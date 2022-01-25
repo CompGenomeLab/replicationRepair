@@ -194,10 +194,12 @@ p.C.1 <- ggplot(pC1_data,
   labs(fill = "")
 
 # adding and overriding the default plot format
-p.C.1 <- p.C.1 + p_format + guides(fill = "none") +
+p.C.1 <- p.C.1 + p_format +
   theme(axis.title.x = element_blank(),
         plot.title = element_text(size = 12, margin=margin(0,0,-40,0)),
-        legend.margin = margin(-2,0,-8,0)) 
+        legend.position = c(0.2, 0.9),
+        legend.background = element_blank(),
+        legend.key.size = unit(3, "mm")) 
 
 
 #### Plot C.2 ####
