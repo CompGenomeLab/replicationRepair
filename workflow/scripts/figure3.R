@@ -13,8 +13,7 @@ p <- arg_parser("producing the figure 3")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
 p <- add_argument(p, "--dtype", help="damage type of the sample to visualize")
-p <- add_argument(p, "--o1", help="output")
-p <- add_argument(p, "--o2", help="output (paired t-test)")
+p <- add_argument(p, "-o", help="output")
 
 # Parse the command line arguments
 argv <- parse_args(p)
@@ -122,48 +121,34 @@ pA_filt <- filter(pA_df_rr, xr_ds != "NaN", xr_ds != "Inf",
 
 pA_filt$state_short <- factor(pA_filt$state_short, levels=general_states_short)
 
-pA_data <- aggregate(x = pA_filt$xr_ds, by = list(pA_filt$dataset, 
-                                                  pA_filt$dataset_strand, 
-                                                  pA_filt$phase, 
-                                                  pA_filt$states, 
-                                                  pA_filt$state_short,
-                                                  pA_filt$chromosomes), 
-                     FUN = "mean")
-
-pA_data$Group.5 <- factor(pA_data$Group.5, levels=general_states_short)
-
 # for plot B
 pB_filt <- filter(pB_df_rr_ear_la, ear_la != "NaN", ear_la != "Inf", 
                   dataset_strand != "DTZ", dataset_strand != "UTZ", 
                   product == dprod, replicate == rep,
                   time_after_exposure == "12")
+
 pB_filt$state_short <- factor(pB_filt$state_short, levels=general_states_short)
 
-pB_data <- aggregate(x = pB_filt$ear_la, by = list(pB_filt$dataset, 
-                                                   pB_filt$dataset_strand, 
-                                                   pB_filt$states, 
-                                                   pB_filt$state_short,
-                                                   pB_filt$chromosomes), 
-                     FUN = "mean")
+pB_filt$ear_la <- log2(pB_filt$ear_la)
 
-pB_data$Group.4 <- factor(pB_data$Group.4, levels=general_states_short)
+stat.test = compare_means(ear_la ~ 1, paired = FALSE, data = pB_filt, method = "wilcox.test", 
+                          group.by = "state_short", mu = 0) %>%
+  mutate(y.position = 4.5)
 
 #### Plot A ####
 
-pA_filt$phase[pA_filt$phase == "early"] <- "Early S Phase"
-pA_filt$phase[pA_filt$phase == "late"] <- "Late S Phase"
+pA_filt$phase[pA_filt$phase == "early"] <- "Early \nS Phase"
+pA_filt$phase[pA_filt$phase == "late"] <- "Late \nS Phase"
 
 # create the plot
 p.A <- ggplot(pA_filt, aes(x = state_short, y = log2(xr_ds))) + 
   geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  geom_boxplot(aes(fill=factor(states), linetype = factor(phase)), 
+  geom_boxplot(aes(fill=factor(states)), 
                outlier.shape = NA, lwd=0.5) +
-  facet_grid(dataset_strand~.) +
+  facet_grid(~phase~dataset_strand) +
   xlab("") + ylab("n. Repair Rate (RR) (log2)") +
   scale_fill_manual(name = "Chromatin States", values = state_colors) +
-  scale_linetype_manual(name = "Phases", values = c("Early S Phase" =  "solid", 
-                                                    "Late S Phase" = "dotted")) +
-  ylim(-4,5) +
+  #ylim(-4,5) +
   guides(size = "none") 
 
 # adding and overriding the default plot format
@@ -171,32 +156,33 @@ p.A <- p.A + p_format +
   theme(panel.border=element_rect(size=1, fill = NA),
         strip.text = element_blank(),
         legend.position = "right", 
-        axis.text.x = element_text(angle = 60, vjust = 0.95, hjust = 0.95))
-
-ggsave(argv$o1, width = 22, height = 18, units = "cm")
-
-#### Plot A_ttest ####
-
-# create the plot
-p.A_ttest <- ggplot(pA_filt, aes(x = phase, y = log2(xr_ds))) + 
-  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
-  geom_boxplot(aes(fill=factor(states), linetype = factor(phase)), 
-               outlier.shape = NA, lwd=0.5) +
-  facet_grid(~dataset_strand~state_short) +
-  xlab("") + ylab("n. Repair Rate (RR) (log2)") +
-  scale_fill_manual(name = "Chromatin States", values = state_colors) +
-  #ylim(-2,3) +
-  guides(size = "none", fill="none") 
-
-# adding and overriding the default plot format
-p.A_ttest <- p.A_ttest + p_format + 
-  theme(panel.border=element_rect(size=1, fill = NA),
-        legend.position = "right", 
         axis.ticks.x = element_blank(),
         axis.text.x = element_blank())
 
-p.A_ttest <- p.A_ttest +
-  stat_compare_means(method = "t.test", label = "p.signif", paired = T, 
-                     comparisons = list(c("Early S Phase", "Late S Phase")), label.y = 4)
+#### Plot B ####
 
-ggsave(argv$o2, width = 22, height = 18, units = "cm")
+# create the plot
+p.B <- ggplot(pB_filt, aes(x = state_short, y = ear_la)) + 
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  geom_boxplot(aes(fill = factor(states)), outlier.shape = NA, lwd=0.5) +
+  facet_wrap(~dataset_strand) +
+  xlab(chrState_lab) + ylab(expression(RR[E] / RR[L] (log2))) +
+  scale_fill_manual(name = "Chromatin States", values = state_colors) +
+  #ylim(-1,1) +
+  guides(fill="none") 
+
+# adding and overriding the default plot format
+p.B <- p.B + p_format +
+  theme(panel.border=element_rect(size=1, fill = NA),
+        strip.text = element_blank(),
+        legend.position = "right", 
+        axis.text.x = element_text(angle = 60, vjust = 0.95, hjust = 0.95)) +
+  geom_text(data = stat.test, aes(y=y.position, label = p.signif))
+
+p.A / p.B + 
+  plot_layout(guides = "collect") & 
+  plot_annotation(tag_levels = 'A') &
+  theme(plot.tag = element_text(size = 12, face="bold"),
+        legend.margin=margin())
+
+ggsave(argv$o, width = 22, height = 18, units = "cm")
