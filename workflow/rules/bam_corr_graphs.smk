@@ -239,7 +239,7 @@ rule bam_corr_graphs_repli:
     output:
         scatter="results/plots/scatterplot_PearsonCorr_bigwigScores_repli.png",
         tab="results/edu/PearsonCorr_bigwigScores_repli.tab",
-        heatmap="results/plots/heatmap_SpearmanCorr_readCounts_repli.png",
+        heatmap="results/plots/figureS2A.png",
         tab2="results/edu/SpearmanCorr_readCounts_repli.tab",
         pca="results/plots/PCA_readCounts_repli.png",
     log:

@@ -266,7 +266,6 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/PCA_readCounts.png")
         inputList.append("results/plots/PCA_readCounts_early.png")
         inputList.append("results/plots/PCA_readCounts_late.png")
-        inputList.append("results/plots/heatmap_SpearmanCorr_readCounts_repli.png")
 
         for sample in sampleList:
             sampledir = f"results/edu/{sample}/"
@@ -371,6 +370,8 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figure4E.pdf")
         inputList.append("results/plots/figure5A.pdf")
         inputList.append("results/plots/figure5B_5C_5D.pdf")
+        inputList.append("results/plots/figureS2A.png")
+        inputList.append("results/plots/figureS3B_S3C_S3D.pdf")
         inputList.append("results/plots/figureS10.pdf")
         inputList.append("results/plots/figureS11.pdf")
         inputList.append("results/plots/figureS12B_S12C.pdf")
@@ -379,7 +380,6 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figureS15.pdf")
         inputList.append("results/plots/figureS16.pdf")
         inputList.append("results/plots/figureS17.pdf")
-        inputList.append("results/plots/figureS2.pdf")
         inputList.append("results/plots/figureS3.pdf")
         inputList.append("results/plots/figureS4.pdf")
         inputList.append("results/plots/figureS5.pdf")

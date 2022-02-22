@@ -10,7 +10,7 @@ library(patchwork)
 library("viridis")
 
 ######## Arguments ##########
-p <- arg_parser("producing the suplementary figure 2")
+p <- arg_parser("producing the figure S3B-D")
 p <- add_argument(p, "--dinuc_ds_cpd_120", help="dinuc content of a ds sample")
 p <- add_argument(p, "--dinuc_xr_cpd_120", help="dinuc content of a xr sample")
 p <- add_argument(p, "--len_xr_cpd_120", help="length dist of a xr sample")
