@@ -10,7 +10,7 @@ library(patchwork)
 library(GGally)
 
 ######## Arguments ##########
-p <- arg_parser("producing the sequence context of (1 to 5)-mer on initiation zones")
+p <- arg_parser("producing figure 4E, S13-S17 - the sequence context of (mono to penta)-mer around initiation zones")
 p <- add_argument(p, "-i", help="input")
 p <- add_argument(p, "--o1", help="output 1-mer")
 p <- add_argument(p, "--o2", help="output 2-mer")
