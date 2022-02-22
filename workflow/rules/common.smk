@@ -316,8 +316,8 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
 
                 for mydir in [sampledir, simdir, intdir, intsimdir]:
                 
-                    inputList.append(f"{mydir}{sample}_{build}_plus_{regions}_combined_rpkm.txt")
-                    inputList.append(f"{mydir}{sample}_{build}_minus_{regions}_combined_rpkm.txt")
+                    inputList.append(f"{mydir}{sample}_{build}_plus_{region}_combined_rpkm.txt")
+                    inputList.append(f"{mydir}{sample}_{build}_minus_{region}_combined_rpkm.txt")
 
     if method == "xr":
 
@@ -335,8 +335,8 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
 
                 for mydir in [sampledir, simdir, intdir, intsimdir]:
 
-                    inputList.append(f"{mydir}{sample}_{build}_plus_{regions}_combined_rpkm.txt")
-                    inputList.append(f"{mydir}{sample}_{build}_minus_{regions}_combined_rpkm.txt")
+                    inputList.append(f"{mydir}{sample}_{build}_plus_{region}_combined_rpkm.txt")
+                    inputList.append(f"{mydir}{sample}_{build}_minus_{region}_combined_rpkm.txt")
 
     if method == "markers":
         
@@ -381,7 +381,7 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figureS5_repdomains_intergenic.pdf")
         inputList.append("results/plots/figureS5_repdomains_64.pdf")
         inputList.append("results/plots/figureS5_repdomains_intergenic_64.pdf") 
-        inputList.append("results/plots/figureS5_repdomains_sub.pdf")
+        inputList.append("results/plots/figure4B.pdf")
         inputList.append("results/plots/figureS6.pdf")
         inputList.append("results/plots/figureS7.pdf")
         inputList.append("results/plots/figureS8.pdf")
