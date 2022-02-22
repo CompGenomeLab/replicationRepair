@@ -10,7 +10,7 @@ library(grid)
 library(argparser)
 
 ######## Arguments ##########
-p <- arg_parser("producing the figure 4 and 5")
+p <- arg_parser("producing the figure 4C, 4D, S10, S11, S12B, and S12C")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
 p <- add_argument(p, "--phase", help="early or late")
@@ -306,11 +306,11 @@ p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y 
 p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.05) 
 
 (p.A + labs(title="A")) + 
-(p.B.1 + labs(title="B")) + p.B.2 + 
+(p.B.1 + labs(title="C")) + p.B.2 + 
   grid::textGrob(ylabname1, 
                   rot = -90, gp=gpar(fontsize=12), 
                   y = unit(.55, "npc")) + 
-  (p.C.1 + labs(title="C")) + p.C.2 + 
+  (p.C.1 + labs(title="D")) + p.C.2 + 
   grid::textGrob(ylabname2, 
                   rot = -90, gp=gpar(fontsize=12), 
                   y = unit(.62, "npc")) + 
