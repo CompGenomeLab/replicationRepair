@@ -9,7 +9,7 @@ library(reshape2)
 library(patchwork)
 
 ######## Arguments ##########
-p <- arg_parser("producing the figure 6")
+p <- arg_parser("producing the figure 5B,C,D")
 p <- add_argument(p, "--noverlap", help="non-overlapping HeLa initiation zones")
 p <- add_argument(p, "--overlap", help="overlapping HeLa initiation zones")
 p <- add_argument(p, "--hela", help="mutation counts on overlapping HeLa initiation zones with scores")
@@ -17,7 +17,7 @@ p <- add_argument(p, "--noverlap_mut", help="mutation counts on non-overlapping 
 p <- add_argument(p, "--overlap_mut", help="mutation counts on overlapping HeLa initiation zones")
 p <- add_argument(p, "--noverlap_TC", help="TC counts on non-overlapping HeLa initiation zones")
 p <- add_argument(p, "--overlap_TC", help="TC counts on overlapping HeLa initiation zones")
-p <- add_argument(p, "--fig6", help="figure output")
+p <- add_argument(p, "--fig5", help="figure output")
 
 # Parse the command line arguments
 argv <- parse_args(p)

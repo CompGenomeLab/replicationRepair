@@ -1,4 +1,4 @@
-rule figure6:
+rule figure5B_5C_5D:
     input:  
         noverlap="results/okseq/HeLa_no_overlap.bed",
         overlap="results/okseq/HeLa_intersect2_GM06990_IMR90.bed",  
@@ -8,16 +8,16 @@ rule figure6:
         overlap_TC="results/regions/iz_hela_to_gm_imr_repdomains_uv_mean0.5_windows_201_100_counts.txt",
         noverlap_TC="results/regions/iz_hela_no_overlap_repdomains_uv_mean0.5_windows_201_100_counts.txt",  
     output:
-        "results/plots/figure6.pdf",
+        "results/plots/figure5B_5C_5D.pdf",
     log:
-        "logs/figure6.log",
+        "logs/figure5B_5C_5D.log",
     benchmark:
-        "logs/figure6.benchmark.txt",
+        "logs/figure5B_5C_5D.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:
         """
-        Rscript workflow/scripts/figure6.R \
+        Rscript workflow/scripts/figure5B_5C_5D.R \
         --noverlap {input.noverlap} \
         --overlap {input.overlap} \
         --hela {input.hela} \
@@ -25,5 +25,5 @@ rule figure6:
         --overlap_mut {input.overlap_mut} \
         --noverlap_TC {input.noverlap_TC} \
         --overlap_TC {input.overlap_TC} \
-        --fig6 {output} &> {log}
+        --fig5 {output} &> {log}
         """
