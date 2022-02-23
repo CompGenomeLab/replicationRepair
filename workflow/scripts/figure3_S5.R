@@ -9,7 +9,7 @@ library(patchwork)
 library(argparser)
 
 ######## Arguments ##########
-p <- arg_parser("producing the figure 3")
+p <- arg_parser("producing the figure 3 and suplementary figure 5")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
 p <- add_argument(p, "--dtype", help="damage type of the sample to visualize")

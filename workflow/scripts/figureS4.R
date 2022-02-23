@@ -9,22 +9,13 @@ library(reshape2)
 library(patchwork)
 
 ######## Arguments ##########
-p <- arg_parser("producing the supplementary figure 3")
+p <- arg_parser("producing the supplementary figure 4")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
 p <- add_argument(p, "-o", help="output")
 
 # Parse the command line arguments
 argv <- parse_args(p)
-
-# name of the sample csv file for plot A
-#sample_pA <- paste("/Users/azgarian/Desktop/replication_final/",
-#                   "final_reports_hg19_repdomains_uv_mean0.5_windows_201_10000.txt", 
-#                   sep = "")
-
-#sample_pA_sim <- paste("/Users/azgarian/Desktop/replication_final/",
-#                   "final_reports_sim_hg19_repdomains_uv_mean0.5_windows_201_10000.txt", 
-#                   sep = "")
 
 sample_pA <- argv$df
 

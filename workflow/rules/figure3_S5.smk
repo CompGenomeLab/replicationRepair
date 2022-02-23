@@ -1,10 +1,10 @@
-rule figure3:
+rule figure3_S5:
     input:  
         df="results/final/final_reports_hg19_chromhmm_hela_repdomains_uv_mean0.5.txt", 
         df_sim="results/final/final_reports_sim_hg19_chromhmm_hela_repdomains_uv_mean0.5.txt",            
     output:
         CPD="results/plots/figure3.pdf",
-        PP64="results/plots/figureS4.pdf",
+        PP64="results/plots/figureS5.pdf",
     log:
         "logs/figure3.log",
     benchmark:
@@ -13,13 +13,13 @@ rule figure3:
         "../envs/figures.yaml",
     shell:
         """
-        Rscript workflow/scripts/figure3.R \
+        Rscript workflow/scripts/figure3_S5.R \
         --df {input.df} \
         --df_sim {input.df_sim} \
         --dtype "CPD" \
         -o {output.CPD} &> {log}
 
-        Rscript workflow/scripts/figure3.R \
+        Rscript workflow/scripts/figure3_S5.R \
         --df {input.df} \
         --df_sim {input.df_sim} \
         --dtype "64_PP" \
