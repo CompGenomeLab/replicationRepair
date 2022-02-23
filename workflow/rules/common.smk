@@ -374,6 +374,10 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figureS3B_S3C_S3D.pdf")
         inputList.append("results/plots/figureS4.pdf")
         inputList.append("results/plots/figureS5.pdf")
+        inputList.append("results/plots/figureS6.pdf")
+        inputList.append("results/plots/figureS7.pdf")
+        inputList.append("results/plots/figureS8.pdf")
+        inputList.append("results/plots/figureS9.pdf")
         inputList.append("results/plots/figureS10.pdf")
         inputList.append("results/plots/figureS11.pdf")
         inputList.append("results/plots/figureS12B_S12C.pdf")
@@ -383,13 +387,7 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
         inputList.append("results/plots/figureS16.pdf")
         inputList.append("results/plots/figureS17.pdf")
 
-  
-        inputList.append("results/plots/figureS5_repdomains.pdf")
-        inputList.append("results/plots/figureS5_repdomains_intergenic.pdf")
-        inputList.append("results/plots/figureS5_repdomains_64.pdf")
-        inputList.append("results/plots/figureS5_repdomains_intergenic_64.pdf") 
-        inputList.append("results/plots/figureS8.pdf")
-        inputList.append("results/plots/figureS9.pdf")
+
         #inputList.append("results/plots/figure_markers.pdf")
         #inputList.append("results/plots/figure_methyl.pdf")
         inputList.append("results/plots/figure_normDSXR.pdf")

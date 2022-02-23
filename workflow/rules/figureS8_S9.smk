@@ -15,13 +15,13 @@ rule figureS8_S9:
         "../envs/figures.yaml",
     shell:
         """
-        Rscript workflow/scripts/figure4_64.R \
+        Rscript workflow/scripts/figureS8_S9.R \
         --df {input.df} \
         --df_sim {input.df_sim} \
         --intergenic False \
         -o {output.figS8} &> {log}
 
-        Rscript workflow/scripts/figure4_64.R \
+        Rscript workflow/scripts/figureS8_S9.R \
         --df {input.df_int} \
         --df_sim {input.df_int_sim} \
         --intergenic True \

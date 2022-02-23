@@ -133,7 +133,6 @@ include: "workflow/rules/mapping2regions.smk"
 include: "workflow/rules/combine_files.smk"
 
 # Figures
-include: "workflow/rules/figure_markers.smk"
 include: "workflow/rules/figure1.smk"
 include: "workflow/rules/figure2.smk"
 include: "workflow/rules/figure3_S5.smk"
@@ -145,7 +144,8 @@ include: "workflow/rules/figure5B_5C_5D.smk"
 include: "workflow/rules/bam_corr_graphs.smk" # contains figure S2A
 include: "workflow/rules/figureS3B_S3C_S3D.smk"
 include: "workflow/rules/figureS4.smk"
-
-include: "workflow/rules/figureS5_repdomains.smk"
+include: "workflow/rules/figureS6_S7.smk"
 include: "workflow/rules/figureS8_S9.smk"
+
 include: "workflow/rules/figure_normDSXR.smk"
+include: "workflow/rules/figure_markers.smk"

@@ -10,7 +10,7 @@ library(patchwork)
 library(grid)
 
 ######## Arguments ##########
-p <- arg_parser("producing the suplementary figure 5")
+p <- arg_parser("producing the suplementary figure 6 and 7")
 p <- add_argument(p, "--real", help="windowed (20kb) initiation zones file with read counts")
 p <- add_argument(p, "--sim", help="windowed (20kb) initiation zones file with simulated read counts")
 p <- add_argument(p, "--prod", help="Damage type (64_PP or CPD)")

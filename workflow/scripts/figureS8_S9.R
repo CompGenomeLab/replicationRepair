@@ -10,7 +10,7 @@ library(grid)
 library(argparser)
 
 ######## Arguments ##########
-p <- arg_parser("producing the figure 4 and 5")
+p <- arg_parser("producing the figure S8 and S9")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
 p <- add_argument(p, "--intergenic", help="True if reads come from intergenic regions")

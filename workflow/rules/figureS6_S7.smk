@@ -1,43 +1,43 @@
-rule figureS5_repdomains:
+rule figureS6_S7:
     input:  
         real="results/final/final_reports_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100.txt", 
         sim="results/final/final_reports_sim_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100.txt",  
         int_real="results/final/final_reports_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100_intergenic.txt", 
         int_sim="results/final/final_reports_sim_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100_intergenic.txt",   
     output:
-        figS5="results/plots/figureS5_repdomains.pdf",
-        int_figS5="results/plots/figureS5_repdomains_intergenic.pdf",
-        figS5_64="results/plots/figureS5_repdomains_64.pdf",
-        int_figS5_64="results/plots/figureS5_repdomains_intergenic_64.pdf",        
+        figS6="results/plots/figureS6.pdf",
+        int_figS6="results/plots/figureS6_intergenic.pdf",
+        figS7="results/plots/figureS7.pdf",
+        int_figS7="results/plots/figureS7_intergenic.pdf",        
     log:
-        "logs/figureS5_repdomains.log",
+        "logs/figureS6_S7.log",
     benchmark:
-        "logs/figureS5_repdomains.benchmark.txt",
+        "logs/figureS6_S7.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:
         """
-        Rscript workflow/scripts/figureS5_repdomains.R \
+        Rscript workflow/scripts/figureS6_S7.R \
         --real {input.real} \
         --sim {input.sim} \
         --prod CPD \
-        -o {output.figS5} &> {log}
+        -o {output.figS6} &> {log}
 
-        Rscript workflow/scripts/figureS5_repdomains.R \
+        Rscript workflow/scripts/figureS6_S7.R \
         --real {input.int_real} \
         --sim {input.int_sim} \
         --prod CPD \
-        -o {output.int_figS5} &>> {log}
+        -o {output.int_figS6} &>> {log}
 
-        Rscript workflow/scripts/figureS5_repdomains.R \
+        Rscript workflow/scripts/figureS6_S7.R \
         --real {input.real} \
         --sim {input.sim} \
         --prod 64_PP \
-        -o {output.figS5_64} &>> {log}
+        -o {output.figS7} &>> {log}
 
-        Rscript workflow/scripts/figureS5_repdomains.R \
+        Rscript workflow/scripts/figureS6_S7.R \
         --real {input.int_real} \
         --sim {input.int_sim} \
         --prod 64_PP \
-        -o {output.int_figS5_64} &>> {log}
+        -o {output.int_figS7} &>> {log}
         """
