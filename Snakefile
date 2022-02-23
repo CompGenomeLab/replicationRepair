@@ -146,6 +146,6 @@ include: "workflow/rules/figureS3B_S3C_S3D.smk"
 include: "workflow/rules/figureS4.smk"
 include: "workflow/rules/figureS6_S7.smk"
 include: "workflow/rules/figureS8_S9.smk"
+include: "workflow/rules/figureS18.smk"
 
-include: "workflow/rules/figure_normDSXR.smk"
 include: "workflow/rules/figure_markers.smk"

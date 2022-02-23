@@ -361,36 +361,15 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                 inputList.append(f"{sampledir}{sample}_{build}_plus_{region}_combined_rpkm.txt")
 
     if method == "report":
-    
-        inputList.append("results/plots/figure1.pdf")
-        inputList.append("results/plots/figure2.pdf")
-        inputList.append("results/plots/figure3.pdf")
-        inputList.append("results/plots/figure4B.pdf")
-        inputList.append("results/plots/figure4C_4D.pdf")
-        inputList.append("results/plots/figure4E.pdf")
-        inputList.append("results/plots/figure5A.pdf")
-        inputList.append("results/plots/figure5B_5C_5D.pdf")
-        inputList.append("results/plots/figureS2A.png")
-        inputList.append("results/plots/figureS3B_S3C_S3D.pdf")
-        inputList.append("results/plots/figureS4.pdf")
-        inputList.append("results/plots/figureS5.pdf")
-        inputList.append("results/plots/figureS6.pdf")
-        inputList.append("results/plots/figureS7.pdf")
-        inputList.append("results/plots/figureS8.pdf")
-        inputList.append("results/plots/figureS9.pdf")
-        inputList.append("results/plots/figureS10.pdf")
-        inputList.append("results/plots/figureS11.pdf")
-        inputList.append("results/plots/figureS12B_S12C.pdf")
-        inputList.append("results/plots/figureS13.pdf")
-        inputList.append("results/plots/figureS14.pdf")
-        inputList.append("results/plots/figureS15.pdf")
-        inputList.append("results/plots/figureS16.pdf")
-        inputList.append("results/plots/figureS17.pdf")
 
+        for fig_num in ["1","2","3","4B","4C_4D","4E","5A","5B_5C_5D","S2A","S3B_S3C_S3D",
+        "S4","S5","S6","S7","S8","S9","S10","S11","12B_S12C","S13","S14","S15","S16","S17","S18"]:
+    
+            inputList.append(f"results/plots/figure{fig_num}.pdf")
 
         #inputList.append("results/plots/figure_markers.pdf")
         #inputList.append("results/plots/figure_methyl.pdf")
-        inputList.append("results/plots/figure_normDSXR.pdf")
+
 
         for region in regions:
                 inputList.append(f"results/final/final_reports_{build}_{region}.txt")

@@ -9,7 +9,7 @@ library(reshape2)
 library(patchwork)
 
 ######## Arguments ##########
-p <- arg_parser("producing damage and repair signals that are normalized by simulations.")
+p <- arg_parser("producing supplementary figure 18 - damage and repair signals that are normalized by simulations.")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
 p <- add_argument(p, "-o", help="output")
