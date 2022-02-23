@@ -68,13 +68,6 @@ def input4filter(wildcards, sampleList, srrEnabled, srrList, method, dirRaw):
     else:    
         return "results/" + method + "/{samples}/{samples}_{build}_pe.bed"
 
-def input4chip(wildcards, sampleList, srrEnabled, srrList):
-
-    if isSingle(wildcards.samples, sampleList, srrEnabled, srrList, "resources/samples/chipseq/"):
-        return "results/chipseq/{samples}/{samples}_{build}_se.bed"
-    else:    
-        return "results/chipseq/{samples}/{samples}_{build}_pe.bed"
-
 def lineNum(file):
     
     linenum = 0
@@ -100,44 +93,23 @@ def mappedReads(*files):
 
     return lineNumber
 
-def info(wildcards, method="sample"):
+def info(wildcards):
 
     sample_name = wildcards.samples.replace("-","_")
 
-    if method == "sample":
+    with open("resources/samples/samples.csv") as f:
 
-        with open("resources/samples/samples.csv") as f:
+        targetLine = ""
+        for line in f:
 
-            targetLine = ""
-            for line in f:
+            if line.strip().split(",")[1] == sample_name:
 
-                if line.strip().split(",")[1] == sample_name:
-
-                    #targetLine = line.strip().replace(",","\t")
-                    targetLine = line.strip()
-                    return targetLine
-                
-            if targetLine == "":
-                raise(ValueError(f"{sample_name} not found in samples.csv file..."))
-    
-    elif method == "marker":
-
-        with open("resources/samples/markers.csv") as f:
-
-            targetLine = ""
-            for line in f:
-                if line.strip().split(",")[0] == sample_name:
-
-                    #targetLine = line.strip().replace(",","\t")
-                    targetLine = line.strip()
-                    return targetLine
-                
-            if targetLine == "":
-                raise(ValueError(f"{sample_name} not found in markers.csv file..."))
-
-def getMarkerName(wildcards, idx=1):
-    return wildcards.samples.split("_")[idx]
-
+                #targetLine = line.strip().replace(",","\t")
+                targetLine = line.strip()
+                return targetLine
+            
+        if targetLine == "":
+            raise(ValueError(f"{sample_name} not found in samples.csv file..."))
 
 def getCombine(region, combineList, regionList):
 
@@ -157,7 +129,7 @@ def getRegion(region, rawRegionList, regionList):
         
     return rawRegionList[idx] 
 
-def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regions="", outformat="real"):
+def combineOutputs(build, sampleList_xr, sampleList_ds, regions="", outformat="real"):
 
     inputList = []
     if outformat == "real":
@@ -198,21 +170,6 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regi
             inputList.append(f"{sampledir}{sample}_{build}_plus_{regions}_combined_rpkm.txt")
             inputList.append(f"{sampledir}{sample}_{build}_minus_{regions}_combined_rpkm.txt")
 
-    elif outformat == "markers_intergenic":
-
-        for sample in sampleList_markers:
-            sampledir = f"results/intergenic_markers/{sample}/" 
-
-            inputList.append(f"{sampledir}{sample}_{build}_{regions}_combined_rpkm.txt")
-
-    elif outformat == "methyl_intergenic":
-
-        for sample in sampleList_markers:
-            sampledir = f"results/intergenic_methyl/{sample}/"  
-
-            inputList.append(f"{sampledir}{sample}_{build}_plus_{regions}_combined_rpkm.txt")
-            inputList.append(f"{sampledir}{sample}_{build}_minus_{regions}_combined_rpkm.txt")
-
     elif outformat == "tss":
         for sample in sampleList_xr:
             sampledir = f"results/XR/{sample}/" 
@@ -235,7 +192,6 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, sampleList_markers, regi
             
             inputList.append(f"{sampledir}{sample}_{build}_sorted_dipyrimidines_tes_combined_rpkm.bed") 
 
-    #print(inputList)
     return inputList
 
 
@@ -337,47 +293,18 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                     inputList.append(f"{mydir}{sample}_{build}_plus_{region}_combined_rpkm.txt")
                     inputList.append(f"{mydir}{sample}_{build}_minus_{region}_combined_rpkm.txt")
 
-    if method == "markers":
-        
-        inputList.append("results/plots/PCA_readCounts_chipseq.png")
-
-        for sample in sampleList:
-
-            sampledir = f"results/intergenic_markers/{sample}/" 
-            
-            for region in regions:
-        
-                inputList.append(f"{sampledir}{sample}_{build}_{region}_combined_rpkm.txt")
-
-    if method == "methyl":
-
-        for sample in sampleList:
-
-            sampledir = "results/intergenic_methyl/{sample}/" 
-            
-            for region in regions:
-        
-                inputList.append(f"{sampledir}{sample}_{build}_minus_{region}_combined_rpkm.txt")
-                inputList.append(f"{sampledir}{sample}_{build}_plus_{region}_combined_rpkm.txt")
-
     if method == "report":
 
         for fig_num in ["1","2","3","4B","4C_4D","4E","5A","5B_5C_5D","S2A","S3B_S3C_S3D",
-        "S4","S5","S6","S7","S8","S9","S10","S11","12B_S12C","S13","S14","S15","S16","S17","S18"]:
+        "S4","S5","S6","S7","S8","S9","S10","S11","S12B_S12C","S13","S14","S15","S16","S17","S18"]:
     
             inputList.append(f"results/plots/figure{fig_num}.pdf")
-
-        #inputList.append("results/plots/figure_markers.pdf")
-        #inputList.append("results/plots/figure_methyl.pdf")
-
 
         for region in regions:
                 inputList.append(f"results/final/final_reports_{build}_{region}.txt")
                 inputList.append(f"results/final/final_reports_sim_{build}_{region}.txt")
                 inputList.append(f"results/final/final_reports_{build}_{region}_intergenic.txt")
                 inputList.append(f"results/final/final_reports_sim_{build}_{region}_intergenic.txt")
-                #inputList.append(f"results/final/final_reports_markers_{region}_intergenic.txt")
-                #inputList.append(f"results/final/final_reports_methyl_{region}_intergenic.txt")
 
     return inputList
 

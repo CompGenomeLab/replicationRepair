@@ -278,4 +278,4 @@ p.A + p.B + p.C + p.D +
   plot_layout(design = layout) & 
   theme(plot.tag = element_text(hjust = -0.2, size = 12, face="bold"))
 
-ggsave(argv$fig6, width = 22, height = 18, units = "cm") 
+ggsave(argv$fig5, width = 22, height = 18, units = "cm") 

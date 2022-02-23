@@ -13,9 +13,7 @@ wildcard_constraints:
                                 config["ds"]["samples"] + 
                                 config["edu"]["samples"] + 
                                 config["okseq"]["samples"] + 
-                                config["mutation"]["samples"] + 
-                                config["chipseq"]["samples"] +
-                                config["methyl"]["samples"]
+                                config["mutation"]["samples"] 
                                 )]),
     tss_tes='tss|tes'
 
@@ -94,29 +92,19 @@ include: "workflow/rules/produceReplicationDomains.smk"
 # OK-seq Analysis
 if config["okseq"]["srr"]["enabled"]:
     include: "workflow/rules/sra_okseq.smk"
-include: "workflow/rules/fastqc.smk"
+#include: "workflow/rules/fastqc.smk" # The rule implemented in EdU Analysis
 include: "workflow/rules/adaptor_handling.smk"
-include: "workflow/rules/align.smk"
-include: "workflow/rules/bam_correlation.smk"
+#include: "workflow/rules/align.smk" # The rule implemented in EdU Analysis
+#include: "workflow/rules/bam_correlation.smk" # The rule implemented in EdU Analysis
 include: "workflow/rules/produceInitiationZones.smk"
 include: "workflow/rules/okseqIntersect.smk"
 include: "workflow/rules/getHeLaIZ.smk"
-
-# Chip-seq Analysis
-if config["chipseq"]["srr"]["enabled"]:
-    include: "workflow/rules/sra_chipseq.smk"
-include: "workflow/rules/align.smk"
-include: "workflow/rules/bam2bed.smk" 
-include: "workflow/rules/bam_correlation.smk"
-
-# Methylation
-#include: "workflow/rules/liftMethyl.smk"
 
 # Mutation Analysis
 include: "workflow/rules/get_sbs_muts.smk"
 include: "workflow/rules/organize.smk"
 include: "workflow/rules/filter_target_muts.smk"
-include: "workflow/rules/sep_strands.smk"
+#include: "workflow/rules/sep_strands.smk" # The rule implemented in EdU Analysis
 include: "workflow/rules/intergenic.smk"
 
 # Process Retrieved Data
@@ -147,5 +135,3 @@ include: "workflow/rules/figureS4.smk"
 include: "workflow/rules/figureS6_S7.smk"
 include: "workflow/rules/figureS8_S9.smk"
 include: "workflow/rules/figureS18.smk"
-
-include: "workflow/rules/figure_markers.smk"

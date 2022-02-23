@@ -113,45 +113,6 @@ rule bam_correlation_okseq:
         {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
         """
 
-rule bam_correlation_chipseq:
-    input:
-        "results/chipseq/HeLa_H2AFZ_A/HeLa_H2AFZ_A_se_hg19.bam",
-        "results/chipseq/HeLa_H3K27ac_A/HeLa_H3K27ac_A_se_hg19.bam",
-        "results/chipseq/HeLa_H3K27me3_A/HeLa_H3K27me3_A_se_hg19.bam",
-        "results/chipseq/HeLa_H3K27me3_B/HeLa_H3K27me3_B_se_hg19.bam",
-        "results/chipseq/HeLa_H3K36me3_A/HeLa_H3K36me3_A_se_hg19.bam",
-        "results/chipseq/HeLa_H3K36me3_B/HeLa_H3K36me3_B_se_hg19.bam",
-        "results/chipseq/HeLa_H3K4me1_A/HeLa_H3K4me2_A_se_hg19.bam",
-        "results/chipseq/HeLa_H3K4me3_B/HeLa_H3K4me3_B_se_hg19.bam",
-        "results/chipseq/HeLa_H3K4me3_C/HeLa_H3K4me3_C_se_hg19.bam",
-        "results/chipseq/HeLa_H3K79me2_A/HeLa_H3K79me2_A_se_hg19.bam",
-        "results/chipseq/HeLa_H3K9ac_A/HeLa_H3K9ac_A_se_hg19.bam",
-        "results/chipseq/HeLa_H3K9me3_A/HeLa_H3K9me3_A_se_hg19.bam",
-        "results/chipseq/HeLa_H4K20me1_A/HeLa_H4K20me1_A_se_hg19.bam",
-    output:
-        out="results/chipseq/readCounts_chipseq.npz",
-        raw_out="results/chipseq/readCounts_chipseq.tab",
-    log:
-        "logs/bam_correlation_chipseq.log",
-    benchmark:
-        "logs/bam_correlation_chipseq.benchmark.txt",
-    conda:
-        "../envs/bam_correlation.yaml"
-    shell:  
-        """
-        (echo "`date -R`: MultiBam summary..." &&
-        multiBamSummary bins \
-        --bamfiles {input} \
-        --minMappingQuality 20 \
-        --labels HeLa_H2AFZ_A HeLa_H3K27ac_A HeLa_H3K27me3_A HeLa_H3K27me3_B \
-            HeLa_H3K36me3_A HeLa_H3K36me3_B HeLa_H3K4me1_A HeLa_H3K4me2_A \
-            HeLa_H3K4me3_B HeLa_H3K4me3_C HeLa_H3K79me2_A HeLa_H3K9ac_A \
-            HeLa_H3K9me3_A HeLa_H4K20me1_A \
-        -out {output.out} --outRawCounts {output.raw_out} &&
-        echo "`date -R`: Success!" || 
-        {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
-        """
-
 rule bam_correlation_edu_repli:
     input:
         "results/edu/R21061297-EdUrep-2hrls_combined/R21061297-EdUrep-2hrls_combined_hg19_sorted_rmdup.bam",
