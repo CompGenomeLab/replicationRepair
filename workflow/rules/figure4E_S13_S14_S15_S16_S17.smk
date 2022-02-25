@@ -2,13 +2,13 @@ rule figure4E_S13_S14_S15_S16_S17:
     input:  
         "results/regions/iz_hela_repdomains_uv_mean0.5_windows_201_100_kmer_counts.txt", 
     output:
-        comb="results/plots/figure4E.pdf",
-        table="results/table/seq_asymmetry_exp_obs.csv",
-        o1="results/plots/figureS13.pdf",
-        o2="results/plots/figureS14.pdf",
-        o3="results/plots/figureS15.pdf",
-        o4="results/plots/figureS16.pdf",
-        o5="results/plots/figureS17.pdf",
+        comb=report("results/plots/figure4E.pdf", caption="../report/figure4E.rst", category="Figures"),
+        table=report("results/table/seq_asymmetry_exp_obs.csv", caption="../report/table.rst", category="Table"),
+        o1=report("results/plots/figureS13.pdf", caption="../report/figureS13.rst", category="Supplementary Figures"),
+        o2=report("results/plots/figureS14.pdf", caption="../report/figureS14.rst", category="Supplementary Figures"),
+        o3=report("results/plots/figureS15.pdf", caption="../report/figureS15.rst", category="Supplementary Figures"),
+        o4=report("results/plots/figureS16.pdf", caption="../report/figureS16.rst", category="Supplementary Figures"),
+        o5=report("results/plots/figureS17.pdf", caption="../report/figureS17.rst", category="Supplementary Figures"),
     log:
         "logs/figure4E_S13_S14_S15_S16_S17.log",
     benchmark:

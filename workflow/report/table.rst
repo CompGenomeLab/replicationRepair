@@ -1,0 +1,1 @@
+A table containing sequence asymmetry.

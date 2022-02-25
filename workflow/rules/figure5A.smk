@@ -4,7 +4,7 @@ rule figure5A:
         gm06990="results/okseq/GM06990/GM06990_hg19_HMMsegments_IZ.bed",
         imr90="results/okseq/IMR90/IMR90_hg19_HMMsegments_IZ.bed",          
     output:
-        "results/plots/figure5A.pdf",
+        report("results/plots/figure5A.pdf", caption="../report/figure5A.rst", category="Figures"),
     log:
         "logs/figure5A.log",
     benchmark:

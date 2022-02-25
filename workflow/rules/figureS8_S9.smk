@@ -5,8 +5,8 @@ rule figureS8_S9:
         df_int="results/final/final_reports_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100_intergenic.txt", 
         df_int_sim="results/final/final_reports_sim_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100_intergenic.txt",          
     output:
-        figS8="results/plots/figureS8.pdf",
-        figS9="results/plots/figureS9.pdf",
+        figS8=report("results/plots/figureS8.pdf", caption="../report/figureS8.rst", category="Supplementary Figures"),
+        figS9=report("results/plots/figureS9.pdf", caption="../report/figureS9.rst", category="Supplementary Figures"),
     log:
         "logs/figureS8_S9.log",
     benchmark:

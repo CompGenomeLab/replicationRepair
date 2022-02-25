@@ -8,7 +8,7 @@ rule figure5B_5C_5D:
         overlap_TC="results/regions/iz_hela_to_gm_imr_repdomains_uv_mean0.5_windows_201_100_counts.txt",
         noverlap_TC="results/regions/iz_hela_no_overlap_repdomains_uv_mean0.5_windows_201_100_counts.txt",  
     output:
-        "results/plots/figure5B_5C_5D.pdf",
+        report("results/plots/figure5B_5C_5D.pdf", caption="../report/figure5B_5C_5D.rst", category="Figures"),
     log:
         "logs/figure5B_5C_5D.log",
     benchmark:

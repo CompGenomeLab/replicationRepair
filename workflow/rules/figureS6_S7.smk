@@ -5,9 +5,9 @@ rule figureS6_S7:
         int_real="results/final/final_reports_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100_intergenic.txt", 
         int_sim="results/final/final_reports_sim_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100_intergenic.txt",   
     output:
-        figS6="results/plots/figureS6.pdf",
+        figS6=report("results/plots/figureS6.pdf", caption="../report/figureS6.rst", category="Supplementary Figures"),
         int_figS6="results/plots/figureS6_intergenic.pdf",
-        figS7="results/plots/figureS7.pdf",
+        figS7=report("results/plots/figureS7.pdf", caption="../report/figureS7.rst", category="Supplementary Figures"),
         int_figS7="results/plots/figureS7_intergenic.pdf",        
     log:
         "logs/figureS6_S7.log",

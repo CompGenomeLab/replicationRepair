@@ -3,7 +3,7 @@ rule figureS4:
         df="results/final/final_reports_hg19_repdomains_uv_mean0.5_windows_201_10000.txt", 
         df_sim="results/final/final_reports_sim_hg19_repdomains_uv_mean0.5_windows_201_10000.txt",            
     output:
-        "results/plots/figureS4.pdf",
+        report("results/plots/figureS4.pdf", caption="../report/figureS4.rst", category="Supplementary Figures"),
     log:
         "logs/figureS4.log",
     benchmark:

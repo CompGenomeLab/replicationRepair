@@ -6,7 +6,7 @@ rule figureS3B_S3C_S3D:
         tss="results/final/final_reports_hg19_tss.txt",            
         tes="results/final/final_reports_hg19_tes.txt",                
     output:
-        "results/plots/figureS3B_S3C_S3D.pdf",
+        report("results/plots/figureS3B_S3C_S3D.pdf", caption="../report/figureS3.rst", category="Supplementary Figures"),
     log:
         "logs/figureS3B_S3C_S3D.log",
     benchmark:

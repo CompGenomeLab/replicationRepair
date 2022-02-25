@@ -3,8 +3,7 @@ rule bedGraphToBigWig_edu:
         bdg="results/edu/{samples}/{samples}_{build}_sorted_{strand}.bdg",
         index="resources/ref_genomes/{build}/genome_{build}.fa.fai",
     output:
-        report("results/edu/{samples}/{samples}_{build}_sorted_{strand}.bw", 
-                category="BigWig"),
+        "results/edu/{samples}/{samples}_{build}_sorted_{strand}.bw",
     log:
         "logs/{samples}/{samples}_{build}_bedGraphToBigWig_{strand}_edu.log",
     benchmark:

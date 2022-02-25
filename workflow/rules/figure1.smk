@@ -9,7 +9,7 @@ rule figure1:
         tss="results/final/final_reports_hg19_tss.txt",            
         tes="results/final/final_reports_hg19_tes.txt",                
     output:
-        "results/plots/figure1.pdf",
+        report("results/plots/figure1.pdf", caption="../report/figure1.rst", category="Figures"),
     log:
         "logs/figure1.log",
     benchmark:

@@ -1,0 +1,3 @@
+**Supplementary Figure 16:** Asymmetric quadnucleotide content around initiation zones and replication domains. 
+Similar to the Fig S13 except quadnucleotides used instead of mononucleotides. 
+Ten sequences with the highest difference were shown. 

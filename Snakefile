@@ -39,20 +39,6 @@ rule all:
             method="mutation", 
             regions=config["regions_mut"]
             ),
-        #lambda w: allInput(
-        #    build=config["build"], 
-        #    sampleList=config["chipseq"]["samples"], 
-        #    srrEnabled=config["chipseq"]["srr"]["enabled"], 
-        #    srrList=config["chipseq"]["srr"]["codes"], 
-        #    method="markers_intergenic", 
-        #    regions=config["regions"]
-        #    ),
-        #lambda w: allInput(
-        #    build=config["build"], 
-        #    sampleList=config["methyl"]["samples"],  
-        #    method="methyl", 
-        #    regions=config["regions"]
-        #    ),
         lambda w: allInput(
             build=config["build"], 
             sampleList=config["ds"]["samples"],  
