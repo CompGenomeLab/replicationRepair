@@ -17,8 +17,9 @@ results/*
 results_old/*
 !results/README.md
 
-logs/*
-!logs/README.md
+logs/cluster/*
+!logs/cluster/README.md
+logs/rule/*
 
 workflow/scripts/4plots/gitignore/
 workflow/scripts/4plots/.Rproj.user/
