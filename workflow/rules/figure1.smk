@@ -1,11 +1,11 @@
 rule figure1:
     input:  
-        dDS64="results/final/HDL64A5_ACAGTG_cutadapt_sorted_10_dinucleotideTable.txt", 
-        dDSCPD="results/final/HDLCA12_CTTGTA_cutadapt_sorted_10_dinucleotideTable.txt",        
-        dXR64="results/final/HXL64A3_TTAGGC_cutadapt_sorted_26_dinucleotideTable.txt",            
-        dXRCPD="results/final/HXLCA6_GCCAAT_cutadapt_sorted_26_dinucleotideTable.txt",            
-        len64="results/final/HXL64A3_TTAGGC_cutadapt_length_distribution.txt",            
-        lenCPD="results/final/HXLCA6_GCCAAT_cutadapt_length_distribution.txt",            
+        dDS64="resources/samples/dinuc/HDL64A5_ACAGTG_cutadapt_sorted_10_dinucleotideTable.txt", 
+        dDSCPD="resources/samples/dinuc/HDLCA12_CTTGTA_cutadapt_sorted_10_dinucleotideTable.txt",        
+        dXR64="resources/samples/dinuc/HXL64A3_TTAGGC_cutadapt_sorted_26_dinucleotideTable.txt",            
+        dXRCPD="resources/samples/dinuc/HXLCA6_GCCAAT_cutadapt_sorted_26_dinucleotideTable.txt",            
+        len64="resources/samples/dinuc/HXL64A3_TTAGGC_cutadapt_length_distribution.txt",            
+        lenCPD="resources/samples/dinuc/HXLCA6_GCCAAT_cutadapt_length_distribution.txt",            
         tss="results/final/final_reports_hg19_tss.txt",            
         tes="results/final/final_reports_hg19_tes.txt",                
     output:

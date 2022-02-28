@@ -1,8 +1,8 @@
 rule intersect2repDomains:
     input:
         rep="results/regions/repdomains_uv_mean0.5.bed",
-        iz="results/regions/iz_hela.bed",
-        chromhmm="results/regions/wgEncodeAwgSegmentationChromhmmHelas3.bed",
+        iz="resources/samples/iz_hela.bed",
+        chromhmm="resources/samples/chromHMM/wgEncodeAwgSegmentationChromhmmHelas3.bed",
         iz_comb="results/okseq/HeLa_intersect2_GM06990_IMR90.bed",
         iz_hela="results/okseq/HeLa_no_overlap.bed",
     output:

@@ -37,6 +37,11 @@ rule bam2bed_se_edu:
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
 
+        (echo "`date -R`: Indexing..." &&
+        samtools index {output.rmdup} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }} ) >> {log} 2>&1
+        
         (echo "`date -R`: Processing bam file..." && 
         samtools view {params.q_trim} {output.rmdup} |&
         bedtools bamtobed > {output.bed} &&

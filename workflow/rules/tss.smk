@@ -1,6 +1,6 @@
 rule tss_xr:
     input:
-        genes="results/regions/hg19_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
+        genes="resources/ref_genomes/{build}/{build}_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
         comb="results/XR/{samples}/{samples}_{build}_sorted_chr.bed",
     output:
         TS=temp("results/XR/{samples}/{samples}_{build}_sorted_TS_{tss_tes}_windows.bed"),
@@ -76,7 +76,7 @@ rule tss_xr:
 
 rule tss_ds:
     input:
-        genes="results/regions/hg19_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
+        genes="resources/ref_genomes/{build}/{build}_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
         comb="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_chr.bed",
     output:
         TS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_TS_{tss_tes}_windows.bed"),

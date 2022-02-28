@@ -58,8 +58,8 @@ rule all:
             ),
 
 # Prepare genome
-include: "workflow/rules/genome_build.smk"
-include: "workflow/rules/genome_indexing.smk"
+#include: "workflow/rules/genome_build.smk"
+#include: "workflow/rules/genome_indexing.smk"
 
 # EdU Analysis
 if config["edu"]["srr"]["enabled"]:
@@ -74,6 +74,7 @@ include: "workflow/rules/bedGraphToBigWig.smk"
 include: "workflow/rules/bam_correlation.smk"
 include: "workflow/rules/replication_timing.smk"
 include: "workflow/rules/produceReplicationDomains.smk"
+include: "workflow/rules/getPublicRepli.smk"
 
 # OK-seq Analysis
 if config["okseq"]["srr"]["enabled"]:
@@ -92,6 +93,9 @@ include: "workflow/rules/organize.smk"
 include: "workflow/rules/filter_target_muts.smk"
 #include: "workflow/rules/sep_strands.smk" # The rule implemented in EdU Analysis
 include: "workflow/rules/intergenic.smk"
+
+# Chromatin States
+include: "workflow/rules/getChromHMM.smk"
 
 # Process Retrieved Data
 include: "workflow/rules/intersect2repDomains.smk"
