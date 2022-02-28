@@ -9,7 +9,7 @@ rule getChromHMM:
         """
         mkdir -p resources/samples/chromHMM/
 
-        (echo "`date -R`: Download {output.g1}..." &&
+        (echo "`date -R`: Downloading..." &&
         wget http://hgdownload.cse.ucsc.edu/goldenpath/hg19/encodeDCC/wgEncodeAwgSegmentation/wgEncodeAwgSegmentationChromhmmHelas3.bed.gz \
         -O {output}.gz &&
         gunzip {output}.gz &&
