@@ -11,9 +11,9 @@ rule pre_mapping_xr:
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",
     log:
-        "logs/{samples}/{samples}_{build}_pre_mapping_xr.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_xr.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_pre_mapping_xr.benchmark.txt",   
+        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_xr.benchmark.txt",   
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -66,9 +66,9 @@ rule pre_mapping_ds:
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",  
     log:
-        "logs/{samples}/{samples}_{build}_pre_mapping_ds.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_ds.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_pre_mapping_ds.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_ds.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -122,9 +122,9 @@ rule pre_mapping_xr_sim:
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",    
     log:
-        "logs/{samples}/{samples}_{build}_pre_mapping_sim_xr.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_sim_xr.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_pre_mapping_sim_xr.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_sim_xr.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -188,9 +188,9 @@ rule pre_mapping_ds_sim:
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",    
     log:
-        "logs/{samples}/{samples}_{build}_pre_mapping_sim_ds.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_sim_ds.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_pre_mapping_sim_ds.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_sim_ds.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

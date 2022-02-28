@@ -5,9 +5,9 @@ rule sep_strands_mutation:
         plus="results/mutation/{samples}/{samples}_target_mut_plus.tsv",
         minus="results/mutation/{samples}/{samples}_target_mut_minus.tsv",
     log:
-        "logs/{samples}/{samples}_sep_strands_mutation.log",
+        "logs/rule/analysis/{samples}/{samples}_sep_strands_mutation.log",
     benchmark:
-        "logs/{samples}/{samples}_sep_strands_mutation.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_sep_strands_mutation.benchmark.txt",
     shell:  
         """
         (echo "`date -R`: Separating plus stranded mutations..." &&
@@ -28,9 +28,9 @@ rule sep_strands_edu:
         plus="results/edu/{samples}/{samples}_{build}_sorted_plus.bed",
         minus="results/edu/{samples}/{samples}_{build}_sorted_minus.bed",
     log:
-        "logs/{samples}/{samples}_{build}_sep_strands_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_sep_strands_edu.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_sep_strands_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_sep_strands_edu.benchmark.txt",
     shell:  
         """
         (echo "`date -R`: Separating plus stranded reads..." &&

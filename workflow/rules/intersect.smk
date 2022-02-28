@@ -9,9 +9,9 @@ rule intersect_mutation:
     params:
         region=lambda w: getRegion(w.regions, config["region_mut_file"], config["regions_mut"]),    
     log:
-        "logs/{samples}/{samples}_intersect_mutation_{regions}.log",
+        "logs/rule/analysis/{samples}/{samples}_intersect_mutation_{regions}.log",
     benchmark:
-        "logs/{samples}/{samples}_intersect_mutation_{regions}.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_intersect_mutation_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -49,9 +49,9 @@ rule intersect_mutation_intergenic:
     params:
         region=lambda w: getRegion(w.regions, config["region_mut_file"], config["regions_mut"]),    
     log:
-        "logs/{samples}/{samples}_intersect_mutation_{regions}_intergenic.log",
+        "logs/rule/analysis/{samples}/{samples}_intersect_mutation_{regions}_intergenic.log",
     benchmark:
-        "logs/{samples}/{samples}_intersect_mutation_{regions}_intergenic.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_intersect_mutation_{regions}_intergenic.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

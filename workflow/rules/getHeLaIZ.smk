@@ -5,9 +5,9 @@ rule getHeLaIZ:
         noverlap="results/okseq/HeLa_no_overlap.bed",
         overlap="results/okseq/HeLa_intersect2_GM06990_IMR90.bed",
     log:
-        "logs/getHeLaIZ.log",
+        "logs/rule/analysis/getHeLaIZ.log",
     benchmark:
-        "logs/getHeLaIZ.benchmark.txt",
+        "logs/rule/analysis/getHeLaIZ.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

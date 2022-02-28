@@ -13,9 +13,9 @@ rule bowtie2_se_okseq:
         extra="",
     threads: 16  
     log:
-        "logs/{samples}/{samples}_{build}_bowtie2_se_okseq.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_se_okseq.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bowtie2_se_okseq.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_se_okseq.benchmark.txt",
     conda:
         "../envs/align.yaml"
     shell:  
@@ -54,9 +54,9 @@ rule bowtie2_se_edu:
         extra="",
     threads: 16  
     log:
-        "logs/{samples}/{samples}_{build}_bowtie2_se_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_se_edu.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bowtie2_se_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_se_edu.benchmark.txt",
     conda:
         "../envs/align.yaml"
     shell:  
@@ -89,9 +89,9 @@ rule bowtie2_pe_edu:
         extra="-X 1000",
     threads: 16  
     log:
-        "logs/{samples}/{samples}_{build}_bowtie2_pe_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_pe_edu.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bowtie2_pe_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_pe_edu.benchmark.txt",
     conda:
         "../envs/align.yaml"
     shell:  

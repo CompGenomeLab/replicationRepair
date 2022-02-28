@@ -8,9 +8,9 @@ rule figureS3B_S3C_S3D:
     output:
         report("results/plots/figureS3B_S3C_S3D.pdf", caption="../report/figureS3.rst", category="Supplementary Figures"),
     log:
-        "logs/figureS3B_S3C_S3D.log",
+        "logs/rule/fig/figureS3B_S3C_S3D.log",
     benchmark:
-        "logs/figureS3B_S3C_S3D.benchmark.txt",
+        "logs/rule/fig/figureS3B_S3C_S3D.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

@@ -10,9 +10,9 @@ rule figure5B_5C_5D:
     output:
         report("results/plots/figure5B_5C_5D.pdf", caption="../report/figure5B_5C_5D.rst", category="Figures"),
     log:
-        "logs/figure5B_5C_5D.log",
+        "logs/rule/fig/figure5B_5C_5D.log",
     benchmark:
-        "logs/figure5B_5C_5D.benchmark.txt",
+        "logs/rule/fig/figure5B_5C_5D.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

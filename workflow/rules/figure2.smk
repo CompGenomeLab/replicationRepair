@@ -7,9 +7,9 @@ rule figure2:
     output:
         report("results/plots/figure2.pdf", caption="../report/figure2.rst", category="Figures"),
     log:
-        "logs/figure2.log",
+        "logs/rule/fig/figure2.log",
     benchmark:
-        "logs/figure2.benchmark.txt",
+        "logs/rule/fig/figure2.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

@@ -5,9 +5,9 @@ rule filter_target_muts:
     output:
         "results/mutation/{samples}/{samples}_target_mut.tsv",   
     log:
-        "logs/{samples}/{samples}_filter_target_muts.log",
+        "logs/rule/analysis/{samples}/{samples}_filter_target_muts.log",
     benchmark:
-        "logs/{samples}/{samples}_filter_target_muts.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_filter_target_muts.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Filtering target mutations..." &&

@@ -14,9 +14,9 @@ rule bam_correlation_pe_edu:
         out="results/edu/readCounts.npz",
         raw_out="results/edu/readCounts.tab",
     log:
-        "logs/bam_correlation_pe_edu.log",
+        "logs/rule/analysis/bam_correlation_pe_edu.log",
     benchmark:
-        "logs/bam_correlation_pe_edu.benchmark.txt",
+        "logs/rule/analysis/bam_correlation_pe_edu.benchmark.txt",
     conda:
         "../envs/bam_correlation.yaml"
     shell:  
@@ -42,9 +42,9 @@ rule bam_correlation_pe_edu_early:
         out="results/edu/readCounts_early.npz",
         raw_out="results/edu/readCounts_early.tab",
     log:
-        "logs/bam_correlation_pe_edu_early.log",
+        "logs/rule/analysis/bam_correlation_pe_edu_early.log",
     benchmark:
-        "logs/bam_correlation_pe_edu_early.benchmark.txt",
+        "logs/rule/analysis/bam_correlation_pe_edu_early.benchmark.txt",
     conda:
         "../envs/bam_correlation.yaml"
     shell:  
@@ -70,9 +70,9 @@ rule bam_correlation_pe_edu_late:
         out="results/edu/readCounts_late.npz",
         raw_out="results/edu/readCounts_late.tab",
     log:
-        "logs/bam_correlation_pe_edu_late.log",
+        "logs/rule/analysis/bam_correlation_pe_edu_late.log",
     benchmark:
-        "logs/bam_correlation_pe_edu_late.benchmark.txt",
+        "logs/rule/analysis/bam_correlation_pe_edu_late.benchmark.txt",
     conda:
         "../envs/bam_correlation.yaml"
     shell:  
@@ -96,9 +96,9 @@ rule bam_correlation_okseq:
         out="results/okseq/readCounts_okseq.npz",
         raw_out="results/okseq/readCounts_okseq.tab",
     log:
-        "logs/bam_correlation_okseq.log",
+        "logs/rule/analysis/bam_correlation_okseq.log",
     benchmark:
-        "logs/bam_correlation_okseq.benchmark.txt",
+        "logs/rule/analysis/bam_correlation_okseq.benchmark.txt",
     conda:
         "../envs/bam_correlation.yaml"
     shell:  
@@ -133,9 +133,9 @@ rule bam_correlation_edu_repli:
         out="results/edu/readCounts_repli.npz",
         raw_out="results/edu/readCounts_repli.tab",
     log:
-        "logs/bam_correlation_edu_repli.log",
+        "logs/rule/analysis/bam_correlation_edu_repli.log",
     benchmark:
-        "logs/bam_correlation_edu_repli.benchmark.txt",
+        "logs/rule/analysis/bam_correlation_edu_repli.benchmark.txt",
     conda:
         "../envs/bam_correlation.yaml"
     shell:  

@@ -10,9 +10,9 @@ rule bed2fasta_ds:
         comb=temp("results/{samples}/{samples}_{build}_sorted_10.fa"),
         bed=temp("results/{samples}/{samples}_{build}_sorted_10.bed"),       
     log:
-        "logs/{samples}/{samples}_{build}_bed2fasta_ds.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bed2fasta_ds.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bed2fasta_ds.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bed2fasta_ds.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -57,9 +57,9 @@ rule bed2fasta_xr:
     output:
         temp("results/{samples}/{samples}_{build}_lengthMode.fa"),
     log:
-        "logs/{samples}/{samples}_{build}_bed2fasta_xr.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bed2fasta_xr.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bed2fasta_xr.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bed2fasta_xr.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

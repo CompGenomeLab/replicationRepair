@@ -6,9 +6,9 @@ rule fastqc_se_okseq:
         zip="results/okseq/{samples}/{samples}_fastqc.zip",
     params: ""
     log:
-        "logs/{samples}/{samples}_fastqc_se_okseq.log",
+        "logs/rule/analysis/{samples}/{samples}_fastqc_se_okseq.log",
     benchmark:
-        "logs/{samples}/{samples}_fastqc_se_okseq.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_fastqc_se_okseq.benchmark.txt",
     threads: 16
     wrapper:
         "0.69.0/bio/fastqc"
@@ -21,9 +21,9 @@ rule fastqc_pe_okseq:
         zip="results/okseq/{samples}/{samples}_{ext}_fastqc.zip", 
     params: ""
     log:
-        "logs/{samples}/{samples}_fastqc_pe_okseq_{ext}.log", 
+        "logs/rule/analysis/{samples}/{samples}_fastqc_pe_okseq_{ext}.log", 
     benchmark:
-        "logs/{samples}/{samples}_fastqc_pe_okseq_{ext}.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_fastqc_pe_okseq_{ext}.benchmark.txt",
     threads: 16
     wrapper:
         "0.69.0/bio/fastqc"
@@ -36,9 +36,9 @@ rule fastqc_se_edu:
         zip="results/edu/{samples}/{samples}_fastqc.zip",
     params: ""
     log:
-        "logs/{samples}/{samples}_fastqc_se_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_fastqc_se_edu.log",
     benchmark:
-        "logs/{samples}/{samples}_fastqc_se_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_fastqc_se_edu.benchmark.txt",
     threads: 16
     wrapper:
         "0.69.0/bio/fastqc"
@@ -51,9 +51,9 @@ rule fastqc_pe_edu:
         zip="results/edu/{samples}/{samples}_{ext}_fastqc.zip", 
     params: ""
     log:
-        "logs/{samples}/{samples}_fastqc_pe_edu_{ext}.log", 
+        "logs/rule/analysis/{samples}/{samples}_fastqc_pe_edu_{ext}.log", 
     benchmark:
-        "logs/{samples}/{samples}_fastqc_pe_edu_{ext}.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_fastqc_pe_edu_{ext}.benchmark.txt",
     threads: 16
     wrapper:
         "0.69.0/bio/fastqc"

@@ -11,9 +11,9 @@ rule figure1:
     output:
         report("results/plots/figure1.pdf", caption="../report/figure1.rst", category="Figures"),
     log:
-        "logs/figure1.log",
+        "logs/rule/fig/figure1.log",
     benchmark:
-        "logs/figure1.benchmark.txt",
+        "logs/rule/fig/figure1.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

@@ -5,9 +5,9 @@ rule get_sbs_muts:
         unzip=temp("results/mutation/{samples}/{samples}.tsv"),
         subs="results/mutation/{samples}/{samples}_subs.tsv",     
     log:
-        "logs/{samples}/{samples}_get_sbs_muts.log",
+        "logs/rule/analysis/{samples}/{samples}_get_sbs_muts.log",
     benchmark:
-        "logs/{samples}/{samples}_get_sbs_muts.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_get_sbs_muts.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Unzipping..." &&

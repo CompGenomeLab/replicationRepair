@@ -6,9 +6,9 @@ rule figure3_S5:
         CPD=report("results/plots/figure3.pdf", caption="../report/figure3.rst", category="Figures"),
         PP64=report("results/plots/figureS5.pdf", caption="../report/figureS5.rst", category="Supplementary Figures"),
     log:
-        "logs/figure3.log",
+        "logs/rule/fig/figure3.log",
     benchmark:
-        "logs/figure3.benchmark.txt",
+        "logs/rule/fig/figure3.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

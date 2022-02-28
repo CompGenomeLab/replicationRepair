@@ -8,9 +8,9 @@ rule figureS8_S9:
         figS8=report("results/plots/figureS8.pdf", caption="../report/figureS8.rst", category="Supplementary Figures"),
         figS9=report("results/plots/figureS9.pdf", caption="../report/figureS9.rst", category="Supplementary Figures"),
     log:
-        "logs/figureS8_S9.log",
+        "logs/rule/fig/figureS8_S9.log",
     benchmark:
-        "logs/figureS8_S9.benchmark.txt",
+        "logs/rule/fig/figureS8_S9.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

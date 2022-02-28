@@ -9,8 +9,8 @@ rule cutadapt_se_okseq:
         adapters="-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",  
         extra="",  
     log:
-        "logs/{samples}/{samples}_cutadapt.log",
+        "logs/rule/analysis/{samples}/{samples}_cutadapt.log",
     benchmark:
-        "logs/{samples}/{samples}_cutadapt.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_cutadapt.benchmark.txt",
     wrapper:
         "0.69.0/bio/cutadapt/se"

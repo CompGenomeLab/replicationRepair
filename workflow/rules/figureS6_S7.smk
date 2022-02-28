@@ -10,9 +10,9 @@ rule figureS6_S7:
         figS7=report("results/plots/figureS7.pdf", caption="../report/figureS7.rst", category="Supplementary Figures"),
         int_figS7="results/plots/figureS7_intergenic.pdf",        
     log:
-        "logs/figureS6_S7.log",
+        "logs/rule/fig/figureS6_S7.log",
     benchmark:
-        "logs/figureS6_S7.benchmark.txt",
+        "logs/rule/fig/figureS6_S7.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

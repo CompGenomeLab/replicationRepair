@@ -8,9 +8,9 @@ rule organize:
         fa=temp("results/mutation/{samples}/{samples}_subs_org.fa"),
         bed="results/mutation/{samples}/{samples}.bed",     
     log:
-        "logs/{samples}/{samples}_organize.log",
+        "logs/rule/analysis/{samples}/{samples}_organize.log",
     benchmark:
-        "logs/{samples}/{samples}_organize.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_organize.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

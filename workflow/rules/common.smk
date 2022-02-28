@@ -207,13 +207,9 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
 
             if isSingle(sample, sampleList, srrEnabled, srrList, "resources/samples/okseq/"):
                 inputList.append(f"{sampledir}{sample}.html")
-                inputList.append(f"{sampledir}{sample}_se_{build}_sorted.bam")
-                inputList.append(f"{sampledir}{sample}_se_{build}_sorted.bam.bai")
             else:
                 inputList.append(f"{sampledir}{sample}_R1.html")
                 inputList.append(f"{sampledir}{sample}_R2.html")
-     
-            inputList.append(f"{sampledir}{sample}_{build}_HMMsegments_IZ.bed")
 
     if method == "edu":
 
@@ -233,78 +229,12 @@ def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", r
                 inputList.append(f"{sampledir}{sample}_R1.html")
                 inputList.append(f"{sampledir}{sample}_R2.html")
 
-            inputList.append(f"{sampledir}{sample}_{build}_sorted_plus.bw")
-            inputList.append(f"{sampledir}{sample}_{build}_sorted_minus.bw")
-            
-    if method == "mutation":
-    
-        for sample in sampleList:
-            sampledir = f"results/mutation/{sample}/" 
-            sampledir_int = f"results/intergenic_mutation/{sample}/"
-
-            inputList.append(f"{sampledir}{sample}_target_mut_plus.tsv") 
-            inputList.append(f"{sampledir}{sample}_target_mut_minus.tsv")
-            inputList.append(f"{sampledir}{sample}_intergenic_target_mut_plus.tsv") 
-            inputList.append(f"{sampledir}{sample}_intergenic_target_mut_minus.tsv")
-
-            for region in regions:
-                inputList.append(f"{sampledir}{sample}_target_mut_{region}_combined_rpkm.txt")
-                inputList.append(f"{sampledir_int}{sample}_target_mut_{region}_combined_rpkm.txt")
-        
-        for region in regions:
-
-            inputList.append(f"results/regions/{region}_counts.txt")
-
-    if method == "ds":
-
-        for sample in sampleList:
-            sampledir = f"results/DS/{sample}/" 
-            simdir = f"results/sim/{sample}/" 
-            intdir = f"results/intergenic/{sample}/" 
-            intsimdir = f"results/intergenic_sim/{sample}/" 
-
-            inputList.append(f"{sampledir}{sample}_{build}_sorted_dipyrimidines_tss_combined_rpkm.bed") 
-            inputList.append(f"{sampledir}{sample}_{build}_sorted_dipyrimidines_tes_combined_rpkm.bed") 
-            #inputList.append(f"{sampledir}{sample}_{build}_sorted_dipyrimidines_TSNTS.bed")
-
-            for region in regions:
-
-                for mydir in [sampledir, simdir, intdir, intsimdir]:
-                
-                    inputList.append(f"{mydir}{sample}_{build}_plus_{region}_combined_rpkm.txt")
-                    inputList.append(f"{mydir}{sample}_{build}_minus_{region}_combined_rpkm.txt")
-
-    if method == "xr":
-
-        for sample in sampleList:
-            sampledir = f"results/XR/{sample}/" 
-            simdir = f"results/sim/{sample}/" 
-            intdir = f"results/intergenic/{sample}/" 
-            intsimdir = f"results/intergenic_sim/{sample}/"
-
-            inputList.append(f"{sampledir}{sample}_{build}_sorted_tss_combined_rpkm.bed") 
-            inputList.append(f"{sampledir}{sample}_{build}_sorted_tes_combined_rpkm.bed") 
-            #inputList.append(f"{sampledir}{sample}_{build}_sorted_TSNTS.bed")
-
-            for region in regions:
-
-                for mydir in [sampledir, simdir, intdir, intsimdir]:
-
-                    inputList.append(f"{mydir}{sample}_{build}_plus_{region}_combined_rpkm.txt")
-                    inputList.append(f"{mydir}{sample}_{build}_minus_{region}_combined_rpkm.txt")
-
     if method == "report":
 
         for fig_num in ["1","2","3","4B","4C_4D","4E","5A","5B_5C_5D","S2A","S3B_S3C_S3D",
         "S4","S5","S6","S7","S8","S9","S10","S11","S12B_S12C","S13","S14","S15","S16","S17","S18"]:
     
             inputList.append(f"results/plots/figure{fig_num}.pdf")
-
-        for region in regions:
-                inputList.append(f"results/final/final_reports_{build}_{region}.txt")
-                inputList.append(f"results/final/final_reports_sim_{build}_{region}.txt")
-                inputList.append(f"results/final/final_reports_{build}_{region}_intergenic.txt")
-                inputList.append(f"results/final/final_reports_sim_{build}_{region}_intergenic.txt")
 
     return inputList
 

@@ -10,9 +10,9 @@ rule make_windows:
         windowNum="{windowNum}",
         rev="",
     log:
-        "logs/{sample}_{windowNum}_{interval}_make_windows.log",
+        "logs/rule/analysis/{sample}_{windowNum}_{interval}_make_windows.log",
     benchmark:
-        "logs/{sample}_{windowNum}_{interval}_make_windows.benchmark.txt",
+        "logs/rule/analysis/{sample}_{windowNum}_{interval}_make_windows.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:  

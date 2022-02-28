@@ -8,9 +8,9 @@ rule bam_corr_graphs:
         tab2="results/edu/SpearmanCorr_readCounts.tab",
         pca="results/plots/PCA_readCounts.png",
     log:
-        "logs/bam_corr_graphs.log",
+        "logs/rule/fig/bam_corr_graphs.log",
     benchmark:
-        "logs/bam_corr_graphs.benchmark.txt",
+        "logs/rule/fig/bam_corr_graphs.benchmark.txt",
     conda:
         "../envs/bam_correlation.yaml"
     shell:  
@@ -55,9 +55,9 @@ rule bam_corr_graphs_early:
         tab2="results/edu/SpearmanCorr_readCounts_early.tab",
         pca="results/plots/PCA_readCounts_early.png",
     log:
-        "logs/bam_corr_graphs_early.log",
+        "logs/rule/fig/bam_corr_graphs_early.log",
     benchmark:
-        "logs/bam_corr_graphs_early.benchmark.txt",
+        "logs/rule/fig/bam_corr_graphs_early.benchmark.txt",
     conda:
         "../envs/bam_correlation.yaml"
     shell:  
@@ -102,9 +102,9 @@ rule bam_corr_graphs_late:
         tab2="results/edu/SpearmanCorr_readCounts_late.tab",
         pca="results/plots/PCA_readCounts_late.png",
     log:
-        "logs/bam_corr_graphs_late.log",
+        "logs/rule/fig/bam_corr_graphs_late.log",
     benchmark:
-        "logs/bam_corr_graphs_late.benchmark.txt",
+        "logs/rule/fig/bam_corr_graphs_late.benchmark.txt",
     conda:
         "../envs/bam_correlation.yaml"
     shell:  
@@ -149,9 +149,9 @@ rule bam_corr_graphs_okseq:
         tab2="results/okseq/SpearmanCorr_readCounts_okseq.tab",
         pca="results/plots/PCA_readCounts_okseq.png",
     log:
-        "logs/bam_corr_graphs_okseq.log",
+        "logs/rule/fig/bam_corr_graphs_okseq.log",
     benchmark:
-        "logs/bam_corr_graphs_okseq.benchmark.txt",
+        "logs/rule/fig/bam_corr_graphs_okseq.benchmark.txt",
     conda:
         "../envs/bam_correlation.yaml"
     shell:  
@@ -196,9 +196,9 @@ rule bam_corr_graphs_repli:
         tab2="results/edu/SpearmanCorr_readCounts_repli.tab",
         pca="results/plots/PCA_readCounts_repli.png",
     log:
-        "logs/bam_corr_graphs_repli.log",
+        "logs/rule/fig/bam_corr_graphs_repli.log",
     benchmark:
-        "logs/bam_corr_graphs_repli.benchmark.txt",
+        "logs/rule/fig/bam_corr_graphs_repli.benchmark.txt",
     conda:
         "../envs/bam_correlation.yaml"
     shell:  

@@ -19,9 +19,9 @@ rule replication_timing:
         untreated="results/edu/merge_RT.txt",
         uv="results/edu/merge_uv_RT.txt",
     log:
-        "logs/replication_timing.log",
+        "logs/rule/analysis/replication_timing.log",
     benchmark:
-        "logs/replication_timing.benchmark.txt",
+        "logs/rule/analysis/replication_timing.benchmark.txt",
     conda:
         "../envs/genomecov.yaml"
     shell:  

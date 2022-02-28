@@ -7,9 +7,9 @@ rule produceInitiationZones:
     params:
         prefix="results/okseq/{samples}/{samples}_{build}",
     log:
-        "logs/{samples}_{build}_produceInitiationZones.log",
+        "logs/rule/analysis/{samples}_{build}_produceInitiationZones.log",
     benchmark:
-        "logs/{samples}_{build}_produceInitiationZones.benchmark.txt",
+        "logs/rule/analysis/{samples}_{build}_produceInitiationZones.benchmark.txt",
     conda:
         "../envs/produceInitiationZones.yaml",
     shell:

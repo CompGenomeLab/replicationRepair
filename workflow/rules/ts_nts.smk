@@ -9,9 +9,9 @@ rule ts_nts_xr:
         NTS=temp("results/XR/{samples}/{samples}_{build}_sorted_NTS.bed"),
         TSNTS="results/XR/{samples}/{samples}_{build}_sorted_TSNTS.bed",
     log:
-        "logs/{samples}/{samples}_{build}_ts_nts_xr.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_ts_nts_xr.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_ts_nts_xr.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_ts_nts_xr.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -57,9 +57,9 @@ rule ts_nts_ds:
         NTS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_NTS.bed"),
         TSNTS="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_TSNTS.bed",
     log:
-        "logs/{samples}/{samples}_{build}_ts_nts_ds.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_ts_nts_ds.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_ts_nts_ds.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_ts_nts_ds.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

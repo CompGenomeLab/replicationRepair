@@ -6,9 +6,9 @@ rule figure5A:
     output:
         report("results/plots/figure5A.pdf", caption="../report/figure5A.rst", category="Figures"),
     log:
-        "logs/figure5A.log",
+        "logs/rule/fig/figure5A.log",
     benchmark:
-        "logs/figure5A.benchmark.txt",
+        "logs/rule/fig/figure5A.benchmark.txt",
     conda:
         "../envs/venn.yaml",
     shell:

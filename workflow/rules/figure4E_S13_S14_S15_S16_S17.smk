@@ -10,9 +10,9 @@ rule figure4E_S13_S14_S15_S16_S17:
         o4=report("results/plots/figureS16.pdf", caption="../report/figureS16.rst", category="Supplementary Figures"),
         o5=report("results/plots/figureS17.pdf", caption="../report/figureS17.rst", category="Supplementary Figures"),
     log:
-        "logs/figure4E_S13_S14_S15_S16_S17.log",
+        "logs/rule/fig/figure4E_S13_S14_S15_S16_S17.log",
     benchmark:
-        "logs/figure4E_S13_S14_S15_S16_S17.benchmark.txt",
+        "logs/rule/fig/figure4E_S13_S14_S15_S16_S17.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

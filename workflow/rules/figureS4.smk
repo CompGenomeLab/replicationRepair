@@ -5,9 +5,9 @@ rule figureS4:
     output:
         report("results/plots/figureS4.pdf", caption="../report/figureS4.rst", category="Supplementary Figures"),
     log:
-        "logs/figureS4.log",
+        "logs/rule/fig/figureS4.log",
     benchmark:
-        "logs/figureS4.benchmark.txt",
+        "logs/rule/fig/figureS4.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

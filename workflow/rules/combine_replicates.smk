@@ -57,7 +57,7 @@ rule combine_replicates:
         HDLCB_plus="resources/samples/DS/HDLCB27_ATTCCT_hg19_sorted_ds_dipyrimidines_plus.bed",
         HDLCB_minus="resources/samples/DS/HDLCB27_ATTCCT_hg19_sorted_ds_dipyrimidines_minus.bed",      
         CT5H2_HelaD1_plus="resources/samples/DS/NT4H1-CT5H2-HelaD1-5R2h2_combined_hg19_sorted_ds_dipyrimidines_plus.bed",
-        CT5H2_HelaD1_minus="resources/samples/DS/NT4H1-CT5H2-HelaD1-5R2h2_combined_R1_hg19_sorted_ds_dipyrimidines_minus.bed",
+        CT5H2_HelaD1_minus="resources/samples/DS/NT4H1-CT5H2-HelaD1-5R2h2_combined_hg19_sorted_ds_dipyrimidines_minus.bed",
         HD2TCD4_HelaD1_plus="resources/samples/DS/R19029847-HD2TCD4-HelaD1-5R2h1_combined_hg19_sorted_ds_dipyrimidines_plus.bed",
         HD2TCD4_HelaD1_minus="resources/samples/DS/R19029847-HD2TCD4-HelaD1-5R2h1_combined_hg19_sorted_ds_dipyrimidines_minus.bed",
         CT5H2_HelaD3_plus="resources/samples/DS/XT4H1-CT5H2-HelaD3-5R2h2_combined_hg19_sorted_ds_dipyrimidines_plus.bed",
@@ -98,9 +98,9 @@ rule combine_replicates:
         HelaD3_5R2h2_plus="resources/samples/DS/HelaD3_5R2h2_comb_hg19_sorted_ds_dipyrimidines_plus.bed",
         HelaD3_5R2h2_minus="resources/samples/DS/HelaD3_5R2h2_comb_hg19_sorted_ds_dipyrimidines_minus.bed",
     log:
-        "logs/combine_replicates.log",
+        "logs/rule/analysis/combine_replicates.log",
     benchmark:
-        "logs/combine_replicates.benchmark.txt",
+        "logs/rule/analysis/combine_replicates.benchmark.txt",
     shell:  
         """
         (echo "`date -R`: Combining all replicates..." &&
@@ -192,9 +192,9 @@ rule combine_replicates_sim:
         HelaD1_5R2h2="resources/samples/sim/HelaD1_5R2h2_comb_hg19_ds_sim.bed",
         HelaD3_5R2h2="resources/samples/sim/HelaD3_5R2h2_comb_hg19_ds_sim.bed",
     log:
-        "logs/combine_replicates_sim.log",
+        "logs/rule/analysis/combine_replicates_sim.log",
     benchmark:
-        "logs/combine_replicates_sim.benchmark.txt",
+        "logs/rule/analysis/combine_replicates_sim.benchmark.txt",
     shell:  
         """
         (echo "`date -R`: Combining all replicates..." &&

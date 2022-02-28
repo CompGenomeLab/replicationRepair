@@ -6,9 +6,9 @@ rule sra_se_okseq:
             config["okseq"]["samples"]),
         name="{samples}",
     log:
-        "logs/{samples}/{samples}_se_sra_okseq.log",
+        "logs/rule/analysis/{samples}/{samples}_se_sra_okseq.log",
     benchmark:
-        "logs/{samples}/{samples}_se_sra_okseq.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_se_sra_okseq.benchmark.txt",
     wildcard_constraints:
         samples='|'.join([x for x in config["okseq"]["samples"]])
     conda:
@@ -55,9 +55,9 @@ rule sra_pe_okseq:
             config["okseq"]["samples"]),
         name="{samples}",
     log:
-        "logs/{samples}/{samples}_pe_sra_okseq.log",
+        "logs/rule/analysis/{samples}/{samples}_pe_sra_okseq.log",
     benchmark:
-        "logs/{samples}/{samples}_pe_sra_okseq.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_pe_sra_okseq.benchmark.txt",
     conda:
         "../envs/sra.yaml"
     threads:

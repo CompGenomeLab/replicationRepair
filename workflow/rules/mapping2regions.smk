@@ -24,9 +24,9 @@ rule mapping2regions_xr:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[0], input[1]),
     log:
-        "logs/XR/{samples}/{samples}_{build}_mapping2regions_xr_{regions}.log",
+        "logs/rule/analysis/XR/{samples}/{samples}_{build}_mapping2regions_xr_{regions}.log",
     benchmark:
-        "logs/XR/{samples}/{samples}_{build}_mapping2regions_xr_{regions}.benchmark.txt",
+        "logs/rule/analysis/XR/{samples}/{samples}_{build}_mapping2regions_xr_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -68,9 +68,9 @@ rule mapping2regions_ds:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[0], input[1]),
     log:
-        "logs/DS/{samples}/{samples}_{build}_mapping2regions_ds_{regions}.log",
+        "logs/rule/analysis/DS/{samples}/{samples}_{build}_mapping2regions_ds_{regions}.log",
     benchmark:
-        "logs/DS/{samples}/{samples}_{build}_mapping2regions_ds_{regions}.benchmark.txt",
+        "logs/rule/analysis/DS/{samples}/{samples}_{build}_mapping2regions_ds_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -112,9 +112,9 @@ rule mapping2regions_xr_intergenic:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[0], input[1]),
     log:
-        "logs/XR/{samples}/{samples}_{build}_mapping2regions_xr_intergenic_{regions}.log",
+        "logs/rule/analysis/XR/{samples}/{samples}_{build}_mapping2regions_xr_intergenic_{regions}.log",
     benchmark:
-        "logs/XR/{samples}/{samples}_{build}_mapping2regions_xr_intergenic_{regions}.benchmark.txt",
+        "logs/rule/analysis/XR/{samples}/{samples}_{build}_mapping2regions_xr_intergenic_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -156,9 +156,9 @@ rule mapping2regions_ds_intergenic:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[0], input[1]),
     log:
-        "logs/DS/{samples}/{samples}_{build}_mapping2regions_ds_intergenic_{regions}.log",
+        "logs/rule/analysis/DS/{samples}/{samples}_{build}_mapping2regions_ds_intergenic_{regions}.log",
     benchmark:
-        "logs/DS/{samples}/{samples}_{build}_mapping2regions_ds_intergenic_{regions}.benchmark.txt",
+        "logs/rule/analysis/DS/{samples}/{samples}_{build}_mapping2regions_ds_intergenic_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -200,9 +200,9 @@ rule mapping2regions_xr_sim:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[0], input[1]),
     log:
-        "logs/XR/{samples}/{samples}_{build}_sim_mapping2regions_xr_{regions}.log",
+        "logs/rule/analysis/XR/{samples}/{samples}_{build}_sim_mapping2regions_xr_{regions}.log",
     benchmark:
-        "logs/XR/{samples}/{samples}_{build}_sim_mapping2regions_xr_{regions}.benchmark.txt",
+        "logs/rule/analysis/XR/{samples}/{samples}_{build}_sim_mapping2regions_xr_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -244,9 +244,9 @@ rule mapping2regions_ds_sim:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[0], input[1]), 
     log:
-        "logs/DS/{samples}/{samples}_{build}_sim_mapping2regions_ds_{regions}.log",
+        "logs/rule/analysis/DS/{samples}/{samples}_{build}_sim_mapping2regions_ds_{regions}.log",
     benchmark:
-        "logs/DS/{samples}/{samples}_{build}_sim_mapping2regions_ds_{regions}.benchmark.txt",
+        "logs/rule/analysis/DS/{samples}/{samples}_{build}_sim_mapping2regions_ds_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -288,9 +288,9 @@ rule mapping2regions_xr_intergenic_sim:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[0], input[1]),
     log:
-        "logs/XR/{samples}/{samples}_{build}_sim_mapping2regions_xr_intergenic_{regions}.log",
+        "logs/rule/analysis/XR/{samples}/{samples}_{build}_sim_mapping2regions_xr_intergenic_{regions}.log",
     benchmark:
-        "logs/XR/{samples}/{samples}_{build}_sim_mapping2regions_xr_intergenic_{regions}.benchmark.txt",
+        "logs/rule/analysis/XR/{samples}/{samples}_{build}_sim_mapping2regions_xr_intergenic_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -332,9 +332,9 @@ rule mapping2regions_ds_intergenic_sim:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[0], input[1]), 
     log:
-        "logs/DS/{samples}/{samples}_{build}_sim_mapping2regions_ds_intergenic_{regions}.log",
+        "logs/rule/analysis/DS/{samples}/{samples}_{build}_sim_mapping2regions_ds_intergenic_{regions}.log",
     benchmark:
-        "logs/DS/{samples}/{samples}_{build}_sim_mapping2regions_ds_intergenic_{regions}.benchmark.txt",
+        "logs/rule/analysis/DS/{samples}/{samples}_{build}_sim_mapping2regions_ds_intergenic_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -377,9 +377,9 @@ rule mapping2regions_mutation:
         info="{samples}",
         mappedReads=lambda w, input: mappedReads(input[0], input[1]),  
     log:
-        "logs/mutation/{samples}/{samples}_mapping2regions_mutation_{regions}.log",
+        "logs/rule/analysis/mutation/{samples}/{samples}_mapping2regions_mutation_{regions}.log",
     benchmark:
-        "logs/mutation/{samples}/{samples}_mapping2regions_mutation_{regions}.benchmark.txt",
+        "logs/rule/analysis/mutation/{samples}/{samples}_mapping2regions_mutation_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -427,9 +427,9 @@ rule mapping2regions_mutation_intergenic:
         info="{samples}",
         mappedReads=lambda w, input: mappedReads(input[0], input[1]), 
     log:
-        "logs/mutation/{samples}/{samples}_mapping2regions_mutation_intergenic_{regions}.log",
+        "logs/rule/analysis/mutation/{samples}/{samples}_mapping2regions_mutation_intergenic_{regions}.log",
     benchmark:
-        "logs/mutation/{samples}/{samples}_mapping2regions_mutation_intergenic_{regions}.benchmark.txt",
+        "logs/rule/analysis/mutation/{samples}/{samples}_mapping2regions_mutation_intergenic_{regions}.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

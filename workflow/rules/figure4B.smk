@@ -6,9 +6,9 @@ rule figure4B:
     output:
         report("results/plots/figure4B.pdf", caption="../report/figure4B.rst", category="Figures"), 
     log:
-        "logs/figure4B.log",
+        "logs/rule/fig/figure4B.log",
     benchmark:
-        "logs/figure4B.benchmark.txt",
+        "logs/rule/fig/figure4B.benchmark.txt",
     conda:
         "../envs/figures.yaml",
     shell:

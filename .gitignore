@@ -8,6 +8,7 @@ resources/samples/
 resources/ref_genomes/hg19/
 
 results/*
+results_old/*
 !results/processed_files/processed_files.zip
 !results/plots/
 !results/table/

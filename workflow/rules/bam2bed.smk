@@ -10,9 +10,9 @@ rule bam2bed_se_edu:
     params:
         q_trim="-q 20", 
     log:
-        "logs/{samples}/{samples}_{build}_bam2bed_se_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bam2bed_se_edu.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bam2bed_se_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bam2bed_se_edu.benchmark.txt",
     conda:
         "../envs/bam2bed.yaml"
     shell:  
@@ -56,9 +56,9 @@ rule bam2bed_pe_edu:
     params:
         q_trim="-q 20 -bf 0x2",
     log:
-        "logs/{samples}/{samples}_{build}_bam2bed_pe_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bam2bed_pe_edu.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bam2bed_pe_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bam2bed_pe_edu.benchmark.txt",
     conda:
         "../envs/bam2bed.yaml"
     shell: 

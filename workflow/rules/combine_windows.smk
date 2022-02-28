@@ -6,9 +6,9 @@ rule combine_windows_mutation:
     params:
         lambda w: getCombine(w.regions, config["region_mut_comb_opt"], config["regions_mut"]), 
     log:
-        "logs/{samples}/{samples}_combine_windows_{regions}_mutation.log",
+        "logs/rule/analysis/{samples}/{samples}_combine_windows_{regions}_mutation.log",
     benchmark:
-        "logs/{samples}/{samples}_combine_windows_{regions}_mutation.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_combine_windows_{regions}_mutation.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Combine windows..." &&
@@ -28,9 +28,9 @@ rule combine_windows_mutation_intergenic:
     params:
         lambda w: getCombine(w.regions, config["region_mut_comb_opt"], config["regions_mut"]), 
     log:
-        "logs/{samples}/{samples}_combine_windows_{regions}_mutation_intergenic.log",
+        "logs/rule/analysis/{samples}/{samples}_combine_windows_{regions}_mutation_intergenic.log",
     benchmark:
-        "logs/{samples}/{samples}_combine_windows_{regions}_mutation_intergenic.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_combine_windows_{regions}_mutation_intergenic.benchmark.txt",
     shell:
         """
         (echo "`date -R`: Combine windows..." &&

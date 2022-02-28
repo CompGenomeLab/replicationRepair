@@ -8,9 +8,9 @@ rule countMotifs:
     params:
         "tc cc ga gg",
     log:
-        "logs/regions/countMotifs_{regions}.log",
+        "logs/rule/analysis/regions/countMotifs_{regions}.log",
     benchmark:
-        "logs/regions/countMotifs_{regions}.benchmark.txt",
+        "logs/rule/analysis/regions/countMotifs_{regions}.benchmark.txt",
     conda:
         "../envs/countMotifs.yaml"
     shell:
@@ -47,9 +47,9 @@ rule countMotifs_kmer:
     params:
         kmer=5,
     log:
-        "logs/regions/countMotifs_kmer_{regions}.log",
+        "logs/rule/analysis/regions/countMotifs_kmer_{regions}.log",
     benchmark:
-        "logs/regions/countMotifs_kmer_{regions}.benchmark.txt",
+        "logs/rule/analysis/regions/countMotifs_kmer_{regions}.benchmark.txt",
     conda:
         "../envs/countMotifs.yaml"
     shell:

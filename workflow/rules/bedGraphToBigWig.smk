@@ -5,9 +5,9 @@ rule bedGraphToBigWig_edu:
     output:
         "results/edu/{samples}/{samples}_{build}_sorted_{strand}.bw",
     log:
-        "logs/{samples}/{samples}_{build}_bedGraphToBigWig_{strand}_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bedGraphToBigWig_{strand}_edu.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_bedGraphToBigWig_{strand}_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_bedGraphToBigWig_{strand}_edu.benchmark.txt",
     conda:
         "../envs/bedGraphToBigWig.yaml"
     shell:  

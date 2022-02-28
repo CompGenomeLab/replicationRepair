@@ -13,9 +13,9 @@ rule tss_xr:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[1]),
     log:
-        "logs/{samples}/{samples}_{build}_{tss_tes}_xr.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_{tss_tes}_xr.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_{tss_tes}_xr.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_{tss_tes}_xr.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:
@@ -89,9 +89,9 @@ rule tss_ds:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[1]),
     log:
-        "logs/{samples}/{samples}_{build}_{tss_tes}_ds.log",
+        "logs/rule/analysis/{samples}/{samples}_{build}_{tss_tes}_ds.log",
     benchmark:
-        "logs/{samples}/{samples}_{build}_{tss_tes}_ds.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_{build}_{tss_tes}_ds.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

@@ -8,9 +8,9 @@ rule okseqIntersect:
         gm06990="results/okseq/GM06990_intersect2_HeLa_IMR90.txt",
         imr90="results/okseq/IMR90_intersect2_GM06990_HeLa.txt",
     log:
-        "logs/okseqIntersect.log",
+        "logs/rule/analysis/okseqIntersect.log",
     benchmark:
-        "logs/okseqIntersect.benchmark.txt",
+        "logs/rule/analysis/okseqIntersect.benchmark.txt",
     conda:
         "../envs/bed2fasta.yaml"
     shell:

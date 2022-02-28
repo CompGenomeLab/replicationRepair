@@ -6,9 +6,9 @@ rule produceReplicationDomains:
         norm="results/regions/repdomains_mean0.5.bed",  
         uv="results/regions/repdomains_uv_mean0.5.bed",  
     log:
-        "logs/produceReplicationDomains.log",
+        "logs/rule/analysis/produceReplicationDomains.log",
     benchmark:
-        "logs/produceReplicationDomains.benchmark.txt",
+        "logs/rule/analysis/produceReplicationDomains.benchmark.txt",
     conda:
         "../envs/produceReplicationDomains.yaml",
     shell:
