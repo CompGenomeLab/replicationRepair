@@ -14,7 +14,7 @@ rule make_windows:
     benchmark:
         "logs/rule/analysis/{sample}_{windowNum}_{interval}_make_windows.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:  
         """
         (echo "`date -R`: Creating windows..." &&

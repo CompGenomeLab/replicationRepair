@@ -1,4 +1,0 @@
-channels:
-  - defaults
-dependencies:
-  - conda-forge::libcurl ==7.61.1

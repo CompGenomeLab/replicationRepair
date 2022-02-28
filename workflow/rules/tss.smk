@@ -17,7 +17,7 @@ rule tss_xr:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_{tss_tes}_xr.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         (echo "`date -R`: Counting reads on TS..." &&
@@ -93,7 +93,7 @@ rule tss_ds:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_{tss_tes}_ds.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         (echo "`date -R`: Counting reads on TS..." &&

@@ -11,7 +11,7 @@ rule intergenic_mutation:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_intergenic_mutation.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         (echo "`date -R`: Getting intergenic (plus strand)..." &&

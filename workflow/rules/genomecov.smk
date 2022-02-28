@@ -13,7 +13,7 @@ rule genomecov_edu:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_genomecov_edu.benchmark.txt",
     conda:
-        "../envs/genomecov.yaml"
+        "../envs/sambedtools.yaml"
     shell:  
         """
         (echo "`date -R`: Calculating genome coverage of {input.plus}..." &&
@@ -51,7 +51,7 @@ rule genomecov_edu_v2:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_genomecov_edu_v2.benchmark.txt",
     conda:
-        "../envs/genomecov.yaml"
+        "../envs/sambedtools.yaml"
     shell:  
         """
         (echo "`date -R`: Calculating genome coverage..." &&

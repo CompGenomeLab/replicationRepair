@@ -16,7 +16,7 @@ rule intersect2repDomains:
     benchmark:
         "logs/rule/analysis/intersect2repDomains.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """  
         (echo "`date -R`: Intersecting with {input.iz}..." &&

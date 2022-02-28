@@ -15,7 +15,7 @@ rule pre_mapping_xr:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_xr.benchmark.txt",   
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """   
         (echo "`date -R`: Extracting exact damage sites (plus strand)..." &&
@@ -70,7 +70,7 @@ rule pre_mapping_ds:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_ds.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """   
         (echo "`date -R`: Extracting exact damage sites (plus strand)..." &&
@@ -126,7 +126,7 @@ rule pre_mapping_xr_sim:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_sim_xr.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """   
         (echo "`date -R`: Separating plus strands..." &&
@@ -192,7 +192,7 @@ rule pre_mapping_ds_sim:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_sim_ds.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """   
         (echo "`date -R`: Separating plus strands..." &&

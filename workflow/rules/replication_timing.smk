@@ -23,7 +23,7 @@ rule replication_timing:
     benchmark:
         "logs/rule/analysis/replication_timing.benchmark.txt",
     conda:
-        "../envs/genomecov.yaml"
+        "../envs/sambedtools.yaml"
     shell:  
         """
         (echo "`date -R`: Replication timing replicate 1..." &&

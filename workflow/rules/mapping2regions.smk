@@ -28,7 +28,7 @@ rule mapping2regions_xr:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_mapping2regions_xr_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         workflow/scripts/mapping2regions.sh \
@@ -72,7 +72,7 @@ rule mapping2regions_ds:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_mapping2regions_ds_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         workflow/scripts/mapping2regions.sh \
@@ -116,7 +116,7 @@ rule mapping2regions_xr_intergenic:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_mapping2regions_xr_intergenic_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         workflow/scripts/mapping2regions.sh \
@@ -160,7 +160,7 @@ rule mapping2regions_ds_intergenic:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_mapping2regions_ds_intergenic_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         workflow/scripts/mapping2regions.sh \
@@ -204,7 +204,7 @@ rule mapping2regions_xr_sim:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_sim_mapping2regions_xr_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         workflow/scripts/mapping2regions.sh \
@@ -248,7 +248,7 @@ rule mapping2regions_ds_sim:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_sim_mapping2regions_ds_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         workflow/scripts/mapping2regions.sh \
@@ -292,7 +292,7 @@ rule mapping2regions_xr_intergenic_sim:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_sim_mapping2regions_xr_intergenic_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         workflow/scripts/mapping2regions.sh \
@@ -336,7 +336,7 @@ rule mapping2regions_ds_intergenic_sim:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_sim_mapping2regions_ds_intergenic_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         workflow/scripts/mapping2regions.sh \
@@ -381,7 +381,7 @@ rule mapping2regions_mutation:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_mapping2regions_mutation_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         workflow/scripts/mapping2regions.sh \
@@ -431,7 +431,7 @@ rule mapping2regions_mutation_intergenic:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_mapping2regions_mutation_intergenic_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         workflow/scripts/mapping2regions.sh \

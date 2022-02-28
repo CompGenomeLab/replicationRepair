@@ -13,7 +13,7 @@ rule ts_nts_xr:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_ts_nts_xr.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         (echo "`date -R`: Combine strands..." &&
@@ -61,7 +61,7 @@ rule ts_nts_ds:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_ts_nts_ds.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         (echo "`date -R`: Combine strands..." &&

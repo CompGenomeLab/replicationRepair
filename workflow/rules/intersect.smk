@@ -13,7 +13,7 @@ rule intersect_mutation:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_intersect_mutation_{regions}.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """   
         (echo "`date -R`: Copy region file {params.region}..." &&
@@ -53,7 +53,7 @@ rule intersect_mutation_intergenic:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_intersect_mutation_{regions}_intergenic.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """   
         (echo "`date -R`: Copy region file {params.region}..." &&

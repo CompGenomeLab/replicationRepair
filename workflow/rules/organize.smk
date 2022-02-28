@@ -12,7 +12,7 @@ rule organize:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_organize.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         (echo "`date -R`: Organize and remove chrY, chrMT..." &&

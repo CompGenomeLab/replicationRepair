@@ -14,7 +14,7 @@ rule bed2fasta_ds:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_bed2fasta_ds.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         (echo "`date -R`: Combine files..." &&
@@ -61,7 +61,7 @@ rule bed2fasta_xr:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_bed2fasta_xr.benchmark.txt",
     conda:
-        "../envs/bed2fasta.yaml"
+        "../envs/sambedtools.yaml"
     shell:
         """
         (echo "`date -R`: Converting {input.bed} to fasta format..." &&

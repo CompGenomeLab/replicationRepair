@@ -14,7 +14,7 @@ rule bam2bed_se_edu:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_bam2bed_se_edu.benchmark.txt",
     conda:
-        "../envs/bam2bed.yaml"
+        "../envs/sambedtools.yaml"
     shell:  
         """
         (echo "`date -R`: Collating bam file..." &&
@@ -60,7 +60,7 @@ rule bam2bed_pe_edu:
     benchmark:
         "logs/rule/analysis/{samples}/{samples}_{build}_bam2bed_pe_edu.benchmark.txt",
     conda:
-        "../envs/bam2bed.yaml"
+        "../envs/sambedtools.yaml"
     shell: 
         """
         (echo "`date -R`: Collating bam file..." &&
