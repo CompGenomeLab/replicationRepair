@@ -4,18 +4,14 @@ gitignore/
 
 test/
 
-resources/samples/
-resources/ref_genomes/hg19/
-!resources/samples/dinuc/HDL64A5_ACAGTG_cutadapt_sorted_10_dinucleotideTable.txt
-!resources/samples/dinuc/HDLCA12_CTTGTA_cutadapt_sorted_10_dinucleotideTable.txt
-!resources/samples/dinuc/HXL64A3_TTAGGC_cutadapt_length_distribution.txt
-!resources/samples/dinuc/HXL64A3_TTAGGC_cutadapt_sorted_26_dinucleotideTable.txt
-!resources/samples/dinuc/HXLCA6_GCCAAT_cutadapt_length_distribution.txt
-!resources/samples/dinuc/HXLCA6_GCCAAT_cutadapt_sorted_26_dinucleotideTable.txt
-!resources/samples/dinuc/R19026421-2019XR1-Hela35X3_combined_R1_cutadapt_length_distribution.txt
-!resources/samples/dinuc/R19026421-2019XR1-Hela35X3_combined_R1_cutadapt_sorted_26_dinucleotideTable.txt
-!resources/samples/dinuc/XT4H1-CT5H2-HelaD3-5R2h2_combined_cutadapt_sorted_10_dinucleotideTable.txt
-!resources/samples/iz_hela.bed
+resources/ref_genomes/hg19/*
+resources/samples/DS/*
+resources/samples/edu/*
+resources/samples/input2/*
+resources/samples/mutation/*
+resources/samples/okseq2/*
+resources/samples/sim/*
+resources/samples/XR/*
 
 results/*
 results_old/*
