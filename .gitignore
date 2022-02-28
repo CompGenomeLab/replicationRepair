@@ -6,31 +6,23 @@ test/
 
 resources/samples/
 resources/ref_genomes/hg19/
+!resources/samples/dinuc/HDL64A5_ACAGTG_cutadapt_sorted_10_dinucleotideTable.txt
+!resources/samples/dinuc/HDLCA12_CTTGTA_cutadapt_sorted_10_dinucleotideTable.txt
+!resources/samples/dinuc/HXL64A3_TTAGGC_cutadapt_length_distribution.txt
+!resources/samples/dinuc/HXL64A3_TTAGGC_cutadapt_sorted_26_dinucleotideTable.txt
+!resources/samples/dinuc/HXLCA6_GCCAAT_cutadapt_length_distribution.txt
+!resources/samples/dinuc/HXLCA6_GCCAAT_cutadapt_sorted_26_dinucleotideTable.txt
+!resources/samples/dinuc/R19026421-2019XR1-Hela35X3_combined_R1_cutadapt_length_distribution.txt
+!resources/samples/dinuc/R19026421-2019XR1-Hela35X3_combined_R1_cutadapt_sorted_26_dinucleotideTable.txt
+!resources/samples/dinuc/XT4H1-CT5H2-HelaD3-5R2h2_combined_cutadapt_sorted_10_dinucleotideTable.txt
+!resources/samples/iz_hela.bed
 
 results/*
 results_old/*
-!results/processed_files/processed_files.zip
-!results/plots/
-!results/table/
-!results/final
-results/final/*
-!results/final/HDL64A5_ACAGTG_cutadapt_sorted_10_dinucleotideTable.txt
-!results/final/HDLCA12_CTTGTA_cutadapt_sorted_10_dinucleotideTable.txt
-!results/final/HXL64A3_TTAGGC_cutadapt_length_distribution.txt
-!results/final/HXL64A3_TTAGGC_cutadapt_sorted_26_dinucleotideTable.txt
-!results/final/HXLCA6_GCCAAT_cutadapt_length_distribution.txt
-!results/final/HXLCA6_GCCAAT_cutadapt_sorted_26_dinucleotideTable.txt
-!results/final/R19026421-2019XR1-Hela35X3_combined_R1_cutadapt_length_distribution.txt
-!results/final/R19026421-2019XR1-Hela35X3_combined_R1_cutadapt_sorted_26_dinucleotideTable.txt
-!results/final/XT4H1-CT5H2-HelaD3-5R2h2_combined_cutadapt_sorted_10_dinucleotideTable.txt
+!results/README.md
 
 logs/*
 !logs/README.md
-
-reports/*
-!reports/README.md
-
-final/
 
 workflow/scripts/4plots/gitignore/
 workflow/scripts/4plots/.Rproj.user/
