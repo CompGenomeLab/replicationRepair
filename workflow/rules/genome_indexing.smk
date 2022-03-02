@@ -1,9 +1,9 @@
 
 rule genome_indexing:
     input:
-        "resources/ref_genomes/{build}/genome_{build}.fa",
+        "resources/ref_genomes/hg19/genome_hg19.fa",
     output:
-        "resources/ref_genomes/{build}/genome_{build}.fa.fai",
+        "resources/ref_genomes/hg19/genome_hg19.fa.fai",
     benchmark:
         "logs/rule/analysis/indexing.benchmark.txt",
     wrapper:

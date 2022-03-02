@@ -1,19 +1,19 @@
 rule pre_mapping_xr:
     input:
-        plus="resources/samples/XR/{samples}_{build}_sorted_plus.bed",
-        minus="resources/samples/XR/{samples}_{build}_sorted_minus.bed",
+        plus="resources/samples/XR/{samples}_hg19_sorted_plus.bed",
+        minus="resources/samples/XR/{samples}_hg19_sorted_minus.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
-        plus="results/XR/{samples}/{samples}_{build}_sorted_xr_plus_damSite.bed",
-        minus="results/XR/{samples}/{samples}_{build}_sorted_xr_minus_damSite.bed",
-        plus_intergenic="results/XR/{samples}/{samples}_{build}_sorted_xr_intergenic_plus.bed",
-        minus_intergenic="results/XR/{samples}/{samples}_{build}_sorted_xr_intergenic_minus.bed",
+        plus="results/XR/{samples}/{samples}_hg19_sorted_xr_plus_damSite.bed",
+        minus="results/XR/{samples}/{samples}_hg19_sorted_xr_minus_damSite.bed",
+        plus_intergenic="results/XR/{samples}/{samples}_hg19_sorted_xr_intergenic_plus.bed",
+        minus_intergenic="results/XR/{samples}/{samples}_hg19_sorted_xr_intergenic_minus.bed",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_xr.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_pre_mapping_xr.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_xr.benchmark.txt",   
+        "logs/rule/analysis/{samples}/{samples}_hg19_pre_mapping_xr.benchmark.txt",   
     conda:
         "../envs/sambedtools.yaml"
     shell:
@@ -55,20 +55,20 @@ rule pre_mapping_xr:
 
 rule pre_mapping_ds:
     input:
-        plus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_plus.bed",
-        minus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_minus.bed", 
+        plus="resources/samples/DS/{samples}_hg19_sorted_ds_dipyrimidines_plus.bed",
+        minus="resources/samples/DS/{samples}_hg19_sorted_ds_dipyrimidines_minus.bed", 
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
-        plus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_plus_damSite.bed",
-        minus="results/DS/{samples}/{samples}_{build}_sorted_ds_dipyrimidines_minus_damSite.bed",
-        plus_intergenic="results/DS/{samples}/{samples}_{build}_sorted_ds_intergenic_plus.bed",
-        minus_intergenic="results/DS/{samples}/{samples}_{build}_sorted_ds_intergenic_minus.bed",
+        plus="results/DS/{samples}/{samples}_hg19_sorted_ds_dipyrimidines_plus_damSite.bed",
+        minus="results/DS/{samples}/{samples}_hg19_sorted_ds_dipyrimidines_minus_damSite.bed",
+        plus_intergenic="results/DS/{samples}/{samples}_hg19_sorted_ds_intergenic_plus.bed",
+        minus_intergenic="results/DS/{samples}/{samples}_hg19_sorted_ds_intergenic_minus.bed",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",  
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_ds.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_pre_mapping_ds.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_ds.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_pre_mapping_ds.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:
@@ -110,21 +110,21 @@ rule pre_mapping_ds:
 
 rule pre_mapping_xr_sim:
     input:
-        bed="resources/samples/sim/{samples}_{build}_xr_sim.bed", 
+        bed="resources/samples/sim/{samples}_hg19_xr_sim.bed", 
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
-        plus=temp("results/sim/{samples}/{samples}_{build}_xr_sim_plus_sorted.bed"),
-        minus=temp("results/sim/{samples}/{samples}_{build}_xr_sim_minus_sorted.bed"),
-        plus_dam="results/sim/{samples}/{samples}_{build}_xr_sim_plus_damSite.bed",
-        minus_dam="results/sim/{samples}/{samples}_{build}_xr_sim_minus_damSite.bed",
-        plus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_xr_sim_intergenic_plus.bed",
-        minus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_xr_sim_intergenic_minus.bed",
+        plus=temp("results/sim/{samples}/{samples}_hg19_xr_sim_plus_sorted.bed"),
+        minus=temp("results/sim/{samples}/{samples}_hg19_xr_sim_minus_sorted.bed"),
+        plus_dam="results/sim/{samples}/{samples}_hg19_xr_sim_plus_damSite.bed",
+        minus_dam="results/sim/{samples}/{samples}_hg19_xr_sim_minus_damSite.bed",
+        plus_intergenic="results/sim/{samples}/{samples}_hg19_sorted_xr_sim_intergenic_plus.bed",
+        minus_intergenic="results/sim/{samples}/{samples}_hg19_sorted_xr_sim_intergenic_minus.bed",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",    
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_sim_xr.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_pre_mapping_sim_xr.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_sim_xr.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_pre_mapping_sim_xr.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:
@@ -176,21 +176,21 @@ rule pre_mapping_xr_sim:
 
 rule pre_mapping_ds_sim:
     input:
-        bed="resources/samples/sim/{samples}_{build}_ds_sim.bed",
+        bed="resources/samples/sim/{samples}_hg19_ds_sim.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes.bed",
     output:
-        plus=temp("results/sim/{samples}/{samples}_{build}_ds_sim_plus_sorted.bed"),
-        minus=temp("results/sim/{samples}/{samples}_{build}_ds_sim_minus_sorted.bed"),
-        plus_dam="results/sim/{samples}/{samples}_{build}_ds_sim_plus_damSite.bed",
-        minus_dam="results/sim/{samples}/{samples}_{build}_ds_sim_minus_damSite.bed",
-        plus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_ds_sim_intergenic_plus.bed",
-        minus_intergenic="results/sim/{samples}/{samples}_{build}_sorted_ds_sim_intergenic_minus.bed",
+        plus=temp("results/sim/{samples}/{samples}_hg19_ds_sim_plus_sorted.bed"),
+        minus=temp("results/sim/{samples}/{samples}_hg19_ds_sim_minus_sorted.bed"),
+        plus_dam="results/sim/{samples}/{samples}_hg19_ds_sim_plus_damSite.bed",
+        minus_dam="results/sim/{samples}/{samples}_hg19_ds_sim_minus_damSite.bed",
+        plus_intergenic="results/sim/{samples}/{samples}_hg19_sorted_ds_sim_intergenic_plus.bed",
+        minus_intergenic="results/sim/{samples}/{samples}_hg19_sorted_ds_sim_intergenic_minus.bed",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",    
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_sim_ds.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_pre_mapping_sim_ds.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_pre_mapping_sim_ds.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_pre_mapping_sim_ds.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:

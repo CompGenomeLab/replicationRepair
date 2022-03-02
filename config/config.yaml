@@ -1,5 +1,3 @@
-build: "hg19"
-
 xr:
   samples: 
     - "Hela15X2_comb"

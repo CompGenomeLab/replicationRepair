@@ -23,14 +23,14 @@ rule sep_strands_mutation:
 
 rule sep_strands_edu:
     input:
-        "results/edu/{samples}/{samples}_{build}_sorted_chr.bed",
+        "results/edu/{samples}/{samples}_hg19_sorted_chr.bed",
     output:
-        plus="results/edu/{samples}/{samples}_{build}_sorted_plus.bed",
-        minus="results/edu/{samples}/{samples}_{build}_sorted_minus.bed",
+        plus="results/edu/{samples}/{samples}_hg19_sorted_plus.bed",
+        minus="results/edu/{samples}/{samples}_hg19_sorted_minus.bed",
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_sep_strands_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_sep_strands_edu.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_sep_strands_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_sep_strands_edu.benchmark.txt",
     shell:  
         """
         (echo "`date -R`: Separating plus stranded reads..." &&

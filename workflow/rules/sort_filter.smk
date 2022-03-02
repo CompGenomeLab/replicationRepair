@@ -3,13 +3,13 @@ rule sort_filter_edu:
         lambda w: input4filter(w, config["edu"]["samples"], config["edu"]["srr"]["enabled"], 
             config["edu"]["srr"]["codes"], "edu", "resources/samples/edu/"),
     output:
-        "results/edu/{samples}/{samples}_{build}_sorted_chr.bed",
+        "results/edu/{samples}/{samples}_hg19_sorted_chr.bed",
     params:
         filt="'^chr([1-9]|1[0-9]|2[0-2]|X)'",
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_sort_filter.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_sort_filter.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_sort_filter.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_sort_filter.benchmark.txt",
     shell:  
         """
         (echo "`date -R`: Sorting and filtering bed file by chromosomes..." &&

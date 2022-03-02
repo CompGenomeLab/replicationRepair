@@ -1,18 +1,18 @@
 
 rule bed2fasta_ds:
     input:
-        plus="results/{samples}/{samples}_{build}_sorted_plus_10.bed",
-        minus="results/{samples}/{samples}_{build}_sorted_minus_10.bed",
-        genome="resources/ref_genomes/{build}/genome_{build}.fa",
+        plus="results/{samples}/{samples}_hg19_sorted_plus_10.bed",
+        minus="results/{samples}/{samples}_hg19_sorted_minus_10.bed",
+        genome="resources/ref_genomes/hg19/genome_hg19.fa",
     output:
-        plus=temp("results/{samples}/{samples}_{build}_sorted_plus_10.fa"),
-        minus=temp("results/{samples}/{samples}_{build}_sorted_minus_10.fa"),
-        comb=temp("results/{samples}/{samples}_{build}_sorted_10.fa"),
-        bed=temp("results/{samples}/{samples}_{build}_sorted_10.bed"),       
+        plus=temp("results/{samples}/{samples}_hg19_sorted_plus_10.fa"),
+        minus=temp("results/{samples}/{samples}_hg19_sorted_minus_10.fa"),
+        comb=temp("results/{samples}/{samples}_hg19_sorted_10.fa"),
+        bed=temp("results/{samples}/{samples}_hg19_sorted_10.bed"),       
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bed2fasta_ds.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bed2fasta_ds.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bed2fasta_ds.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bed2fasta_ds.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:
@@ -52,14 +52,14 @@ rule bed2fasta_ds:
 
 rule bed2fasta_xr:
     input:
-        bed="results/{samples}/{samples}_{build}_lengthMode.bed",
-        genome="resources/ref_genomes/{build}/genome_{build}.fa",
+        bed="results/{samples}/{samples}_hg19_lengthMode.bed",
+        genome="resources/ref_genomes/hg19/genome_hg19.fa",
     output:
-        temp("results/{samples}/{samples}_{build}_lengthMode.fa"),
+        temp("results/{samples}/{samples}_hg19_lengthMode.fa"),
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bed2fasta_xr.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bed2fasta_xr.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bed2fasta_xr.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bed2fasta_xr.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:

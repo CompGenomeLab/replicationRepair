@@ -64,9 +64,9 @@ def isSingle(sample, sampleList, srrEnabled, srrList, sample_dir):
 def input4filter(wildcards, sampleList, srrEnabled, srrList, method, dirRaw):
 
     if isSingle(wildcards.samples, sampleList, srrEnabled, srrList, dirRaw):
-        return "results/" + method + "/{samples}/{samples}_{build}_se.bed"
+        return "results/" + method + "/{samples}/{samples}_hg19_se.bed"
     else:    
-        return "results/" + method + "/{samples}/{samples}_{build}_pe.bed"
+        return "results/" + method + "/{samples}/{samples}_hg19_pe.bed"
 
 def lineNum(file):
     
@@ -129,7 +129,7 @@ def getRegion(region, rawRegionList, regionList):
         
     return rawRegionList[idx] 
 
-def combineOutputs(build, sampleList_xr, sampleList_ds, regions="", outformat="real"):
+def combineOutputs(sampleList_xr, sampleList_ds, regions="", outformat="real"):
 
     inputList = []
     if outformat == "real":
@@ -137,65 +137,65 @@ def combineOutputs(build, sampleList_xr, sampleList_ds, regions="", outformat="r
         for sample in sampleList_xr:
             sampledir = f"results/XR/{sample}/" 
 
-            inputList.append(f"{sampledir}{sample}_{build}_plus_{regions}_combined_rpkm.txt")
-            inputList.append(f"{sampledir}{sample}_{build}_minus_{regions}_combined_rpkm.txt")
+            inputList.append(f"{sampledir}{sample}_hg19_plus_{regions}_combined_rpkm.txt")
+            inputList.append(f"{sampledir}{sample}_hg19_minus_{regions}_combined_rpkm.txt")
 
         for sample in sampleList_ds:
             sampledir = f"results/DS/{sample}/" 
             
-            inputList.append(f"{sampledir}{sample}_{build}_plus_{regions}_combined_rpkm.txt")
-            inputList.append(f"{sampledir}{sample}_{build}_minus_{regions}_combined_rpkm.txt")
+            inputList.append(f"{sampledir}{sample}_hg19_plus_{regions}_combined_rpkm.txt")
+            inputList.append(f"{sampledir}{sample}_hg19_minus_{regions}_combined_rpkm.txt")
 
     elif outformat == "intergenic":
 
         for sample in (sampleList_xr + sampleList_ds):
             sampledir = f"results/intergenic/{sample}/" 
 
-            inputList.append(f"{sampledir}{sample}_{build}_plus_{regions}_combined_rpkm.txt")
-            inputList.append(f"{sampledir}{sample}_{build}_minus_{regions}_combined_rpkm.txt")
+            inputList.append(f"{sampledir}{sample}_hg19_plus_{regions}_combined_rpkm.txt")
+            inputList.append(f"{sampledir}{sample}_hg19_minus_{regions}_combined_rpkm.txt")
 
     elif outformat == "sim":
 
         for sample in (sampleList_xr + sampleList_ds):
             sampledir = f"results/sim/{sample}/"
 
-            inputList.append(f"{sampledir}{sample}_{build}_plus_{regions}_combined_rpkm.txt")
-            inputList.append(f"{sampledir}{sample}_{build}_minus_{regions}_combined_rpkm.txt")
+            inputList.append(f"{sampledir}{sample}_hg19_plus_{regions}_combined_rpkm.txt")
+            inputList.append(f"{sampledir}{sample}_hg19_minus_{regions}_combined_rpkm.txt")
 
     elif outformat == "sim_intergenic":
 
         for sample in (sampleList_xr + sampleList_ds):
             sampledir = f"results/intergenic_sim/{sample}/" 
 
-            inputList.append(f"{sampledir}{sample}_{build}_plus_{regions}_combined_rpkm.txt")
-            inputList.append(f"{sampledir}{sample}_{build}_minus_{regions}_combined_rpkm.txt")
+            inputList.append(f"{sampledir}{sample}_hg19_plus_{regions}_combined_rpkm.txt")
+            inputList.append(f"{sampledir}{sample}_hg19_minus_{regions}_combined_rpkm.txt")
 
     elif outformat == "tss":
         for sample in sampleList_xr:
             sampledir = f"results/XR/{sample}/" 
 
-            inputList.append(f"{sampledir}{sample}_{build}_sorted_tss_combined_rpkm.bed") 
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_tss_combined_rpkm.bed") 
 
         for sample in sampleList_ds:
             sampledir = f"results/DS/{sample}/" 
             
-            inputList.append(f"{sampledir}{sample}_{build}_sorted_dipyrimidines_tss_combined_rpkm.bed") 
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_dipyrimidines_tss_combined_rpkm.bed") 
 
     elif outformat == "tes":
         for sample in sampleList_xr:
             sampledir = f"results/XR/{sample}/" 
 
-            inputList.append(f"{sampledir}{sample}_{build}_sorted_tes_combined_rpkm.bed") 
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_tes_combined_rpkm.bed") 
 
         for sample in sampleList_ds:
             sampledir = f"results/DS/{sample}/" 
             
-            inputList.append(f"{sampledir}{sample}_{build}_sorted_dipyrimidines_tes_combined_rpkm.bed") 
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_dipyrimidines_tes_combined_rpkm.bed") 
 
     return inputList
 
 
-def allInput(build="", sampleList=[], srrEnabled=False, srrList=[], method="", regions=[]):
+def allInput(sampleList=[], srrEnabled=False, srrList=[], method="", regions=[]):
 
     inputList = []
     if method == "okseq":

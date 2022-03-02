@@ -1,18 +1,18 @@
 rule bam2bed_se_edu:
     input:
-        "results/edu/{samples}/{samples}_se_{build}.bam",
+        "results/edu/{samples}/{samples}_se_hg19.bam",
     output:
-        bam=temp("results/edu/{samples}/{samples}_{build}_collated.bam"),
-        fix=temp("results/edu/{samples}/{samples}_{build}_collated_fixmate.bam"),
-        sort=temp("results/edu/{samples}/{samples}_{build}_sorted.bam"),
-        rmdup=temp("results/edu/{samples}/{samples}_{build}_sorted_rmdup.bam"),
-        bed="results/edu/{samples}/{samples}_{build}_se.bed",
+        bam=temp("results/edu/{samples}/{samples}_hg19_collated.bam"),
+        fix=temp("results/edu/{samples}/{samples}_hg19_collated_fixmate.bam"),
+        sort=temp("results/edu/{samples}/{samples}_hg19_sorted.bam"),
+        rmdup=temp("results/edu/{samples}/{samples}_hg19_sorted_rmdup.bam"),
+        bed="results/edu/{samples}/{samples}_hg19_se.bed",
     params:
         q_trim="-q 20", 
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bam2bed_se_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bam2bed_se_edu.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bam2bed_se_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bam2bed_se_edu.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:  
@@ -51,19 +51,19 @@ rule bam2bed_se_edu:
 
 rule bam2bed_pe_edu:
     input:
-        "results/edu/{samples}/{samples}_pe_{build}.bam",
+        "results/edu/{samples}/{samples}_pe_hg19.bam",
     output:
-        bam=temp("results/edu/{samples}/{samples}_{build}_collated.bam"),
-        fix=temp("results/edu/{samples}/{samples}_{build}_collated_fixmate.bam"),
-        sort=temp("results/edu/{samples}/{samples}_{build}_sorted.bam"),
-        rmdup="results/edu/{samples}/{samples}_{build}_sorted_rmdup.bam",
-        bed="results/edu/{samples}/{samples}_{build}_pe.bed",
+        bam=temp("results/edu/{samples}/{samples}_hg19_collated.bam"),
+        fix=temp("results/edu/{samples}/{samples}_hg19_collated_fixmate.bam"),
+        sort=temp("results/edu/{samples}/{samples}_hg19_sorted.bam"),
+        rmdup="results/edu/{samples}/{samples}_hg19_sorted_rmdup.bam",
+        bed="results/edu/{samples}/{samples}_hg19_pe.bed",
     params:
         q_trim="-q 20 -bf 0x2",
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bam2bed_pe_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bam2bed_pe_edu.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bam2bed_pe_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bam2bed_pe_edu.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell: 

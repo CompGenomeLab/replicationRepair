@@ -1,13 +1,13 @@
 rule bedGraphToBigWig_edu:
     input:
-        bdg="results/edu/{samples}/{samples}_{build}_sorted_{strand}.bdg",
-        index="resources/ref_genomes/{build}/genome_{build}.fa.fai",
+        bdg="results/edu/{samples}/{samples}_hg19_sorted_{strand}.bdg",
+        index="resources/ref_genomes/hg19/genome_hg19.fa.fai",
     output:
-        "results/edu/{samples}/{samples}_{build}_sorted_{strand}.bw",
+        "results/edu/{samples}/{samples}_hg19_sorted_{strand}.bw",
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bedGraphToBigWig_{strand}_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bedGraphToBigWig_{strand}_edu.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bedGraphToBigWig_{strand}_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bedGraphToBigWig_{strand}_edu.benchmark.txt",
     conda:
         "../envs/bedGraphToBigWig.yaml"
     shell:  

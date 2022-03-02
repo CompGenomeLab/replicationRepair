@@ -1,21 +1,21 @@
 rule bowtie2_se_okseq:
     input:
         sample=["results/okseq/{samples}/{samples}_cutadapt.fastq.gz"],
-        bowtie2="resources/ref_genomes/{build}/Bowtie2/genome_{build}.1.bt2",
+        bowtie2="resources/ref_genomes/hg19/Bowtie2/genome_hg19.1.bt2",
     output:
-        sam=temp("results/okseq/{samples}/{samples}_se_{build}.sam"),
-        bam=temp("results/okseq/{samples}/{samples}_se_{build}.bam"),
-        bam_filt=temp("results/okseq/{samples}/{samples}_se_{build}_filt.bam"),
-        bam_org="results/okseq/{samples}/{samples}_se_{build}_sorted.bam",
-        idx="results/okseq/{samples}/{samples}_se_{build}_sorted.bam.bai",
+        sam=temp("results/okseq/{samples}/{samples}_se_hg19.sam"),
+        bam=temp("results/okseq/{samples}/{samples}_se_hg19.bam"),
+        bam_filt=temp("results/okseq/{samples}/{samples}_se_hg19_filt.bam"),
+        bam_org="results/okseq/{samples}/{samples}_se_hg19_sorted.bam",
+        idx="results/okseq/{samples}/{samples}_se_hg19_sorted.bam.bai",
     params:
-        ref_genome="resources/ref_genomes/{build}/Bowtie2/genome_{build}",
+        ref_genome="resources/ref_genomes/hg19/Bowtie2/genome_hg19",
         extra="",
     threads: 16  
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_se_okseq.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_se_okseq.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_se_okseq.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_se_okseq.benchmark.txt",
     conda:
         "../envs/align.yaml"
     shell:  
@@ -45,18 +45,18 @@ rule bowtie2_se_okseq:
 rule bowtie2_se_edu:
     input:
         sample=["resources/samples/edu/{samples}.fastq.gz"],
-        bowtie2="resources/ref_genomes/{build}/Bowtie2/genome_{build}.1.bt2",
+        bowtie2="resources/ref_genomes/hg19/Bowtie2/genome_hg19.1.bt2",
     output:
-        sam=temp("results/edu/{samples}/{samples}_se_{build}.sam"),
-        bam="results/edu/{samples}/{samples}_se_{build}.bam",
+        sam=temp("results/edu/{samples}/{samples}_se_hg19.sam"),
+        bam="results/edu/{samples}/{samples}_se_hg19.bam",
     params:
-        ref_genome="resources/ref_genomes/{build}/Bowtie2/genome_{build}",
+        ref_genome="resources/ref_genomes/hg19/Bowtie2/genome_hg19",
         extra="",
     threads: 16  
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_se_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_se_edu.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_se_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_se_edu.benchmark.txt",
     conda:
         "../envs/align.yaml"
     shell:  
@@ -80,18 +80,18 @@ rule bowtie2_se_edu:
 rule bowtie2_pe_edu:
     input:
         sample=["resources/samples/edu/{samples}_R1.fastq.gz", "resources/samples/edu/{samples}_R2.fastq.gz"],
-        bowtie2="resources/ref_genomes/{build}/Bowtie2/genome_{build}.1.bt2",
+        bowtie2="resources/ref_genomes/hg19/Bowtie2/genome_hg19.1.bt2",
     output:
-        sam=temp("results/edu/{samples}/{samples}_pe_{build}.sam"),
-        bam="results/edu/{samples}/{samples}_pe_{build}.bam",
+        sam=temp("results/edu/{samples}/{samples}_pe_hg19.sam"),
+        bam="results/edu/{samples}/{samples}_pe_hg19.bam",
     params:
-        ref_genome="resources/ref_genomes/{build}/Bowtie2/genome_{build}",
+        ref_genome="resources/ref_genomes/hg19/Bowtie2/genome_hg19",
         extra="-X 1000",
     threads: 16  
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_pe_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_pe_edu.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_bowtie2_pe_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_pe_edu.benchmark.txt",
     conda:
         "../envs/align.yaml"
     shell:  

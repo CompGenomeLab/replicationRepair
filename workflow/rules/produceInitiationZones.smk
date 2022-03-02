@@ -1,15 +1,15 @@
 rule produceInitiationZones:
     input:  
-        okseq="results/okseq/{samples}/{samples}_se_{build}_sorted.bam",  
-        genome="resources/ref_genomes/{build}/genome_{build}.txt",           
+        okseq="results/okseq/{samples}/{samples}_se_hg19_sorted.bam",  
+        genome="resources/ref_genomes/hg19/genome_hg19.txt",           
     output: 
-        "results/okseq/{samples}/{samples}_{build}_HMMsegments_IZ.bed",  
+        "results/okseq/{samples}/{samples}_hg19_HMMsegments_IZ.bed",  
     params:
-        prefix="results/okseq/{samples}/{samples}_{build}",
+        prefix="results/okseq/{samples}/{samples}_hg19",
     log:
-        "logs/rule/analysis/{samples}_{build}_produceInitiationZones.log",
+        "logs/rule/analysis/{samples}_hg19_produceInitiationZones.log",
     benchmark:
-        "logs/rule/analysis/{samples}_{build}_produceInitiationZones.benchmark.txt",
+        "logs/rule/analysis/{samples}_hg19_produceInitiationZones.benchmark.txt",
     conda:
         "../envs/produceInitiationZones.yaml",
     shell:

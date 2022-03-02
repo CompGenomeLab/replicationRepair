@@ -1,21 +1,21 @@
 rule tss_xr:
     input:
-        genes="resources/ref_genomes/{build}/{build}_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
-        comb="results/XR/{samples}/{samples}_{build}_sorted_chr.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
+        comb="results/XR/{samples}/{samples}_hg19_sorted_chr.bed",
     output:
-        TS=temp("results/XR/{samples}/{samples}_{build}_sorted_TS_{tss_tes}_windows.bed"),
-        NTS=temp("results/XR/{samples}/{samples}_{build}_sorted_NTS_{tss_tes}_windows.bed"),
-        tss=temp("results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}.bed"),
-        tss_comb=temp("results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}_combined.bed"),
-        info=temp("results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}_combined_full.bed"),
-        rpkm="results/XR/{samples}/{samples}_{build}_sorted_{tss_tes}_combined_rpkm.bed",
+        TS=temp("results/XR/{samples}/{samples}_hg19_sorted_TS_{tss_tes}_windows.bed"),
+        NTS=temp("results/XR/{samples}/{samples}_hg19_sorted_NTS_{tss_tes}_windows.bed"),
+        tss=temp("results/XR/{samples}/{samples}_hg19_sorted_{tss_tes}.bed"),
+        tss_comb=temp("results/XR/{samples}/{samples}_hg19_sorted_{tss_tes}_combined.bed"),
+        info=temp("results/XR/{samples}/{samples}_hg19_sorted_{tss_tes}_combined_full.bed"),
+        rpkm="results/XR/{samples}/{samples}_hg19_sorted_{tss_tes}_combined_rpkm.bed",
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[1]),
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_{tss_tes}_xr.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_{tss_tes}_xr.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_{tss_tes}_xr.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_{tss_tes}_xr.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:
@@ -76,22 +76,22 @@ rule tss_xr:
 
 rule tss_ds:
     input:
-        genes="resources/ref_genomes/{build}/{build}_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
-        comb="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_chr.bed",
+        genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
+        comb="results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_chr.bed",
     output:
-        TS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_TS_{tss_tes}_windows.bed"),
-        NTS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_NTS_{tss_tes}_windows.bed"),
-        tss="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}.bed",
-        tss_comb=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}_combined.bed"),
-        info=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}_combined_full.bed"),
-        rpkm="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_{tss_tes}_combined_rpkm.bed",
+        TS=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_TS_{tss_tes}_windows.bed"),
+        NTS=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_NTS_{tss_tes}_windows.bed"),
+        tss="results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_{tss_tes}.bed",
+        tss_comb=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_{tss_tes}_combined.bed"),
+        info=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_{tss_tes}_combined_full.bed"),
+        rpkm="results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_{tss_tes}_combined_rpkm.bed",
     params:
         info=lambda w: info(w),
         mappedReads=lambda w, input: mappedReads(input[1]),
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_{tss_tes}_ds.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_{tss_tes}_ds.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_{tss_tes}_ds.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_{tss_tes}_ds.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:

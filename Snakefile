@@ -7,7 +7,6 @@ include: "workflow/rules/common.smk"
 
 wildcard_constraints:
     regions='|'.join([r for r in (config["regions"] + config["regions_mut"])]),
-    build=config["build"],
     samples='|'.join([s for s in (
                                 config["xr"]["samples"] + 
                                 config["ds"]["samples"] + 
@@ -20,39 +19,33 @@ wildcard_constraints:
 rule all:
     input:
         lambda w: allInput(
-            build=config["build"], 
             sampleList=config["edu"]["samples"], 
             srrEnabled=config["edu"]["srr"]["enabled"], 
             srrList=config["edu"]["srr"]["codes"],
             method="edu"
             ),
         lambda w: allInput(
-            build=config["build"], 
             sampleList=config["okseq"]["samples"],
             srrEnabled=config["okseq"]["srr"]["enabled"], 
             srrList=config["okseq"]["srr"]["codes"], 
             method="okseq"
             ),
-        lambda w: allInput(
-            build=config["build"], 
+        lambda w: allInput( 
             sampleList=config["mutation"]["samples"], 
             method="mutation", 
             regions=config["regions_mut"]
             ),
         lambda w: allInput(
-            build=config["build"], 
             sampleList=config["ds"]["samples"],  
             method="ds", 
             regions=config["regions"]
             ),
         lambda w: allInput(
-            build=config["build"], 
             sampleList=config["xr"]["samples"],  
             method="xr", 
             regions=config["regions"]
             ),
         lambda w: allInput(
-            build=config["build"], 
             method="report", 
             regions=config["regions"]
             ),

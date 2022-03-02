@@ -1,17 +1,17 @@
 rule ts_nts_xr:
     input:
-        plus="resources/samples/XR/{samples}_{build}_sorted_plus.bed",
-        minus="resources/samples/XR/{samples}_{build}_sorted_minus.bed",
+        plus="resources/samples/XR/{samples}_hg19_sorted_plus.bed",
+        minus="resources/samples/XR/{samples}_hg19_sorted_minus.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        comb=temp("results/XR/{samples}/{samples}_{build}_sorted_chr.bed"),
-        TS=temp("results/XR/{samples}/{samples}_{build}_sorted_TS.bed"),
-        NTS=temp("results/XR/{samples}/{samples}_{build}_sorted_NTS.bed"),
-        TSNTS="results/XR/{samples}/{samples}_{build}_sorted_TSNTS.bed",
+        comb=temp("results/XR/{samples}/{samples}_hg19_sorted_chr.bed"),
+        TS=temp("results/XR/{samples}/{samples}_hg19_sorted_TS.bed"),
+        NTS=temp("results/XR/{samples}/{samples}_hg19_sorted_NTS.bed"),
+        TSNTS="results/XR/{samples}/{samples}_hg19_sorted_TSNTS.bed",
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_ts_nts_xr.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_ts_nts_xr.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_ts_nts_xr.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_ts_nts_xr.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:
@@ -48,18 +48,18 @@ rule ts_nts_xr:
 
 rule ts_nts_ds:
     input:
-        plus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_plus.bed",
-        minus="resources/samples/DS/{samples}_{build}_sorted_ds_dipyrimidines_minus.bed",
+        plus="resources/samples/DS/{samples}_hg19_sorted_ds_dipyrimidines_plus.bed",
+        minus="resources/samples/DS/{samples}_hg19_sorted_ds_dipyrimidines_minus.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        comb=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_chr.bed"),
-        TS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_TS.bed"),
-        NTS=temp("results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_NTS.bed"),
-        TSNTS="results/DS/{samples}/{samples}_{build}_sorted_dipyrimidines_TSNTS.bed",
+        comb=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_chr.bed"),
+        TS=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_TS.bed"),
+        NTS=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_NTS.bed"),
+        TSNTS="results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_TSNTS.bed",
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_ts_nts_ds.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_ts_nts_ds.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_ts_nts_ds.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_ts_nts_ds.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:

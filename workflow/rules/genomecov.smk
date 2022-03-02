@@ -1,17 +1,17 @@
 rule genomecov_edu:
     input:
-        plus="results/edu/{samples}/{samples}_{build}_sorted_plus.bed",
-        minus="results/edu/{samples}/{samples}_{build}_sorted_minus.bed",
-        ref_genome="resources/ref_genomes/{build}/genome_{build}.fa.fai",
+        plus="results/edu/{samples}/{samples}_hg19_sorted_plus.bed",
+        minus="results/edu/{samples}/{samples}_hg19_sorted_minus.bed",
+        ref_genome="resources/ref_genomes/hg19/genome_hg19.fa.fai",
     output:
-        plus=temp("results/edu/{samples}/{samples}_{build}_sorted_plus.bdg"),
-        minus=temp("results/edu/{samples}/{samples}_{build}_sorted_minus.bdg"),
+        plus=temp("results/edu/{samples}/{samples}_hg19_sorted_plus.bdg"),
+        minus=temp("results/edu/{samples}/{samples}_hg19_sorted_minus.bdg"),
     params:
         read=lambda w, input: mappedReads(input[0], input[1]),
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_genomecov_edu.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_genomecov_edu.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_genomecov_edu.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_genomecov_edu.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:  
@@ -40,16 +40,16 @@ rule genomecov_edu:
 
 rule genomecov_edu_v2:
     input:
-        bed="results/edu/{samples}/{samples}_{build}_pe.bed",
+        bed="results/edu/{samples}/{samples}_hg19_pe.bed",
         genome="resources/ref_genomes/hg19/genome_hg19_50kb.bed"
     output:
-        "results/edu/{samples}/{samples}_{build}.bdg",
+        "results/edu/{samples}/{samples}_hg19.bdg",
     params:
         read=lambda w, input: mappedReads(input[0]),
     log:
-        "logs/rule/analysis/{samples}/{samples}_{build}_genomecov_edu_v2.log",
+        "logs/rule/analysis/{samples}/{samples}_hg19_genomecov_edu_v2.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_{build}_genomecov_edu_v2.benchmark.txt",
+        "logs/rule/analysis/{samples}/{samples}_hg19_genomecov_edu_v2.benchmark.txt",
     conda:
         "../envs/sambedtools.yaml"
     shell:  
