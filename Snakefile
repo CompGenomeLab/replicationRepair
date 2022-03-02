@@ -58,8 +58,9 @@ rule all:
             ),
 
 # Prepare genome
-#include: "workflow/rules/genome_build.smk"
-#include: "workflow/rules/genome_indexing.smk"
+include: "workflow/rules/unzipTSS.smk"
+include: "workflow/rules/genome_build.smk"
+include: "workflow/rules/genome_indexing.smk"
 
 # EdU Analysis
 if config["edu"]["srr"]["enabled"]:

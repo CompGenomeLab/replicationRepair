@@ -6,6 +6,13 @@ gitignore/
 test/
 
 resources/ref_genomes/hg19/*
+!resources/ref_genomes/hg19/genome_hg19_50kb.bed
+!resources/ref_genomes/hg19/hg19_ucsc_genes.bed
+!resources/ref_genomes/hg19/genome_hg19.bed
+!resources/ref_genomes/hg19/genome_hg19.txt
+!resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed
+!resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_tes_windows_201_100.bed.gz
+!resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_tss_windows_201_100.bed.gz
 resources/samples/DS/*
 resources/samples/edu/*
 resources/samples/input2/*
