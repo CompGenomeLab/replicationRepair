@@ -1,7 +1,7 @@
 gitignore/
 
 .snakemake/
-.vscode/
+.vscode/*
 
 test/
 
