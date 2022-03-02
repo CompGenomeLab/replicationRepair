@@ -1,6 +1,7 @@
 gitignore/
 
 .snakemake/
+.vscode/
 
 test/
 
@@ -9,9 +10,11 @@ resources/samples/DS/*
 resources/samples/edu/*
 resources/samples/input2/*
 resources/samples/mutation/*
+resources/samples/okseq/*
 resources/samples/okseq2/*
 resources/samples/sim/*
 resources/samples/XR/*
+resources/samples/chromHMM/*
 
 results/*
 results_old/*
