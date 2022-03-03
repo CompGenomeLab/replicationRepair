@@ -26,11 +26,12 @@ rule sra_se_edu:
 
         for srr in $srrList; do
             (echo "`date -R`: Downloading $srr files..." &&
-            fasterq-dump \
-            --threads {threads} \
-            --progress $srr \
-            -t resources/samples/edu/ \
-            -o resources/samples/edu/${{srr}}.fastq &&
+            prefetch $srr \
+            -O resources/samples/edu/ &&
+            vdb-validate resources/samples/edu/$srr &&
+            fastq-dump \
+            resources/samples/edu/$srr \
+            --outdir resources/samples/edu/ &&
             echo "`date -R`: Download is successful!" || 
             {{ echo "`date -R`: Process failed..."; exit 1; }}  ) \
             >> {log} 2>&1 
@@ -74,11 +75,13 @@ rule sra_pe_edu:
 
         for srr in $srrList; do
             (echo "`date -R`: Downloading $srr files..." &&
-            fasterq-dump \
-            --threads {threads} \
-            --progress $srr \
-            --split-files \
-            -O resources/samples/edu/ &&
+            prefetch $srr \
+            -O resources/samples/okseq/ &&
+            vdb-validate resources/samples/okseq/$srr &&
+            fastq-dump \
+            resources/samples/okseq/$srr \
+            --outdir resources/samples/okseq/ \
+            --split-files &&
             echo "`date -R`: Download is successful!" || 
             {{ echo "`date -R`: Process failed..."; exit 1; }}  ) \
             >> {log} 2>&1
