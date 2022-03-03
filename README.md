@@ -1,14 +1,14 @@
 # Divergent effects of DNA replication on the repair of UV-induced DNA damage. 
 
-This repository contains the codes that are used for the analyses of the paper "_Divergent effects of DNA replication on the repair of UV-induced DNA damage._"
+This repository contains the codes that are used for the analyses of the paper "_The effects of replication domains on the genome-wide UV-induced DNA damage and repair_"
 
 ## Authors
 
-_Yanchao Huang, Cem Azgari, Yi-Ying Chiou, Laura A. Lindsey-Boltz, Aziz Sancar, Jinchuan Hu, Ogun Adebali_
+_Yanchao Huang, Cem Azgari, Mengdie Yin, Yi-Ying Chiou, Laura A. Lindsey-Boltz, Aziz Sancar, Jinchuan Hu, Ogun Adebali_
 
 ## Description 
 
-UV-induced damage can cause mutations during DNA replication. The crosstalk between replication and repair may contribute to UV-related mutagenesis. By integrating genome-wide damage and repair maps along with replication maps, we investigated the effects of DNA replication on nucleotide excision repair. Early replication domains are repaired faster due to open chromatin; thus they harbor fewer mutations. Ongoing replication can exert an additional impact of promoting local repair by relaxing surrounding chromatin. Repair levels also show a strand asymmetry favoring leading strands, presumably because leading strand synthesis is more active to recover double-strand after encountering a lesion. This biased repair coincides with the replicative mutation asymmetry in melanoma, indicating a role of exogenous damage and repair in replication-associated mutation asymmetry.
+Nucleotide excision repair is the primary repair mechanism that removes UV-induced DNA lesions in placentals. If the UV-induced lesions are left unrepaired they might turn into mutations during DNA replication. Although the mutagenesis of pyrimidine dimers is reasonably well understood, the direct effects of replication fork progress on nucleotide excision repair are yet to be clarified. Here, we applied Damage-seq and XR-seq techniques and generated replication maps in synchronized UV-treated HeLa cells. The results suggested that ongoing replication stimulates local repair in both early and late replication domains by relaxing surrounding chromatin. On the other hand, it was unveiled that lesions on lagging strand templates were repaired slower in late replication domains, which was probably due to the imbalanced sequence context. The asymmetric relative repair was in line with the strand bias of melanoma mutations, suggesting a role of exogenous damage, repair, and replication in the mutational strand asymmetry.
 
 ## Installation
 
@@ -42,6 +42,41 @@ and create the environment using mamba:
     conda activate repair
     ```
 
+### Genome Download
+
+- Genome fasta file of hg19 can be downloaded and unzipped with the commands below:
+
+    ```
+    wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/GRCh37.p13.genome.fa.gz
+
+    gunzip GRCh37.p13.genome.fa.gz
+    ```
+
+- Then the fasta file should be named as `genome_hg19.fa` and 
+moved to `resources/ref_genomes/hg19/` directory located in 
+`replicationRepair`.
+
+### XR-seq and Damage-seq Pipelines
+
+- XR-seq and Damage-seq pipelines should be cloned separately 
+(outside of `replicationRepair` directory) from the 
+[github link](https://github.com/CompGenomeLab/xr-ds-seq-snakemake).
+
+- To produce consistent results, `genome_hg19.fa` should be copied to
+`xr-ds-seq-snakemake/resources/ref_genomes/hg19/` 
+(`hg19/` directory should be created before copying the genome file).
+
+- Lastly, `config_DS.yaml` and `config_XR.yaml` files in `xr-ds-seq-snakemake/config/` 
+should be replaced by their counterparts in `replicationRepair/config/`.
+
+### Retrieve Melanoma Simple Somatic Mutations 
+
+- Simple somatic mutations of melanoma are publicly available in 
+[ICGC Data Portal](https://dcc.icgc.org/releases/release_28/Projects/MELA-AU).
+You should download `simple_somatic_mutation.open.MELA-AU.tsv.gz` file, 
+rename it as `melanoma.tsv.gz`, and 
+move it to the `replicationRepair/resources/samples/mutation` directory.
+
 <br>
 
 ## Directory Structure
@@ -55,86 +90,58 @@ recommended by Snakemake:
 - `logs/`: contains the log files of each step. 
 This folder will automatically appear when you run the workflow.
 
-- `reports/`: contains the report files, which can be produced 
-after the workflow is over. 
+- `report/`: contains the description files of figures,
+which will be used in reports.
 
 - `resources/`: contains `samples/` where the raw XR-seq and Damage-seq data 
 are stored and `ref_genomes/` where the reference genome files are stored. 
 
-- `results/`: contains the generated files and figures. *** DETAYLI ANLATIM
+- `results/`: contains the generated files and figures.
 
 - `workflow/`: contains `envs/` where the environments are stored, 
-`rules/` where the Snakemake rules are stored, 
-`scripts/` where the scripts used inside the rules are stored, and
-`snakefiles/` where rule flow of each pipeline of the project can be found.
+`rules/` where the Snakemake rules are stored, and
+`scripts/` where the scripts used inside the rules are stored.
 <br>
 
 ## Usage
 
-Before *** XR damage çalışacak, hg19 referansı eklenmeli
+### XR-seq and Damage-seq
 
-After adjusting the configuration file, you can run the workflow 
-from `replicationRepair` directory:
+- Initially the XR-seq and Damage-seq pipeline should be run
+with the provided config files. 
 
+- After the pipeline is competed, produced bed files 
+should be moved to the appropriate directories.
+
+    - For XR-seq samples:
     ```
+    cp {path_to_dir}/xr-ds-seq-snakemake/results/XR/*/*_*us.bed {path_to_dir}/replicationRepair/resources/samples/XR/
+    ```
+
+    - For Damage-seq samples:
+    ```
+    cp {path_to_dir}/xr-ds-seq-snakemake/results/DS/*/*_ds_dipyrimidines_*us.bed {path_to_dir}/replicationRepair/resources/samples/DS/
+    ```
+
+    - For simulated samples:
+    ```
+    cp {path_to_dir}/xr-ds-seq-snakemake/results/*/*/*_sim.bed {path_to_dir}/replicationRepair/resources/samples/sim/
+    ```
+
+### Run Further Analyses
+
+You can run the workflow from `replicationRepair` directory:
+
     snakemake --cores 64 --use-conda --keep-going
-    ```
 
 | Note: To run the workflow on [Slurm Workload Manager](https://slurm.schedmd.com/srun.html) as set of jobs, `--profile` flag must be provided with proper slurm configuration file (`config/slurm`). |
 | --- |
 
+<br>
 
-
-
-
-
-
-
-
-### Usage
-
-* Clone the repository and navigate into the directory: 
+To generate detailed HTML report files, 
+the code below should be run after workflow:
 
 ```
-git clone https://github.com/CompGenomeLab/replicationRepair.git
-    
-cd replicationRepair
+snakemake --report report.zip
 ```
-
-* Raw data that is analyzed in this repository can be found with the accession code PRJNA608124 and can be downloaded by `sra-toolkit`. Any raw data must be stored at `0_data/raw/` directory.
-
-* Initially, genome files must be downloaded to run the pipelines, which can be done by using `mypre_repairReplication.sh` pipeline:
-
-```
-./2_pipeline/mypre_repairReplication.sh
-```
-
-
-| Warning: please don't forget to give execution permission to the pipeline files. |
-| --- |
-
-
-* The output genome files will be stored at `/0_data/hg19`. To process the XR-seq and Damage-seq samples, the full directory of the repository must be given to `source_dir.sh` script (located at `1_code/`) and can be run only providing the name of the sample without the extension:
-
-```
-./2_pipeline/myXRseq.sh ${XRseqSample}
-
-./2_pipeline/mydamageseq.sh ${DamageseqSample}
-```
-
-| Warning: if the layout is paired, you will have 2 samples. In that case, if sample names are `sample_(R1/1).fastq.gz` and `sample_(R2/2).fastq.gz`, you can provide the name as `sample`. The pipeline will notice that there are 2 files in the directory, thus will set the layout as paired. |
-| --- |
-
-* All the details about the XR-seq and Damage-seq pipelines can be found at `2_pipelines/` directory.
-
-* To process melanoma mutations data, `mutation_analysis.sh` pipeline must run.
-
-```
-./2_pipeline/mutation_analysis.sh
-```
-
-* Note: Before running the pipeline, the name of the mutation file and the data file, which mutations will be mapped on, must be provided (with full path).  
-
-* After the pipelines are processed they should be reorganized with `1_final_report.R` script and each script for figures, which are tagged with the corresponding figure number, can be found in `1_code/` directory.
-
-* We have also provided the processed files to generate the figures and the figures themselves, which can be found at `3_output/processed_files/` and `3_output/plots`, respectively.

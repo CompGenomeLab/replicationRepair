@@ -6,6 +6,7 @@ gitignore/
 test/
 
 resources/ref_genomes/hg19/*
+resources/ref_genomes/hg19_old/*
 !resources/ref_genomes/hg19/genome_hg19_50kb.bed
 !resources/ref_genomes/hg19/hg19_ucsc_genes.bed
 !resources/ref_genomes/hg19/genome_hg19.bed
@@ -17,8 +18,10 @@ resources/samples/DS/*
 resources/samples/edu/*
 resources/samples/input2/*
 resources/samples/mutation/*
+!resources/samples/mutation/README.md
 resources/samples/okseq/*
 resources/samples/okseq2/*
+resources/samples/okseq_original/*
 resources/samples/sim/*
 resources/samples/XR/*
 resources/samples/chromHMM/*
