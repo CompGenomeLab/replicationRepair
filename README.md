@@ -1,4 +1,4 @@
-# Divergent effects of DNA replication on the repair of UV-induced DNA damage. 
+# The effects of replication domains on the genome-wide UV-induced DNA damage and repair 
 
 This repository contains the codes that are used for the analyses of the paper "_The effects of replication domains on the genome-wide UV-induced DNA damage and repair_"
 
