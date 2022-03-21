@@ -12,5 +12,5 @@ dependencies:
   - conda-forge::r-ggpubr ==0.4.0 
   - conda-forge::r-viridis ==0.6.1 
   - conda-forge::r-ggally ==2.1.2
-  - r::r-stringr ==1.4.0
-  - r::r-reshape2 ==1.4.4
+  - conda-forge::r-reshape2 ==1.4.4
+  - conda-forge::r-stringr ==1.4.0
