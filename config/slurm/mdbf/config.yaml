@@ -1,0 +1,2 @@
+jobs: 500 
+cluster: "sbatch -A mdbf -p mid_mdbf -J {rule}.job --qos mid_mdbf -e logs/cluster/{rule}_%A.err --output=/dev/null"
