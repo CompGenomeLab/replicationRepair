@@ -10,7 +10,7 @@ rule bowtie2_se_okseq:
         idx="results/okseq/{samples}/{samples}_se_hg19_sorted.bam.bai",
     params:
         ref_genome="resources/ref_genomes/hg19/Bowtie2/genome_hg19",
-        extra="",
+        extra="--seed 1",
     threads: 16  
     log:
         "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_se_okseq.log",
@@ -51,7 +51,7 @@ rule bowtie2_se_edu:
         bam="results/edu/{samples}/{samples}_se_hg19.bam",
     params:
         ref_genome="resources/ref_genomes/hg19/Bowtie2/genome_hg19",
-        extra="",
+        extra="--seed 1",
     threads: 16  
     log:
         "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_se_edu.log",
@@ -86,7 +86,7 @@ rule bowtie2_pe_edu:
         bam="results/edu/{samples}/{samples}_pe_hg19.bam",
     params:
         ref_genome="resources/ref_genomes/hg19/Bowtie2/genome_hg19",
-        extra="-X 1000",
+        extra="-X 1000 --seed 1",
     threads: 16  
     log:
         "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_pe_edu.log",
