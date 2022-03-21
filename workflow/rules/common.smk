@@ -76,12 +76,8 @@ def lineNum(file):
             for line in f:
                 linenum += 1
 
-    warnMessage = (f"\n{file} file is either empty or does not exists!\n" + 
-        "It is expected if this is a dry-run. The file will be produced " + 
-        "after the execution.")
-
-    if linenum == 0:
-        warnings.warn(warnMessage)
+        if linenum == 0:
+            warnings.warn(f"\n{file} file is empty!")
 
     return linenum
 
@@ -204,12 +200,8 @@ def allInput(sampleList=[], srrEnabled=False, srrList=[], method="", regions=[])
 
         for sample in sampleList:
             sampledir = f"results/okseq/{sample}/" 
-
-            if isSingle(sample, sampleList, srrEnabled, srrList, "resources/samples/okseq/"):
-                inputList.append(f"{sampledir}{sample}.html")
-            else:
-                inputList.append(f"{sampledir}{sample}_R1.html")
-                inputList.append(f"{sampledir}{sample}_R2.html")
+            
+            inputList.append(f"{sampledir}{sample}.html")
 
     if method == "edu":
 
