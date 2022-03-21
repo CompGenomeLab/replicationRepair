@@ -53,7 +53,7 @@ okseq:
     - "GM06990"
     - "HeLa"
   srr: 
-    enabled: True
+    enabled: False
     codes:
       - "ERR2760855"
       - "SRR2913063"

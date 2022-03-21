@@ -2,5 +2,5 @@ name: sra
 channels:
   - defaults
 dependencies:
-  - bioconda::sra-tools ==2.10.7
+  #- bioconda::sra-tools ==2.10.7
   - conda-forge::hdf5 ==1.10.5
