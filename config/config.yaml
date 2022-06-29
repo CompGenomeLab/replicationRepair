@@ -68,17 +68,37 @@ regions:
   - "chromhmm_hela_repdomains_uv_mean0.5"
   - "repdomains_uv_mean0.5_windows_201_10000"
   - "repdomains_uv_mean0.5"
-  
+  - "early_late"
+  - "merge_uv_RT"
+  - "highFlatZone_repdomains_uv_mean0.5_windows_201_1000"
+  - "lowFlatZone_repdomains_uv_mean0.5_windows_201_1000" 
+  - "highFlatZone_repdomains_uv_mean0.5_windows_201_100"
+  - "lowFlatZone_repdomains_uv_mean0.5_windows_201_100" 
+  - "genome_hg19_50kb" 
 
 region_file:
   - "iz_hela_repdomains_uv_mean0.5_windows_201_100.bed"
   - "chromhmm_hela_repdomains_uv_mean0.5.bed"
   - "repdomains_uv_mean0.5_windows_201_10000.bed"
   - "repdomains_uv_mean0.5.bed"
+  - "early_late.bed"
+  - "merge_uv_RT.bed"
+  - "highFlatZone_repdomains_uv_mean0.5_windows_201_1000.bed"
+  - "lowFlatZone_repdomains_uv_mean0.5_windows_201_1000.bed"
+  - "highFlatZone_repdomains_uv_mean0.5_windows_201_100.bed"
+  - "lowFlatZone_repdomains_uv_mean0.5_windows_201_100.bed"
+  - "genome_hg19_50kb.bed"
 
 region_comb_opt:
   - "-"
   - "notCombine" 
+  - "-"
+  - "notCombine"
+  - "notCombine"
+  - "notCombine"
+  - "-"
+  - "-"
+  - "-"
   - "-"
   - "notCombine"
 
