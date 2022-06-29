@@ -18,7 +18,7 @@ rule bam_correlation_pe_edu:
     benchmark:
         "logs/rule/analysis/bam_correlation_pe_edu.benchmark.txt",
     conda:
-        "../envs/bam_correlation.yaml"
+        "../envs/deeptools.yaml"
     shell:  
         """
         (echo "`date -R`: MultiBam summary..." &&
@@ -46,7 +46,7 @@ rule bam_correlation_pe_edu_early:
     benchmark:
         "logs/rule/analysis/bam_correlation_pe_edu_early.benchmark.txt",
     conda:
-        "../envs/bam_correlation.yaml"
+        "../envs/deeptools.yaml"
     shell:  
         """
         (echo "`date -R`: MultiBam summary..." &&
@@ -74,7 +74,7 @@ rule bam_correlation_pe_edu_late:
     benchmark:
         "logs/rule/analysis/bam_correlation_pe_edu_late.benchmark.txt",
     conda:
-        "../envs/bam_correlation.yaml"
+        "../envs/deeptools.yaml"
     shell:  
         """
         (echo "`date -R`: MultiBam summary..." &&
@@ -100,7 +100,7 @@ rule bam_correlation_okseq:
     benchmark:
         "logs/rule/analysis/bam_correlation_okseq.benchmark.txt",
     conda:
-        "../envs/bam_correlation.yaml"
+        "../envs/deeptools.yaml"
     shell:  
         """
         (echo "`date -R`: MultiBam summary..." &&
@@ -137,7 +137,7 @@ rule bam_correlation_edu_repli:
     benchmark:
         "logs/rule/analysis/bam_correlation_edu_repli.benchmark.txt",
     conda:
-        "../envs/bam_correlation.yaml"
+        "../envs/deeptools.yaml"
     shell:  
         """
         (echo "`date -R`: MultiBam summary..." &&

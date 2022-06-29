@@ -12,7 +12,7 @@ rule bam_corr_graphs:
     benchmark:
         "logs/rule/fig/bam_corr_graphs.benchmark.txt",
     conda:
-        "../envs/bam_correlation.yaml"
+        "../envs/deeptools.yaml"
     shell:  
         """
         (echo "`date -R`: Plotting correlation (scatter)..." &&
@@ -59,7 +59,7 @@ rule bam_corr_graphs_early:
     benchmark:
         "logs/rule/fig/bam_corr_graphs_early.benchmark.txt",
     conda:
-        "../envs/bam_correlation.yaml"
+        "../envs/deeptools.yaml"
     shell:  
         """
         (echo "`date -R`: Plotting correlation (scatter)..." &&
@@ -106,7 +106,7 @@ rule bam_corr_graphs_late:
     benchmark:
         "logs/rule/fig/bam_corr_graphs_late.benchmark.txt",
     conda:
-        "../envs/bam_correlation.yaml"
+        "../envs/deeptools.yaml"
     shell:  
         """
         (echo "`date -R`: Plotting correlation (scatter)..." &&
@@ -153,7 +153,7 @@ rule bam_corr_graphs_okseq:
     benchmark:
         "logs/rule/fig/bam_corr_graphs_okseq.benchmark.txt",
     conda:
-        "../envs/bam_correlation.yaml"
+        "../envs/deeptools.yaml"
     shell:  
         """
         (echo "`date -R`: Plotting correlation (scatter)..." &&
@@ -200,7 +200,7 @@ rule bam_corr_graphs_repli:
     benchmark:
         "logs/rule/fig/bam_corr_graphs_repli.benchmark.txt",
     conda:
-        "../envs/bam_correlation.yaml"
+        "../envs/deeptools.yaml"
     shell:  
         """
         (echo "`date -R`: Plotting correlation (scatter)..." &&
