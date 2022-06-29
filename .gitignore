@@ -35,7 +35,7 @@ results_old/*
 
 logs/cluster/*
 !logs/cluster/README.md
-logs/rule/*
+logs/*
 
 workflow/scripts/4plots/gitignore/
 workflow/scripts/4plots/.Rproj.user/
