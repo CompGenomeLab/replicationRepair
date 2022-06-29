@@ -69,6 +69,9 @@ include: "workflow/rules/bam_correlation.smk"
 include: "workflow/rules/replication_timing.smk"
 include: "workflow/rules/produceReplicationDomains.smk"
 include: "workflow/rules/getPublicRepli.smk"
+include: "workflow/rules/bamCompare.smk"
+include: "workflow/rules/bdg2bed.smk"
+include: "workflow/rules/merge_bdg.smk"
 
 # OK-seq Analysis
 if config["okseq"]["srr"]["enabled"]:
@@ -93,6 +96,7 @@ include: "workflow/rules/getChromHMM.smk"
 
 # Process Retrieved Data
 include: "workflow/rules/intersect2repDomains.smk"
+include: "workflow/rules/mv_genome.smk"
 include: "workflow/rules/make_windows.smk"
 include: "workflow/rules/countMotifs.smk"
 
