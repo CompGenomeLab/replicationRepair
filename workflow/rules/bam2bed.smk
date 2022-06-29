@@ -5,7 +5,7 @@ rule bam2bed_se_edu:
         bam=temp("results/edu/{samples}/{samples}_hg19_collated.bam"),
         fix=temp("results/edu/{samples}/{samples}_hg19_collated_fixmate.bam"),
         sort=temp("results/edu/{samples}/{samples}_hg19_sorted.bam"),
-        rmdup=temp("results/edu/{samples}/{samples}_hg19_sorted_rmdup.bam"),
+        rmdup="results/edu/{samples}/{samples}_hg19_sorted_rmdup.bam",
         bed="results/edu/{samples}/{samples}_hg19_se.bed",
     params:
         q_trim="-q 20", 
