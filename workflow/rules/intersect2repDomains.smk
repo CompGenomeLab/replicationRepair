@@ -77,3 +77,38 @@ rule intersect2repDomains_okseq:
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
+
+rule intersect2repDomains_flatZones:
+    input:
+        rep="results/regions/repdomains_uv_mean0.5.bed",
+        f_high="results/okseq/HeLa/HeLa_hg19_HMMsegments_highFlatZone.bed",
+        f_low="results/okseq/HeLa/HeLa_hg19_HMMsegments_LowFlatZone.bed",
+    output:
+        f_high="results/regions/highFlatZone_repdomains_uv_mean0.5.bed",
+        f_low="results/regions/lowFlatZone_repdomains_uv_mean0.5.bed",
+    log:
+        "logs/rule/analysis/intersect2repDomains_flatZones.log",
+    benchmark:
+        "logs/rule/analysis/intersect2repDomains_flatZones.benchmark.txt",
+    conda:
+        "../envs/sambedtools.yaml"
+    shell:
+        """  
+        (echo "`date -R`: Intersecting with {input.f_high}..." &&
+        bedtools intersect \
+        -a {input.f_high} \
+        -b {input.rep} -wa -wb -f 0.5 |& 
+        awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"_"$20"\\t"".""\\t""."}}' \
+        > {output.f_high} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
+
+        (echo "`date -R`: Intersecting with {input.f_low}..." &&
+        bedtools intersect \
+        -a {input.f_low} \
+        -b {input.rep} -wa -wb -f 0.5 |& 
+        awk '{{print $1"\\t"$2"\\t"$3"\\t"$4"_"$20"\\t"".""\\t""."}}' \
+        > {output.f_low} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
+        """
