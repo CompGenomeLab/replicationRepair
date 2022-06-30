@@ -8,6 +8,7 @@ library(argparser)
 p <- arg_parser("producing the marker figure")
 p <- add_argument(p, "-i", help="input")
 p <- add_argument(p, "-o", help="output")
+p <- add_argument(p, "-l", help="Loess norm bed file")
 
 # Parse the command line arguments
 argv <- parse_args(p)
@@ -54,10 +55,13 @@ for(i in 1:(ncol(merge_norm)-3)){
     if(length(AllLoess[[i]])==0){
       AllLoess[[i]]=RTl}}}
 
-#for(i in 1:length(AllLoess)){write.table(AllLoess[[i]]
-#  [complete.cases(AllLoess[[i]]),], gsub(".bg","_Loess.bedGraph",
-#  colnames(AllLoess[[i]]))[4], sep="\t", row.names=FALSE, quote=FALSE,
-#                                         col.names=FALSE)}
+allLoess_bed <- AllLoess[[3]]
+allLoess_bed$name <- "."
+allLoess_bed$strand <- "."
+allLoess_bed <- allLoess_bed[,c(1,2,3,5,4,6)]
+write.table(allLoess_bed
+  [complete.cases(allLoess_bed),], argv$l, 
+  sep="\t", row.names=FALSE, quote=FALSE, col.names=FALSE)
 
 
 LS <- merge(AllLoess[[1]], AllLoess[[2]], by = c("chr", "start","end"))  

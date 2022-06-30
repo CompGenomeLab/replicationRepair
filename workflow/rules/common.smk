@@ -229,6 +229,8 @@ def allInput(sampleList=[], srrEnabled=False, srrList=[], method="", regions=[])
         inputList.append("results/regions/iz_hela_repdomains_uv_mean0.5_intergenic_windows_201_100_kmer_counts.txt")
         inputList.append("resources/ref_genomes/hg19/genome_hg19_50kb_counts.txt")
         inputList.append("results/final/final_reports_hg19_genome_hg19_50kb.txt")
+        inputList.append("results/final/final_reports_hg19_avg_uv_T_Loess.txt")
+        inputList.append("results/final/final_reports_sim_hg19_avg_uv_T_Loess.txt")
 
         for sample in sampleList:
             sampledir = f"results/edu/{sample}/"

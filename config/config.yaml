@@ -75,6 +75,7 @@ regions:
   - "highFlatZone_repdomains_uv_mean0.5_windows_201_100"
   - "lowFlatZone_repdomains_uv_mean0.5_windows_201_100" 
   - "genome_hg19_50kb" 
+  - "avg_uv_T_Loess"
 
 region_file:
   - "iz_hela_repdomains_uv_mean0.5_windows_201_100.bed"
@@ -88,6 +89,7 @@ region_file:
   - "highFlatZone_repdomains_uv_mean0.5_windows_201_100.bed"
   - "lowFlatZone_repdomains_uv_mean0.5_windows_201_100.bed"
   - "genome_hg19_50kb.bed"
+  - "avg_uv_T_Loess.bed"
 
 region_comb_opt:
   - "-"
@@ -100,6 +102,7 @@ region_comb_opt:
   - "-"
   - "-"
   - "-"
+  - "notCombine"
   - "notCombine"
 
 regions_mut:
