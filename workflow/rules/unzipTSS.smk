@@ -10,7 +10,7 @@ rule unzipTSS:
     shell:
         """
         (echo "`date -R`: Unzip {input}..." &&
-        gunzip {input} &&
+        gunzip -k {input} &&
         echo "`date -R`: Success!" || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
