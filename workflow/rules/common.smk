@@ -183,8 +183,25 @@ def combineOutputs(sampleList_xr, sampleList_ds, regions="", outformat="real"):
 
             inputList.append(f"{sampledir}{sample}_hg19_sorted_tes_combined_rpkm.bed") 
 
+    elif outformat == "tss_sim":
+        for sample in sampleList_xr:
+            sampledir = f"results/sim/{sample}/" 
+
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_tss_combined_rpkm.bed") 
+
         for sample in sampleList_ds:
-            sampledir = f"results/DS/{sample}/" 
+            sampledir = f"results/sim/{sample}/" 
+            
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_dipyrimidines_tss_combined_rpkm.bed") 
+
+    elif outformat == "tes_sim":
+        for sample in sampleList_xr:
+            sampledir = f"results/sim/{sample}/" 
+
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_tes_combined_rpkm.bed") 
+
+        for sample in sampleList_ds:
+            sampledir = f"results/sim/{sample}/" 
             
             inputList.append(f"{sampledir}{sample}_hg19_sorted_dipyrimidines_tes_combined_rpkm.bed") 
 
@@ -231,6 +248,8 @@ def allInput(sampleList=[], srrEnabled=False, srrList=[], method="", regions=[])
         inputList.append("results/final/final_reports_hg19_genome_hg19_50kb.txt")
         inputList.append("results/final/final_reports_hg19_avg_uv_T_Loess.txt")
         inputList.append("results/final/final_reports_sim_hg19_avg_uv_T_Loess.txt")
+        inputList.append("results/final/final_reports_sim_hg19_tes.txt")
+        inputList.append("results/final/final_reports_sim_hg19_tss.txt")
 
         for sample in sampleList:
             sampledir = f"results/edu/{sample}/"
