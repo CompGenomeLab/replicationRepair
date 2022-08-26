@@ -10,8 +10,8 @@ rule bowtie2_se_okseq:
         idx="results/okseq/{samples}/{samples}_se_hg19_sorted.bam.bai",
     params:
         ref_genome="resources/ref_genomes/hg19/Bowtie2/genome_hg19",
-        extra="--seed 1",
-    threads: 16  
+        extra="--seed 1 --reorder",
+    threads: 32  
     log:
         "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_se_okseq.log",
     benchmark:
@@ -51,8 +51,8 @@ rule bowtie2_se_edu:
         bam="results/edu/{samples}/{samples}_se_hg19.bam",
     params:
         ref_genome="resources/ref_genomes/hg19/Bowtie2/genome_hg19",
-        extra="--seed 1",
-    threads: 16  
+        extra="--seed 1 --reorder",
+    threads: 32  
     log:
         "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_se_edu.log",
     benchmark:
@@ -86,8 +86,8 @@ rule bowtie2_pe_edu:
         bam="results/edu/{samples}/{samples}_pe_hg19.bam",
     params:
         ref_genome="resources/ref_genomes/hg19/Bowtie2/genome_hg19",
-        extra="-X 1000 --seed 1",
-    threads: 16  
+        extra="--seed 1 --reorder",
+    threads: 32  
     log:
         "logs/rule/analysis/{samples}/{samples}_hg19_bowtie2_pe_edu.log",
     benchmark:
@@ -101,7 +101,7 @@ rule bowtie2_pe_edu:
         --threads {threads} \
         {params.extra} \
         -x {params.ref_genome} \
-        --no-mixed --no-discordant --reorder -X 1000 \
+        --no-mixed --no-discordant -X 1000 \
         -1 {input.sample[0]} -2 {input.sample[1]} -S {output.sam} &&
         echo "`date -R`: Success! Alignment is done." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }} ) > {log} 2>&1
