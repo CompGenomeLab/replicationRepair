@@ -1,6 +1,4 @@
 name: venn
-channels:
-  - defaults
 dependencies:
   - bioconda::intervene ==0.6.5
   - conda-forge::r-upsetr ==1.4.0

@@ -1,8 +1,5 @@
-channels:
-  - bioconda
-  - conda-forge
-  - defaults
+name: countMotifs
 dependencies:
-  - bedtools =2.29.0
-  - biopython =1.78
-  - anaconda::more-itertools ==8.10.0
+  - bioconda::bedtools =2.29.0
+  - conda-forge::biopython =1.78
+  - conda-forge::more-itertools ==8.10.0

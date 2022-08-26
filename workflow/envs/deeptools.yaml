@@ -1,7 +1,3 @@
 name: deeptools
-channels:
-  - bioconda
-  - conda-forge
-  - defaults
 dependencies:
-  - deeptools ==3.5.1
+  - bioconda::deeptools ==3.5.1

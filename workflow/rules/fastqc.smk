@@ -4,14 +4,27 @@ rule fastqc_se_okseq:
     output:
         html=report("results/okseq/{samples}/{samples}.html", category="QC"),
         zip="results/okseq/{samples}/{samples}_fastqc.zip",
-    params: ""
+    params: 
+        extra="",
+        tmpdir="results/okseq/{samples}",
     log:
-        "logs/rule/analysis/{samples}/{samples}_fastqc_se_okseq.log",
+        "logs/rule/fastqc_se_okseq/{samples}.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_fastqc_se_okseq.benchmark.txt",
+        "logs/rule/fastqc_se_okseq/{samples}.benchmark.txt",
     threads: 16
-    wrapper:
-        "0.69.0/bio/fastqc"
+    conda:
+        "../envs/fastqc.yaml"
+    shell:
+        """
+        (echo "`date -R`: FastQC..." &&
+        fastqc \
+        {params.extra} \
+        -t {threads} \
+        --outdir {params.tmpdir} \
+        {input} && 
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  )  > {log} 2>&1 
+        """
 
 rule fastqc_se_edu:
     input:
@@ -19,14 +32,27 @@ rule fastqc_se_edu:
     output:
         html=report("results/edu/{samples}/{samples}.html", category="QC"),
         zip="results/edu/{samples}/{samples}_fastqc.zip",
-    params: ""
+    params: 
+        extra="",
+        tmpdir="results/edu/{samples}",
     log:
-        "logs/rule/analysis/{samples}/{samples}_fastqc_se_edu.log",
+        "logs/rule/fastqc_se_edu/{samples}.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_fastqc_se_edu.benchmark.txt",
+        "logs/rule/fastqc_se_edu/{samples}.benchmark.txt",
     threads: 16
-    wrapper:
-        "0.69.0/bio/fastqc"
+    conda:
+        "../envs/fastqc.yaml"
+    shell:
+        """
+        (echo "`date -R`: FastQC..." &&
+        fastqc \
+        {params.extra} \
+        -t {threads} \
+        --outdir {params.tmpdir} \
+        {input} && 
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  )  > {log} 2>&1 
+        """
 
 rule fastqc_pe_edu:
     input:
@@ -34,12 +60,29 @@ rule fastqc_pe_edu:
     output:
         html=report("results/edu/{samples}/{samples}_{ext}.html", category="QC"), 
         zip="results/edu/{samples}/{samples}_{ext}_fastqc.zip", 
-    params: ""
+    params: 
+        extra="",
+        tmpdir="results/edu/{samples}_{ext}",
     log:
-        "logs/rule/analysis/{samples}/{samples}_fastqc_pe_edu_{ext}.log", 
+        "logs/rule/fastqc_pe/{samples}_{ext}.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_fastqc_pe_edu_{ext}.benchmark.txt",
+        "logs/rule/fastqc_pe/{samples}_{ext}.benchmark.txt",
     threads: 16
-    wrapper:
-        "0.69.0/bio/fastqc"
+    conda:
+        "../envs/fastqc.yaml"
+    shell:
+        """
+        (echo "`date -R`: FastQC..." &&
+        mkdir -p {params.tmpdir} \
+        fastqc \
+        {params.extra} \
+        -t {threads} \
+        --outdir {params.tmpdir} \
+        {input} &&
+        mv {params.tmpdir}/{wildcards.samples}.html {output.html} && 
+        mv {params.tmpdir}/{wildcards.samples}_fastqc.zip {output.zip} &&
+        rmdir {params.tmpdir} && 
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  )  > {log} 2>&1 
+        """
 

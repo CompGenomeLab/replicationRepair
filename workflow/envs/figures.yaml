@@ -1,7 +1,6 @@
 name: figures
-channels:
-  - defaults
 dependencies:
+  - conda-forge::r-zoo ==1.8_10
   - conda-forge::r-base ==4.1.0
   - conda-forge::r-patchwork ==1.1.1
   - conda-forge::r-argparser ==0.7.1
@@ -14,4 +13,3 @@ dependencies:
   - conda-forge::r-ggally ==2.1.2
   - conda-forge::r-reshape2 ==1.4.4
   - conda-forge::r-stringr ==1.4.0
-  - r::r-zoo ==1.8_10

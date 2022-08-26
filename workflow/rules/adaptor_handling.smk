@@ -8,9 +8,23 @@ rule cutadapt_se_okseq:
     params:
         adapters="-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC",  
         extra="",  
+    threads: 32
     log:
-        "logs/rule/analysis/{samples}/{samples}_cutadapt.log",
+        "logs/rule/cutadapt_se_okseq/{samples}.log",
     benchmark:
-        "logs/rule/analysis/{samples}/{samples}_cutadapt.benchmark.txt",
-    wrapper:
-        "0.69.0/bio/cutadapt/se"
+        "logs/rule/cutadapt_se_okseq/{samples}.benchmark.txt",
+    conda:
+        "../envs/cutadapt.yaml"
+    shell:
+        """
+        (echo "`date -R`: Trimming adapters..." &&
+        cutadapt \
+        -j {threads} \
+        {params.adapters} \
+        {params.extra} \
+        -o {output.fastq} {input} \
+        > {output.qc} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  )  > {log} 2>&1
+        """
+

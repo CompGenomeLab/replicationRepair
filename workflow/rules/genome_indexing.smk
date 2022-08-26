@@ -6,5 +6,12 @@ rule genome_indexing:
         "resources/ref_genomes/hg19/genome_hg19.fa.fai",
     benchmark:
         "logs/rule/analysis/indexing.benchmark.txt",
-    wrapper:
-        "0.69.0/bio/samtools/faidx"
+    conda:
+        "../envs/sambedtools.yaml"
+    shell:
+        """
+        (echo "`date -R`: Creating fai file..." &&
+        samtools faidx {input} &&
+        echo "`date -R`: Success!" || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
+        """

@@ -1,6 +1,4 @@
 name: produceReplicationDomains
-channels:
-  - defaults
 dependencies:
   - conda-forge::r-base ==4.0.0
   - conda-forge::r-argparser ==0.7.1

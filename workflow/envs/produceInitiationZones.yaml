@@ -1,6 +1,4 @@
 name: produceInitiationZones
-channels:
-  - defaults
 dependencies:
   - conda-forge::r-base ==3.6
   - bioconda::bioconductor-rsamtools ==2.0.0
