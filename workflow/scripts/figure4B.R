@@ -14,6 +14,7 @@ p <- arg_parser("producing figure 4B")
 p <- add_argument(p, "--real", help="windowed (20kb) initiation zones file with read counts")
 p <- add_argument(p, "--sim", help="windowed (20kb) initiation zones file with simulated read counts")
 p <- add_argument(p, "--prod", help="Damage type (64_PP or CPD)")
+p <- add_argument(p, "--data_prefix", help="name prefix of the dataframes that generate the plots")
 p <- add_argument(p, "-o", help="output")
 
 
@@ -90,19 +91,19 @@ sim_df_org$sample_strand <- factor(
 
 
 # filtering for A.1
-pA1_data <- filter(real_df_org, method != "DNA_seq", phase == "late", repdomains == "LRD", time_after_exposure == "12",
+pB1_data <- filter(real_df_org, method != "DNA_seq", phase == "late", repdomains == "LRD", time_after_exposure == "12",
                    replicate == rep, method == "Damage_seq", product == prod)
 
 # filtering for A.2
-pA2_data <- filter(sim_df_org, phase == "late", replicate == rep, repdomains == "LRD", time_after_exposure == "12",
+pB2_data <- filter(sim_df_org, phase == "late", replicate == rep, repdomains == "LRD", time_after_exposure == "12",
                    product == prod, method == "Damage_seq")
 
 # filtering for B.1
-pB1_data <- filter(real_df_org, method != "DNA_seq", phase == "late", repdomains == "LRD", time_after_exposure == "12",
+pB3_data <- filter(real_df_org, method != "DNA_seq", phase == "late", repdomains == "LRD", time_after_exposure == "12",
                    replicate == rep, method == "XR_seq", product == prod)
 
 # filtering for B.2
-pB2_data <- filter(sim_df_org, phase == "late", method != "DNA_seq", repdomains == "LRD", time_after_exposure == "12",
+pB4_data <- filter(sim_df_org, phase == "late", method != "DNA_seq", repdomains == "LRD", time_after_exposure == "12",
                    replicate == rep, product == prod, method == "XR_seq")
 
 # for naming of simulated samples
@@ -111,67 +112,10 @@ names(method_labs_sim) <- c("Damage_seq", "XR_seq")
 method_labs <- c("Damage-\n seq", "XR-seq")
 names(method_labs) <- c("Damage_seq", "XR_seq")
 
-#### Plot A.1 ####
-
-# create the plot 
-p.A.1 <- ggplot(pA1_data, aes(x = windows, y = RPKM)) + 
-  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-  geom_line(aes(color = sample_strand)) + 
-  facet_grid(~method, 
-             labeller = labeller(product = product_labs, 
-                                 method = method_labs, 
-                                 time_after_exposure = taex_labs,
-                                 phase = phase_labs)) + 
-  xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .2, .3),
-                     limits = c(.0, .3)) +
-  scale_x_continuous(limits = c(-101, 101), 
-                     breaks = c(-101, 0, 101), 
-                     labels = c("-10", "0", "+10")) + 
-  scale_color_manual(values = strand_colors) + 
-  labs(color = "Strands")
-
-# adding and overriding the default plot format
-p.A.1 <- p.A.1 + p_format + ggtitle("Real") +
-  theme(plot.title = element_text(hjust = 0.5),
-        plot.margin = margin(0, 0, 0, 0, "pt"),
-        strip.text.y = element_text(size=0, margin = margin(0, 0, 0, 0)),
-        panel.border = element_rect(fill = NA),
-        axis.text.x = element_text(size = 10, vjust = 0.6, hjust = c(0.1, 0.5, 0.9)),
-        strip.text.x = element_text(size=0, margin = margin(0, 0, 0, 0))) 
-
-#### Plot A.2 ####
-
-# create the plot
-p.A.2 <- ggplot(pA2_data, aes(x = windows, y = RPKM)) + 
-  geom_line(aes(color = sample_strand)) + 
-  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-  facet_grid(method~., 
-             labeller = labeller(product = product_labs, 
-                                 method = method_labs, 
-                                 time_after_exposure = taex_labs,
-                                 phase = phase_labs)) + 
-  xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .2, .3),
-                     limits = c(.0, .3)) +
-  scale_x_continuous(limits = c(-101, 101), 
-                     breaks = c(-101, 0, 101), 
-                     labels = c("-10", "0", "+10")) + 
-  scale_color_manual(values = strand_colors) + 
-  labs(color = "Strands")
-
-# adding and overriding the default plot format
-p.A.2 <- p.A.2 + p_format + ggtitle("Simulated") +
-  theme(plot.title = element_text(hjust = 0.5),
-        plot.margin = margin(0, 0, 0, 0, "pt"),
-        axis.title.y=element_blank(),
-        panel.border = element_rect(fill = NA),
-        axis.text.y=element_blank(),
-        axis.text.x = element_text(size = 10, vjust = 0.6, hjust = c(0.1, 0.5, 0.9)),
-        axis.ticks.y=element_blank())
-
-
 #### Plot B.1 ####
+
+write.table(pB1_data, file = paste0(argv$data_prefix, "B1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
 
 # create the plot 
 p.B.1 <- ggplot(pB1_data, aes(x = windows, y = RPKM)) + 
@@ -192,17 +136,20 @@ p.B.1 <- ggplot(pB1_data, aes(x = windows, y = RPKM)) +
   labs(color = "Strands")
 
 # adding and overriding the default plot format
-p.B.1 <- p.B.1 + p_format + 
-  theme(strip.text.y = element_text(size=0, margin = margin(0, 0, 0, 0)),
-        panel.border = element_rect(fill = NA),
+p.B.1 <- p.B.1 + p_format + ggtitle("Real") +
+  theme(plot.title = element_text(hjust = 0.5),
         plot.margin = margin(0, 0, 0, 0, "pt"),
+        strip.text.y = element_text(size=0, margin = margin(0, 0, 0, 0)),
+        panel.border = element_rect(fill = NA),
         axis.text.x = element_text(size = 10, vjust = 0.6, hjust = c(0.1, 0.5, 0.9)),
         strip.text.x = element_text(size=0, margin = margin(0, 0, 0, 0))) 
 
-
 #### Plot B.2 ####
 
-# create the plot 
+write.table(pB2_data, file = paste0(argv$data_prefix, "B2.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
+# create the plot
 p.B.2 <- ggplot(pB2_data, aes(x = windows, y = RPKM)) + 
   geom_line(aes(color = sample_strand)) + 
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
@@ -221,7 +168,73 @@ p.B.2 <- ggplot(pB2_data, aes(x = windows, y = RPKM)) +
   labs(color = "Strands")
 
 # adding and overriding the default plot format
-p.B.2 <- p.B.2 + p_format + 
+p.B.2 <- p.B.2 + p_format + ggtitle("Simulated") +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.margin = margin(0, 0, 0, 0, "pt"),
+        axis.title.y=element_blank(),
+        panel.border = element_rect(fill = NA),
+        axis.text.y=element_blank(),
+        axis.text.x = element_text(size = 10, vjust = 0.6, hjust = c(0.1, 0.5, 0.9)),
+        axis.ticks.y=element_blank())
+
+
+#### Plot B.3 ####
+
+write.table(pB3_data, file = paste0(argv$data_prefix, "B3.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
+# create the plot 
+p.B.3 <- ggplot(pB3_data, aes(x = windows, y = RPKM)) + 
+  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
+  geom_line(aes(color = sample_strand)) + 
+  facet_grid(~method, 
+             labeller = labeller(product = product_labs, 
+                                 method = method_labs, 
+                                 time_after_exposure = taex_labs,
+                                 phase = phase_labs)) + 
+  xlab("") + ylab(fr_lab) +
+  scale_y_continuous(breaks = c(.1, .2, .3),
+                     limits = c(.0, .3)) +
+  scale_x_continuous(limits = c(-101, 101), 
+                     breaks = c(-101, 0, 101), 
+                     labels = c("-10", "0", "+10")) + 
+  scale_color_manual(values = strand_colors) + 
+  labs(color = "Strands")
+
+# adding and overriding the default plot format
+p.B.3 <- p.B.3 + p_format + 
+  theme(strip.text.y = element_text(size=0, margin = margin(0, 0, 0, 0)),
+        panel.border = element_rect(fill = NA),
+        plot.margin = margin(0, 0, 0, 0, "pt"),
+        axis.text.x = element_text(size = 10, vjust = 0.6, hjust = c(0.1, 0.5, 0.9)),
+        strip.text.x = element_text(size=0, margin = margin(0, 0, 0, 0))) 
+
+
+#### Plot B.4 ####
+
+write.table(pB4_data, file = paste0(argv$data_prefix, "B4.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
+# create the plot 
+p.B.4 <- ggplot(pB4_data, aes(x = windows, y = RPKM)) + 
+  geom_line(aes(color = sample_strand)) + 
+  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
+  facet_grid(method~., 
+             labeller = labeller(product = product_labs, 
+                                 method = method_labs, 
+                                 time_after_exposure = taex_labs,
+                                 phase = phase_labs)) + 
+  xlab("") + ylab(fr_lab) +
+  scale_y_continuous(breaks = c(.1, .2, .3),
+                     limits = c(.0, .3)) +
+  scale_x_continuous(limits = c(-101, 101), 
+                     breaks = c(-101, 0, 101), 
+                     labels = c("-10", "0", "+10")) + 
+  scale_color_manual(values = strand_colors) + 
+  labs(color = "Strands")
+
+# adding and overriding the default plot format
+p.B.4 <- p.B.4 + p_format + 
   theme(axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         axis.text.x = element_text(size = 10, vjust = 0.6, hjust = c(0.1, 0.5, 0.9)),
@@ -230,7 +243,7 @@ p.B.2 <- p.B.2 + p_format +
 
 #### Combining Plots with Patchwork ####
 
-(p.A.1 + p.A.2 ) / (p.B.1 + p.B.2) +
+(p.B.1 + p.B.2 ) / (p.B.3 + p.B.4) +
   plot_annotation(caption = 
                     'Position Relative to Initiation Zones (kb)',
                   theme = theme(plot.caption = 

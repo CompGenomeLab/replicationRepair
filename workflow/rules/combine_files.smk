@@ -89,3 +89,27 @@ rule combine_files_tss:
         echo "`date -R`: Success! Files are combined." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
+
+rule combine_files_tss_4kb:
+    input:
+        real=lambda w: combineOutputs(config["xr"]["samples"], config["ds"]["samples"], outformat=(w.tss_tes + "_4kb")),
+        sim=lambda w: combineOutputs(config["xr"]["samples"], config["ds"]["samples"], outformat=(w.tss_tes + "_4kb_sim")),
+    output:
+        real="results/final/final_reports_hg19_{tss_tes}_4kb.txt",
+        sim="results/final/final_reports_sim_hg19_{tss_tes}_4kb.txt",
+    log:
+        "logs/rule/analysis/hg19_combine_files_{tss_tes}_4kb.log",
+    benchmark:
+        "logs/rule/analysis/hg19_combine_files_{tss_tes}_4kb.benchmark.txt",
+    shell:
+        """
+        (echo "`date -R`: Combining files..." &&
+        cat {input.real} > {output.real} &&
+        echo "`date -R`: Success! Files are combined." || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
+
+        (echo "`date -R`: Combining simulated files..." &&
+        cat {input.sim} > {output.sim} &&
+        echo "`date -R`: Success! Files are combined." || 
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
+        """

@@ -6,7 +6,8 @@ rule figureS3B_S3C_S3D:
         tss="results/final/final_reports_hg19_tss.txt",            
         tes="results/final/final_reports_hg19_tes.txt",                
     output:
-        report("results/plots/figureS3B_S3C_S3D.pdf", caption="../report/figureS3.rst", category="Supplementary Figures"),
+        plot=report("results/plots/figureS3B_S3C_S3D.pdf", caption="../report/figureS3.rst", category="Supplementary Figures"),
+        dfs=expand("results/plot_dataframe/figureS3_{df}.csv", df=["B", "C1", "C2", "D"]),
     log:
         "logs/rule/fig/figureS3B_S3C_S3D.log",
     benchmark:
@@ -21,7 +22,8 @@ rule figureS3B_S3C_S3D:
         --len_xr_cpd_120 {input.lenCPD} \
         --tss {input.tss} \
         --tes {input.tes} \
-        -o {output} \
-        --log {log} &> {log}
+        --data_prefix "results/plot_dataframe/figureS3_" \
+        -o {output.plot} \
+        --log {log}
         """
 

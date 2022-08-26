@@ -16,6 +16,7 @@ p <- add_argument(p, "--dinuc_xr_cpd_120", help="dinuc content of a xr sample")
 p <- add_argument(p, "--len_xr_cpd_120", help="length dist of a xr sample")
 p <- add_argument(p, "--tss", help="input tss file")
 p <- add_argument(p, "--tes", help="input tes file")
+p <- add_argument(p, "--data_prefix", help="name prefix of the dataframes that generate the plots")
 p <- add_argument(p, "-o", help="output")
 p <- add_argument(p, "--log", help="log file")
 
@@ -84,8 +85,6 @@ flog.info("Importing length dist sample (plot B)...")
 pB_data <- read.delim( argv$len_xr_cpd_120, header = FALSE )
 colnames(pB_data) <- c("oligomer_length", "counts")
 
-pB_data$sample <- "CPD\n\n120 min."
-
 flog.info("Importing dinucleotide tables (plot C)...")
 pC1_sample <-  read.table( argv$dinuc_xr_cpd_120, header = TRUE )
 pC2_sample <- read.table( argv$dinuc_ds_cpd_120, header = TRUE )
@@ -95,7 +94,6 @@ pC1_data <- dinuc(pC1_sample, "XR")
 pC2_data <- dinuc(pC2_sample, "DS") 
 
 pC1_data$method <- "XR-seq"
-pC2_data$method <- "Damage-\nseq"
 pC1_data$product <- "CPD"
 pC2_data$product <- "CPD"
 
@@ -163,6 +161,13 @@ p.A <- wrap_elements(grid::textGrob(''))
 flog.info("Plotting B...")
 #### Plot B.1 ####
 
+pB_data$sample <- "CPD 120 min."
+
+write.table(pB_data, file = paste0(argv$data_prefix, "B.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
+pB_data$sample <- "CPD\n\n120 min."
+
 # create the plot 
 p.B <- ggplot(pB_data, aes(x = oligomer_length, y = counts/1000000)) + 
   #fill = counts)) + 
@@ -179,6 +184,9 @@ p.B <- p.B + p_format
 
 flog.info("Plotting C...")
 #### Plot C.1 ####
+
+write.table(pC1_data, file = paste0(argv$data_prefix, "C1.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
 
 # create the plot 
 p.C.1 <- ggplot(pC1_data, 
@@ -203,6 +211,13 @@ p.C.1 <- p.C.1 + p_format +
 
 
 #### Plot C.2 ####
+
+pC2_data$method <- "Damage-seq"
+
+write.table(pC2_data, file = paste0(argv$data_prefix, "C2.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
+
+pC2_data$method <- "Damage-\nseq"
 
 # create the plot 
 p.C.2 <- ggplot(pC2_data, 
@@ -263,12 +278,22 @@ p.D2 <- ggplot(pD2_data, aes(x = windows, y = log2(xr_ds))) +
   labs(color = "") +
   guides(alpha = "none")
 
+pD_comb_data$sample <- "CPD 120 min."
+
+write.table(pD_comb_data, file = paste0(argv$data_prefix, "D.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
+
+pD_comb_data$sample <- "CPD\n\n120 min."
+
 # create the plot 
 p.D_comb <- ggplot(pD_comb_data, aes(x = windows, y = log2(xr_ds))) + 
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
   geom_line(aes(color = dataset_strand, alpha = .9)) + 
   facet_grid(~sample~dataset) + 
   xlab("Position Relative to TSS and TES (kb)") + 
+  scale_x_continuous(limits = c(-101, 101), 
+                     breaks = c(-101, 0, 101), 
+                     labels = c("-10", "0", "+10")) +  
   ylab(fr_xr_ds_lab) +
   scale_color_manual(values = c("magenta2", "seagreen")) +
   labs(color = "") +

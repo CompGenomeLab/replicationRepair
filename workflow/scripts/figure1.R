@@ -19,6 +19,7 @@ p <- add_argument(p, "--len_xr_64_12", help="length dist of a xr sample")
 p <- add_argument(p, "--len_xr_cpd_12", help="length dist of a xr sample")
 p <- add_argument(p, "--tss", help="input tss file")
 p <- add_argument(p, "--tes", help="input tes file")
+p <- add_argument(p, "--data_prefix", help="name prefix of the dataframes that generate the plots")
 p <- add_argument(p, "-o", help="output")
 p <- add_argument(p, "--log", help="log file")
 
@@ -90,9 +91,6 @@ colnames(pB1_data) <- c("oligomer_length", "counts")
 pB2_data <- read.delim( argv$len_xr_cpd_12, header = FALSE )
 colnames(pB2_data) <- c("oligomer_length", "counts")
 
-pB1_data$sample <- "(6-4)PP\n\n12 min."
-pB2_data$sample <- "CPD\n\n12 min."
-
 flog.info("Importing dinucleotide tables (plot C)...")
 pC1_sample <- read.table( argv$dinuc_xr_64_12, header = TRUE )
 pC2_sample <- read.table( argv$dinuc_ds_64_12, header = TRUE )
@@ -106,7 +104,6 @@ pC3_data <- dinuc(pC3_sample, "XR")
 pC4_data <- dinuc(pC4_sample, "DS") 
 
 pC1_data$method <- "XR-seq"
-pC2_data$method <- "Damage-\nseq"
 pC2_data$product <- "(6-4)PP"
 pC4_data$product <- "CPD"
 
@@ -152,12 +149,6 @@ pD_comb$dataset <- factor(pD_comb$dataset, levels = c("TSS", "TES"))
 #### Filtering Samples ####
 
 flog.info("Filtering samples (plot D)...")
-pD_data <- filter(pD_df_rr_org, phase != "async", replicate == "_",
-                  time_after_exposure == "12")
-
-pD2_data <- filter(pD2_df_rr_org, phase != "async", replicate == "_",
-                   time_after_exposure == "12")
-
 pD_comb_data <- filter(pD_comb, phase != "async", replicate == "_",
                        time_after_exposure == "12", phase == "early")
 
@@ -171,6 +162,13 @@ p.A <- wrap_elements(grid::textGrob(''))
 
 flog.info("Plotting B...")
 #### Plot B.1 ####
+
+pB1_data$sample <- "(6-4)PP 12 min."
+
+write.table(pB1_data, file = paste0(argv$data_prefix, "B1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
+pB1_data$sample <- "(6-4)PP\n\n12 min."
 
 # create the plot 
 p.B.1 <- ggplot(pB1_data, aes(x = oligomer_length, y = counts/1000000)) + 
@@ -193,6 +191,13 @@ p.B.1 <- p.B.1 + p_format +
 
 #### Plot B.2 ####
 
+pB2_data$sample <- "CPD 12 min."
+
+write.table(pB2_data, file = paste0(argv$data_prefix, "B2.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
+
+pB2_data$sample <- "CPD\n\n12 min."
+
 # create the plot 
 p.B.2 <- ggplot(pB2_data, aes(x = oligomer_length, y = counts/1000000)) + 
   #fill = counts)) + 
@@ -211,6 +216,9 @@ p.B.2 <- p.B.2 + p_format
 
 flog.info("Plotting C...")
 #### Plot C.1 ####
+
+write.table(pC1_data, file = paste0(argv$data_prefix, "C1.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
 
 # create the plot 
 p.C.1 <- ggplot(pC1_data, 
@@ -233,6 +241,13 @@ p.C.1 <- p.C.1 + p_format + guides(fill = "none") +
 
 
 #### Plot C.2 ####
+
+pC2_data$method <- "Damage-seq"
+
+write.table(pC2_data, file = paste0(argv$data_prefix, "C2.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
+
+pC2_data$method <- "Damage-\nseq"
 
 # create the plot 
 p.C.2 <- ggplot(pC2_data, 
@@ -258,6 +273,9 @@ p.C.2 <- p.C.2 + p_format + guides(fill = "none") +
 
 #### Plot C.3 ####
 
+write.table(pC3_data, file = paste0(argv$data_prefix, "C3.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
+
 # create the plot 
 p.C.3 <- ggplot(pC3_data, 
                 aes(x = positions, y = freq, fill = dinucleotides)) + 
@@ -279,6 +297,9 @@ p.C.3 <- p.C.3 + p_format +
 
 
 #### Plot C.4 ####
+
+write.table(pC4_data, file = paste0(argv$data_prefix, "C4.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
 
 # create the plot 
 p.C.4 <- ggplot(pC4_data, 
@@ -303,40 +324,8 @@ p.C.4 <- p.C.4 + p_format + guides(fill = "none") +
 flog.info("Plotting D...")
 #### Plot D ####
 
-# create the plot 
-p.D <- ggplot(pD_data, aes(x = windows, y = log2(xr_ds))) + 
-  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-  geom_line(aes(color = dataset_strand, alpha = .9)) + 
-  facet_grid(~product~time_after_exposure~phase,
-             labeller = labeller(product = product_labs, 
-                                 method = method_labs, 
-                                 time_after_exposure = taex_labs, 
-                                 replicate = rep_labs, phase = phase_labs)) + 
-  xlab("Position Relative to TSS (kb)") + 
-  ylab(fr_xr_ds_lab) +
-  scale_y_continuous(breaks = c(0, 1, 2, 3),
-                     limits = c(0, 3)) +
-  scale_x_continuous(limits = c(-101, 101), 
-                     breaks = c(-101, 0, 101), 
-                     labels = c("-10", "0", "+10")) + 
-  scale_color_manual(values = c("magenta2", "seagreen")) +
-  labs(color = "") +
-  guides(alpha = "none")
-
-# create the plot 
-p.D2 <- ggplot(pD2_data, aes(x = windows, y = log2(xr_ds))) + 
-  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-  geom_line(aes(color = dataset_strand, alpha = .9)) + 
-  facet_grid(~product~time_after_exposure~phase,
-             labeller = labeller(product = product_labs, 
-                                 method = method_labs, 
-                                 time_after_exposure = taex_labs, 
-                                 replicate = rep_labs, phase = phase_labs)) + 
-  xlab("Position Relative to TES (kb)") + 
-  ylab(fr_xr_ds_lab) +
-  scale_color_manual(values = c("magenta2", "seagreen")) +
-  labs(color = "") +
-  guides(alpha = "none")
+write.table(pD_comb_data, file = paste0(argv$data_prefix, "D.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
 
 # create the plot 
 p.D_comb <- ggplot(pD_comb_data, aes(x = windows, y = log2(xr_ds))) + 
@@ -347,6 +336,9 @@ p.D_comb <- ggplot(pD_comb_data, aes(x = windows, y = log2(xr_ds))) +
                                  method = method_labs, 
                                  time_after_exposure = taex_labs, 
                                  replicate = rep_labs)) + 
+  scale_x_continuous(limits = c(-101, 101), 
+                     breaks = c(-101, 0, 101), 
+                     labels = c("-10", "0", "+10")) + 
   xlab("Position Relative to TSS and TES (kb)") + 
   ylab(fr_xr_ds_lab) +
   scale_color_manual(values = c("magenta2", "seagreen")) +

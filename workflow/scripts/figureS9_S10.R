@@ -10,10 +10,11 @@ library(patchwork)
 library(grid)
 
 ######## Arguments ##########
-p <- arg_parser("producing the suplementary figure 6 and 7")
+p <- arg_parser("producing the suplementary figure 9 and 10")
 p <- add_argument(p, "--real", help="windowed (20kb) initiation zones file with read counts")
 p <- add_argument(p, "--sim", help="windowed (20kb) initiation zones file with simulated read counts")
 p <- add_argument(p, "--prod", help="Damage type (64_PP or CPD)")
+p <- add_argument(p, "--data_prefix", help="name prefix of the dataframes that generate the plots")
 p <- add_argument(p, "-o", help="output")
 
 
@@ -111,6 +112,9 @@ names(method_labs_sim) <- c("Damage_seq", "XR_seq")
 
 #### Plot A.1 ####
 
+write.table(pA1_data, file = paste0(argv$data_prefix, "A1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
 # create the plot 
 p.A.1 <- ggplot(pA1_data, aes(x = windows, y = RPKM)) + 
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
@@ -136,6 +140,9 @@ p.A.1 <- p.A.1 + p_format +
 
 
 #### Plot A.2 ####
+
+write.table(pA2_data, file = paste0(argv$data_prefix, "A2.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
 
 # create the plot
 p.A.2 <- ggplot(pA2_data, aes(x = windows, y = RPKM)) + 
@@ -166,6 +173,9 @@ p.A.2 <- p.A.2 + p_format +
 
 #### Plot B.1 ####
 
+write.table(pB1_data, file = paste0(argv$data_prefix, "B1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
 # create the plot 
 p.B.1 <- ggplot(pB1_data, aes(x = windows, y = RPKM)) + 
   geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
@@ -192,6 +202,9 @@ p.B.1 <- p.B.1 + p_format +
 
 
 #### Plot B.2 ####
+
+write.table(pB2_data, file = paste0(argv$data_prefix, "B2.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
 
 # create the plot 
 p.B.2 <- ggplot(pB2_data, aes(x = windows, y = RPKM)) + 

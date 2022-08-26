@@ -9,10 +9,11 @@ library(patchwork)
 library(argparser)
 
 ######## Arguments ##########
-p <- arg_parser("producing the figure 3 and suplementary figure 5")
+p <- arg_parser("producing the figure 3 and suplementary figure 6")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
 p <- add_argument(p, "--dtype", help="damage type of the sample to visualize")
+p <- add_argument(p, "--data_prefix", help="name prefix of the dataframes that generate the plots")
 p <- add_argument(p, "-o", help="output")
 
 # Parse the command line arguments
@@ -137,6 +138,14 @@ stat.test = compare_means(ear_la ~ 1, paired = FALSE, data = pB_filt, method = "
 
 #### Plot A ####
 
+pA_filt$states <- NA
+
+write.table(pA_filt, file = paste0(argv$data_prefix, "A.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
+pA_filt <- chrState_naming( pA_filt, chr_states, general_states, 
+                             chrState2generalState )
+
 pA_filt$phase[pA_filt$phase == "early"] <- "Early \nS Phase"
 pA_filt$phase[pA_filt$phase == "late"] <- "Late \nS Phase"
 
@@ -147,7 +156,7 @@ p.A <- ggplot(pA_filt, aes(x = state_short, y = log2(xr_ds))) +
                outlier.shape = NA, lwd=0.5) +
   facet_grid(~phase~dataset_strand) +
   xlab("") + ylab("n. Repair Rate (RR) (log2)") +
-  scale_fill_manual(name = "Chromatin States", values = state_colors) +
+  scale_fill_manual(name = "Chromatin States\n(#s in ERD/LRD)", values = state_colors) +
   #ylim(-4,5) +
   guides(size = "none") 
 
@@ -161,13 +170,21 @@ p.A <- p.A + p_format +
 
 #### Plot B ####
 
+pB_filt$states <- NA
+
+write.table(pB_filt, file = paste0(argv$data_prefix, "B.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
+pB_filt <- chrState_naming( pB_filt, chr_states, general_states, 
+                             chrState2generalState )
+
 # create the plot
 p.B <- ggplot(pB_filt, aes(x = state_short, y = ear_la)) + 
   geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
   geom_boxplot(aes(fill = factor(states)), outlier.shape = NA, lwd=0.5) +
   facet_wrap(~dataset_strand) +
   xlab(chrState_lab) + ylab(expression(RR[E] / RR[L] (log2))) +
-  scale_fill_manual(name = "Chromatin States", values = state_colors) +
+  scale_fill_manual(name = "Chromatin States\n(#s in ERD/LRD)", values = state_colors) +
   #ylim(-1,1) +
   guides(fill="none") 
 

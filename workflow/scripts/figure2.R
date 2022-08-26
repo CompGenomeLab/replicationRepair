@@ -14,6 +14,7 @@ p <- add_argument(p, "--windowed", help="windowed (20kb) region file with read c
 p <- add_argument(p, "--windowed_sim", help="windowed (20kb) region file with simulated read counts")
 p <- add_argument(p, "--noW", help="Replication domains with read counts")
 p <- add_argument(p, "--noW_sim", help="Replication domains with simulated read counts")
+p <- add_argument(p, "--data_prefix", help="name prefix of the dataframes that generate the plots")
 p <- add_argument(p, "-o", help="output")
 
 # Parse the command line arguments
@@ -213,6 +214,9 @@ pB_data$real_sim <- as.numeric(pB_data$real_sim)
 
 #### Plot A.1 ####
 
+write.table(pA1_data, file = paste0(argv$data_prefix, "A1.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
+
 # create the plot
 p.A.1 <- ggplot(pA1_data, aes(x = windows, y = log2(real_sim))) + 
   geom_hline(yintercept = 0, linetype="dashed", color="red") +
@@ -239,6 +243,9 @@ p.A.1 <- p.A.1 + p_format +
 
 
 #### Plot A.2 ####
+
+write.table(pA2_data, file = paste0(argv$data_prefix, "A2.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
 
 # create the plot
 p.A.2 <- ggplot(pA2_data, aes(x = windows, y = log2(real_sim))) +
@@ -268,6 +275,9 @@ p.A.2 <- p.A.2 + p_format +
         axis.text.x = element_text(hjust=c(0.1, 0.5, 0.9)))
 
 #### Plot B ####
+
+write.table(pB_data, file = paste0(argv$data_prefix, "B.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
 
 # create the plot
 p.B <- ggplot(pB_data, aes(x = phase, y = log2(real_sim))) + 

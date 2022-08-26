@@ -3,7 +3,8 @@ rule figureS4:
         df="results/final/final_reports_hg19_repdomains_uv_mean0.5_windows_201_10000.txt", 
         df_sim="results/final/final_reports_sim_hg19_repdomains_uv_mean0.5_windows_201_10000.txt",            
     output:
-        report("results/plots/figureS4.pdf", caption="../report/figureS4.rst", category="Supplementary Figures"),
+        plot=report("results/plots/figureS4.pdf", caption="../report/figureS4.rst", category="Supplementary Figures"),
+        dfs="results/plot_dataframe/figureS4.csv"
     log:
         "logs/rule/fig/figureS4.log",
     benchmark:
@@ -15,5 +16,6 @@ rule figureS4:
         Rscript workflow/scripts/figureS4.R \
         --df {input.df} \
         --df_sim {input.df_sim} \
-        -o {output} &> {log}
+        --data_prefix "results/plot_dataframe/figureS4" \
+        -o {output.plot} &> {log}
         """

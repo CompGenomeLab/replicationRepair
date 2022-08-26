@@ -1,7 +1,7 @@
 rule ts_nts_xr:
     input:
-        plus="resources/samples/XR/{samples}_hg19_sorted_plus.bed",
-        minus="resources/samples/XR/{samples}_hg19_sorted_minus.bed",
+        plus="results/XR/{samples}/{samples}_hg19_sorted_xr_plus_damSite.bed",
+        minus="results/XR/{samples}/{samples}_hg19_sorted_xr_minus_damSite.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
         comb=temp("results/XR/{samples}/{samples}_hg19_sorted_chr.bed"),
@@ -48,8 +48,8 @@ rule ts_nts_xr:
 
 rule ts_nts_ds:
     input:
-        plus="resources/samples/DS/{samples}_hg19_sorted_ds_dipyrimidines_plus.bed",
-        minus="resources/samples/DS/{samples}_hg19_sorted_ds_dipyrimidines_minus.bed",
+        plus="results/DS/{samples}/{samples}_hg19_sorted_ds_dipyrimidines_plus_damSite.bed",
+        minus="results/DS/{samples}/{samples}_hg19_sorted_ds_dipyrimidines_minus_damSite.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
         comb=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_chr.bed"),

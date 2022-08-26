@@ -12,14 +12,15 @@ library(patchwork)
 p <- arg_parser("producing the supplementary figure 4")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
+p <- add_argument(p, "--data_prefix", help="name prefix of the dataframes that generate the plots")
 p <- add_argument(p, "-o", help="output")
 
 # Parse the command line arguments
 argv <- parse_args(p)
 
-sample_pA <- argv$df
+sample <- argv$df
 
-sample_pA_sim <- argv$df_sim
+sample_sim <- argv$df_sim
 
 #### Default Plot Format ####
 
@@ -33,9 +34,8 @@ source("workflow/scripts/functions.R")
 
 #### Main ####
 
-# for plot A
-pA_sample_df <- read.delim( sample_pA, header = F )
-colnames(pA_sample_df) <- c("chromosomes", "start_position", "end_position", 
+sample_df <- read.delim( sample, header = F )
+colnames(sample_df) <- c("chromosomes", "start_position", "end_position", 
                          "dataset", "score", "dataset_strand", "counts", 
                          "sample_names", "file_names", "layout", "cell_line", 
                          "product", "method", "uv_exposure", "treatment", 
@@ -43,11 +43,11 @@ colnames(pA_sample_df) <- c("chromosomes", "start_position", "end_position",
                          "project", "sample_source", "sample_strand", 
                          "mapped_reads", "RPKM")
 
-pA_df_org <- window_numbering( pA_sample_df, 4, 101 )
-pA_df_org$dataset <- gsub("_.*", "", pA_df_org$dataset)
+df_org <- window_numbering( sample_df, 4, 101 )
+df_org$dataset <- gsub("_.*", "", df_org$dataset)
 
-pA_sample_df_sim <- read.delim( sample_pA_sim, header = F )
-colnames(pA_sample_df_sim) <- c("chromosomes", "start_position", "end_position", 
+sample_df_sim <- read.delim( sample_sim, header = F )
+colnames(sample_df_sim) <- c("chromosomes", "start_position", "end_position", 
                             "dataset", "score", "dataset_strand", "counts", 
                             "sample_names", "file_names", "layout", "cell_line", 
                             "product", "method", "uv_exposure", "treatment", 
@@ -55,32 +55,35 @@ colnames(pA_sample_df_sim) <- c("chromosomes", "start_position", "end_position",
                             "project", "sample_source", "sample_strand", 
                             "mapped_reads", "RPKM")
 
-pA_df_org_sim <- window_numbering( pA_sample_df_sim, 4, 101 )
-pA_df_org_sim$dataset <- gsub("_.*", "", pA_df_org_sim$dataset)
+df_org_sim <- window_numbering( sample_df_sim, 4, 101 )
+df_org_sim$dataset <- gsub("_.*", "", df_org_sim$dataset)
 
-colnames(pA_df_org)[23] <- "real"
-colnames(pA_df_org_sim)[23] <- "sim"
+colnames(df_org)[23] <- "real"
+colnames(df_org_sim)[23] <- "sim"
 
-pA_df_org <- pA_df_org[ -c(2:7,9,10,14,15,19,20,22) ] 
-pA_df_org_sim <- pA_df_org_sim[ -c(2:7,9,10,14,15,19,20,22) ] 
+df_org <- df_org[ -c(2:7,9,10,14,15,19,20,22) ] 
+df_org_sim <- df_org_sim[ -c(2:7,9,10,14,15,19,20,22) ] 
 
-pA_df_rs <- merge(pA_df_org, pA_df_org_sim, by = c("dataset", "sample_names", "cell_line", 
+df_rs <- merge(df_org, df_org_sim, by = c("dataset", "sample_names", "cell_line", 
                                                    "product", "method", "phase", 
                                                    "time_after_exposure", "replicate", 
                                                    "sample_strand", "windows"))
-pA_df_rs$xr_ds <- pA_df_rs$real / pA_df_rs$sim
+df_rs$xr_ds <- df_rs$real / df_rs$sim
 
 # filtering samples 
-pA1_data <- filter(pA_df_rs, phase != "async", 
+p_data <- filter(df_rs, phase != "async", 
                    replicate == "_", time_after_exposure == "12",
                    product == "CPD")
 
-pA1_data$time_after_exposure[pA1_data$method == "Damage_seq"] <- "0" 
+p_data$time_after_exposure[p_data$method == "Damage_seq"] <- "0" 
 
-#### Plot A.1 ####
+#### Plot ####
+
+write.table(p_data, file = paste0(argv$data_prefix, ".csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
 
 # create the plot
-p.A.1 <- ggplot(pA1_data, aes(x = windows, y = log2(xr_ds))) + 
+p <- ggplot(p_data, aes(x = windows, y = log2(xr_ds))) + 
   geom_smooth(aes(color = phase, linetype = sample_strand), se=FALSE) +
   facet_grid(~product~time_after_exposure~method~dataset,
              labeller = labeller(product = product_labs, 
@@ -96,11 +99,7 @@ p.A.1 <- ggplot(pA1_data, aes(x = windows, y = log2(xr_ds))) +
   labs(color = "Phase", linetype = "Strands") 
 
 # adding and overriding the default plot format
-p.A.1 <- p.A.1 + p_format 
-
-p.A.1
-#### Combining Plots with Patchwork ####
-
+p <- p + p_format 
 
 ggsave(argv$o, width = 22, height = 18, units = "cm")
 

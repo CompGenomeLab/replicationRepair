@@ -9,7 +9,8 @@ rule figure1:
         tss="results/final/final_reports_hg19_tss.txt",            
         tes="results/final/final_reports_hg19_tes.txt",                
     output:
-        report("results/plots/figure1.pdf", caption="../report/figure1.rst", category="Figures"),
+        plot=report("results/plots/figure1.pdf", caption="../report/figure1.rst", category="Figures"),
+        dfs=expand("results/plot_dataframe/figure1_{df}.csv", df=["B1", "B2", "C1", "C2", "C3", "C4", "D"]),
     log:
         "logs/rule/fig/figure1.log",
     benchmark:
@@ -27,7 +28,8 @@ rule figure1:
         --len_xr_cpd_12 {input.lenCPD} \
         --tss {input.tss} \
         --tes {input.tes} \
-        -o {output} \
-        --log {log} &> {log}
+        --data_prefix "results/plot_dataframe/figure1_" \
+        -o {output.plot} \
+        --log {log} 
         """
 

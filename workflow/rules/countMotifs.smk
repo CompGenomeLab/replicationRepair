@@ -165,3 +165,37 @@ rule countMotifs_genome:
         echo "`date -R`: Success! Counting is done." ||
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
+
+rule countMotifs_iz:
+    input:
+        bed="results/regions/iz_hela_repdomains_uv_mean0.5_windows_201_100.bed",
+        genome="resources/ref_genomes/hg19/genome_hg19.fa",
+    output:
+        fa=temp("results/regions/iz_hela_repdomains_uv_mean0.5_windows_201_100.fa"),
+        counts="results/regions/iz_hela_repdomains_uv_mean0.5_windows_201_100_nuc_counts.txt",
+    params:
+        "t c g a n",
+    log:
+        "logs/rule/analysis/regions/countMotifs_iz.log",
+    benchmark:
+        "logs/rule/analysis/regions/countMotifs_iz.benchmark.txt",
+    conda:
+        "../envs/countMotifs.yaml"
+    shell:
+        """
+        (echo "`date -R`: Converting bed region file to fasta..." &&
+        bedtools getfasta \
+        -fi {input.genome} \
+        -bed {input.bed} \
+        -fo {output.fa} &&
+        echo "`date -R`: Success!" ||
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) > {log} 2>&1
+
+        (echo "`date -R`: Counting the given motif..." &&
+        python3 workflow/scripts/countMotif.py \
+        -i {output.fa} \
+        -o {output.counts} \
+        -m {params} &&
+        echo "`date -R`: Success! Counting is done." ||
+        {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
+        """

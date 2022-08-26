@@ -17,6 +17,7 @@ p <- add_argument(p, "--noverlap_mut", help="mutation counts on non-overlapping 
 p <- add_argument(p, "--overlap_mut", help="mutation counts on overlapping HeLa initiation zones")
 p <- add_argument(p, "--noverlap_TC", help="TC counts on non-overlapping HeLa initiation zones")
 p <- add_argument(p, "--overlap_TC", help="TC counts on overlapping HeLa initiation zones")
+p <- add_argument(p, "--data_prefix", help="name prefix of the dataframes that generate the plots")
 p <- add_argument(p, "--fig5", help="figure output")
 
 # Parse the command line arguments
@@ -59,6 +60,9 @@ hela_no_overlap$V6 <- "no overlap"
 
 df <- rbind(hela_overlap, hela_no_overlap)
 df$logV5 <- log2(df$V5)
+
+write.table(df, file = paste0(argv$data_prefix, "B.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
 
 p.B <- ggboxplot(df, x = "V6", y = "logV5", outlier.shape = NA) + 
   stat_compare_means(comparisons = list(c(1,2)), label.y = 12.5)  +
@@ -117,6 +121,9 @@ mut_minus_agg$direction <- "Left Replicating"
 mut_data <- rbind(mut_plus_agg, mut_minus_agg) 
 
 mut_data$Group.3 <- as.character(mut_data$Group.3)
+
+write.table(mut_data, file = paste0(argv$data_prefix, "C.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
 
 p.C <- ggplot(data = mut_data, aes(fill = Group.3, x = Group.2, y = x)) + 
   geom_bar(position="dodge", stat = "identity") +
@@ -194,6 +201,9 @@ mut_minus_agg <- aggregate(x = mut_minus$plus_min, by =
 mut_minus_agg$direction <- "Left Replicating"
 pD3_data <- rbind(mut_plus_agg, mut_minus_agg) 
 
+write.table(mut, file = paste0(argv$data_prefix, "D1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
 # create the plot
 p.D.1 <- ggplot(mut) + 
   geom_line(aes(x = window_number, y = norm, 
@@ -216,8 +226,6 @@ p.D.1 <- p.D.1 + p_format +
         plot.subtitle = element_text(hjust = 0.5),
         axis.text.x = element_text(hjust=c(0.1, 0.5, 0.9))) 
 
-#### Plot A.2 ####
-
 mut$direction[mut$window_number<0] <- "Left Replicating" 
 mut$direction[mut$window_number>0] <- "Right Replicating" 
 
@@ -225,6 +233,9 @@ mut <- filter(mut, direction != "NA")
 mut$log2val <- log2(mut$norm)
 
 pD1_boxplot <- mut[,c("repdomains", "log2val", "norm", "strands", "direction", "window_number")]
+
+write.table(pD1_boxplot, file = paste0(argv$data_prefix, "D2.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
 
 p.D.2 <- ggplot(data=pD1_boxplot, aes(x=repdomains, y=norm, fill=strands)) +
   geom_boxplot(outlier.shape = NA) +
@@ -243,23 +254,6 @@ p.D.2 <- p.D.2 + p_format +
   stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.037) + 
   theme(strip.background = element_blank(),
         legend.position = "right") 
-
-#### Plot A.3 ####
-
-# create the plot
-p.D.3 <- ggplot(data = pD3_data, aes(x = Group.2, y = x)) + 
-  geom_bar(stat = "identity", position=position_dodge()) +
-  facet_wrap(~direction) +
-  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-  xlab("Replication Domains") + ylab(expression(MC[p] - MC[m])) +
-  scale_y_continuous(breaks = c(-.003, 0, .003),
-                     limits = c(-.004, .004)) 
-
-# adding and overriding the default plot format
-p.D.3 <- p.D.3 + p_format + 
-  theme(strip.background = element_blank(),
-        strip.text.x = element_blank())  
-
 
 #### Combining Plots with Patchwork ####
 

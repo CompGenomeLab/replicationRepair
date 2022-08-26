@@ -8,7 +8,8 @@ rule figure5B_5C_5D:
         overlap_TC="results/regions/iz_hela_to_gm_imr_repdomains_uv_mean0.5_windows_201_100_counts.txt",
         noverlap_TC="results/regions/iz_hela_no_overlap_repdomains_uv_mean0.5_windows_201_100_counts.txt",  
     output:
-        report("results/plots/figure5B_5C_5D.pdf", caption="../report/figure5B_5C_5D.rst", category="Figures"),
+        plot=report("results/plots/figure5B_5C_5D.pdf", caption="../report/figure5B_5C_5D.rst", category="Figures"),
+        dfs=expand("results/plot_dataframe/figure5_{df}.csv", df=["B", "C", "D1", "D2"]),
     log:
         "logs/rule/fig/figure5B_5C_5D.log",
     benchmark:
@@ -25,5 +26,6 @@ rule figure5B_5C_5D:
         --overlap_mut {input.overlap_mut} \
         --noverlap_TC {input.noverlap_TC} \
         --overlap_TC {input.overlap_TC} \
-        --fig5 {output} &> {log}
+        --data_prefix "results/plot_dataframe/figure5_" \
+        --fig5 {output.plot} &> {log}
         """

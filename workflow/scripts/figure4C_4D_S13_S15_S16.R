@@ -10,10 +10,12 @@ library(grid)
 library(argparser)
 
 ######## Arguments ##########
-p <- arg_parser("producing the figure S8 and S9")
+p <- arg_parser("producing the figure 4C, 4D, S13, S15, S16B, and S16C")
 p <- add_argument(p, "--df", help="region file with read counts")
 p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
+p <- add_argument(p, "--phase", help="early or late")
 p <- add_argument(p, "--intergenic", help="True if reads come from intergenic regions")
+p <- add_argument(p, "--data_prefix", help="name prefix of the dataframes that generate the plots")
 p <- add_argument(p, "-o", help="output")
 
 # Parse the command line arguments
@@ -23,22 +25,20 @@ sample_csv <- argv$df
 
 sample_sim_csv <- argv$df_sim
 
+myphase <- argv$phase
+
 if (argv$intergenic == "True"){ xlabname = "Position Relative to Initiation Zones (kb)\n(Intergenic)" 
 } else if (argv$intergenic == "False"){ xlabname = "Position Relative to Initiation Zones (kb)"
 }
 
-#### Variables ####
+if (myphase == "early"){ 
+  ylabname1 = 'CPD\n12 min.\nEarly S Phase'
+  ylabname2 = 'CPD\n120 min.\nEarly S Phase'
+} else if (myphase == "late"){  
+  ylabname1 = 'CPD\n12 min.\nLate S Phase'
+  ylabname2 = 'CPD\n120 min.\nLate S Phase'
+  }
 
-# name of the sample csv file 
-#sample_sim_csv <- paste("/Users/azgarian/Desktop/replication_final/", 
-#                        "final_reports_sim_hg19_iz_repdomains_m0.5_hela",
-#                        "_windows_201_100.txt", 
-#                        sep = "")
-
-#sample_csv <- paste("/Users/azgarian/Desktop/replication_final/", 
-#                    "final_reports_hg19_iz_repdomains_m0.5_hela",
-#                    "_windows_201_100.txt", 
-#                    sep = "")
 
 #### Default Plot Format ####
 
@@ -48,6 +48,7 @@ source("workflow/scripts/plot_format.R")
 #### Fuctions ####
 
 source("workflow/scripts/functions.R")
+
 
 #### Main ####
 
@@ -99,23 +100,14 @@ df_rr_rs$xr_ds <- df_rr_rs$real / df_rr_rs$sim
 
 # filtering for B.1
 pB1_data <- filter(df_rr_rs, phase != "async", replicate == "_", 
-                   product == "64_PP", phase == "early")
+                   product == "CPD", time_after_exposure == "12", 
+                   phase == myphase)
 
-# for plot B.2
-pB2_data <- rr_boxplot( pB1_data ) 
-
-# for plot B.3
-pB3_data <- rr_boxplot_plus_minus( pB1_data ) 
 
 # filtering for C.1
 pC1_data <- filter(df_rr_rs, phase != "async", replicate == "_", 
-                   product == "64_PP", phase == "late")
-
-# for plot C.2
-pC2_data <- rr_boxplot( pC1_data ) 
-
-# for plot C.3
-pC3_data <- rr_boxplot_plus_minus( pC1_data ) 
+                   product == "CPD", time_after_exposure == "120", 
+                   phase == myphase)
 
 
 #### Plot A ####
@@ -169,31 +161,8 @@ p.B.2 <- ggplot(data=pB1_boxplot, aes(x=repdomains, y=log2val, fill=sample_stran
 
 # adding and overriding the default plot format
 p.B.2 <- p.B.2 + p_format + 
-  stat_compare_means(label = "p.signif",  paired = TRUE) + 
   theme(strip.background = element_blank(),
-#        strip.text.x = element_blank()
-#  theme(axis.title.x=element_blank(),
-#        axis.text.x=element_blank(),
-#        axis.ticks.x = element_blank()) 
-  )
-
-#### Plot B.3 ####
-
-# create the plot 
-p.B.3 <- ggplot() + 
-  geom_bar(data = pB3_data, aes(x = Group.2, y = x), 
-           stat = "identity", position=position_dodge()) +
-  facet_wrap(~direction) +
-  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-  xlab("") + ylab(expression(RR[p] - RR[m])) +
-  scale_y_continuous(breaks = c(-.2, 0, .2),
-                     limits = c(-.25, .25)) +
-  scale_fill_manual(values = repdomain_colors, guide = "none") 
-
-# adding and overriding the default plot format
-p.B.3 <- p.B.3 + p_format + 
-  theme(strip.background = element_blank(),
-        strip.text.x = element_blank())   
+        ) 
 
 
 #### Plot C.1 ####
@@ -240,7 +209,6 @@ p.C.2 <- ggplot(data=pC1_boxplot, aes(x=repdomains, y=log2val, fill=sample_stran
 
 # adding and overriding the default plot format
 p.C.2 <- p.C.2 + p_format + 
-  stat_compare_means(label = "p.signif",  paired = TRUE) + 
   theme(strip.background = element_blank(),
 #        strip.text.x = element_blank(), 
 #  theme(axis.title.x=element_blank(),
@@ -248,57 +216,109 @@ p.C.2 <- p.C.2 + p_format +
 #        axis.ticks.x = element_blank(),
   )
 
-#### Plot C.3 ####
-
-# create the plot 
-p.C.3 <- ggplot() + 
-  geom_bar(data = pC3_data, aes(x = Group.2, y = x), 
-           stat = "identity", position=position_dodge()) +
-  facet_wrap(~direction) +
-  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
-  xlab("Replication Domains") + 
-  ylab(expression(RR[p] - RR[m])) +
-  scale_fill_manual(values = repdomain_colors, guide = "none") +
-  scale_y_continuous(breaks = c(-.2, 0, .2),
-                     limits = c(-.25, .25))
-
-# adding and overriding the default plot format
-p.C.3 <- p.C.3 + p_format + 
-  theme(strip.background = element_blank(),
-        strip.text.x = element_blank()) 
-
 
 #### Combining Plots with Patchwork ####
 
 layout <- "
-A
-A
-B
-"
-
-p.B.2.3 <- (p.B.2 / p.B.3) + plot_layout(design = layout) 
-p.C.2.3 <- (p.C.2 / p.C.3) + plot_layout(design = layout) 
-
-layout2 <- "
 AAAAAAA
 BBBCCCD
 FFFGGGH
 "
-layout3 <- "
+layout2 <- "
 BBBCCCD
 FFFGGGH
 "
-(p.B.1 + labs(title="A")) + p.B.2 + 
-  grid::textGrob('(6-4)PP\n12 min.\nEarly S Phase', 
+
+if (argv$intergenic == "False" & myphase == "late"){
+
+write.table(pB1_data, file = paste0(argv$data_prefix, "C1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+write.table(pB1_boxplot, file = paste0(argv$data_prefix, "C2.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+write.table(pC1_data, file = paste0(argv$data_prefix, "D1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+write.table(pC1_boxplot, file = paste0(argv$data_prefix, "D2.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
+p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.4) 
+p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.05) 
+
+(p.A + labs(title="A")) + 
+(p.B.1 + labs(title="C")) + p.B.2 + 
+  grid::textGrob(ylabname1, 
                   rot = -90, gp=gpar(fontsize=12), 
                   y = unit(.55, "npc")) + 
-  (p.C.1 + labs(title="B")) + p.C.2 + 
-    grid::textGrob('(6-4)PP\n12 min.\nLate S Phase', 
-                    rot = -90, gp=gpar(fontsize=12), 
-                    y = unit(.62, "npc")) + 
-  plot_layout(design = layout3, guides = "collect") & 
-  theme(legend.position = 'bottom', 
+  (p.C.1 + labs(title="D")) + p.C.2 + 
+  grid::textGrob(ylabname2, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.62, "npc")) + 
+  plot_layout(design = layout, guides = "collect") & 
+  theme(plot.tag = element_text(size = 12, face="bold"),
+        legend.position = 'bottom', 
         plot.title = element_text(hjust = -0.2, 
                                   size = 12, face="bold"))
 
 ggsave( argv$o, width = 22, height = 18, units = "cm" )
+
+} else if (argv$intergenic == "True" & myphase == "early"){
+
+write.table(pB1_data, file = paste0(argv$data_prefix, "B1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+write.table(pB1_boxplot, file = paste0(argv$data_prefix, "B2.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+write.table(pC1_data, file = paste0(argv$data_prefix, "C1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+write.table(pC1_boxplot, file = paste0(argv$data_prefix, "C2.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
+p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.85) 
+p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.15) 
+
+p.A + labs(title="A") + 
+(p.B.1 + labs(title="B")) + p.B.2 + 
+  grid::textGrob(ylabname1, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.55, "npc")) + 
+  (p.C.1 + labs(title="C")) + p.C.2 + 
+  grid::textGrob(ylabname2, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.62, "npc")) + 
+  plot_layout(design = layout, guides = "collect") & 
+  theme(plot.tag = element_text(size = 12, face="bold"),
+        legend.position = 'bottom', 
+        plot.title = element_text(hjust = -0.2, 
+                                  size = 12, face="bold"))
+
+ggsave( argv$o, width = 22, height = 18, units = "cm" )
+
+} else {
+
+write.table(pB1_data, file = paste0(argv$data_prefix, "A1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+write.table(pB1_boxplot, file = paste0(argv$data_prefix, "A2.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+write.table(pC1_data, file = paste0(argv$data_prefix, "B1.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+write.table(pC1_boxplot, file = paste0(argv$data_prefix, "B2.csv"), quote = FALSE, 
+            row.names = FALSE, sep = ",")
+
+p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE) 
+p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE) 
+
+(p.B.1 + labs(title="A")) + p.B.2 + 
+  grid::textGrob(ylabname1, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.55, "npc")) + 
+  (p.C.1 + labs(title="B")) + p.C.2 + 
+  grid::textGrob(ylabname2, 
+                  rot = -90, gp=gpar(fontsize=12), 
+                  y = unit(.62, "npc")) + 
+  plot_layout(design = layout2, guides = "collect") & 
+  theme(plot.tag = element_text(size = 12, face="bold"),
+        legend.position = 'bottom', 
+        plot.title = element_text(hjust = -0.2, 
+                                  size = 12, face="bold"))
+
+ggsave( argv$o, width = 22, height = 18, units = "cm" )
+
+}

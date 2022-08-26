@@ -183,6 +183,11 @@ def combineOutputs(sampleList_xr, sampleList_ds, regions="", outformat="real"):
 
             inputList.append(f"{sampledir}{sample}_hg19_sorted_tes_combined_rpkm.bed") 
 
+        for sample in sampleList_ds:
+            sampledir = f"results/DS/{sample}/" 
+            
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_dipyrimidines_tes_combined_rpkm.bed") 
+
     elif outformat == "tss_sim":
         for sample in sampleList_xr:
             sampledir = f"results/sim/{sample}/" 
@@ -204,6 +209,50 @@ def combineOutputs(sampleList_xr, sampleList_ds, regions="", outformat="real"):
             sampledir = f"results/sim/{sample}/" 
             
             inputList.append(f"{sampledir}{sample}_hg19_sorted_dipyrimidines_tes_combined_rpkm.bed") 
+
+    elif outformat == "tss_4kb":
+        for sample in sampleList_xr:
+            sampledir = f"results/XR/{sample}/" 
+
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_tss_windows_2001_1_combined_rpkm.bed") 
+
+        for sample in sampleList_ds:
+            sampledir = f"results/DS/{sample}/" 
+            
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_dipyrimidines_tss_windows_2001_1_combined_rpkm.bed") 
+
+    elif outformat == "tes_4kb":
+        for sample in sampleList_xr:
+            sampledir = f"results/XR/{sample}/" 
+
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_tes_windows_2001_1_combined_rpkm.bed") 
+
+        for sample in sampleList_ds:
+            sampledir = f"results/DS/{sample}/" 
+            
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_dipyrimidines_tes_windows_2001_1_combined_rpkm.bed") 
+
+    elif outformat == "tss_4kb_sim":
+        for sample in sampleList_xr:
+            sampledir = f"results/sim/{sample}/" 
+
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_tss_windows_2001_1_combined_rpkm.bed") 
+
+        for sample in sampleList_ds:
+            sampledir = f"results/sim/{sample}/" 
+            
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_dipyrimidines_tss_windows_2001_1_combined_rpkm.bed") 
+
+    elif outformat == "tes_4kb_sim":
+        for sample in sampleList_xr:
+            sampledir = f"results/sim/{sample}/" 
+
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_tes_windows_2001_1_combined_rpkm.bed") 
+
+        for sample in sampleList_ds:
+            sampledir = f"results/sim/{sample}/" 
+            
+            inputList.append(f"{sampledir}{sample}_hg19_sorted_dipyrimidines_tes_windows_2001_1_combined_rpkm.bed") 
 
     return inputList
 
@@ -227,29 +276,6 @@ def allInput(sampleList=[], srrEnabled=False, srrList=[], method="", regions=[])
         inputList.append("results/plots/PCA_readCounts.png")
         inputList.append("results/plots/PCA_readCounts_early.png")
         inputList.append("results/plots/PCA_readCounts_late.png")
-        inputList.append("results/final/final_reports_hg19_early_late.txt")
-        inputList.append("results/final/final_reports_sim_hg19_early_late.txt")
-        inputList.append("results/final/final_reports_hg19_merge_uv_RT.txt")
-        inputList.append("results/final/final_reports_sim_hg19_merge_uv_RT.txt")
-        inputList.append("results/regions/highFlatZone_repdomains_uv_mean0.5_windows_201_100_kmer_counts.txt")
-        inputList.append("results/regions/lowFlatZone_repdomains_uv_mean0.5_windows_201_100_kmer_counts.txt")
-        inputList.append("results/final/final_reports_hg19_highFlatZone_repdomains_uv_mean0.5_windows_201_100.txt")
-        inputList.append("results/final/final_reports_hg19_lowFlatZone_repdomains_uv_mean0.5_windows_201_100.txt")
-        inputList.append("results/final/final_reports_sim_hg19_highFlatZone_repdomains_uv_mean0.5_windows_201_100.txt")
-        inputList.append("results/final/final_reports_sim_hg19_lowFlatZone_repdomains_uv_mean0.5_windows_201_100.txt")
-        inputList.append("results/regions/highFlatZone_repdomains_uv_mean0.5_intergenic_windows_201_100_kmer_counts.txt")
-        inputList.append("results/regions/lowFlatZone_repdomains_uv_mean0.5_intergenic_windows_201_100_kmer_counts.txt")
-        inputList.append("results/final/final_reports_hg19_highFlatZone_repdomains_uv_mean0.5_windows_201_100_intergenic.txt")
-        inputList.append("results/final/final_reports_hg19_lowFlatZone_repdomains_uv_mean0.5_windows_201_100_intergenic.txt")
-        inputList.append("results/final/final_reports_sim_hg19_highFlatZone_repdomains_uv_mean0.5_windows_201_100_intergenic.txt")
-        inputList.append("results/final/final_reports_sim_hg19_lowFlatZone_repdomains_uv_mean0.5_windows_201_100_intergenic.txt")
-        inputList.append("results/regions/iz_hela_repdomains_uv_mean0.5_intergenic_windows_201_100_kmer_counts.txt")
-        inputList.append("resources/ref_genomes/hg19/genome_hg19_50kb_counts.txt")
-        inputList.append("results/final/final_reports_hg19_genome_hg19_50kb.txt")
-        inputList.append("results/final/final_reports_hg19_avg_uv_T_Loess.txt")
-        inputList.append("results/final/final_reports_sim_hg19_avg_uv_T_Loess.txt")
-        inputList.append("results/final/final_reports_sim_hg19_tes.txt")
-        inputList.append("results/final/final_reports_sim_hg19_tss.txt")
 
         for sample in sampleList:
             sampledir = f"results/edu/{sample}/"
@@ -263,10 +289,25 @@ def allInput(sampleList=[], srrEnabled=False, srrList=[], method="", regions=[])
 
     if method == "report":
 
-        for fig_num in ["1","2","3","4B","4C_4D","4E","5A","5B_5C_5D","S2A","S3B_S3C_S3D",
-        "S4","S5","S6","S7","S8","S9","S10","S11","S12B_S12C","S13","S14","S15","S16","S17","S18"]:
+        for fig_num in ["1", "2", "3", "4B", "4C_4D", "4E", "4F", "4G", "5A", 
+        "5B_5C_5D", "S2A", "S3B_S3C_S3D", "S4", "S5", "S6", "S7", "S8", "S9", 
+        "S10", "S11", "S12", "S13", "S14", "S15", "S16", "S17", "S18", "S19",
+        "S20", "S21", "S22", "S23", "S24", "S25"]:
     
             inputList.append(f"results/plots/figure{fig_num}.pdf")
+
+        for df_num in ["1_B1", "1_B2", "1_C1", "1_C2", "1_C3", "1_C4", "1_D",
+        "2_A1", "2_A2", "2_B", "3_A", "3_B", "4_B1", "4_B2", "4_B3", "4_B4", 
+        "4_C1", "4_C2", "4_D1", "4_D2", "4_E", "4_F", "4_G", "5_B", "5_C", 
+        "5_D1", "5_D2", "S3_B", "S3_C1", "S3_C2", "S3_D", "S4", "S5_A", "S5_B", 
+        "S6_A", "S6_B", "S7_A", "S7_B", "S8", "S9_A1", "S9_A2", "S9_B1", 
+        "S9_B2", "S10_A1", "S10_A2", "S10_B1", "S10_B2", "S11_A1", "S11_A2", 
+        "S11_B1", "S11_B2", "S12_A1", "S12_A2", "S12_B1", "S12_B2", "S13_A1", 
+        "S13_A2", "S13_B1", "S13_B2", "S14", "S15_A1", "S15_A2", "S15_B1", 
+        "S15_B2", "S16_B1", "S16_B2", "S16_C1", "S16_C2", "S17", "S18", "S19", 
+        "S20", "S21", "S22", "S23", "S24", "S25"]:
+
+            inputList.append(f"results/plot_dataframe/figure{df_num}.csv")
 
     return inputList
 

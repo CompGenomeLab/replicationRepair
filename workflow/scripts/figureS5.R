@@ -1,6 +1,5 @@
 #### Packages and Libraries ####
 
-library(argparser)
 library(stringr)
 library(ggpubr)
 library(ggplot2)
@@ -8,27 +7,29 @@ library(dplyr)
 library(reshape2)
 library(patchwork)
 library(grid)
+library(argparser)
+library(scales)
+library(zoo)
 
 ######## Arguments ##########
-p <- arg_parser("producing the suplementary figure 5")
-p <- add_argument(p, "--real", help="windowed (20kb) initiation zones file with read counts")
-p <- add_argument(p, "--sim", help="windowed (20kb) initiation zones file with simulated read counts")
-p <- add_argument(p, "--prod", help="Damage type (64_PP or CPD)")
+p <- arg_parser("producing the supplementary figure 5")
+p <- add_argument(p, "--df", help="region file with read counts")
+p <- add_argument(p, "--df_sim", help="region file with simulated read counts")
+p <- add_argument(p, "--data_prefix", help="name prefix of the dataframes that generate the plots")
 p <- add_argument(p, "-o", help="output")
-
 
 # Parse the command line arguments
 argv <- parse_args(p)
 
-#### Variables ####
+sample <- argv$df
 
-rep <- "_" 
-
-prod <- argv$prod
+sample_sim <- argv$df_sim
 
 #### Default Plot Format ####
 
 source("workflow/scripts/plot_format.R")
+
+options(scipen=999)
 
 
 #### Functions ####
@@ -38,193 +39,148 @@ source("workflow/scripts/functions.R")
 
 #### Main ####
 
-# for plot A.1 and B.1
-real_df <- read.delim( argv$real, header = F )
-colnames(real_df) <- c("chromosomes", "start_position", "end_position", 
-                       "dataset", "score", "dataset_strand", "counts", 
-                       "sample_names", "file_names", "layout", "cell_line", 
-                       "product", "method", "uv_exposure", "treatment", 
-                       "phase", "time_after_exposure", "replicate", 
-                       "project", "sample_source", "sample_strand", 
-                       "mapped_reads", "RPKM")
+# for plot A
+sample_df <- read.delim( sample, header = F )
+colnames(sample_df) <- c("chromosomes", "start_position", "end_position", 
+                            "dataset", "score", "dataset_strand", "counts", 
+                            "sample_names", "file_names", "layout", "cell_line", 
+                            "product", "method", "uv_exposure", "treatment", 
+                            "phase", "time_after_exposure", "replicate", 
+                            "project", "sample_source", "sample_strand", 
+                            "mapped_reads", "RPKM")
 
-real_df<- filter( real_df, method != "DNA_seq", phase != "async", 
-                 replicate == rep, product == prod)
+df_rr <- repair_rate( sample_df )
 
-real_df_org <- window_numbering( real_df, 4, 101 )
-real_df_org$dataset <- gsub("_.*", "", real_df_org$dataset)
+sample_df_sim <- read.delim( sample_sim, header = F )
 
-real_df_org$sample_strand <- factor(
-  real_df_org$sample_strand, levels = c("+","-"))
+colnames(sample_df_sim) <- c("chromosomes", "start_position", "end_position", 
+                             "dataset", "score", "dataset_strand", "counts", 
+                             "sample_names", "file_names", "layout", "cell_line", 
+                             "product", "method", "uv_exposure", "treatment", 
+                             "phase", "time_after_exposure", "replicate", 
+                             "project", "sample_source", "sample_strand", 
+                             "mapped_reads", "RPKM")
 
-# for plot A.2 and B.2
-sim_df <- read.delim( argv$sim, header = F )
-colnames(sim_df) <- c("chromosomes", "start_position", "end_position", 
-                      "dataset", "score", "dataset_strand", "counts", 
-                      "sample_names", "file_names", "layout", "cell_line", 
-                      "product", "method", "uv_exposure", "treatment", 
-                      "phase", "time_after_exposure", "replicate", 
-                      "project", "sample_source", "sample_strand", 
-                      "mapped_reads", "RPKM")
+df_rr_sim <- repair_rate( sample_df_sim )
 
-sim_df<- filter( sim_df, method != "DNA_seq", phase != "async", 
-                replicate == rep, product == prod)
+colnames(df_rr)[12] <- "real"
+colnames(df_rr_sim)[12] <- "sim"
 
-sim_df_org <- window_numbering( sim_df, 4, 101 )
-sim_df_org$dataset <- gsub("_.*", "", sim_df$dataset)
+df_rr_rs <- merge(df_rr, df_rr_sim, by = c("chromosomes", "start_position", 
+                                           "end_position", "dataset", "score",
+                                           "dataset_strand", "product", 
+                                           "phase", "time_after_exposure",
+                                           "sample_strand", "replicate" ))
+df_rr_rs$real_sim <- df_rr_rs$real / df_rr_rs$sim
 
-sim_df_org$sample_strand <- factor(
-  sim_df_org$sample_strand, levels = c("+","-"))
+df_rr_rs_score <- data.frame()
+for (chr in unique(df_rr_rs$chromosomes)){
+  chr_data <- filter(df_rr_rs, chromosomes == chr)
+  chr_data <- chr_data[order(chr_data$start_position),]
+  
+  zoo_mean<-aggregate(chr_data$score, list(chr_data$start_position), mean)
+  #Make zoo object of data
+  temp.zoo<-zoo(zoo_mean$x,zoo_mean$Group.1)
+  
+  #Calculate moving average with window 3 and make first and last value as NA (to ensure identical length of vectors)
+  score_sma<-rollmean(temp.zoo, 10, na.rm = TRUE)
+  
+  score_sma <- data.frame(score_sma)
+  score_sma$start_position <- rownames(score_sma)
+  score_sma$chromosomes <- chr
+  
+  chr_data_merged <- merge(chr_data, score_sma, by=c("chromosomes", "start_position"))
+  
+  df_rr_rs_score <- rbind(df_rr_rs_score, chr_data_merged)
+}
 
+df_rr_rs_dcast_plus_minus <- 
+  dcast(df_rr_rs_score, dataset + chromosomes + start_position + end_position + 
+          score + score_sma + dataset_strand + product + phase + 
+          time_after_exposure + replicate ~ sample_strand, 
+        value.var = "real_sim")
+df_rr_rs_dcast_plus_minus$plus_minus <- df_rr_rs_dcast_plus_minus$`+` / df_rr_rs_dcast_plus_minus$`-`
 
-# filtering for A.1
-pA1_data <- filter(real_df_org, method != "DNA_seq", phase != "async", 
-                   replicate == rep, method == "Damage_seq", product == prod)
+df_rr_rs_dcast_ear_la <- 
+  dcast(df_rr_rs_score, dataset + chromosomes + start_position + end_position + 
+          score + score_sma + dataset_strand + product + sample_strand + 
+          time_after_exposure + replicate ~ phase, value.var = "real_sim")
+df_rr_rs_dcast_ear_la$ear_la <- df_rr_rs_dcast_ear_la$early / df_rr_rs_dcast_ear_la$late
 
-# filtering for A.2
-pA2_data <- filter(sim_df_org, phase != "async", replicate == rep, 
-                   product == prod, method == "Damage_seq")
+# filtering samples 
+pA_data <- filter(df_rr_rs_score, 
+              replicate == "_", time_after_exposure == "12",
+              phase != "async", product == "CPD", chromosomes == "chr1" | 
+              chromosomes == "chr19", start_position < 50000000 )
 
-# filtering for B.1
-pB1_data <- filter(real_df_org, method != "DNA_seq", phase != "async", 
-                   replicate == rep, method == "XR_seq", product == prod)
-
-# filtering for B.2
-pB2_data <- filter(sim_df_org, phase != "async", method != "DNA_seq", 
-                   replicate == rep, product == prod, method == "XR_seq")
-
-# for naming of simulated samples
-method_labs_sim <- c("Simulated \nDamage-seq", "Simulated \nXR-seq")
-names(method_labs_sim) <- c("Damage_seq", "XR_seq")
-
-#### Plot A.1 ####
-
-# create the plot 
-p.A.1 <- ggplot(pA1_data, aes(x = windows, y = RPKM)) + 
-  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-  geom_line(aes(color = sample_strand)) + 
-  facet_grid(~product~time_after_exposure~phase~method, 
-             labeller = labeller(product = product_labs, 
-                                 method = method_labs, 
-                                 time_after_exposure = taex_labs,
-                                 phase = phase_labs)) + 
-  xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .3, .5),
-                     limits = c(.1, .5)) +
-  scale_x_continuous(limits = c(-101, 101), 
-                     breaks = c(-101, 0, 101), 
-                     labels = c("-10", "0", "+10")) + 
-  scale_color_manual(values = strand_colors) + 
-  labs(color = "Strands")
-
-# adding and overriding the default plot format
-p.A.1 <- p.A.1 + p_format +
-  theme(strip.text.y = element_text(size=0, margin = margin(0, 0, 0, 0)),
-        panel.border = element_rect(fill = NA)) 
+pB_data <- filter(df_rr_rs_dcast_ear_la, 
+                replicate == "_", time_after_exposure == "12",
+                product == "CPD", chromosomes == "chr1" | 
+                chromosomes == "chr19", start_position < 50000000)
 
 
-#### Plot A.2 ####
+#### Plot P.A ####
+
+write.table(pA_data, file = paste0(argv$data_prefix, "A.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
 
 # create the plot
-p.A.2 <- ggplot(pA2_data, aes(x = windows, y = RPKM)) + 
-  geom_line(aes(color = sample_strand)) + 
-  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-  facet_grid(~product~time_after_exposure~phase~method,
-             labeller = labeller(product = product_labs,
-                                 method = method_labs_sim,
+p.A <- ggplot(pA_data, aes(x = start_position, y = score_sma, color = log2(real_sim))) + 
+  geom_line(size=3) +
+  #geom_ma(ma_fun = SMA, n = 30, data=data, na.rm = TRUE) +
+  #geom_smooth(se=FALSE) +
+  facet_grid(~phase~chromosomes,
+             labeller = labeller(product = product_labs, 
                                  time_after_exposure = taex_labs,
                                  phase = phase_labs)) +
-  xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .3, .5),
-                     limits = c(.1, .5)) +
-  scale_x_continuous(limits = c(-101, 101), 
-                     breaks = c(-101, 0, 101), 
-                     labels = c("-10", "0", "+10")) + 
-  scale_color_manual(values = strand_colors) + 
-  labs(color = "Strands")
+  scale_color_gradientn( colours = c("red3","white","blue4"),
+                       values=rescale(c(-4, 0,2)), limits=c(-4,2)) +
+  ylab("Replication Timing (Early/Late)") +
+  xlab("Chromosome Position (Mb)") +
+  scale_x_continuous(breaks = c(0, 25000000, 50000000),
+                     labels = c("0","25", "50")) +
+  labs(color="n. Repair\nRate (log2)")
 
 # adding and overriding the default plot format
-p.A.2 <- p.A.2 + p_format + 
-  theme(axis.title.y=element_blank(),
-        panel.border = element_rect(fill = NA),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank(),
-        strip.text.y = element_text(size=0, margin = margin(0, 0, 0, 0)))
+p.A <- p.A + p_format + theme(legend.position = "right",
+                              axis.title.x = element_blank())
 
 
-#### Plot B.1 ####
+#### Plot P.B ####
 
-# create the plot 
-p.B.1 <- ggplot(pB1_data, aes(x = windows, y = RPKM)) + 
-  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-  geom_line(aes(color = sample_strand)) + 
-  facet_grid(~product~time_after_exposure~phase~method, 
+write.table(pB_data, file = paste0(argv$data_prefix, "B.csv"), 
+            quote = FALSE, row.names = FALSE, sep = ",")
+
+# create the plot
+p.B <- ggplot(pB_data, aes(x = start_position, y = score_sma, color = log2(ear_la))) + 
+  geom_line(size=3) +
+  #geom_ma(ma_fun = SMA, n = 30, data=data, na.rm = TRUE) +
+  #geom_smooth(se=FALSE) +
+  facet_grid(~chromosomes,
              labeller = labeller(product = product_labs, 
-                                 method = method_labs, 
                                  time_after_exposure = taex_labs,
-                                 phase = phase_labs)) + 
-  xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .3, .5),
-                     limits = c(.1, .5)) +
-  scale_x_continuous(limits = c(-101, 101), 
-                     breaks = c(-101, 0, 101), 
-                     labels = c("-10", "0", "+10")) + 
-  scale_color_manual(values = strand_colors) + 
-  labs(color = "Strands")
+                                 phase = phase_labs)) +
+  scale_color_gradientn( colours = c("red3","white","blue4"),
+                         values=rescale(c(-1, 0,1)), limits=c(-1,1)) +
+  ylab("Replication Timing (Early/Late)") +
+  xlab("Chromosome Position (Mb)") +
+  scale_x_continuous(breaks = c(0, 25000000, 50000000),
+                     labels = c("0","25", "50")) +
+  labs(color="Early/Late \nS Phase \nn. Repair\nRate (log2)")
 
 # adding and overriding the default plot format
-p.B.1 <- p.B.1 + p_format + 
-  theme(strip.text.y = element_text(size=0, margin = margin(0, 0, 0, 0)),
-        axis.title.y = element_blank(),
-        panel.border = element_rect(fill = NA)) 
+p.B <- p.B + p_format + theme(legend.position = "right") + 
+  theme(strip.text.x = element_blank())
 
+layout <- 
+"
+A
+A
+B
+"
 
-#### Plot B.2 ####
-
-# create the plot 
-p.B.2 <- ggplot(pB2_data, aes(x = windows, y = RPKM)) + 
-  geom_line(aes(color = sample_strand)) + 
-  geom_vline(xintercept = 0, color = "gray", linetype = "dashed") +
-  facet_grid(~product~time_after_exposure~phase~method, 
-             labeller = labeller(product = product_labs, 
-                                 method = method_labs_sim, 
-                                 time_after_exposure = taex_labs, 
-                                 phase = phase_labs)) + 
-  xlab("") + ylab(fr_lab) +
-  scale_y_continuous(breaks = c(.1, .3, .5),
-                     limits = c(.1, .5)) +
-  scale_x_continuous(limits = c(-101, 101), 
-                     breaks = c(-101, 0, 101), 
-                     labels = c("-10", "0", "+10")) + 
-  scale_color_manual(values = strand_colors) + 
-  labs(color = "Strands")
-
-# adding and overriding the default plot format
-p.B.2 <- p.B.2 + p_format + 
-  theme(axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank(),
-        panel.border = element_rect(fill = NA))
-
-
-#### Combining Plots with Patchwork ####
-
-p.A.2 <- p.A.2 + plot_layout(tag_level = 'new') 
-p.B.2 <- p.B.2 + plot_layout(tag_level = 'new') 
-
-(p.A.1 | p.A.2 | p.B.1 | p.B.2) + 
-  plot_annotation(caption = 
-                    'Position Relative to Initiation Zones (kb)',
-                  theme = theme(plot.caption = 
-                                  element_text(size = 12, 
-                                               hjust = .43, vjust = 20))) +
-  plot_layout(guides = "collect") & 
+p.A / p.B + plot_layout(design = layout) &
   plot_annotation(tag_levels = 'A') &
-  theme(plot.tag = element_text(size = 12, face="bold"),
-        legend.position = 'bottom', 
-        plot.title = element_text(hjust = -0.2, vjust = 5, 
-                                  size = 12, face="bold"))
+  theme(plot.tag = element_text(size = 12, face="bold"))
 
-
-ggsave(argv$o, width = 22, height = 18, units = "cm")
-
+ggsave(argv$o, width = 22, height = 18, units = "cm") 
