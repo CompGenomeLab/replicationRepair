@@ -3,6 +3,7 @@
 #BiocManager::install("preprocessCore", configure.args="--disable-threading")
 library(preprocessCore)
 library(argparser)
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing the marker figure")

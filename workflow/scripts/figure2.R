@@ -7,6 +7,7 @@ library(ggplot2)
 library(dplyr)
 library(reshape2)
 library(patchwork)
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing the figure 2")

@@ -7,6 +7,7 @@ library(reshape2)
 library(dplyr)
 library(patchwork)
 library(argparser)
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing the figure 3 and suplementary figure 6")

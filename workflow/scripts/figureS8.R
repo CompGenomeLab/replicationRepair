@@ -5,6 +5,7 @@ library(dplyr)
 library(ggplot2)
 library(patchwork)
 library(argparser)
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing the supplementary figure 5")

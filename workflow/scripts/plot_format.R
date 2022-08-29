@@ -2,6 +2,7 @@
 
 library(ggplot2)
 library(ggpubr)
+set.seed(1) 
 
 #### label names ####
 

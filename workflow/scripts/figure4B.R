@@ -8,6 +8,7 @@ library(dplyr)
 library(reshape2)
 library(patchwork)
 library(grid)
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing figure 4B")

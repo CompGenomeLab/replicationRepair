@@ -2,6 +2,7 @@
 
 library(stringr)
 library(dplyr)
+set.seed(1) 
 
 #### functions ####
 

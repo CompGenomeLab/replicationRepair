@@ -10,6 +10,7 @@ library(grid)
 library(argparser)
 library(scales)
 library(zoo)
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing the supplementary figure 5")

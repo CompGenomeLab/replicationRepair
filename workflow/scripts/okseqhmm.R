@@ -4,6 +4,7 @@ library("HMM")
 library("Rsamtools")
 library("GenomicAlignments")
 library(argparser)
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing initiation zones")

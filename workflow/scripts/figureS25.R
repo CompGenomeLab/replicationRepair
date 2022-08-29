@@ -7,6 +7,7 @@ library(ggplot2)
 library(dplyr)
 library(reshape2)
 library(patchwork)
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing supplementary figure 25 - damage and repair signals that are normalized by simulations.")

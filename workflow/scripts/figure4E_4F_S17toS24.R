@@ -8,6 +8,7 @@ library(reshape2)
 library(dplyr)
 library(patchwork)
 library(GGally)
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing figure 4E, 4F, S17-S24 - the sequence context of (mono to penta)-mer around initiation zones")

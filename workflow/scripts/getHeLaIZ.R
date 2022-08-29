@@ -3,6 +3,7 @@
 library(argparser)
 library(dplyr)
 library(tidyr)
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing non-overlapping/overlapping hela initiation zones")

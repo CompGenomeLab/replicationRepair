@@ -8,6 +8,7 @@ library(reshape2)
 library(ggplot2)
 library(patchwork)
 library("viridis")
+set.seed(1) 
 
 ######## Arguments ##########
 p <- arg_parser("producing the figure S3B-D")
