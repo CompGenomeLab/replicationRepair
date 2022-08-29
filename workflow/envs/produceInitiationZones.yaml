@@ -1,6 +1,6 @@
 name: produceInitiationZones
 dependencies:
-  - conda-forge::r-base ==3.6
+  - conda-forge::r-base ==3.6.1
   - bioconda::bioconductor-rsamtools ==2.0.0
   - r::r-hmm ==1.0
   - bioconda::bioconductor-genomicalignments ==1.20.0
