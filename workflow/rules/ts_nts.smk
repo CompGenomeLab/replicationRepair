@@ -4,7 +4,7 @@ rule ts_nts_xr:
         minus="results/XR/{samples}/{samples}_hg19_sorted_xr_minus_damSite.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        comb=temp("results/XR/{samples}/{samples}_hg19_sorted_chr.bed"),
+        comb="results/XR/{samples}/{samples}_hg19_sorted_chr.bed",
         TS=temp("results/XR/{samples}/{samples}_hg19_sorted_TS.bed"),
         NTS=temp("results/XR/{samples}/{samples}_hg19_sorted_NTS.bed"),
         TSNTS="results/XR/{samples}/{samples}_hg19_sorted_TSNTS.bed",
@@ -52,7 +52,7 @@ rule ts_nts_ds:
         minus="results/DS/{samples}/{samples}_hg19_sorted_ds_dipyrimidines_minus_damSite.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        comb=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_chr.bed"),
+        comb="results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_chr.bed",
         TS=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_TS.bed"),
         NTS=temp("results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_NTS.bed"),
         TSNTS="results/DS/{samples}/{samples}_hg19_sorted_dipyrimidines_TSNTS.bed",
@@ -93,13 +93,14 @@ rule ts_nts_ds:
         echo "`date -R`: Success! TS & NTS counts are combined." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
+
 rule ts_nts_xr_sim:
     input:
         plus="results/sim/{samples}/{samples}_hg19_xr_sim_plus_damSite.bed",
         minus="results/sim/{samples}/{samples}_hg19_xr_sim_minus_damSite.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        comb=temp("results/sim/{samples}/{samples}_hg19_sorted_chr.bed"),
+        comb="results/sim/{samples}/{samples}_hg19_sorted_chr.bed",
         TS=temp("results/sim/{samples}/{samples}_hg19_sorted_TS.bed"),
         NTS=temp("results/sim/{samples}/{samples}_hg19_sorted_NTS.bed"),
         TSNTS="results/sim/{samples}/{samples}_hg19_sorted_TSNTS.bed",
@@ -147,7 +148,7 @@ rule ts_nts_ds_sim:
         minus="results/sim/{samples}/{samples}_hg19_ds_sim_minus_damSite.bed",
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_stranded.bed",
     output:
-        comb=temp("results/sim/{samples}/{samples}_hg19_sorted_dipyrimidines_chr.bed"),
+        comb="results/sim/{samples}/{samples}_hg19_sorted_dipyrimidines_chr.bed",
         TS=temp("results/sim/{samples}/{samples}_hg19_sorted_dipyrimidines_TS.bed"),
         NTS=temp("results/sim/{samples}/{samples}_hg19_sorted_dipyrimidines_NTS.bed"),
         TSNTS="results/sim/{samples}/{samples}_hg19_sorted_dipyrimidines_TSNTS.bed",

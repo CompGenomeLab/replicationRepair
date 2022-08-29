@@ -149,6 +149,7 @@ rule tss_ds:
         echo "`date -R`: Success! RPKMs are calculated." || 
         {{ echo "`date -R`: Process failed..."; exit 1; }}  ) >> {log} 2>&1
         """
+
 rule tss_xr_sim:
     input:
         genes="resources/ref_genomes/hg19/hg19_ucsc_genes_knownCanonical_{tss_tes}_windows_201_100.bed",
