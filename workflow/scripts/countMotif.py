@@ -66,7 +66,7 @@ else:
         for m in motif:
 
             length = int(outLine[2]) - int(outLine[1])
-            outLine.append(str(countMotif(r, m)/(length-m+1)*100))
+            outLine.append(str(countMotif(r, m)/(length-len(m)+1)*100))
 
         out.write(separator.join(outLine))
         out.write("\n")
