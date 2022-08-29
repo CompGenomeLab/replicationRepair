@@ -119,3 +119,7 @@ region_mut_comb_opt:
   - "'-score T -strand T'"
   - "'-score T -strand T'"
   - "'-score T -strand T'"
+
+genome:
+  build: "hg19"
+  link: "ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/GRCh37.p13.genome.fa.gz"

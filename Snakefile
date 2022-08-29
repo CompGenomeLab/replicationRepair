@@ -52,6 +52,7 @@ rule all:
 
 # Prepare genome
 include: "workflow/rules/unzipTSS.smk"
+include: "workflow/rules/genome_download.smk"
 include: "workflow/rules/genome_build.smk"
 include: "workflow/rules/genome_indexing.smk"
 
