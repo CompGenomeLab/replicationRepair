@@ -1,0 +1,6 @@
+jobs: 220 
+cluster: "sbatch -A {resources.account} -p {resources.partition} -J {rule}.job --qos {resources.partition} --mem 64G --cpus-per-task={threads} -e logs/cluster/{rule}_%A.err --output=/dev/null"
+
+default-resources: [account='investor', partition='mid_investor']
+# default-resources: [account='investor', partition='mem']
+# default-resources: [account='mdbf', partition='mid_mdbf']
