@@ -35,7 +35,7 @@ Install [mamba](https://mamba.readthedocs.io/en/latest/)
 and create the environment using mamba:
 
     ```
-    conda install -c conda-forge mamba
+    conda install -c conda-forge mamba=0.25.0
 
     mamba create -c bioconda -c conda-forge -c r -n repair snakemake=6.3.0
 
@@ -62,12 +62,12 @@ moved to `resources/ref_genomes/hg19/` directory located in
 (outside of `replicationRepair` directory) from the 
 [github link](https://github.com/CompGenomeLab/xr-ds-seq-snakemake).
 
-- To produce consistent results, `genome_hg19.fa` should be copied to
-`xr-ds-seq-snakemake/resources/ref_genomes/hg19/` 
-(`hg19/` directory should be created before copying the genome file).
+- For the sake of reproducibility, you should checkout to branch `v0.6.1` 
+before running the pipeline.
 
-- Lastly, `config_DS.yaml` and `config_XR.yaml` files in `xr-ds-seq-snakemake/config/` 
-should be replaced by their counterparts in `replicationRepair/config/`.
+- Lastly, content of `config.yaml` file in `xr-ds-seq-snakemake/config/` 
+should be replaced by the content of `config_xr_ds_seq.yaml` in 
+`replicationRepair/config/`.
 
 ### Retrieve Melanoma Simple Somatic Mutations 
 
@@ -115,12 +115,16 @@ should be moved to the appropriate directories.
 
     - For XR-seq samples:
     ```
-    cp {path_to_dir}/xr-ds-seq-snakemake/results/XR/*/*_*us.bed {path_to_dir}/replicationRepair/resources/samples/XR/
+    cp {path_to_dir}/xr-ds-seq-snakemake/results/processed_files/*_XR_plus.bed {path_to_dir}/replicationRepair/resources/samples/XR/
+
+    cp {path_to_dir}/xr-ds-seq-snakemake/results/processed_files/*_XR_minus.bed {path_to_dir}/replicationRepair/resources/samples/XR/
     ```
 
     - For Damage-seq samples:
     ```
-    cp {path_to_dir}/xr-ds-seq-snakemake/results/DS/*/*_ds_dipyrimidines_*us.bed {path_to_dir}/replicationRepair/resources/samples/DS/
+    cp {path_to_dir}/xr-ds-seq-snakemake/results/processed_files/*_DS_plus.bed {path_to_dir}/replicationRepair/resources/samples/DS/
+
+    cp {path_to_dir}/xr-ds-seq-snakemake/results/processed_files/*_DS_minus.bed {path_to_dir}/replicationRepair/resources/samples/DS/
     ```
 
     - For simulated samples:
