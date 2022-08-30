@@ -1,3 +1,5 @@
-**Supplementary Figure 5:** The effect of chromatin states along with replication timing on repair. 
-Same as Figure 3 except that the repair of (6-4)PPs was presented. 
-Replicate A and B are combined.
+**Supplementary Figure 5:** 
+Chromosome-wide profiles of replication timing and repair. 
+Replication timing profiles are shown for chromosome 1 and 19 until 50 Mb. 
+Profiles are colored by the local ratio of **(A)** normalized repair rate and 
+**(B)** Early/Late S phase normalized repair rate of CPD 12 minutes samples. 

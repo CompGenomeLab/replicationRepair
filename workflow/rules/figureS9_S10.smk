@@ -5,7 +5,8 @@ rule figureS9_S10:
     output:
         figS9=report("results/plots/figureS9.pdf", caption="../report/figureS9.rst", category="Supplementary Figures"),
         figS10=report("results/plots/figureS10.pdf", caption="../report/figureS10.rst", category="Supplementary Figures"),
-        dfs=expand("results/plot_dataframe/figure{num}_{df}.csv", num=["S9", "S10"], df=["A1", "A2", "B1", "B2"]),
+        dfs=report(expand("results/plot_dataframe/figure{num}_{df}.csv", num=["S9", "S10"], df=["A1", "A2", "B1", "B2"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figureS9_S10.log",
     benchmark:

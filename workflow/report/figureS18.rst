@@ -1,4 +1,3 @@
-**Supplementary Figure 18:** Damage (Damage-seqreal/simulation) CPDs profiles at 0 minutes and 
-repair (XR-seqreal/simulation) CPDs profiles at 12 minutes around initiation zones 
-in ERDs (left) and LRDs (right). 
-Replicate A and B are combined.
+**Supplementary Figure 18:** 
+Asymmetric dinucleotide content around initiation zones and replication domains. 
+Similar to the Fig S16 except dinucleotides used instead of mononucleotides.

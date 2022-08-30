@@ -3,7 +3,7 @@ rule figureS8:
         df="results/plot_dataframe/figure3_B.csv",            
     output:
         plot=report("results/plots/figureS8.pdf", caption="../report/figureS8.rst", category="Supplementary Figures"),
-        dfs="results/plot_dataframe/figureS8.csv",
+        dfs=report("results/plot_dataframe/figureS8.csv", category="Figure Data"),
     log:
         "logs/rule/fig/figureS8.log",
     benchmark:

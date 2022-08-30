@@ -4,7 +4,7 @@ rule figure4G:
         counts="resources/ref_genomes/hg19/genome_hg19_50kb_counts.txt",                
     output:
         plot=report("results/plots/figure4G.pdf", caption="../report/figure4G.rst", category="Figures"),
-        dfs="results/plot_dataframe/figure4_G.csv",
+        dfs=report("results/plot_dataframe/figure4_G.csv", category="Figure Data"),
     log:
         "logs/rule/fig/figure4G.log",
     benchmark:

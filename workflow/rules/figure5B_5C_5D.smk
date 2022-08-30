@@ -9,7 +9,8 @@ rule figure5B_5C_5D:
         noverlap_TC="results/regions/iz_hela_no_overlap_repdomains_uv_mean0.5_windows_201_100_counts.txt",  
     output:
         plot=report("results/plots/figure5B_5C_5D.pdf", caption="../report/figure5B_5C_5D.rst", category="Figures"),
-        dfs=expand("results/plot_dataframe/figure5_{df}.csv", df=["B", "C", "D1", "D2"]),
+        dfs=report(expand("results/plot_dataframe/figure5_{df}.csv", df=["B", "C", "D1", "D2"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figure5B_5C_5D.log",
     benchmark:

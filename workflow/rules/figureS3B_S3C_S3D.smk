@@ -7,7 +7,8 @@ rule figureS3B_S3C_S3D:
         tes="results/final/final_reports_hg19_tes.txt",                
     output:
         plot=report("results/plots/figureS3B_S3C_S3D.pdf", caption="../report/figureS3.rst", category="Supplementary Figures"),
-        dfs=expand("results/plot_dataframe/figureS3_{df}.csv", df=["B", "C1", "C2", "D"]),
+        dfs=report(expand("results/plot_dataframe/figureS3_{df}.csv", df=["B", "C1", "C2", "D"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figureS3B_S3C_S3D.log",
     benchmark:

@@ -9,9 +9,10 @@ rule figure4C_4D_S13_S15_S16:
         figS13=report("results/plots/figureS13.pdf", caption="../report/figureS13.rst", category="Supplementary Figures"),
         figS15=report("results/plots/figureS15.pdf", caption="../report/figureS15.rst", category="Supplementary Figures"),
         figS16=report("results/plots/figureS16.pdf", caption="../report/figureS16.rst", category="Supplementary Figures"),
-        dfs1=expand("results/plot_dataframe/figure4_{df}.csv", df=["C1", "C2", "D1", "D2"]),
-        dfs2=expand("results/plot_dataframe/figureS16_{df}.csv", df=["B1", "B2", "C1", "C2"]),
-        dfs3=expand("results/plot_dataframe/figure{num}_{df}.csv", num=["S13", "S15"], df=["A1", "A2", "B1", "B2"]),
+        dfs1=report(expand("results/plot_dataframe/figure4_{df}.csv", df=["C1", "C2", "D1", "D2"]), category="Figure Data"),
+        dfs2=report(expand("results/plot_dataframe/figureS16_{df}.csv", df=["B1", "B2", "C1", "C2"]), category="Figure Data"),
+        dfs3=report(expand("results/plot_dataframe/figure{num}_{df}.csv", num=["S13", "S15"], df=["A1", "A2", "B1", "B2"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figure4C_4D_S13_S15_S16.log",
     benchmark:

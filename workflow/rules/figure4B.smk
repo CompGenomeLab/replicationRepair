@@ -5,7 +5,8 @@ rule figure4B:
         sim="results/final/final_reports_sim_hg19_iz_hela_repdomains_uv_mean0.5_windows_201_100.txt",  
     output:
         plot=report("results/plots/figure4B.pdf", caption="../report/figure4B.rst", category="Figures"), 
-        dfs=expand("results/plot_dataframe/figure4_{df}.csv", df=["B1", "B2", "B3", "B4"]),
+        dfs=report(expand("results/plot_dataframe/figure4_{df}.csv", df=["B1", "B2", "B3", "B4"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figure4B.log",
     benchmark:

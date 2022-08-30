@@ -7,7 +7,8 @@ rule figureS11_S12:
     output:
         figS11=report("results/plots/figureS11.pdf", caption="../report/figureS11.rst", category="Supplementary Figures"),
         figS12=report("results/plots/figureS12.pdf", caption="../report/figureS12.rst", category="Supplementary Figures"),
-        dfs=expand("results/plot_dataframe/figure{num}_{df}.csv", num=["S11", "S12"], df=["A1", "A2", "B1", "B2"]),
+        dfs=report(expand("results/plot_dataframe/figure{num}_{df}.csv", num=["S11", "S12"], df=["A1", "A2", "B1", "B2"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figureS11_S12.log",
     benchmark:

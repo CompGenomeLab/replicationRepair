@@ -12,7 +12,8 @@ rule figure4E_4F_S17toS24:
         o3=report("results/plots/figureS19.pdf", caption="../report/figureS19.rst", category="Supplementary Figures"),
         o4=report("results/plots/figureS20.pdf", caption="../report/figureS20.rst", category="Supplementary Figures"),
         o5=report("results/plots/figureS21.pdf", caption="../report/figureS21.rst", category="Supplementary Figures"),
-        dfs=expand("results/plot_dataframe/figure{num}.csv", num=["S17", "S18", "S19", "S20", "S21", "S22", "S23", "S24", "4_E", "4_F"]),
+        dfs=report(expand("results/plot_dataframe/figure{num}.csv", num=["S17", "S18", "S19", "S20", "S21", "S22", "S23", "S24", "4_E", "4_F"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figure4E_4F_S17toS24.log",
     benchmark:

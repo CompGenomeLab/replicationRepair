@@ -1,5 +1,11 @@
-**Supplementary Figure 11:** Intergenic repair rate asymmetry around initiation zones 
-in different replication domains. 
-Similar as Fig 4C and D except that damage and repair signals in the annotated 
-transcribed regions were discarded before analysis. 
+**Supplementary Figure 11:** 
+Repair rate asymmetry around initiation zones and replication domains. 
+(Left) (6-4)PP normalized repair rates 
+[log2 (XR-seq\ :sub:`real/simulation`\/Damage-seq\ :sub:`real/simulation`\)] 
+at 12 minutes in early **(A)** and late **(B)** S phases around initiation zones 
+that were separated into corresponding replication domains. 
+(Right) The boxplot of windows in left replicating and right replicating 
+directions are shown separately for plus and minus strands. 
+Paired wilcoxon test was used to assess the significance of differences 
+between the strands. 
 Replicate A and B are combined.

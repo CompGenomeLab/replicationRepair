@@ -4,7 +4,8 @@ rule figureS5:
         df_sim="results/final/final_reports_sim_hg19_avg_uv_T_Loess.txt",            
     output:
         plot=report("results/plots/figureS5.pdf", caption="../report/figureS5.rst", category="Supplementary Figures"),
-        dfs=expand("results/plot_dataframe/figureS5_{df}.csv", df=["A","B"]),
+        dfs=report(expand("results/plot_dataframe/figureS5_{df}.csv", df=["A","B"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figureS5.log",
     benchmark:

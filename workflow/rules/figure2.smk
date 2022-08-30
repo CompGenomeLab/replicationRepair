@@ -6,7 +6,8 @@ rule figure2:
         noW_sim="results/final/final_reports_sim_hg19_repdomains_uv_mean0.5.txt",                
     output:
         plot=report("results/plots/figure2.pdf", caption="../report/figure2.rst", category="Figures"),
-        dfs=expand("results/plot_dataframe/figure2_{df}.csv", df=["A1", "A2", "B"]),
+        dfs=report(expand("results/plot_dataframe/figure2_{df}.csv", df=["A1", "A2", "B"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figure2.log",
     benchmark:

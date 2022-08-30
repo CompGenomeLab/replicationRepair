@@ -6,7 +6,8 @@ rule figure3_S6_S7:
         p3=report("results/plots/figure3.pdf", caption="../report/figure3.rst", category="Figures"),
         S6=report("results/plots/figureS6.pdf", caption="../report/figureS6.rst", category="Supplementary Figures"),
         S7=report("results/plots/figureS7.pdf", caption="../report/figureS7.rst", category="Supplementary Figures"),
-        dfs=expand("results/plot_dataframe/figure{num}_{df}.csv", num=["3", "S6", "S7"], df=["A", "B"]),
+        dfs=report(expand("results/plot_dataframe/figure{num}_{df}.csv", num=["3", "S6", "S7"], df=["A", "B"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figure3_S6_S7.log",
     benchmark:

@@ -1,3 +1,6 @@
-**Supplementary Figure 16:** Asymmetric quadnucleotide content around initiation zones and replication domains. 
-Similar to the Fig S13 except quadnucleotides used instead of mononucleotides. 
-Ten sequences with the highest difference were shown. 
+**Supplementary Figure 16:** 
+Repair rate asymmetry around initiation zones and replication domains in 
+intergenic regions. 
+**(B-C)** Same as Figure S14 except that cells were synchronized to the early 
+S phase. 
+Replicate A and B are combined.

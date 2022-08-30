@@ -10,7 +10,8 @@ rule figure1:
         tes="results/final/final_reports_hg19_tes.txt",                
     output:
         plot=report("results/plots/figure1.pdf", caption="../report/figure1.rst", category="Figures"),
-        dfs=expand("results/plot_dataframe/figure1_{df}.csv", df=["B1", "B2", "C1", "C2", "C3", "C4", "D"]),
+        dfs=report(expand("results/plot_dataframe/figure1_{df}.csv", df=["B1", "B2", "C1", "C2", "C3", "C4", "D"]),
+        category="Figure Data"),
     log:
         "logs/rule/fig/figure1.log",
     benchmark:

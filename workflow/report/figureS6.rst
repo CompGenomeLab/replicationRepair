@@ -1,5 +1,4 @@
-**Supplementary Figure 6:** Strand asymmetry of damage and repair around initiation zones 
-in ERDs and LRDs due to sequence context. 
-**(A)** Damage and **(B)** repair profiles of real and simulated reads around initiation zones 
-for CPDs at 0 minutes (for damage), 12 minutes (for repair), and 2 hours (for both damage and repair). 
+**Supplementary Figure 6:** 
+The effect of chromatin states along with replication timing on repair. 
+Same as Figure 3 except that the repair of (6-4)PPs was presented. 
 Replicate A and B are combined.
