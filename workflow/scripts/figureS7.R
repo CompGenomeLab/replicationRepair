@@ -208,7 +208,7 @@ p.B <- p.B + p_format +
         strip.text = element_blank(),
         legend.position = "right", 
         axis.text.x = element_text(angle = 60, vjust = 0.95, hjust = 0.95)) +
-  geom_text(data = stat.test, aes(y=y.position, label = p.signif))
+  geom_text(data = stat.test, aes(y=5, label = p.signif))
 
 p.A / p.B + 
   plot_layout(guides = "collect") & 

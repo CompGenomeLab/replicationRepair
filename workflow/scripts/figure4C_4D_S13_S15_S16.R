@@ -241,8 +241,8 @@ write.table(pC1_data, file = paste0(argv$data_prefix, "D1.csv"), quote = FALSE,
 write.table(pC1_boxplot, file = paste0(argv$data_prefix, "D2.csv"), quote = FALSE, 
             row.names = FALSE, sep = ",")
 
-p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.4) 
-p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.05) 
+p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.3) 
+p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.10) 
 
 (p.A + labs(title="A")) + 
 (p.B.1 + labs(title="C")) + p.B.2 + 
@@ -272,7 +272,7 @@ write.table(pC1_data, file = paste0(argv$data_prefix, "C1.csv"), quote = FALSE,
 write.table(pC1_boxplot, file = paste0(argv$data_prefix, "C2.csv"), quote = FALSE, 
             row.names = FALSE, sep = ",")
 
-p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.85) 
+p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.7) 
 p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.15) 
 
 p.A + labs(title="A") + 
@@ -303,8 +303,8 @@ write.table(pC1_data, file = paste0(argv$data_prefix, "B1.csv"), quote = FALSE,
 write.table(pC1_boxplot, file = paste0(argv$data_prefix, "B2.csv"), quote = FALSE, 
             row.names = FALSE, sep = ",")
 
-p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE) 
-p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE) 
+p.B.2 <- p.B.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.5) 
+p.C.2 <- p.C.2 + stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.1) 
 
 (p.B.1 + labs(title="A")) + p.B.2 + 
   grid::textGrob(ylabname1, 

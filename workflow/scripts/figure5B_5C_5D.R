@@ -252,7 +252,7 @@ p.D.2 <- ggplot(data=pD1_boxplot, aes(x=repdomains, y=norm, fill=strands)) +
 
 # adding and overriding the default plot format
 p.D.2 <- p.D.2 + p_format + 
-  stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.037) + 
+  stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.04) + 
   theme(strip.background = element_blank(),
         legend.position = "right") 
 

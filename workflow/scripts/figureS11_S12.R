@@ -152,7 +152,7 @@ p.A.2 <- ggplot(data=pA1_boxplot, aes(x=repdomains, y=log2val, fill=sample_stran
 
 # adding and overriding the default plot format
 p.A.2 <- p.A.2 + p_format + 
-  stat_compare_means(label = "p.signif",  paired = TRUE) + 
+  stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.25) + 
   theme(strip.background = element_blank()) 
 
 
@@ -204,7 +204,7 @@ p.B.2 <- ggplot(data=pB1_boxplot, aes(x=repdomains, y=log2val, fill=sample_stran
 
 # adding and overriding the default plot format
 p.B.2 <- p.B.2 + p_format + 
-  stat_compare_means(label = "p.signif",  paired = TRUE) + 
+  stat_compare_means(label = "p.signif",  paired = TRUE, label.y = 0.28) + 
   theme(strip.background = element_blank())
 
 
