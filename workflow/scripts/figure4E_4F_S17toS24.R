@@ -226,7 +226,7 @@ p1 <- p1 + p_format +
                width = 0.5,
                color="red") 
 
-ggsave(argv$oT, width = 22, height = 18, units = "cm") 
+ggsave(argv$oT, width = 11, height = 9, units = "cm") 
 
 counts_total_C <- calculateAsymmetry(counts_total_df, "C", "G")
 
@@ -249,7 +249,7 @@ p2 <- p2 + p_format +
                width = 0.5,
                color="red") 
 
-ggsave(argv$oC, width = 22, height = 18, units = "cm") 
+ggsave(argv$oC, width = 11, height = 9, units = "cm") 
 
 counts_total_TT <- calculateAsymmetry(counts_total_df, "TT", "AA")
 
@@ -273,7 +273,7 @@ p3 <- p3 + p_format +
                width = 0.5,
                color="red") 
 
-ggsave(argv$oTT, width = 22, height = 18, units = "cm") 
+ggsave(argv$oTT, width = 11, height = 9, units = "cm") 
 
 counts_total_CC <- calculateAsymmetry(counts_total_df, "CC", "GG")
 
@@ -296,7 +296,7 @@ p4 <- p4 + p_format +
                width = 0.5,
                color="red") 
 
-ggsave(argv$oCC, width = 22, height = 18, units = "cm") 
+ggsave(argv$oCC, width = 11, height = 9, units = "cm") 
 
 counts_total_TC <- calculateAsymmetry(counts_total_df, "TC", "GA")
 
@@ -319,7 +319,7 @@ p5 <- p5 + p_format +
                width = 0.5,
                color="red") 
 
-ggsave(argv$oTC, width = 22, height = 18, units = "cm") 
+ggsave(argv$oTC, width = 11, height = 9, units = "cm") 
 
 
 ##### Mono- to Penta-mer Plots #####
