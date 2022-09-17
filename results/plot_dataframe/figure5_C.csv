@@ -1,0 +1,17 @@
+Group.1,Group.2,Group.3,x,direction
+HeLa,ERD,1,0.00092196494979743,Right Replicating
+HeLa,LRD,1,0.00989533613926419,Right Replicating
+HeLa,ERD,2,-0.000254115579842073,Right Replicating
+HeLa,LRD,2,0.0654069929314157,Right Replicating
+HeLa,ERD,3,0.00184917810573823,Right Replicating
+HeLa,LRD,3,0.0540377317047231,Right Replicating
+HeLa,ERD,4,-0.00297699054239875,Right Replicating
+HeLa,LRD,4,0.115601243272726,Right Replicating
+HeLa,ERD,1,0.00871972558113208,Left Replicating
+HeLa,LRD,1,-0.0331654788790144,Left Replicating
+HeLa,ERD,2,0.00231077708936047,Left Replicating
+HeLa,LRD,2,0.00257455880883593,Left Replicating
+HeLa,ERD,3,0.005316788363997,Left Replicating
+HeLa,LRD,3,-0.0649948268463946,Left Replicating
+HeLa,ERD,4,0.00815695408617256,Left Replicating
+HeLa,LRD,4,-0.119532124258394,Left Replicating

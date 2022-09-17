@@ -32,6 +32,7 @@ resources/samples/chromHMM/*
 results/*
 results_old/*
 !results/README.md
+!results/plot_dataframe
 
 logs/cluster/*
 !logs/cluster/README.md
